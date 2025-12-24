@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout titre="Mentions Légales">
+  <section class="legal-page">
+    <div class="container">
+      <h1>Mentions Légales</h1>
+      
+      <div class="legal-content">
+        <h2>1. Informations légales</h2>
+        <p><strong>Raison sociale :</strong> Torres Transport</p>
+        <p><strong>Forme juridique :</strong> Entreprise individuelle</p>
+        <p><strong>Adresse :</strong> Annemasse, Haute-Savoie (74)</p>
+        <p><strong>Email :</strong> contact@torrestransport.fr</p>
+        <p><strong>Téléphone :</strong> 01 23 45 67 89</p>
+
+        <h2>2. Hébergement</h2>
+        <p>Ce site est hébergé par [Nom de l'hébergeur]</p>
+
+        <h2>3. Propriété intellectuelle</h2>
+        <p>
+          L'ensemble du contenu de ce site (textes, images, logos) est la propriété 
+          exclusive de Torres Transport. Toute reproduction est interdite sans autorisation préalable.
+        </p>
+
+        <h2>4. Données personnelles</h2>
+        <p>
+          Les informations recueillies via le formulaire de contact sont utilisées uniquement 
+          pour traiter votre demande de devis. Conformément au RGPD, vous disposez d'un droit 
+          d'accès, de rectification et de suppression de vos données personnelles.
+        </p>
+
+        <h2>5. Cookies</h2>
+        <p>
+          Ce site n'utilise pas de cookies de tracking. Seuls les cookies nécessaires au 
+          fonctionnement du site sont utilisés.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .legal-page {
+    padding: 4rem 0;
+    min-height: 60vh;
+  }
+
+  .legal-page h1 {
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+  }
+
+  .legal-content {
+    max-width: 800px;
+  }
+
+  .legal-content h2 {
+    color: var(--primary-color);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .legal-content p {
+    color: var(--gray);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+</style>

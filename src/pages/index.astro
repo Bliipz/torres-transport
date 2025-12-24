@@ -1,16 +1,853 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import Testimonial from '../components/Testimonial.astro';
+import ProcessStep from '../components/ProcessStep.astro';
 
+// ==================== DONNÉES : LISTE DES SERVICES ====================
+const services = [
+  { titre: "Déménagement", image: "/services/demenagement.jpg", lien: "/services/demenagement" },
+  { titre: "Montage de meubles", image: "/services/montage-de-meuble.jpg", lien: "/services/montage-meubles" },
+  { titre: "Transport", image: "/services/transport.jpg", lien: "/services/transport" },
+  { titre: "Location avec chauffeur", image: "/services/location-vehicule.jpg", lien: "/services/location-vehicule" },
+  { titre: "Manutention", image: "/services/transport.jpg", lien: "/services/manutention" },
+  { titre: "Nettoyage fin de chantier", image: "/services/nettoyage-pro.jpg", lien: "/services/nettoyage" },
+  { titre: "Débarras", image: "/services/debarras.png", lien: "/services/debarras" }
+];
+
+// ==================== DONNÉES : LISTE DES TÉMOIGNAGES ====================
+const temoignages = [
+  {
+    nom: "Pain Nectar",
+    texte: "C'était parfait : M. Torres est à l'écoute, très professionnel et sympathique. Par ailleurs, les prix sont intéressants. Je recommande !",
+    note: 5
+  },
+  {
+    nom: "Edith Marchand",
+    texte: "Très soigneux dynamiques rapidité super sympa polis et d'autres talent que je recommanderais autour de moi",
+    note: 5
+  },
+  {
+    nom: "Fanette Gerard",
+    texte: "Un grand merci pour la rapidité de réponse et la disponibilité pour chercher à trouver une solution rapide et adaptée à notre besoin de transport de meubles. C'est tellement précieux d'avoir un interlocuteur à l'écoute, qui s'est chargé de toutes les démarches pour nous et qui nous a fourni une prestation sans aucune fausse note. Rapidité, efficacité, rigueur, nous ne pouvons que recommander!",
+    note: 5
+  },
+  {
+    nom: "Alex Nourr",
+    texte: "Monsieur TORRES est un professionnel réactif. Il a su s'adapter à un emploi du temps complexe. Efficace et à l'écoute du client. Je le recommande vivement.",
+    note: 5
+  },
+  {
+    nom: "Christophe Conus",
+    texte: "Je remercie M. Torres et son équipe qui ont été très efficace du début à la fin, même pour un déménagement en deux temps flexibile et ponctuel. Je recommande les yeux fermés.",
+    note: 5
+  },
+  {
+    nom: "Kristin UV",
+    texte: "J'ai eu la chance d'être mise en contact avec Torres Transport pour un déménagement qui s'est déroulé de manière très professionnelle, avec une grande attention à mes meubles. L'équipe de Torres Transport était autant sympathique que consciencieuse. Je recommande chaleureusement!",
+    note: 5
+  },
+  {
+    nom: "Judith Fremaux",
+    texte: "Une connaissance nous avait conseillé ce déménageur. Tout s'est super bien passé. Le prix est tout à fait raisonnable (en comparaison avec un déménageur très connu). Je recommanderai ce professionnel à mon entourage.",
+    note: 5
+  },
+  {
+    nom: "Barbara Delahayes",
+    texte: "Excellent service de déménagement! Bonne communication en amont de la prestation, rapidité et professionnalisme le jour J. En cas de prochain déménagement j'aurais recours à ce service sans hésiter",
+    note: 5
+  },
+  {
+    nom: "Marlene Lucini",
+    texte: "Compétant et réactif, sait faire face à l'imprévu, je recommande cette entreprise",
+    note: 5
+  }
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout titre="Accueil">
+
+<!-- ==================== SECTION HERO ====================
+     Bannière principale avec titre et sous-titre animés
+     Composant : Hero.astro
+========================================================= -->
+<Hero 
+  titre="Simplifiez-vous la vie"
+  sousTitre="Déménagez, Transportez, Montez vos meubles et Débarrassez-vous en toute tranquillité, sans lever le petit doigt !">
+</Hero>
+
+<!-- ==================== SECTION PARTENAIRES ====================
+     Bande de logos qui défilent automatiquement à l'infini
+     Animation : scroll CSS (40s linear infinite)
+     3 sets de logos pour éviter les trous dans l'animation
+============================================================== -->
+<section class="partners-marquee">
+  <div class="marquee">
+    <div class="marquee-content">
+      <!-- Premier set de logos -->
+      <img src="/partners/foir-fouille.svg" alt="La Foir'Fouille" class="partner-logo-img">
+      <img src="/partners/centrakor.png" alt="Centrakor" class="partner-logo-img">
+      <img src="/partners/locabox.png" alt="Locabox" class="partner-logo-img">
+      <img src="/partners/resa-box.png" alt="Resa Box 74" class="partner-logo-img">
+      
+      <!-- Deuxième set (duplication pour continuité) -->
+      <img src="/partners/foir-fouille.svg" alt="La Foir'Fouille" class="partner-logo-img">
+      <img src="/partners/centrakor.png" alt="Centrakor" class="partner-logo-img">
+      <img src="/partners/locabox.png" alt="Locabox" class="partner-logo-img">
+      <img src="/partners/resa-box.png" alt="Resa Box 74" class="partner-logo-img">
+
+      <!-- Troisième set (duplication pour éviter les trous) -->
+      <img src="/partners/foir-fouille.svg" alt="La Foir'Fouille" class="partner-logo-img">
+      <img src="/partners/centrakor.png" alt="Centrakor" class="partner-logo-img">
+      <img src="/partners/locabox.png" alt="Locabox" class="partner-logo-img">
+      <img src="/partners/resa-box.png" alt="Resa Box 74" class="partner-logo-img">
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SECTION À PROPOS ====================
+     Présentation de l'entreprise avec :
+     - Effet typewriter sur le texte (caractère par caractère)
+     - Photo style Polaroid avec rotation et animation
+========================================================== -->
+<section class="about-section">
+  <div class="container">
+    <div class="about-content">
+      <!-- Colonne gauche : Texte avec effet typewriter -->
+      <div class="about-text">
+        <h2>Torres Transport</h2>
+        <!-- Zone où le texte s'écrit (remplie par JavaScript) -->
+        <p id="typewriter-text"></p>
+        <!-- Texte caché utilisé comme source pour le typewriter -->
+        <div class="hidden-text">
+          <p>
+            Riche d'une expérience de <strong>20 ans</strong> dans le transport, la livraison et le montage de meubles 
+            pour une grande chaîne de distribution, c'est en 2024 que Torres Transport a vu le jour.
+          </p>
+          <p>
+            Basée à <strong>Annemasse, dans le département 74</strong>, mon entreprise intervient dans toute la France.
+            Spécialisée dans le déménagement, la livraison, le montage de mobilier et l'installation électroménager, 
+            mon savoir-faire et mes compétences sauront vous satisfaire.
+          </p>
+          <p>
+            Notre équipe est dynamique et soucieuse d'un travail de qualité.
+          </p>
+        </div>
+      </div>
+      
+      <!-- Colonne droite : Photo Polaroid -->
+      <div class="about-image">
+        <img src="/Ludovic.jpeg" alt="Ludovic - Fondateur Torres Transport" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SECTION SERVICES ====================
+     Grille responsive des 7 services proposés
+     Chaque carte est cliquable et mène vers la page détaillée
+     Composant : ServiceCard.astro
+========================================================== -->
+<section class="services-section">
+  <div class="container">
+    <h2>Nos Services</h2>
+    <div class="services-grid">
+      {services.map(service => (
+        <ServiceCard 
+          titre={service.titre}
+          image={service.image}
+          lien={service.lien}
+        />
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SECTION PROCESS (3 ÉTAPES) ====================
+     Explication du processus en 3 étapes simples
+     Animation : Fade-in depuis la gauche au scroll
+     Composant : ProcessStep.astro
+     
+     Fonctionnement de l'animation :
+     1. Au chargement : Cartes invisibles et décalées à gauche
+     2. Au scroll : Quand la section devient visible (20% visible)
+     3. JavaScript ajoute la classe "visible" à la section
+     4. Les cartes apparaissent l'une après l'autre avec délai progressif
+====================================================================== -->
+<section class="process-section">
+  <div class="container">
+    <h2>Pourquoi nous choisir ? En 3 étapes simples</h2>
+    <div class="process-grid">
+      <ProcessStep 
+        numero="1"
+        icone="📝"
+        titre="Remplissez le formulaire"
+        description="Veuillez remplir le formulaire avec les informations demandées en ligne."
+      />
+      <ProcessStep 
+        numero="2"
+        icone="🏠"
+        titre="Déplacement gratuit"
+        description="Une fois votre formulaire reçu et validé, nous nous déplaçons pour vérifier tous les éléments à transporter ainsi que le volume exact en mètres cubes (m³)."
+      />
+      <ProcessStep 
+        numero="3"
+        icone="💰"
+        titre="Devis personnalisé"
+        description="Une fois les 2 étapes validées, nous vous proposons un prix au plus juste, sans aucun frais supplémentaires."
+      />
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SECTION TÉMOIGNAGES ====================
+     Carrousel d'avis Google automatique et responsive
+     - Desktop : 3 avis visibles
+     - Tablette : 2 avis visibles
+     - Mobile : 1 avis visible
+     - Autoplay toutes les 5 secondes
+     - Navigation : flèches + dots cliquables
+     - Pause au survol de la souris
+     Composant : Testimonial.astro
+============================================================== -->
+<section class="testimonials-section">
+  <div class="container">
+    <!-- En-tête avec lien vers tous les avis Google -->
+    <div class="testimonials-header">
+      <h2>Ils nous font confiance</h2>
+      <p class="google-rating">
+        ⭐⭐⭐⭐⭐ Note moyenne : 5/5 sur Google
+        <a href="https://www.google.com/search?q=torres+transport+annemasse" target="_blank" class="voir-tous-avis">
+          Voir tous nos avis Google →
+        </a>
+      </p>
+    </div>
+    
+    <!-- Conteneur du carrousel avec boutons de navigation -->
+    <div class="carousel-container">
+      <!-- Bouton précédent -->
+      <button class="carousel-btn prev" id="prevBtn">‹</button>
+      
+      <!-- Zone visible du carrousel (overflow hidden) -->
+      <div class="carousel-wrapper">
+        <!-- Piste qui se déplace horizontalement -->
+        <div class="carousel-track" id="carouselTrack">
+          {temoignages.map(temoignage => (
+            <div class="carousel-slide">
+              <Testimonial 
+                nom={temoignage.nom}
+                texte={temoignage.texte}
+                note={temoignage.note}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+      
+      <!-- Bouton suivant -->
+      <button class="carousel-btn next" id="nextBtn">›</button>
+    </div>
+    
+    <!-- Points de navigation (dots) -->
+    <div class="carousel-dots" id="carouselDots"></div>
+  </div>
+</section>
+
+<!-- ==================== SECTION CTA (CALL TO ACTION) ====================
+     Appel à l'action final avec bouton vers la page contact
+     Background : Dégradé bleu → orange
+========================================================================= -->
+<section class="cta-section">
+  <div class="container">
+    <h2>Prêt à déménager ?</h2>
+    <p>Demandez votre devis gratuit dès maintenant</p>
+    <a href="/contact" class="btn btn-primary btn-large">Obtenir mon devis</a>
+  </div>
+</section>
+
+<!-- ==================== SCRIPTS JAVASCRIPT ==================== -->
+<script>
+  /* ========================================
+     SCRIPT 1 : EFFET TYPEWRITER
+     ======================================== */
+  const text = `Riche d'une expérience de 20 ans dans le transport, la livraison et le montage de meubles pour une grande chaîne de distribution, c'est en 2024 que Torres Transport a vu le jour.
+
+Basée à Annemasse, dans le département 74, mon entreprise intervient dans toute la France. Spécialisée dans le déménagement, la livraison, le montage de mobilier et l'installation électroménager, mon savoir-faire et mes compétences sauront vous satisfaire.
+
+Notre équipe est dynamique et soucieuse d'un travail de qualité.`;
+
+  const typewriterElement = document.getElementById('typewriter-text');
+  
+  if (typewriterElement) {
+    let index = 0;
+    const speed = 30;
+
+    function typeWriter() {
+      if (index < text.length) {
+        if (text.charAt(index) === '\n') {
+          typewriterElement.innerHTML += '<br>';
+        } else {
+          typewriterElement.innerHTML += text.charAt(index);
+        }
+        index++;
+        setTimeout(typeWriter, speed);
+      }
+    }
+
+    setTimeout(typeWriter, 500);
+  }
+
+  /* ========================================
+     SCRIPT 2 : CARROUSEL D'AVIS
+     ======================================== */
+  const track = document.getElementById('carouselTrack');
+  const slides = document.querySelectorAll('.carousel-slide');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const dotsContainer = document.getElementById('carouselDots');
+
+  if (track && slides.length > 0 && prevBtn && nextBtn && dotsContainer) {
+    let currentIndex = 0;
+    let slidesPerView = 3;
+    let autoplayInterval;
+
+    function updateSlidesPerView() {
+      if (window.innerWidth < 768) {
+        slidesPerView = 1;
+      } else if (window.innerWidth < 1024) {
+        slidesPerView = 2;
+      } else {
+        slidesPerView = 3;
+      }
+    }
+
+    function createDots() {
+      dotsContainer.innerHTML = '';
+      const totalDots = Math.ceil(slides.length / slidesPerView);
+      
+      for (let i = 0; i < totalDots; i++) {
+        const dot = document.createElement('span');
+        dot.classList.add('dot');
+        if (i === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => goToSlide(i));
+        dotsContainer.appendChild(dot);
+      }
+    }
+
+    function goToSlide(index) {
+      const totalSlides = Math.ceil(slides.length / slidesPerView);
+      currentIndex = Math.max(0, Math.min(index, totalSlides - 1));
+      
+      const slideWidth = 102.5 / slidesPerView;
+      const offset = -(currentIndex * slidesPerView * slideWidth);
+      track.style.transform = `translateX(${offset}%)`;
+      
+      document.querySelectorAll('.dot').forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentIndex);
+      });
+    }
+
+    function nextSlide() {
+      const totalSlides = Math.ceil(slides.length / slidesPerView);
+      if (currentIndex < totalSlides - 1) {
+        goToSlide(currentIndex + 1);
+      } else {
+        goToSlide(0);
+      }
+    }
+
+    function prevSlide() {
+      if (currentIndex > 0) {
+        goToSlide(currentIndex - 1);
+      } else {
+        goToSlide(Math.ceil(slides.length / slidesPerView) - 1);
+      }
+    }
+
+    function startAutoplay() {
+      autoplayInterval = setInterval(nextSlide, 5000);
+    }
+
+    function stopAutoplay() {
+      clearInterval(autoplayInterval);
+    }
+
+    prevBtn.addEventListener('click', () => {
+      prevSlide();
+      stopAutoplay();
+      startAutoplay();
+    });
+
+    nextBtn.addEventListener('click', () => {
+      nextSlide();
+      stopAutoplay();
+      startAutoplay();
+    });
+
+    track.addEventListener('mouseenter', stopAutoplay);
+    track.addEventListener('mouseleave', startAutoplay);
+
+    updateSlidesPerView();
+    createDots();
+    startAutoplay();
+
+    window.addEventListener('resize', () => {
+      updateSlidesPerView();
+      createDots();
+      goToSlide(0);
+    });
+  }
+
+  /* ========================================
+     SCRIPT 3 : ANIMATION AU SCROLL
+     ======================================== */
+  const processSection = document.querySelector('.process-section');
+
+  if (processSection) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    observer.observe(processSection);
+  }
+</script>
+
+</BaseLayout>
+
+<!-- ==================== STYLES CSS ==================== -->
+<style>
+  /* ========================================
+     SECTION À PROPOS
+     ======================================== */
+  .about-section {
+    padding: 4rem 0;
+    background: var(--light-gray);
+  }
+
+  /* Masquer le texte source du typewriter */
+  .hidden-text {
+    display: none;
+  }
+
+  /* Zone où le texte s'écrit */
+  #typewriter-text {
+    min-height: 200px;
+    line-height: 1.8;
+    color: var(--gray);
+  }
+
+  /* Curseur clignotant du typewriter */
+  #typewriter-text::after {
+    content: '|';
+    animation: blink 0.7s infinite;
+    margin-left: 2px;
+  }
+
+  /* Animation du curseur clignotant */
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+  
+  /* Grille 2 colonnes (texte + image) */
+  .about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+  
+  .about-text p {
+    margin-bottom: 1rem;
+    color: var(--gray);
+    line-height: 1.8;
+  }
+  
+  /* Photo Polaroid avec rotation et ombre */
+  .about-image img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 0;
+    
+    /* Effet photo imprimée */
+    padding: 1rem;
+    background: white;
+    box-shadow: 
+      0 4px 6px rgba(0, 0, 0, 0.1),
+      0 10px 20px rgba(0, 0, 0, 0.15),
+      0 1px 3px rgba(0, 0, 0, 0.08);
+    transform: rotate(-2deg);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+    /* Animation d'entrée */
+    animation: fadeInImage 1.2s ease-out;
+  }
+
+  /* Effet hover sur la photo */
+  .about-image img:hover {
+    transform: rotate(0deg) scale(1.02);
+    box-shadow: 
+      0 10px 30px rgba(0, 0, 0, 0.2),
+      0 15px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Animation fade-in de la photo */
+  @keyframes fadeInImage {
+    from {
+      opacity: 0;
+      transform: rotate(-2deg) translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: rotate(-2deg) translateY(0);
+    }
+  }
+  
+  /* ========================================
+     SECTION SERVICES
+     ======================================== */
+  .services-section {
+    padding: 4rem 0;
+  }
+  
+  .services-section h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  /* Grille responsive des services */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+  
+  /* ========================================
+   SECTION PROCESS (3 ÉTAPES)
+   Animation fade-in depuis la gauche au scroll
+   ======================================== */
+.process-section {
+  padding: 4rem 0;
+  background: var(--light-gray);
+}
+
+.process-section h2 {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+/* Grille responsive des 3 cartes */
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+/* ========== ANIMATION FADE-IN DEPUIS LA GAUCHE (VERSION SIMPLE) ========== */
+
+/* Par défaut : cartes visibles (si JavaScript ne marche pas) */
+.process-card {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Animation au scroll avec @keyframes */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Appliquer l'animation directement */
+.process-section .process-card {
+  animation: slideInLeft 0.6s ease forwards;
+}
+
+/* Délai pour chaque carte */
+.process-grid > :nth-child(1) .process-card,
+.process-grid > :first-child .process-card {
+  animation-delay: 0.3s;
+}
+
+.process-grid > :nth-child(2) .process-card,
+.process-grid > :nth-of-type(2) .process-card {
+  animation-delay: 0.5s;
+}
+
+.process-grid > :nth-child(3) .process-card,
+.process-grid > :last-child .process-card {
+  animation-delay: 0.7s;
+}
+
+/* État initial avant animation */
+.process-section .process-card {
+  opacity: 0;
+  transform: translateX(-50px);
+}
+  
+  /* ========================================
+     SECTION TÉMOIGNAGES - CARROUSEL
+     ======================================== */
+  .testimonials-section {
+    padding: 4rem 0;
+    overflow: hidden; /* Cache les slides en dehors de la zone visible */
+  }
+
+  /* En-tête du carrousel */
+  .testimonials-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .testimonials-header h2 {
+    margin-bottom: 0.5rem;
+  }
+
+  .google-rating {
+    font-size: 1.1rem;
+    color: var(--gray);
+    margin-top: 0.5rem;
+  }
+
+  .voir-tous-avis {
+    display: inline-block;
+    margin-left: 1rem;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+  }
+
+  .voir-tous-avis:hover {
+    color: var(--secondary-color);
+  }
+
+  /* Conteneur principal avec boutons */
+  .carousel-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  /* Zone visible du carrousel */
+  .carousel-wrapper {
+    flex: 1;
+    overflow: hidden; /* Cache les slides en dehors */
+    width: 100%;
+  }
+
+  /* Piste qui se déplace (contient toutes les slides) */
+  .carousel-track {
+    display: flex;
+    transition: transform 0.5s ease; /* Animation du déplacement */
+    gap: 2rem;
+    width: 100%;
+  }
+
+  /* Chaque slide du carrousel */
+  .carousel-slide {
+    min-width: calc(33.333% - 1.33rem); /* 3 slides visibles sur desktop */
+    max-width: calc(33.333% - 1.33rem);
+    flex-shrink: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  /* Forcer les enfants à respecter la largeur */
+  .carousel-slide * {
+    max-width: 100% !important;
+  }
+
+  /* Boutons de navigation (précédent / suivant) */
+  .carousel-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    flex-shrink: 0;
+  }
+
+  .carousel-btn:hover {
+    background: var(--secondary-color);
+    transform: scale(1.1);
+  }
+
+  /* Points de navigation (dots) */
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+  }
+
+  .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ddd;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  /* Dot actif (allongé) */
+  .dot.active {
+    background: var(--primary-color);
+    width: 30px;
+    border-radius: 6px;
+  }
+
+  .dot:hover {
+    background: var(--secondary-color);
+  }
+  
+  /* ========================================
+     SECTION PARTENAIRES - DÉFILEMENT INFINI
+     ======================================== */
+  .partners-marquee {
+    padding: 2.5rem 0;
+    background: #fafafa;
+    overflow: hidden;
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .marquee {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Contenu qui défile automatiquement */
+  .marquee-content {
+    display: flex;
+    gap: 6rem;
+    animation: scroll 40s linear infinite; /* Défilement infini */
+    width: fit-content;
+    align-items: center;
+  }
+
+  /* Style des logos partenaires */
+  .partner-logo-img {
+    height: 45px; /* Hauteur uniforme */
+    width: auto;
+    max-width: 180px;
+    object-fit: contain;
+    
+    /* Effet gris par défaut */
+    filter: grayscale(100%) brightness(0.4) contrast(1.2);
+    opacity: 0.7;
+    transition: all 0.4s ease;
+  }
+
+  /* Effet hover : couleur + zoom */
+  .partner-logo-img:hover {
+    filter: grayscale(0%) brightness(1) contrast(1);
+    opacity: 1;
+    transform: scale(1.1);
+  }
+
+  /* Animation du défilement */
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-33.333%); /* Défile d'1/3 (3 sets de logos) */
+    }
+  }
+
+  /* Pause au survol de la souris */
+  .marquee:hover .marquee-content {
+    animation-play-state: paused;
+  }
+
+  /* ========================================
+     SECTION CTA (CALL TO ACTION)
+     ======================================== */
+  .cta-section {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    text-align: center;
+  }
+  
+  .cta-section h2 {
+    color: white;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .cta-section p {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+  }
+  
+  .btn-large {
+    font-size: 1.2rem;
+    padding: 1.2rem 3rem;
+  }
+  
+  /* ========================================
+     RESPONSIVE (TABLETTES ET MOBILES)
+     ======================================== */
+  
+  /* Tablettes (< 1024px) */
+  @media (max-width: 1024px) {
+    /* Carrousel : 2 slides visibles */
+    .carousel-slide {
+      min-width: calc(50% - 1rem);
+      max-width: calc(50% - 1rem);
+    }
+  }
+
+  /* Mobiles (< 768px) */
+  @media (max-width: 768px) {
+    /* Section À propos : 1 colonne */
+    .about-content {
+      grid-template-columns: 1fr;
+    }
+
+    /* Carrousel : 1 slide visible */
+    .carousel-slide {
+      min-width: 100%;
+      max-width: 100%;
+    }
+    
+    .carousel-container {
+      gap: 1rem;
+    }
+    
+    /* Boutons plus petits */
+    .carousel-btn {
+      width: 40px;
+      height: 40px;
+      font-size: 1.5rem;
+    }
+
+    /* Logos partenaires plus petits */
+    .partner-logo-img {
+      height: 35px;
+    }
+  }
+</style>

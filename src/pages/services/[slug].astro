@@ -1,0 +1,154 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { servicesData } from '../../data/services.js';
+
+// Cette fonction génère toutes les pages de services
+export function getStaticPaths() {
+  return Object.keys(servicesData).map(slug => ({
+    params: { slug },
+    props: { service: servicesData[slug] }
+  }));
+}
+
+const { service } = Astro.props;
+const { slug } = Astro.params;
+---
+
+<BaseLayout titre={service.titre}>
+  <!-- Hero du service -->
+  <section class="service-hero">
+    <div class="container">
+      <div class="hero-icon">{service.icone}</div>
+      <h1>{service.titre}</h1>
+      <p class="lead">{service.description}</p>
+      <a href="/contact" class="btn btn-primary">Demander un devis</a>
+    </div>
+  </section>
+
+  <!-- Détails du service -->
+  <section class="service-details">
+    <div class="container">
+      <div class="details-grid">
+        <div class="details-card">
+          <h2>Ce qui est inclus</h2>
+          <ul class="features-list">
+            {service.details.map(detail => (
+              <li>✓ {detail}</li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="details-card">
+          <h2>Nos avantages</h2>
+          <ul class="features-list">
+            {service.avantages.map(avantage => (
+              <li>⭐ {avantage}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="service-cta">
+    <div class="container">
+      <h2>Intéressé par ce service ?</h2>
+      <p>Contactez-nous pour obtenir un devis gratuit et personnalisé</p>
+      <div class="cta-buttons">
+        <a href="/contact" class="btn btn-primary">Demander un devis</a>
+        <a href="/services" class="btn btn-secondary">Voir tous nos services</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .service-hero {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 4rem 0;
+    text-align: center;
+  }
+
+  .hero-icon {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+  }
+
+  .service-hero h1 {
+    color: white;
+    margin-bottom: 1rem;
+  }
+
+  .lead {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    opacity: 0.95;
+  }
+
+  .service-details {
+    padding: 4rem 0;
+  }
+
+  .details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+  }
+
+  .details-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .details-card h2 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+  }
+
+  .features-list {
+    list-style: none;
+  }
+
+  .features-list li {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--light-gray);
+    font-size: 1.1rem;
+  }
+
+  .features-list li:last-child {
+    border-bottom: none;
+  }
+
+  .service-cta {
+    background: var(--light-gray);
+    padding: 4rem 0;
+    text-align: center;
+  }
+
+  .service-cta h2 {
+    margin-bottom: 1rem;
+  }
+
+  .service-cta p {
+    font-size: 1.2rem;
+    color: var(--gray);
+    margin-bottom: 2rem;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 768px) {
+    .details-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

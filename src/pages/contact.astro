@@ -1,0 +1,470 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout titre="Contact">
+  <section class="contact-hero">
+    <div class="container">
+      <h1>Contactez-nous</h1>
+      <p>Demandez votre devis gratuit dès maintenant</p>
+    </div>
+  </section>
+
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-grid">
+        <!-- Formulaire -->
+        <div class="contact-form-container">
+          <h2>Demande de devis</h2>
+          <form class="contact-form" method="POST" action="#">
+            <div class="form-group">
+              <label for="nom">Nom complet *</label>
+              <input type="text" id="nom" name="nom" required />
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+
+            <div class="form-group">
+              <label for="telephone">Téléphone *</label>
+              <input type="tel" id="telephone" name="telephone" required />
+            </div>
+
+            <div class="form-group">
+              <label for="service">Service souhaité *</label>
+              <select id="service" name="service" required>
+                <option value="">Sélectionnez un service</option>
+                <option value="demenagement">Déménagement</option>
+                <option value="montage-meubles">Montage de meubles</option>
+                <option value="transport">Transport</option>
+                <option value="location-vehicule">Location avec chauffeur</option>
+                <option value="manutention">Manutention</option>
+                <option value="nettoyage">Nettoyage</option>
+                <option value="debarras">Débarras</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="adresse-depart">Adresse de départ</label>
+              <input type="text" id="adresse-depart" name="adresse-depart" />
+            </div>
+
+            <div class="form-group">
+              <label for="adresse-arrivee">Adresse d'arrivée</label>
+              <input type="text" id="adresse-arrivee" name="adresse-arrivee" />
+            </div>
+
+            <div class="form-group">
+              <label for="date">Date souhaitée</label>
+              <input type="date" id="date" name="date" />
+            </div>
+
+            <div class="form-group">
+              <label for="message">Détails de votre demande *</label>
+              <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-full">
+              Envoyer la demande
+            </button>
+          </form>
+        </div>
+
+        <!-- Informations de contact -->
+        <div class="contact-info">
+          <h2>Nos coordonnées</h2>
+          
+          <div class="info-block">
+            <div class="info-icon">📍</div>
+            <div>
+              <h3>Adresse</h3>
+              <p>Annemasse, Haute-Savoie (74)</p>
+              <p>Intervention dans toute la France</p>
+            </div>
+          </div>
+
+          <div class="info-block">
+            <div class="info-icon">📞</div>
+            <div>
+              <h3>Téléphone</h3>
+              <p><a href="tel:+33123456789">01 23 45 67 89</a></p>
+              <p class="info-note">Du lundi au samedi, 8h-19h</p>
+            </div>
+          </div>
+
+          <div class="info-block">
+            <div class="info-icon">✉️</div>
+            <div>
+              <h3>Email</h3>
+              <p><a href="mailto:torrestransport@hotmail.com">torrestransport@hotmail.com</a></p>
+              <p class="info-note">Réponse sous 24h</p>
+            </div>
+          </div>
+
+          <div class="info-block">
+            <div class="info-icon">📱</div>
+            <div>
+              <h3>Réseaux sociaux</h3>
+              <a href="https://www.facebook.com/profile.php?id=61555592171592" target="_blank" class="social-btn">
+                Facebook
+              </a>
+            </div>
+          </div>
+
+          <div class="horaires-block">
+            <h3>Horaires d'ouverture</h3>
+            <ul>
+              <li><strong>Lundi - Vendredi :</strong> 8h - 19h</li>
+              <li><strong>Samedi :</strong> 9h - 17h</li>
+              <li><strong>Dimanche :</strong> Fermé</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section pourquoi nous choisir -->
+  <section class="why-us">
+    <div class="container">
+      <h2>Pourquoi nous faire confiance ?</h2>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-icon">✅</div>
+          <h3>Devis gratuit</h3>
+          <p>Déplacement et devis sans engagement</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">⚡</div>
+          <h3>Réponse rapide</h3>
+          <p>Retour sous 24h maximum</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">💰</div>
+          <h3>Prix transparent</h3>
+          <p>Aucun frais caché</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">🏆</div>
+          <h3>20 ans d'expérience</h3>
+          <p>Expertise et professionnalisme</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .contact-hero {
+    background-image: url("/public/contact-banner.png");
+    color: white;
+    padding: 10rem 0;
+    text-align: center;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.2) 100%), url(/contact-banner.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .contact-hero h1 {
+    color: white;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .contact-hero p {
+    font-size: 1.3rem;
+  }
+
+  .contact-section {
+    padding: 4rem 0;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 3rem;
+  }
+
+  /* Formulaire */
+  .contact-form-container {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .contact-form-container h2 {
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--dark);
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.3s;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+  }
+
+  .form-group textarea {
+    resize: vertical;
+  }
+
+  .btn-full {
+    width: 100%;
+    font-size: 1.1rem;
+    padding: 1rem;
+  }
+
+  /* Informations de contact */
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .contact-info h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+  }
+
+  .info-block {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+    display: flex;
+    gap: 1rem;
+  }
+
+  .info-icon {
+    font-size: 2rem;
+  }
+
+  .info-block h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+  }
+
+  .info-block p {
+    color: var(--gray);
+    margin-bottom: 0.25rem;
+  }
+
+  .info-block a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .info-block a:hover {
+    text-decoration: underline;
+  }
+
+  .info-note {
+    font-size: 0.9rem;
+    font-style: italic;
+  }
+
+  .social-btn {
+    display: inline-block;
+    background: #0052a3;
+    color: white !important;
+    padding: 0.5rem 1.5rem;
+    border-radius: 5px;
+    margin-top: 0.5rem;
+    text-decoration: none !important;
+  }
+
+  .social-btn:hover {
+    background: #000;
+  }
+
+  .horaires-block {
+    background: var(--light-gray);
+    padding: 1.5rem;
+    border-radius: 10px;
+  }
+
+  .horaires-block h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+  }
+
+  .horaires-block ul {
+    list-style: none;
+  }
+
+  .horaires-block li {
+    padding: 0.5rem 0;
+    color: var(--gray);
+  }
+
+  /* Section Pourquoi nous */
+  .why-us {
+    background: var(--light-gray);
+    padding: 4rem 0;
+  }
+
+  .why-us h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+  }
+
+  .why-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+  }
+
+  .why-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .why-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+  }
+
+  .why-card p {
+    color: var(--gray);
+  }
+
+  /* Responsive */
+  @media (max-width: 968px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .contact-hero h1 {
+      font-size: 2rem;
+    }
+  }
+
+  /* Animations fade-in */
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Application des animations */
+.contact-hero h1 {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.contact-hero p {
+  animation: fadeInUp 1s ease-out;
+}
+
+.contact-form-container {
+  animation: fadeInLeft 1s ease-out;
+}
+
+.contact-info {
+  animation: fadeInRight 1s ease-out;
+}
+
+.why-card {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+/* Décalage pour chaque carte "Pourquoi nous" */
+.why-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.why-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.why-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.why-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.info-block {
+  animation: fadeInRight 0.8s ease-out;
+}
+
+/* Décalage pour chaque bloc d'info */
+.info-block:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.info-block:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.info-block:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.info-block:nth-child(4) {
+  animation-delay: 0.4s;
+}
+</style>

@@ -1,43 +1,51 @@
-# Astro Starter Kit: Minimal
+# Torres Transport - Site Web
 
-```sh
-npm create astro@latest -- --template minimal
+Site web professionnel pour Torres Transport, entreprise de déménagement basée à Annemasse.
+
+## Technologies utilisées
+
+- Astro 4.x
+- HTML/CSS/JavaScript
+
+## Installation
+```bash
+npm install
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Développement
+```bash
+npm run dev
+```
 
-## 🚀 Project Structure
+Le site sera accessible sur `http://localhost:4321`
 
-Inside of your Astro project, you'll see the following folders and files:
+## Build de production
+```bash
+npm run build
+```
 
-```text
+## Aperçu de la production
+```bash
+npm run preview
+```
+
+## Structure du projet
+```
 /
-├── public/
+├── public/          # Fichiers statiques (images, logo)
 ├── src/
-│   └── pages/
-│       └── index.astro
+│   ├── components/  # Composants réutilisables
+│   ├── data/        # Données (services)
+│   ├── layouts/     # Layouts de page
+│   ├── pages/       # Pages du site
+│   └── styles/      # CSS global
 └── package.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Pages
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- `/` - Page d'accueil
+- `/services` - Liste des services
+- `/services/[slug]` - Pages individuelles des services
+- `/contact` - Formulaire de contact
+- `/mentions-legales` - Mentions légales

@@ -1,0 +1,419 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout titre="Service Déménagement">
+  <!-- Hero Section -->
+  <section class="service-hero">
+    <div class="container">
+      <div class="hero-icon">🚚</div>
+      <h1>Service Déménagement à Annemasse</h1>
+      <p class="lead">Votre déménagement en toute tranquillité, sans lever le petit doigt !</p>
+    </div>
+  </section>
+
+  <!-- Description du service -->
+  <section class="service-description">
+    <div class="container">
+      <div class="description-grid">
+        <div class="description-text">
+          <h2>Déménagement en Haute-Savoie</h2>
+          <p>
+            Prêt à franchir une nouvelle étape ? Notre service de déménagement à Annemasse en Haute-Savoie 
+            est là pour vous simplifier la transition.
+          </p>
+          <p>
+            Avec une équipe dévouée et expérimentée, nous prenons en charge chaque aspect de votre déménagement, 
+            de l'emballage à la livraison. Fiables, efficaces et professionnels, nous vous offrons une expérience 
+            sans tracas pour que vous puissiez vous concentrer sur l'essentiel : votre nouveau départ.
+          </p>
+          <a href="#formulaire" class="btn btn-primary">Devis gratuit</a>
+        </div>
+        <div class="description-image">
+          <img src="/services/demenagement.jpg" alt="Déménagement professionnel" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Avantages -->
+  <section class="avantages-section">
+    <div class="container">
+      <h2>Pourquoi choisir Torres Transport ?</h2>
+      <div class="avantages-grid">
+        <div class="avantage-card">
+          <div class="avantage-icon">✓</div>
+          <h3>Expérience de 20 ans</h3>
+          <p>Une expertise reconnue dans le transport et le déménagement</p>
+        </div>
+        <div class="avantage-card">
+          <div class="avantage-icon">✓</div>
+          <h3>Équipe professionnelle</h3>
+          <p>Des déménageurs formés et attentifs à vos biens</p>
+        </div>
+        <div class="avantage-card">
+          <div class="avantage-icon">✓</div>
+          <h3>Matériel adapté</h3>
+          <p>Cartons, couvertures, sangles professionnelles</p>
+        </div>
+        <div class="avantage-card">
+          <div class="avantage-icon">✓</div>
+          <h3>Prix transparent</h3>
+          <p>Devis détaillé sans frais cachés</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Formulaire de devis -->
+  <section id="formulaire" class="formulaire-section">
+    <div class="container">
+      <div class="formulaire-header">
+        <h2>Formulaire de devis Déménagement</h2>
+        <p>
+          Merci de remplir ces quelques informations. Je vous rappelle rapidement afin d'organiser 
+          une visite à domicile et établir un devis personnalisé.
+        </p>
+      </div>
+
+      <form class="devis-form" method="POST" action="#">
+        <!-- Vos coordonnées -->
+        <div class="form-section">
+          <h3>Vos coordonnées</h3>
+          
+          <div class="form-group">
+            <label for="nom">Nom et prénom *</label>
+            <input 
+              type="text" 
+              id="nom" 
+              name="nom" 
+              required 
+              placeholder="Ex: Jean Dupont"
+            />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="telephone">Téléphone *</label>
+              <input 
+                type="tel" 
+                id="telephone" 
+                name="telephone" 
+                required 
+                placeholder="Ex: 06 12 34 56 78"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                required 
+                placeholder="Ex: jean.dupont@email.com"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Lieux du déménagement -->
+        <div class="form-section">
+          <h3>Lieux du déménagement</h3>
+          
+          <div class="form-group">
+            <label for="adresse-depart">Adresse de départ *</label>
+            <input 
+              type="text" 
+              id="adresse-depart" 
+              name="adresse-depart" 
+              required 
+              placeholder="Ex: 123 Rue de la République, 74100 Annemasse"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="adresse-arrivee">Adresse d'arrivée *</label>
+            <input 
+              type="text" 
+              id="adresse-arrivee" 
+              name="adresse-arrivee" 
+              required 
+              placeholder="Ex: 45 Avenue du Léman, 74200 Thonon-les-Bains"
+            />
+          </div>
+        </div>
+
+        <!-- Date souhaitée -->
+        <div class="form-section">
+          <h3>Date souhaitée</h3>
+          
+          <div class="form-group">
+            <label for="date">Date ou période du déménagement *</label>
+            <input 
+              type="date" 
+              id="date" 
+              name="date" 
+              required 
+            />
+          </div>
+        </div>
+
+        <!-- Informations complémentaires -->
+        <div class="form-section">
+          <h3>Informations complémentaires (facultatif)</h3>
+          
+          <div class="form-group">
+            <label for="details">
+              Vous pouvez préciser ici : étage, ascenseur, volume estimé, objets lourds, accès difficile, etc.
+            </label>
+            <textarea 
+              id="details" 
+              name="details" 
+              rows="5"
+              placeholder="Ex: Appartement 3ème étage avec ascenseur. Piano droit à déménager. Parking disponible."
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- Consentement RGPD -->
+        <div class="form-section">
+          <div class="form-checkbox">
+            <input 
+              type="checkbox" 
+              id="rgpd" 
+              name="rgpd" 
+              required 
+            />
+            <label for="rgpd">
+              J'accepte que mes données soient traitées conformément au RGPD *
+            </label>
+          </div>
+        </div>
+
+        <!-- Bouton d'envoi -->
+        <button type="submit" class="btn btn-primary btn-submit">
+          Envoyer ma demande de devis
+        </button>
+      </form>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .service-hero {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 4rem 0;
+    text-align: center;
+  }
+
+  .hero-icon {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+  }
+
+  .service-hero h1 {
+    color: white;
+    margin-bottom: 1rem;
+  }
+
+  .lead {
+    font-size: 1.3rem;
+    opacity: 0.95;
+  }
+
+  /* Description */
+  .service-description {
+    padding: 4rem 0;
+  }
+
+  .description-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .description-text h2 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+  }
+
+  .description-text p {
+    color: var(--gray);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  .description-image img {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Avantages */
+  .avantages-section {
+    background: var(--light-gray);
+    padding: 4rem 0;
+  }
+
+  .avantages-section h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--primary-color);
+  }
+
+  .avantages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .avantage-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  }
+
+  .avantage-icon {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+  }
+
+  .avantage-card h3 {
+    color: var(--dark);
+    margin-bottom: 0.5rem;
+  }
+
+  .avantage-card p {
+    color: var(--gray);
+  }
+
+  /* Formulaire */
+  .formulaire-section {
+    padding: 4rem 0;
+  }
+
+  .formulaire-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+  }
+
+  .formulaire-header h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+  }
+
+  .formulaire-header p {
+    color: var(--gray);
+    line-height: 1.6;
+  }
+
+  .devis-form {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  }
+
+  .form-section {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .form-section:last-of-type {
+    border-bottom: none;
+    margin-bottom: 2rem;
+  }
+
+  .form-section h3 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--dark);
+  }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.3s;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+  }
+
+  .form-group textarea {
+    resize: vertical;
+  }
+
+  .form-checkbox {
+    display: flex;
+    align-items: start;
+    gap: 0.75rem;
+  }
+
+  .form-checkbox input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+    cursor: pointer;
+  }
+
+  .form-checkbox label {
+    cursor: pointer;
+    line-height: 1.6;
+  }
+
+  .btn-submit {
+    width: 100%;
+    font-size: 1.1rem;
+    padding: 1rem 2rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .description-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+
+    .devis-form {
+      padding: 2rem 1.5rem;
+    }
+  }
+</style>
