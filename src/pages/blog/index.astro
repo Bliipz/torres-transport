@@ -1,0 +1,514 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { articles, getCategories, getRecentArticles, categoryToSlug } from '../../data/articles.js';
+
+const allArticles = articles.sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime());
+const categories = getCategories();
+const recentArticles = getRecentArticles(3);
+
+// Affichage de tous les articles sur la home blog (volume modéré, mieux pour le SEO)
+const [featured, ...rest] = allArticles;
+
+const formatDate = (date: string) =>
+  new Date(date).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+
+<BaseLayout
+  title="Journal : Conseils Déménagement &amp; Transport | Torres Transport"
+  description="Guides experts, conseils pratiques et astuces pour réussir votre déménagement à Annemasse, en Haute-Savoie et vers la Suisse. Tarifs, formalités, organisation."
+  keywords="conseils déménagement Annemasse, guide déménagement Haute-Savoie, blog déménageur, prix déménagement 2026, déménagement frontalier Suisse"
+  ogImage="/banner-blog-hero.webp"
+>
+  <!-- ==================== HERO ==================== -->
+  <section class="blog-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Fil d'Ariane">
+        <a href="/">Accueil</a><span>/</span><span>Journal</span>
+      </nav>
+      <span class="eyebrow gold">Le journal</span>
+      <h1>Conseils, guides<br /><em>&amp; expertise.</em></h1>
+      <p class="lead">
+        Vingt années d'expérience condensées en articles pratiques. Préparation, tarifs,
+        formalités, astuces, tout ce qu'il faut savoir pour un déménagement réussi.
+      </p>
+    </div>
+  </section>
+
+  <!-- ==================== FEATURED ARTICLE ==================== -->
+  {featured && (
+    <section class="featured-section">
+      <div class="container">
+        <a href={`/blog/${featured.slug}`} class="featured-article">
+          <div class="featured-image">
+            <img src={featured.image} alt={featured.title} width="800" height="500" loading="eager" decoding="async" />
+          </div>
+          <div class="featured-content">
+            <div class="featured-meta">
+              <span class="article-category">{featured.category}</span>
+              <span class="article-divider">·</span>
+              <time datetime={featured.date}>{formatDate(featured.date)}</time>
+              <span class="article-divider">·</span>
+              <span>{featured.readTime || '5 min de lecture'}</span>
+            </div>
+            <h2 class="featured-title">{featured.title}</h2>
+            <p class="featured-excerpt">{featured.excerpt}</p>
+            <span class="featured-cta">Lire l'article <span class="arrow">→</span></span>
+          </div>
+        </a>
+      </div>
+    </section>
+  )}
+
+  <!-- ==================== GRILLE ARTICLES ==================== -->
+  <section class="section bg-cream articles-section">
+    <div class="container">
+      <header class="section-header">
+        <span class="eyebrow gold">Tous les articles</span>
+        <h2>Notre savoir-faire,<br /><em>partagé.</em></h2>
+      </header>
+
+      <div class="blog-layout">
+        <!-- ARTICLES PRINCIPAUX -->
+        <div class="articles-main">
+          <div class="articles-grid">
+            {rest.map((article: any) => (
+              <a href={`/blog/${article.slug}`} class="article-card">
+                <div class="article-card-image">
+                  <img src={article.image} alt={article.title} width="581" height="483" loading="lazy" decoding="async" />
+                </div>
+                <div class="article-card-body">
+                  <div class="article-meta">
+                    <span class="article-category">{article.category}</span>
+                    <span class="article-divider">·</span>
+                    <time datetime={article.date}>{formatDate(article.date)}</time>
+                  </div>
+                  <h3>{article.title}</h3>
+                  <p>{article.excerpt}</p>
+                  <span class="article-cta">Lire <span class="arrow">→</span></span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <!-- SIDEBAR -->
+        <aside class="articles-sidebar">
+          <div class="sidebar-block">
+            <span class="eyebrow gold">Récents</span>
+            <ul class="recent-list">
+              {recentArticles.map((article: any, idx: number) => (
+                <li>
+                  <a href={`/blog/${article.slug}`}>
+                    <span class="recent-num">{String(idx + 1).padStart(2, '0')}</span>
+                    <div>
+                      <h4>{article.title}</h4>
+                      <time datetime={article.date}>{formatDate(article.date)}</time>
+                    </div>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="sidebar-block">
+            <span class="eyebrow gold">Catégories</span>
+            <ul class="categories-list">
+              {categories.map((cat: string) => (
+                <li><a href={`/blog/category/${categoryToSlug(cat)}`}>{cat}</a></li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="sidebar-cta">
+            <span class="eyebrow">Besoin d'un devis&nbsp;?</span>
+            <h4>Une équipe locale<br />à votre service.</h4>
+            <p>Recevez votre devis personnalisé en 24h. Sans engagement.</p>
+            <a href="/contact" class="btn btn-gold btn-with-arrow">Demander un devis</a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CTA ==================== -->
+  <section class="section bg-black cta-final">
+    <div class="container container-narrow text-center">
+      <span class="eyebrow">Prêt à passer à l'action&nbsp;?</span>
+      <h2>De la théorie<br /><em>à la pratique.</em></h2>
+      <p class="lead">
+        Vous avez lu nos conseils. Maintenant, parlons de votre projet concret.
+      </p>
+      <div class="cta-buttons">
+        <a href="/contact" class="btn btn-gold btn-large btn-with-arrow">Demander un devis</a>
+        <a href="tel:+33659926814" class="btn btn-ghost btn-large">06 59 92 68 14</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* ==================== HERO ==================== */
+  .blog-hero {
+    background: var(--off-white);
+    padding: clamp(5rem, 10vw, 8rem) 0 clamp(3rem, 5vw, 4rem);
+    border-bottom: 1px solid var(--border);
+    margin-top: -76px;
+    padding-top: 9rem;
+  }
+
+  .breadcrumb {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--gray-500);
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  .breadcrumb a { color: var(--gray-700, #404040); text-decoration: none; }
+  .breadcrumb > span:not(:last-child) { opacity: 0.4; }
+
+  .blog-hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    margin: 0.75rem 0 1.5rem;
+    max-width: 880px;
+  }
+  .blog-hero h1 em { font-style: italic; color: var(--gold-deep); }
+  .blog-hero .lead { max-width: 720px; }
+
+  /* ==================== FEATURED ==================== */
+  .featured-section {
+    background: var(--white);
+    padding: clamp(3rem, 6vw, 5rem) 0;
+  }
+
+  .featured-article {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    text-decoration: none;
+    color: inherit;
+    background: var(--white);
+    border: 1px solid var(--border-strong);
+    transition: border-color 0.3s var(--ease-smooth);
+  }
+
+  .featured-article:hover {
+    border-color: var(--black);
+  }
+
+  .featured-article:hover .featured-image img {
+    transform: scale(1.04);
+  }
+
+  .featured-article:hover .featured-cta .arrow {
+    transform: translateX(8px);
+  }
+
+  .featured-image {
+    overflow: hidden;
+    aspect-ratio: 1200 / 630;
+    align-self: center;
+    width: 100%;
+  }
+
+  .featured-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s var(--ease-smooth);
+  }
+
+  .featured-content {
+    padding: clamp(2rem, 4vw, 3.5rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .featured-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--gray-500);
+  }
+
+  .article-category {
+    color: var(--gold-deep);
+    font-weight: 600;
+  }
+
+  .article-divider {
+    color: var(--gray-300);
+  }
+
+  .featured-title {
+    font-size: clamp(1.85rem, 3vw, 2.5rem);
+    line-height: 1.15;
+    margin-bottom: 1.25rem;
+  }
+
+  .featured-excerpt {
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: var(--gray-700, #404040);
+    margin-bottom: 2rem;
+  }
+
+  .featured-cta {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--black);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .featured-cta .arrow {
+    display: inline-block;
+    transition: transform 0.3s var(--ease-smooth);
+  }
+
+  /* ==================== ARTICLES SECTION ==================== */
+  .articles-section { background: var(--cream); }
+
+  .blog-layout {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: start;
+  }
+
+  .articles-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-top: 1px solid var(--border-strong);
+    border-left: 1px solid var(--border-strong);
+  }
+
+  .article-card {
+    background: var(--white);
+    border-right: 1px solid var(--border-strong);
+    border-bottom: 1px solid var(--border-strong);
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.3s var(--ease-smooth);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .article-card:hover {
+    background: var(--off-white);
+  }
+
+  .article-card:hover .article-card-image img {
+    transform: scale(1.04);
+  }
+
+  .article-card:hover .article-cta .arrow {
+    transform: translateX(6px);
+  }
+
+  .article-card-image {
+    overflow: hidden;
+    aspect-ratio: 1200 / 630;
+  }
+
+  .article-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s var(--ease-smooth);
+  }
+
+  .article-card-body {
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--gray-500);
+  }
+
+  .article-card h3 {
+    font-size: 1.4rem;
+    line-height: 1.2;
+    margin-bottom: 0.85rem;
+  }
+
+  .article-card p {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--gray-700, #404040);
+    margin-bottom: 1.5rem;
+    flex: 1;
+  }
+
+  .article-cta {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--black);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .article-cta .arrow {
+    display: inline-block;
+    transition: transform 0.3s var(--ease-smooth);
+  }
+
+  /* ==================== SIDEBAR ==================== */
+  .articles-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    position: sticky;
+    top: 100px;
+  }
+
+  .sidebar-block {
+    background: var(--white);
+    padding: 2rem;
+    border: 1px solid var(--border-strong);
+  }
+
+  .sidebar-block .eyebrow { display: block; margin-bottom: 1.25rem; }
+
+  .recent-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .recent-list a {
+    display: flex;
+    gap: 1rem;
+    text-decoration: none;
+    color: inherit;
+    align-items: center;
+  }
+
+  .recent-num {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--gold-deep);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    flex-shrink: 0;
+    min-width: 36px;
+    padding-top: 0.15rem;
+  }
+
+  .recent-list h4 {
+    font-size: 0.92rem;
+    line-height: 1.35;
+    margin-bottom: 0.3rem;
+    transition: color 0.2s;
+    font-weight: 600;
+  }
+
+  .recent-list a:hover h4 {
+    color: var(--gold-deep);
+  }
+
+  .recent-list time {
+    font-size: 0.72rem;
+    color: var(--gray-500);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .categories-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .categories-list li {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .categories-list li:last-child {
+    border-bottom: none;
+  }
+
+  .categories-list a {
+    display: block;
+    padding: 0.75rem 0;
+    text-decoration: none;
+    color: var(--gray-800);
+    font-size: 0.92rem;
+    font-weight: 500;
+    transition: color 0.2s, padding-left 0.3s var(--ease-smooth);
+  }
+
+  .categories-list a:hover {
+    color: var(--gold-deep);
+    padding-left: 0.5rem;
+  }
+
+  .sidebar-cta {
+    background: var(--black);
+    color: var(--white);
+    padding: 2rem;
+    text-align: left;
+  }
+
+  .sidebar-cta .eyebrow {
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .sidebar-cta h4 {
+    color: var(--white);
+    font-size: 1.5rem;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    font-family: var(--font-display);
+  }
+
+  .sidebar-cta p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ==================== CTA ==================== */
+  .cta-final { text-align: center; }
+  .cta-final h2 em { font-style: italic; color: var(--gold); }
+  .cta-final .lead { color: rgba(255,255,255,0.75); max-width: 640px; margin: 1.5rem auto 2.5rem; }
+  .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+  /* ==================== RESPONSIVE ==================== */
+  @media (max-width: 968px) {
+    .featured-article { grid-template-columns: 1fr; }
+    .blog-layout { grid-template-columns: 1fr; }
+    .articles-sidebar { position: static; }
+  }
+
+  @media (max-width: 600px) {
+    .articles-grid { grid-template-columns: 1fr; }
+  }
+</style>

@@ -1,0 +1,275 @@
+---
+import reviewsData from '../data/google-reviews.json';
+
+const { reviews, rating, user_ratings_total, url, name } = reviewsData;
+const hasReviews = reviews && reviews.length > 0 && rating;
+
+// Tronque le texte si trop long
+function truncate(text, max = 280) {
+  if (!text) return '';
+  if (text.length <= max) return text;
+  const cut = text.slice(0, max);
+  const lastSpace = cut.lastIndexOf(' ');
+  return cut.slice(0, lastSpace > 0 ? lastSpace : max).trim() + '…';
+}
+
+function stars(n) {
+  return Array.from({ length: 5 }, (_, i) => i < Math.round(n));
+}
+
+function dateFR(timeUnix) {
+  if (!timeUnix) return '';
+  return new Date(timeUnix * 1000).toLocaleDateString('fr-FR', {
+    year: 'numeric',
+    month: 'long',
+  });
+}
+
+const showReviews = hasReviews ? reviews.slice(0, 6) : [];
+---
+
+{hasReviews && (
+  <section class="greviews">
+    <div class="container container-narrow">
+      <header class="greviews-header">
+        <span class="eyebrow gold">Avis vérifiés</span>
+        <h2>Ce que disent<br /><em>nos clients.</em></h2>
+
+        <div class="greviews-summary">
+          <div class="summary-rating">
+            <span class="rating-num">{rating.toFixed(1).replace('.', ',')}</span>
+            <div class="rating-meta">
+              <div class="rating-stars" aria-label={`${rating} sur 5`}>
+                {stars(rating).map((filled) => (
+                  <svg viewBox="0 0 24 24" class={filled ? 'is-filled' : ''} aria-hidden="true">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                ))}
+              </div>
+              <span class="rating-count">
+                Sur <strong>{user_ratings_total}</strong> avis Google
+              </span>
+            </div>
+          </div>
+
+          {url && (
+            <a href={url} target="_blank" rel="noopener noreferrer" class="greviews-link">
+              Voir tous les avis
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+            </a>
+          )}
+        </div>
+      </header>
+
+      <div class="greviews-grid">
+        {showReviews.map((r) => (
+          <article class="greview-card">
+            <div class="greview-stars" aria-label={`${r.rating} sur 5`}>
+              {stars(r.rating).map((filled) => (
+                <svg viewBox="0 0 24 24" class={filled ? 'is-filled' : ''} aria-hidden="true">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+              ))}
+            </div>
+
+            <p class="greview-text">{truncate(r.text)}</p>
+
+            <footer class="greview-author">
+              {r.profile_photo_url && (
+                <img
+                  src={r.profile_photo_url}
+                  alt=""
+                  class="greview-avatar"
+                  width="40"
+                  height="40"
+                  loading="lazy"
+                  referrerpolicy="no-referrer"
+                />
+              )}
+              <div class="greview-author-meta">
+                <span class="greview-author-name">{r.author_name}</span>
+                <span class="greview-author-date">{r.relative_time_description || dateFR(r.time)}</span>
+              </div>
+            </footer>
+          </article>
+        ))}
+      </div>
+
+      <p class="greviews-disclaimer">
+        Avis publiés sur la fiche Google Business de Torres Transport,
+        mis à jour automatiquement.
+      </p>
+    </div>
+  </section>
+)}
+
+<style>
+  .greviews {
+    padding: clamp(4rem, 8vw, 6rem) 0;
+    background: var(--off-white);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .greviews-header {
+    margin-bottom: 3rem;
+  }
+
+  .greviews-header h2 {
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    margin: 0.75rem 0 2rem;
+    line-height: 1.05;
+  }
+  .greviews-header h2 em { font-style: italic; color: var(--gold-deep); }
+
+  .greviews-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    padding: 1.75rem 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .summary-rating {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .rating-num {
+    font-family: var(--font-display);
+    font-size: 3.4rem;
+    font-weight: 600;
+    color: var(--black);
+    line-height: 1;
+  }
+
+  .rating-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .rating-stars {
+    display: flex;
+    gap: 2px;
+  }
+
+  .rating-stars svg,
+  .greview-stars svg {
+    width: 18px;
+    height: 18px;
+    fill: var(--gray-300);
+  }
+  .rating-stars svg.is-filled,
+  .greview-stars svg.is-filled {
+    fill: var(--gold-deep);
+  }
+
+  .rating-count {
+    font-size: 0.85rem;
+    color: var(--gray-600);
+  }
+  .rating-count strong { color: var(--black); }
+
+  .greviews-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--black);
+    text-decoration: none;
+    border-bottom: 1px solid var(--gold-deep);
+    padding-bottom: 0.2rem;
+    transition: color 0.2s;
+  }
+  .greviews-link:hover { color: var(--gold-deep); }
+
+  .greviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+  }
+
+  .greview-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    padding: 1.5rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .greview-stars {
+    display: flex;
+    gap: 2px;
+  }
+  .greview-stars svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .greview-text {
+    font-size: 0.93rem;
+    line-height: 1.65;
+    color: var(--gray-800);
+    flex: 1;
+  }
+
+  .greview-author {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .greview-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .greview-author-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    min-width: 0;
+  }
+
+  .greview-author-name {
+    font-size: 0.86rem;
+    font-weight: 600;
+    color: var(--black);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .greview-author-date {
+    font-size: 0.76rem;
+    color: var(--gray-500);
+    text-transform: lowercase;
+  }
+
+  .greviews-disclaimer {
+    margin-top: 2rem;
+    font-size: 0.78rem;
+    color: var(--gray-500);
+    text-align: center;
+    letter-spacing: 0.02em;
+  }
+
+  @media (max-width: 600px) {
+    .summary-rating { gap: 0.85rem; }
+    .rating-num { font-size: 2.6rem; }
+    .greviews-summary { flex-direction: column; align-items: flex-start; }
+  }
+</style>

@@ -1,70 +1,298 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const sections = [
+  {
+    num: "01",
+    titre: "Éditeur du site",
+    content: `
+      <p><strong>Raison sociale :</strong> Torres Transport</p>
+      <p><strong>Forme juridique :</strong> Entreprise individuelle</p>
+      <p><strong>Directeur de la publication :</strong> Monsieur Ludovic Torres</p>
+      <p><strong>Adresse du siège social :</strong> 8 rue Fernand David, 74100 Ville-la-Grand, Haute-Savoie, France</p>
+      <p><strong>SIREN :</strong> 528 686 330</p>
+      <p><strong>SIRET :</strong> 528 686 330 00051</p>
+      <p><strong>Numéro de TVA intracommunautaire :</strong> FR71528686330</p>
+      <p><strong>Activité :</strong> Transports terrestres et transport par conduites</p>
+      <p><strong>Téléphone :</strong> <a href="tel:+33659926814">06 59 92 68 14</a></p>
+      <p><strong>Email :</strong> <a href="mailto:contact@torrestransport.fr">contact@torrestransport.fr</a></p>
+    `,
+  },
+  {
+    num: "02",
+    titre: "Activité réglementée &amp; assurance",
+    content: `
+      <p>
+        Torres Transport exerce une activité de transport routier de marchandises soumise à autorisation
+        préfectorale, conformément aux articles L. 3211-1 et suivants du Code des transports.
+      </p>
+      <p><strong>Numéro de licence de transport :</strong> 2024/84/0001652</p>
+      <p><strong>Autorité de délivrance :</strong> DREAL Auvergne-Rhône-Alpes</p>
+      <p>
+        L'entreprise est couverte par une assurance responsabilité civile professionnelle
+        adaptée à l'activité de déménagement et de transport de biens.
+      </p>
+      <p><strong>Numéro de contrat d'assurance :</strong> 149 572 243</p>
+    `,
+  },
+  {
+    num: "03",
+    titre: "Hébergement",
+    content: `
+      <p>
+        Ce site est hébergé par <strong>Vercel Inc.</strong><br>
+        440 N Barranca Ave #4133, Covina, CA 91723, États-Unis<br>
+        <a href="https://vercel.com" target="_blank" rel="noopener noreferrer">https://vercel.com</a>
+      </p>
+    `,
+  },
+  {
+    num: "04",
+    titre: "Propriété intellectuelle",
+    content: `
+      <p>
+        L'ensemble du contenu de ce site (textes, images, logos, photographies, charte graphique)
+        est la propriété exclusive de Torres Transport ou de ses partenaires. Toute reproduction,
+        représentation, modification ou exploitation, totale ou partielle, est strictement interdite
+        sans autorisation écrite préalable.
+      </p>
+    `,
+  },
+  {
+    num: "05",
+    titre: "Protection des données (RGPD)",
+    content: `
+      <p>
+        Les informations collectées via le formulaire de contact sont utilisées uniquement pour
+        traiter votre demande de devis ou de renseignement. Elles ne sont jamais cédées à des tiers.
+      </p>
+      <p>
+        Conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi
+        Informatique et Libertés, vous disposez d'un droit d'accès, de rectification, de suppression,
+        de portabilité et d'opposition concernant vos données. Pour exercer ces droits, contactez-nous
+        à <a href="mailto:contact@torrestransport.fr">contact@torrestransport.fr</a>.
+      </p>
+      <p>
+        Les données collectées sont conservées pour une durée maximale de 3 ans à compter du dernier contact.
+      </p>
+    `,
+  },
+  {
+    num: "06",
+    titre: "Cookies, traceurs &amp; mesure d'audience",
+    content: `
+      <p>
+        Ce site <strong>n'utilise aucun cookie publicitaire</strong> et <strong>aucun cookie de traçage tiers</strong>.
+      </p>
+      <p>
+        <strong>Mesure d'audience anonyme :</strong> nous utilisons Vercel Web Analytics
+        pour comptabiliser les visites de manière anonyme (sans cookies ni stockage local).
+        Aucune donnée personnelle identifiable n'est collectée. Cet outil entre dans le cadre
+        de l'exemption de consentement définie par la CNIL pour les outils de mesure d'audience
+        anonymes (délibération n° 2020-091).
+      </p>
+      <p>
+        <strong>Cartographie :</strong> la page « Zones d'intervention » affiche une carte interactive
+        utilisant la bibliothèque Leaflet avec les tuiles d'OpenStreetMap (UK). Lors de l'affichage,
+        votre adresse IP est transmise au serveur OpenStreetMap pour récupérer les tuiles. Vous
+        pouvez consulter la
+        <a href="https://wiki.osmfoundation.org/wiki/Privacy_Policy" target="_blank" rel="noopener noreferrer">politique de confidentialité d'OpenStreetMap</a>.
+      </p>
+      <p>
+        <strong>Polices d'écriture :</strong> les fonts utilisées (Inter, Playfair Display) sont
+        auto-hébergées sur notre serveur. Aucune requête n'est envoyée à Google Fonts
+        ou à tout autre service tiers lors de leur chargement.
+      </p>
+    `,
+  },
+  {
+    num: "07",
+    titre: "Responsabilité",
+    content: `
+      <p>
+        Torres Transport s'efforce d'assurer l'exactitude et la mise à jour des informations
+        diffusées sur ce site. Toutefois, des erreurs ou omissions peuvent survenir. L'utilisateur
+        s'engage à vérifier les informations auprès de Torres Transport avant toute prise de décision.
+      </p>
+    `,
+  },
+  {
+    num: "08",
+    titre: "Loi applicable",
+    content: `
+      <p>
+        Les présentes mentions légales sont régies par la loi française. Tout litige relatif à
+        l'utilisation de ce site relève de la compétence exclusive des tribunaux français.
+      </p>
+    `,
+  },
+];
 ---
 
-<BaseLayout titre="Mentions Légales">
-  <section class="legal-page">
+<BaseLayout
+  titre="Mentions Légales"
+  description="Mentions légales de Torres Transport, entreprise de déménagement et transport à Ville-la-Grand (74). Informations légales, hébergement, propriété intellectuelle, RGPD."
+  noindex={true}
+>
+  <!-- HERO -->
+  <section class="legal-hero">
     <div class="container">
-      <h1>Mentions Légales</h1>
-      
-      <div class="legal-content">
-        <h2>1. Informations légales</h2>
-        <p><strong>Raison sociale :</strong> Torres Transport</p>
-        <p><strong>Forme juridique :</strong> Entreprise individuelle</p>
-        <p><strong>Adresse :</strong> Annemasse, Haute-Savoie (74)</p>
-        <p><strong>Email :</strong> contact@torrestransport.fr</p>
-        <p><strong>Téléphone :</strong> 01 23 45 67 89</p>
+      <nav class="breadcrumb" aria-label="Fil d'Ariane">
+        <a href="/">Accueil</a><span>/</span><span>Mentions légales</span>
+      </nav>
+      <span class="eyebrow gold">Informations légales</span>
+      <h1>Mentions<br /><em>légales.</em></h1>
+      <p class="lead">
+        Toutes les informations légales relatives à Torres Transport et au présent site web,
+        conformément aux obligations de la loi LCEN.
+      </p>
+    </div>
+  </section>
 
-        <h2>2. Hébergement</h2>
-        <p>Ce site est hébergé par [Nom de l'hébergeur]</p>
+  <!-- CONTENU -->
+  <section class="section legal-content">
+    <div class="container container-narrow">
+      <div class="legal-list">
+        {sections.map((s) => (
+          <article class="legal-item">
+            <div class="legal-num">{s.num}</div>
+            <div class="legal-section-content">
+              <h2>{s.titre}</h2>
+              <div class="legal-text" set:html={s.content}></div>
+            </div>
+          </article>
+        ))}
+      </div>
 
-        <h2>3. Propriété intellectuelle</h2>
-        <p>
-          L'ensemble du contenu de ce site (textes, images, logos) est la propriété 
-          exclusive de Torres Transport. Toute reproduction est interdite sans autorisation préalable.
-        </p>
-
-        <h2>4. Données personnelles</h2>
-        <p>
-          Les informations recueillies via le formulaire de contact sont utilisées uniquement 
-          pour traiter votre demande de devis. Conformément au RGPD, vous disposez d'un droit 
-          d'accès, de rectification et de suppression de vos données personnelles.
-        </p>
-
-        <h2>5. Cookies</h2>
-        <p>
-          Ce site n'utilise pas de cookies de tracking. Seuls les cookies nécessaires au 
-          fonctionnement du site sont utilisés.
-        </p>
+      <div class="legal-footer">
+        <p>Dernière mise à jour&nbsp;: {new Date().toLocaleDateString('fr-FR', { year: 'numeric', month: 'long' })}</p>
+        <a href="/" class="link-underline">Retour à l'accueil</a>
       </div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  .legal-page {
-    padding: 4rem 0;
-    min-height: 60vh;
+  /* HERO */
+  .legal-hero {
+    background: var(--off-white);
+    padding: clamp(5rem, 10vw, 8rem) 0 clamp(3rem, 5vw, 4rem);
+    border-bottom: 1px solid var(--border);
+    margin-top: -76px;
+    padding-top: 9rem;
   }
 
-  .legal-page h1 {
-    color: var(--primary-color);
+  .breadcrumb {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--gray-500);
     margin-bottom: 2rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  .breadcrumb a { color: var(--gray-700, #404040); text-decoration: none; }
+  .breadcrumb > span:not(:last-child) { opacity: 0.4; }
+
+  .legal-hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    margin: 0.75rem 0 1.5rem;
+  }
+  .legal-hero h1 em { font-style: italic; color: var(--gold-deep); }
+  .legal-hero .lead { max-width: 720px; }
+
+  /* CONTENU */
+  .legal-content { background: var(--white); }
+
+  .legal-list {
+    display: flex;
+    flex-direction: column;
   }
 
-  .legal-content {
-    max-width: 800px;
+  .legal-item {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 2rem;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
   }
 
-  .legal-content h2 {
-    color: var(--primary-color);
-    margin-top: 2rem;
+  .legal-item:first-child { padding-top: 0; }
+  .legal-item:last-child { border-bottom: none; }
+
+  .legal-num {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--gold-deep);
+    line-height: 1;
+    padding-top: 0.4rem;
+  }
+
+  .legal-section-content {
+    flex: 1;
+  }
+
+  .legal-section-content h2 {
+    font-size: clamp(1.5rem, 2.2vw, 1.85rem);
+    margin-bottom: 1.5rem;
+  }
+
+  .legal-text :global(p) {
     margin-bottom: 1rem;
+    color: var(--gray-800);
+    line-height: 1.75;
+    font-size: 1rem;
   }
 
-  .legal-content p {
-    color: var(--gray);
-    line-height: 1.8;
-    margin-bottom: 1rem;
+  .legal-text :global(p:last-child) { margin-bottom: 0; }
+
+  .legal-text :global(strong) {
+    color: var(--black);
+    font-weight: 600;
+  }
+
+  .legal-text :global(a) {
+    color: var(--black);
+    border-bottom: 1px solid var(--gold-deep);
+    transition: color 0.2s;
+    text-decoration: none;
+  }
+
+  .legal-text :global(a:hover) {
+    color: var(--gold-deep);
+  }
+
+  .legal-footer {
+    margin-top: 4rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--border-strong);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .legal-footer p {
+    font-size: 0.85rem;
+    color: var(--gray-500);
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .legal-item {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .legal-num {
+      font-size: 1.25rem;
+    }
   }
 </style>

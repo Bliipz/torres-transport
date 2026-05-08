@@ -1,0 +1,1503 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const PRIX_M3 = 47.50;
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Accueil", item: "https://torrestransport.fr/" },
+    { "@type": "ListItem", position: 2, name: "Estimation & devis", item: "https://torrestransport.fr/estimation" },
+  ],
+};
+
+// Liste des services disponibles
+const services = [
+  { value: 'demenagement', label: 'Déménagement', desc: 'Résidentiel ou pro, 47,50 €/m³ tout compris' },
+  { value: 'transport', label: 'Transport simple', desc: 'Vous emballez, on transporte (~30% moins cher)' },
+  { value: 'montage-meubles', label: 'Montage de meubles', desc: 'IKEA, Conforama, BUT, sur-mesure' },
+  { value: 'manutention', label: 'Manutention', desc: 'Charge, décharge, objets lourds' },
+  { value: 'debarras', label: 'Débarras', desc: 'Caves, greniers, déchetterie' },
+  { value: 'location-vehicule', label: 'Location utilitaire avec chauffeur', desc: 'Sans permis utilitaire requis' },
+  { value: 'nettoyage', label: 'Nettoyage fin de chantier', desc: 'Récupération de caution' },
+];
+---
+
+<BaseLayout
+  titre="Estimation & demande de devis"
+  description="Estimez votre déménagement, transport, montage, débarras ou autre prestation à Annemasse. Tarif transparent 47,50€/m³ pour le déménagement. Devis ferme sous 24h."
+  keywords="estimation déménagement, devis transport Annemasse, simulateur devis, tarif déménageur Haute-Savoie"
+  canonical="https://torrestransport.fr/estimation"
+  structuredData={[breadcrumbSchema]}
+>
+  <!-- HERO -->
+  <section class="estim-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Fil d'Ariane">
+        <a href="/">Accueil</a><span>/</span><span>Estimation</span>
+      </nav>
+      <span class="eyebrow gold">Estimation & devis en ligne</span>
+      <h1>Votre devis<br /><em>en 2 minutes.</em></h1>
+      <p class="lead">
+        Choisissez la prestation, remplissez quelques infos, recevez un devis ferme sous 24&nbsp;h.
+        Pour le déménagement : estimation indicative <strong>immédiate</strong> à <strong>47,50&nbsp;€&nbsp;/&nbsp;m³</strong> tout compris.
+      </p>
+    </div>
+  </section>
+
+  <!-- FORMULAIRE -->
+  <section class="estim-tool">
+    <div class="container container-narrow">
+      <form id="estimForm" novalidate>
+        <div class="estim-grid">
+          <!-- COLONNE FORM -->
+          <div class="estim-form">
+
+            <!-- 01, TYPE DE PRESTATION -->
+            <fieldset class="estim-field">
+              <legend>
+                <span class="num">01</span>
+                <span class="legend-text">Quelle prestation vous intéresse&nbsp;?</span>
+              </legend>
+
+              <div class="service-picker">
+                {services.map((s, idx) => (
+                  <label class="service-card">
+                    <input
+                      type="radio"
+                      name="service"
+                      value={s.value}
+                      checked={idx === 0}
+                      required
+                    />
+                    <span class="card-title">{s.label}</span>
+                    <span class="card-desc">{s.desc}</span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+
+            <!-- =================================================
+                 DÉMÉNAGEMENT, volume + options
+                 ================================================= -->
+            <div data-service-section="demenagement transport">
+              <fieldset class="estim-field">
+                <legend>
+                  <span class="num">02</span>
+                  <span class="legend-text">Volume estimé</span>
+                </legend>
+
+                <div class="volume-control">
+                  <input type="range" id="volume" name="volume_m3" min="5" max="100" step="1" value="25" aria-label="Volume en m³" />
+                  <div class="volume-value">
+                    <output id="volumeValue">25</output>
+                    <span>m³</span>
+                  </div>
+                </div>
+
+                <div class="volume-presets" role="group" aria-label="Estimation rapide par type de logement">
+                  <button type="button" class="preset" data-vol="15">Studio<span>~15&nbsp;m³</span></button>
+                  <button type="button" class="preset" data-vol="25">T2<span>~25&nbsp;m³</span></button>
+                  <button type="button" class="preset" data-vol="35">T3<span>~35&nbsp;m³</span></button>
+                  <button type="button" class="preset" data-vol="50">T4<span>~50&nbsp;m³</span></button>
+                  <button type="button" class="preset" data-vol="70">Maison<span>~70&nbsp;m³</span></button>
+                </div>
+
+                <p class="hint">
+                  Pas sûr&nbsp;? Comptez environ <strong>1&nbsp;m³ pour 4&nbsp;cartons</strong> et 5&nbsp;m³ par pièce moyenne.
+                </p>
+              </fieldset>
+
+              <fieldset class="estim-field" data-service-section="demenagement">
+                <legend>
+                  <span class="num">03</span>
+                  <span class="legend-text">Options sur mesure</span>
+                </legend>
+
+                <div class="check-list">
+                  <label class="check-item">
+                    <input type="checkbox" id="demontage" name="demontage" />
+                    <span class="check-box"></span>
+                    <span class="check-label">
+                      <strong>Démontage / remontage du mobilier</strong>
+                      <small>Lits, armoires, cuisines équipées. Outillage et savoir-faire sur place.</small>
+                    </span>
+                  </label>
+                  <label class="check-item">
+                    <input type="checkbox" id="debarras_opt" name="debarras_opt" />
+                    <span class="check-box"></span>
+                    <span class="check-label">
+                      <strong>Débarras / déchetterie</strong>
+                      <small>Évacuation des meubles, électroménagers et objets dont vous voulez vous séparer.</small>
+                    </span>
+                  </label>
+                </div>
+              </fieldset>
+            </div>
+
+            <!-- =================================================
+                 TRANSPORT, détails objets + adresses
+                 ================================================= -->
+            <div data-service-section="transport">
+              <fieldset class="estim-field">
+                <legend>
+                  <span class="num">03</span>
+                  <span class="legend-text">Que souhaitez-vous transporter&nbsp;?</span>
+                </legend>
+                <textarea
+                  name="objets_transport"
+                  rows="3"
+                  placeholder="Ex : un canapé d'angle, une armoire 2 portes, 5 cartons. Ou un ensemble salon complet."
+                ></textarea>
+
+                <div class="form-row">
+                  <label class="form-radio-group">
+                    <span class="form-label">Type de client</span>
+                    <span class="radio-row">
+                      <label class="mini-radio"><input type="radio" name="type_client" value="particulier" checked /> <span>Particulier</span></label>
+                      <label class="mini-radio"><input type="radio" name="type_client" value="entreprise" /> <span>Entreprise</span></label>
+                    </span>
+                  </label>
+                </div>
+              </fieldset>
+            </div>
+
+            <!-- =================================================
+                 MONTAGE DE MEUBLES
+                 ================================================= -->
+            <div data-service-section="montage-meubles">
+              <fieldset class="estim-field">
+                <legend>
+                  <span class="num">02</span>
+                  <span class="legend-text">Quels meubles à monter&nbsp;?</span>
+                </legend>
+                <textarea
+                  name="meubles_liste"
+                  rows="4"
+                  placeholder="Ex : armoire IKEA Pax 200×150, canapé convertible Conforama, lit avec rangements 140×190 BUT…"
+                ></textarea>
+                <p class="hint">
+                  Précisez la marque/référence si vous l'avez.
+                  Pour les plans/photos, vous pourrez nous les envoyer par email après validation du devis.
+                </p>
+              </fieldset>
+            </div>
+
+            <!-- =================================================
+                 MANUTENTION
+                 ================================================= -->
+            <div data-service-section="manutention">
+              <fieldset class="estim-field">
+                <legend>
+                  <span class="num">02</span>
+                  <span class="legend-text">Décrivez la manutention</span>
+                </legend>
+                <textarea
+                  name="description_manutention"
+                  rows="4"
+                  placeholder="Ex : décharger un camion de 20 m³ à mon arrivée, monter 30 cartons et 5 meubles au 3e étage sans ascenseur…"
+                ></textarea>
+              </fieldset>
+            </div>
+
+            <!-- =================================================
+                 DÉBARRAS
+                 ================================================= -->
+            <div data-service-section="debarras">
+              <fieldset class="estim-field">
+                <legend>
+                  <span class="num">02</span>
+                  <span class="legend-text">Que faut-il débarrasser&nbsp;?</span>
+                </legend>
+                <textarea
+                  name="description_debarras"
+                  rows="4"
+                  placeholder="Ex : cave de 20 m² remplie de meubles anciens et cartons. Ou : appartement T3 entier après succession."
+                ></textarea>
+
+                <label class="form-radio-group">
+                  <span class="form-label">Type de lieu</span>
+                  <span class="radio-row">
+                    <label class="mini-radio"><input type="radio" name="lieu_debarras" value="cave" /> <span>Cave / grenier</span></label>
+                    <label class="mini-radio"><input type="radio" name="lieu_debarras" value="appartement" checked /> <span>Appartement</span></label>
+                    <label class="mini-radio"><input type="radio" name="lieu_debarras" value="maison" /> <span>Maison</span></label>
+                    <label class="mini-radio"><input type="radio" name="lieu_debarras" value="local" /> <span>Local pro</span></label>
+                  </span>
+                </label>
+              </fieldset>
+            </div>
+
+            <!-- =================================================
+                 LOCATION UTILITAIRE
+                 ================================================= -->
+            <div data-service-section="location-vehicule">
+              <fieldset class="estim-field">
+                <legend>
+                  <span class="num">02</span>
+                  <span class="legend-text">Détails de la location</span>
+                </legend>
+
+                <label class="form-radio-group">
+                  <span class="form-label">Durée souhaitée</span>
+                  <span class="radio-row">
+                    <label class="mini-radio"><input type="radio" name="duree_location" value="demi-journee" checked /> <span>1/2 journée</span></label>
+                    <label class="mini-radio"><input type="radio" name="duree_location" value="journee" /> <span>Journée</span></label>
+                    <label class="mini-radio"><input type="radio" name="duree_location" value="multi-jours" /> <span>Plusieurs jours</span></label>
+                  </span>
+                </label>
+
+                <textarea
+                  name="description_location"
+                  rows="3"
+                  placeholder="Ex : besoin d'un utilitaire 12 m³ avec chauffeur pour un déménagement Annemasse → Lyon le 15 juin, retour à vide."
+                ></textarea>
+              </fieldset>
+            </div>
+
+            <!-- =================================================
+                 NETTOYAGE FIN DE CHANTIER
+                 ================================================= -->
+            <div data-service-section="nettoyage">
+              <fieldset class="estim-field">
+                <legend>
+                  <span class="num">02</span>
+                  <span class="legend-text">Détails du nettoyage</span>
+                </legend>
+
+                <div class="form-row">
+                  <label class="form-input-label">
+                    <span class="form-label">Surface (m²)</span>
+                    <input type="number" name="surface_m2" min="10" max="1000" step="5" placeholder="Ex : 65" />
+                  </label>
+                </div>
+
+                <textarea
+                  name="description_nettoyage"
+                  rows="3"
+                  placeholder="Ex : T3 après déménagement avant état des lieux, vitres comprises. Ou : maison entière après travaux de peinture."
+                ></textarea>
+              </fieldset>
+            </div>
+
+            <!-- =================================================
+                 ADRESSES (commun à déménagement, transport, montage, débarras, manutention, nettoyage)
+                 ================================================= -->
+            <div data-service-section="demenagement transport montage-meubles manutention debarras nettoyage">
+              <fieldset class="estim-field">
+                <legend>
+                  <span class="num">04</span>
+                  <span class="legend-text" data-addr-label>Adresses</span>
+                </legend>
+
+                <div class="address-block">
+                  <h4 class="address-h"><span data-addr-depart-label>Adresse de départ</span> <span class="required-mark" aria-hidden="true">*</span></h4>
+                  <div class="address-fields">
+                    <label class="form-input-label addr-rue">
+                      <span class="form-label">Rue et numéro</span>
+                      <input type="text" name="rue_depart" placeholder="Ex : 12 rue de la Gare" aria-required="true" autocomplete="address-line1" />
+                    </label>
+                    <label class="form-input-label addr-cp">
+                      <span class="form-label">Code postal</span>
+                      <input type="text" name="cp_depart" inputmode="numeric" pattern="\d{5}" maxlength="5" placeholder="74100" aria-required="true" autocomplete="postal-code" />
+                    </label>
+                    <label class="form-input-label addr-ville">
+                      <span class="form-label">Ville</span>
+                      <input type="text" name="ville_depart" placeholder="Annemasse" aria-required="true" autocomplete="address-level2" />
+                    </label>
+                  </div>
+
+                  <div class="form-row" data-service-section="demenagement transport">
+                    <label class="form-input-label flex-2">
+                      <span class="form-label">Type</span>
+                      <select name="type_depart">
+                        <option value=""></option>
+                        <option value="appartement">Appartement</option>
+                        <option value="maison">Maison</option>
+                        <option value="local">Local pro</option>
+                        <option value="bureau">Bureau</option>
+                      </select>
+                    </label>
+                    <label class="form-input-label flex-1">
+                      <span class="form-label">Étage</span>
+                      <input type="number" name="etage_depart" min="0" max="20" placeholder="0" />
+                    </label>
+                    <label class="form-input-label flex-2">
+                      <span class="form-label">Ascenseur</span>
+                      <select name="ascenseur_depart">
+                        <option value=""></option>
+                        <option value="aucun">Sans ascenseur</option>
+                        <option value="2p">2 personnes</option>
+                        <option value="4p">4 personnes</option>
+                        <option value="grand">+4 personnes</option>
+                      </select>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="address-block" data-service-section="demenagement transport">
+                  <h4 class="address-h">Adresse d'arrivée <span class="required-mark" aria-hidden="true">*</span></h4>
+                  <div class="address-fields">
+                    <label class="form-input-label addr-rue">
+                      <span class="form-label">Rue et numéro</span>
+                      <input type="text" name="rue_arrivee" placeholder="Ex : 5 avenue Verdun" aria-required="true" autocomplete="address-line1" />
+                    </label>
+                    <label class="form-input-label addr-cp">
+                      <span class="form-label">Code postal</span>
+                      <input type="text" name="cp_arrivee" inputmode="numeric" pattern="\d{5}" maxlength="5" placeholder="74100" aria-required="true" autocomplete="postal-code" />
+                    </label>
+                    <label class="form-input-label addr-ville">
+                      <span class="form-label">Ville</span>
+                      <input type="text" name="ville_arrivee" placeholder="Annemasse" aria-required="true" autocomplete="address-level2" />
+                    </label>
+                  </div>
+
+                  <div class="form-row">
+                    <label class="form-input-label flex-2">
+                      <span class="form-label">Type</span>
+                      <select name="type_arrivee">
+                        <option value=""></option>
+                        <option value="appartement">Appartement</option>
+                        <option value="maison">Maison</option>
+                        <option value="local">Local pro</option>
+                        <option value="bureau">Bureau</option>
+                      </select>
+                    </label>
+                    <label class="form-input-label flex-1">
+                      <span class="form-label">Étage</span>
+                      <input type="number" name="etage_arrivee" min="0" max="20" placeholder="0" />
+                    </label>
+                    <label class="form-input-label flex-2">
+                      <span class="form-label">Ascenseur</span>
+                      <select name="ascenseur_arrivee">
+                        <option value=""></option>
+                        <option value="aucun">Sans ascenseur</option>
+                        <option value="2p">2 personnes</option>
+                        <option value="4p">4 personnes</option>
+                        <option value="grand">+4 personnes</option>
+                      </select>
+                    </label>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+
+            <!-- =================================================
+                 DATE + AVANTAGES (commun à tous)
+                 ================================================= -->
+            <fieldset class="estim-field">
+              <legend>
+                <span class="num">05</span>
+                <span class="legend-text">Date & avantages</span>
+              </legend>
+
+              <div class="form-row">
+                <label class="form-input-label flex-1">
+                  <span class="form-label">Date souhaitée</span>
+                  <input type="date" name="date_prestation" />
+                </label>
+              </div>
+
+              <div class="check-list">
+                <label class="check-item">
+                  <input type="checkbox" id="senior" name="senior" />
+                  <span class="check-box"></span>
+                  <span class="check-label">
+                    <strong>Personne âgée ou à mobilité réduite</strong>
+                    <small>Tarif préférentiel : <em>−10&nbsp;%</em> sur le total.</small>
+                  </span>
+                </label>
+                <label class="check-item">
+                  <input type="checkbox" id="anticipee" name="anticipee" />
+                  <span class="check-box"></span>
+                  <span class="check-label">
+                    <strong>Réservation anticipée (plus de 30&nbsp;jours)</strong>
+                    <small>Avantage planning : <em>−5&nbsp;%</em> sur le total.</small>
+                  </span>
+                </label>
+              </div>
+            </fieldset>
+
+            <!-- =================================================
+                 COORDONNÉES (commun à tous)
+                 ================================================= -->
+            <fieldset class="estim-field">
+              <legend>
+                <span class="num">06</span>
+                <span class="legend-text">Vos coordonnées</span>
+              </legend>
+
+              <div class="form-row">
+                <label class="form-input-label flex-1">
+                  <span class="form-label">Nom et prénom *</span>
+                  <input type="text" name="nom" required minlength="2" autocomplete="name" placeholder="Marie Dupont" />
+                </label>
+              </div>
+
+              <div class="form-row">
+                <label class="form-input-label flex-1">
+                  <span class="form-label">Téléphone *</span>
+                  <input type="tel" name="telephone" required autocomplete="tel" placeholder="06 XX XX XX XX" />
+                </label>
+                <label class="form-input-label flex-1">
+                  <span class="form-label">Email *</span>
+                  <input type="email" name="email" required autocomplete="email" placeholder="vous@exemple.fr" />
+                </label>
+              </div>
+
+              <div class="form-row">
+                <label class="form-input-label flex-1">
+                  <span class="form-label">Détails complémentaires (facultatif)</span>
+                  <textarea name="message" rows="3" placeholder="Toute info utile : contraintes d'accès, horaires souhaités, questions, etc."></textarea>
+                </label>
+              </div>
+
+              <!-- Honeypot anti-spam -->
+              <div style="position:absolute;left:-9999px;visibility:hidden;" aria-hidden="true">
+                <label>Site web (laissez vide) <input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+              </div>
+
+              <label class="rgpd-label">
+                <input type="checkbox" name="rgpd" required />
+                <span>
+                  J'accepte que mes données soient utilisées pour traiter ma demande de devis.
+                  <a href="/mentions-legales" target="_blank" rel="noopener">Politique de confidentialité</a> *
+                </span>
+              </label>
+            </fieldset>
+          </div>
+
+          <!-- =================================================
+               COLONNE RÉSULTAT (sticky)
+               ================================================= -->
+          <aside class="estim-result" aria-live="polite">
+            <div class="result-inner">
+              <span class="result-label" data-result-label>Estimation indicative</span>
+
+              <!-- Bloc PRIX (Déménagement / Transport) -->
+              <div data-result-block="price">
+                <div class="result-price">
+                  <span class="price-value" id="priceTotal">1 187</span>
+                  <span class="price-currency">€</span>
+                </div>
+                <div class="result-range" id="priceRange">≈ 1 130 € à 1 305 €</div>
+                <ul class="result-breakdown" id="breakdown"></ul>
+              </div>
+
+              <!-- Bloc DEVIS SUR MESURE (autres services) -->
+              <div data-result-block="custom" style="display:none;">
+                <div class="result-custom">
+                  <span class="custom-emoji">📋</span>
+                  <p class="custom-title">Devis sur mesure</p>
+                  <p class="custom-desc">Cette prestation est chiffrée au cas par cas selon les détails de votre demande.</p>
+                </div>
+                <ul class="result-summary" id="customSummary"></ul>
+              </div>
+
+              <p class="result-disclaimer">
+                <span data-result-block="price">L'estimation est <strong>indicative</strong>. Le tarif définitif peut varier selon l'accessibilité et la distance.</span>
+                <span data-result-block="custom" style="display:none;"><strong>Le devis ferme et personnalisé</strong> vous est transmis sous 24&nbsp;h après l'envoi du formulaire.</span>
+              </p>
+
+              <!-- Feedback dynamique -->
+              <div id="form-feedback" class="form-feedback" role="alert"></div>
+
+              <button type="submit" class="btn-submit" id="submitBtn">
+                <span class="btn-label">Envoyer ma demande</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </button>
+
+              <a href="tel:+33659926814" class="btn-phone">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13 1.05.37 2.07.7 3.05a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.98.33 2 .57 3.05.7a2 2 0 0 1 1.72 2.04z"/></svg>
+                Ou 06 59 92 68 14
+              </a>
+            </div>
+          </aside>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- INFOS BAS -->
+  <section class="estim-info">
+    <div class="container container-narrow">
+      <div class="info-grid">
+        <article class="info-card">
+          <span class="info-num">01</span>
+          <h3>Tarif transparent au m³</h3>
+          <p>
+            Pour le déménagement : <strong>47,50&nbsp;€&nbsp;/&nbsp;m³</strong> tout compris (camion, manutention, protection, sanglage). Pas de surprise sur la facture.
+          </p>
+        </article>
+        <article class="info-card">
+          <span class="info-num">02</span>
+          <h3>Sans engagement, sans acompte</h3>
+          <p>
+            Le devis est gratuit, sans engagement. Vous payez uniquement après la prestation, à la livraison de vos biens.
+          </p>
+        </article>
+        <article class="info-card">
+          <span class="info-num">03</span>
+          <h3>Réponse sous 24&nbsp;h</h3>
+          <p>
+            Notre équipe vous rappelle dans la journée. Pour une visite sur site (recommandée pour les gros volumes), on convient ensemble d'un créneau.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script is:inline define:vars={{ PRIX_M3 }}>
+  (function () {
+    const form = document.getElementById('estimForm');
+    if (!form) return;
+
+    const $ = (id) => document.getElementById(id);
+    const volume = $('volume');
+    const volumeValue = $('volumeValue');
+    const presets = document.querySelectorAll('.preset');
+    const priceTotal = $('priceTotal');
+    const priceRange = $('priceRange');
+    const breakdown = $('breakdown');
+    const customSummary = $('customSummary');
+    const resultLabel = document.querySelector('[data-result-label]');
+    const submitBtn = $('submitBtn');
+    const feedback = $('form-feedback');
+
+    // Espace fine insécable (U+202F) trop étroite à l'affichage : on utilise un espace normal
+    const fmt = (n) => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+
+    // -------- Pré-sélection via ?service=xxx (depuis pages services) --------
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const preselect = params.get('service');
+      if (preselect) {
+        const r = form.querySelector(`input[name="service"][value="${preselect}"]`);
+        if (r) r.checked = true;
+      }
+    } catch (_) {}
+
+    // -------- Affichage conditionnel selon le service --------
+    function getCurrentService() {
+      const r = form.querySelector('input[name="service"]:checked');
+      return r ? r.value : 'demenagement';
+    }
+
+    function applyServiceVisibility() {
+      const current = getCurrentService();
+      const sections = document.querySelectorAll('[data-service-section]');
+      sections.forEach((sec) => {
+        const services = sec.getAttribute('data-service-section').split(/\s+/);
+        sec.style.display = services.includes(current) ? '' : 'none';
+      });
+
+      // Adapte les labels d'adresse
+      const addrDepartLabel = document.querySelector('[data-addr-depart-label]');
+      if (addrDepartLabel) {
+        if (current === 'demenagement' || current === 'transport') {
+          addrDepartLabel.textContent = 'Adresse de départ';
+        } else if (current === 'montage-meubles' || current === 'manutention' || current === 'nettoyage') {
+          addrDepartLabel.textContent = "Adresse d'intervention";
+        } else if (current === 'debarras') {
+          addrDepartLabel.textContent = 'Adresse à débarrasser';
+        }
+      }
+
+      const addrLabel = document.querySelector('[data-addr-label]');
+      if (addrLabel) {
+        if (current === 'demenagement' || current === 'transport') {
+          addrLabel.textContent = 'Adresses';
+        } else {
+          addrLabel.textContent = 'Adresse';
+        }
+      }
+
+      // Affiche le bon bloc de résultat
+      const showPrice = current === 'demenagement' || current === 'transport';
+      document.querySelectorAll('[data-result-block="price"]').forEach((el) => {
+        el.style.display = showPrice ? '' : 'none';
+      });
+      document.querySelectorAll('[data-result-block="custom"]').forEach((el) => {
+        el.style.display = showPrice ? 'none' : '';
+      });
+      if (resultLabel) {
+        resultLabel.textContent = showPrice ? 'Estimation indicative' : 'Demande de devis';
+      }
+
+      computePrice();
+      updateCustomSummary();
+    }
+
+    // -------- Calcul prix (déménagement / transport) --------
+    function computePrice() {
+      if (!priceTotal || !breakdown) return;
+      const current = getCurrentService();
+      if (current !== 'demenagement' && current !== 'transport') return;
+
+      const vol = Number(volume.value);
+      if (volumeValue) volumeValue.textContent = String(vol);
+
+      presets.forEach((p) => {
+        p.classList.toggle('is-active', Number(p.dataset.vol) === vol);
+      });
+
+      const tarif_m3 = current === 'transport' ? PRIX_M3 * 0.65 : PRIX_M3;
+      const labelBase = current === 'transport'
+        ? `Transport simple · ${vol} m³`
+        : `Déménagement complet · ${vol} m³`;
+
+      const items = [];
+      const base = vol * tarif_m3;
+      items.push({ label: labelBase, amount: base });
+
+      const demontage = $('demontage');
+      const debarrasOpt = $('debarras_opt');
+      const senior = $('senior');
+      const anticipee = $('anticipee');
+
+      if (demontage && demontage.checked) {
+        items.push({ label: 'Démontage / remontage mobilier', amount: base * 0.15 });
+      }
+      if (debarrasOpt && debarrasOpt.checked) {
+        items.push({ label: 'Débarras / déchetterie', amount: 80 + Math.max(0, vol - 5) * 12 });
+      }
+
+      let subtotal = items.reduce((s, it) => s + it.amount, 0);
+      let discountPct = 0;
+      if (senior && senior.checked) discountPct += 10;
+      if (anticipee && anticipee.checked) discountPct += 5;
+      if (vol >= 30) discountPct += 5;
+
+      if (discountPct > 0) {
+        const reduction = subtotal * (discountPct / 100);
+        items.push({ label: `Avantages cumulés (−${discountPct} %)`, amount: -reduction, highlight: true });
+      }
+
+      const total = items.reduce((s, it) => s + it.amount, 0);
+      priceTotal.textContent = fmt(total);
+      priceRange.textContent = `≈ ${fmt(total * 0.95)} € à ${fmt(total * 1.10)} €`;
+
+      breakdown.innerHTML = items.map((it) => `
+        <li class="${it.highlight ? 'is-discount' : ''}">
+          <span>${it.label}</span>
+          <span>${it.amount < 0 ? '−' : ''}${fmt(Math.abs(it.amount))} €</span>
+        </li>
+      `).join('');
+    }
+
+    // -------- Récap pour les services sans calcul prix --------
+    function updateCustomSummary() {
+      if (!customSummary) return;
+      const current = getCurrentService();
+      const labelMap = {
+        'montage-meubles': 'Montage de meubles',
+        manutention: 'Manutention',
+        debarras: 'Débarras',
+        'location-vehicule': 'Location utilitaire avec chauffeur',
+        nettoyage: 'Nettoyage fin de chantier',
+      };
+      const items = [];
+      items.push({ label: 'Prestation', value: labelMap[current] || ',' });
+
+      const date = form.querySelector('[name="date_prestation"]');
+      if (date && date.value) items.push({ label: 'Date souhaitée', value: date.value });
+
+      const senior = $('senior');
+      const anticipee = $('anticipee');
+      const advantages = [];
+      if (senior && senior.checked) advantages.push('Sénior/PMR (−10 %)');
+      if (anticipee && anticipee.checked) advantages.push('Anticipée (−5 %)');
+      if (advantages.length > 0) items.push({ label: 'Avantages', value: advantages.join(', ') });
+
+      customSummary.innerHTML = items.map((it) => `
+        <li><span>${it.label}</span><span>${it.value}</span></li>
+      `).join('');
+    }
+
+    // -------- Submit handler --------
+    function showFeedback(type, msg) {
+      if (!feedback) return;
+      feedback.className = 'form-feedback form-feedback--' + type;
+      feedback.innerHTML = msg;
+      feedback.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function setLoading(loading) {
+      if (!submitBtn) return;
+      submitBtn.disabled = loading;
+      submitBtn.classList.toggle('is-loading', loading);
+    }
+
+    // Services qui exigent une adresse de départ / arrivée
+    const SERVICES_NEED_DEPART = ['demenagement', 'transport', 'montage-meubles', 'manutention', 'debarras', 'nettoyage'];
+    const SERVICES_NEED_ARRIVEE = ['demenagement', 'transport'];
+
+    function clearInvalid() {
+      form.querySelectorAll('.is-invalid').forEach((el) => el.classList.remove('is-invalid'));
+    }
+
+    function validateAddressGroup(prefix) {
+      // prefix = 'depart' ou 'arrivee' → vérifie rue_X, cp_X, ville_X
+      const rue = form.querySelector(`input[name="rue_${prefix}"]`);
+      const cp = form.querySelector(`input[name="cp_${prefix}"]`);
+      const ville = form.querySelector(`input[name="ville_${prefix}"]`);
+      const errs = [];
+      if (!rue || rue.value.trim().length < 3) {
+        errs.push('rue');
+        rue?.classList.add('is-invalid');
+      }
+      if (!cp || !/^\d{5}$/.test(cp.value.trim())) {
+        errs.push('code postal (5 chiffres)');
+        cp?.classList.add('is-invalid');
+      }
+      if (!ville || ville.value.trim().length < 2) {
+        errs.push('ville');
+        ville?.classList.add('is-invalid');
+      }
+      return errs;
+    }
+
+    function validateAddresses(current) {
+      const errors = [];
+      if (SERVICES_NEED_DEPART.includes(current)) {
+        const missing = validateAddressGroup('depart');
+        if (missing.length > 0) {
+          errors.push(`Adresse de départ : ${missing.join(', ')} manquant${missing.length > 1 ? 's' : ''}.`);
+        }
+      }
+      if (SERVICES_NEED_ARRIVEE.includes(current)) {
+        const missing = validateAddressGroup('arrivee');
+        if (missing.length > 0) {
+          errors.push(`Adresse d'arrivée : ${missing.join(', ')} manquant${missing.length > 1 ? 's' : ''}.`);
+        }
+      }
+      return errors;
+    }
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      clearInvalid();
+
+      const current = getCurrentService();
+      const addrErrors = validateAddresses(current);
+      if (addrErrors.length > 0) {
+        showFeedback('error',
+          '<strong>Impossible d\'envoyer&nbsp;:</strong><ul>' +
+          addrErrors.map((err) => '<li>' + err + '</li>').join('') + '</ul>'
+        );
+        return;
+      }
+
+      setLoading(true);
+      showFeedback('info', '<strong>Envoi en cours...</strong>');
+
+      try {
+        const formData = new FormData(form);
+
+        // Ajoute le prix estimé si applicable (utile dans l'email)
+        if ((current === 'demenagement' || current === 'transport') && priceTotal) {
+          formData.append('estimation_prix', priceTotal.textContent || '');
+        }
+
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          body: formData,
+          headers: { Accept: 'application/json' },
+        });
+        const data = await response.json();
+
+        if (response.ok && data.ok) {
+          showFeedback('success',
+            '<strong>Demande envoyée.</strong><br>' +
+            'Merci, nous vous recontactons sous 24&nbsp;h au numéro indiqué.'
+          );
+          form.reset();
+          applyServiceVisibility();
+        } else {
+          const errors = data.errors || ['Erreur inconnue.'];
+          showFeedback('error',
+            '<strong>Impossible d\'envoyer&nbsp;:</strong><ul>' +
+            errors.map((err) => '<li>' + err + '</li>').join('') + '</ul>'
+          );
+        }
+      } catch (err) {
+        showFeedback('error',
+          '<strong>Erreur de connexion.</strong><br>' +
+          'Merci de réessayer ou de nous appeler au <a href="tel:+33659926814">06 59 92 68 14</a>.'
+        );
+      } finally {
+        setLoading(false);
+      }
+    });
+
+    // -------- Bind events --------
+    presets.forEach((p) => {
+      p.addEventListener('click', () => {
+        if (volume) {
+          volume.value = p.dataset.vol;
+          computePrice();
+        }
+      });
+    });
+
+    form.addEventListener('input', () => {
+      computePrice();
+      updateCustomSummary();
+    });
+    form.addEventListener('change', () => {
+      applyServiceVisibility();
+    });
+
+    applyServiceVisibility();
+  })();
+</script>
+
+<style>
+  /* HERO */
+  .estim-hero {
+    background: var(--off-white);
+    padding: clamp(5rem, 10vw, 8rem) 0 clamp(3rem, 5vw, 4rem);
+    border-bottom: 1px solid var(--border);
+    margin-top: -76px;
+    padding-top: 9rem;
+  }
+  .breadcrumb {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--gray-500);
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  .breadcrumb a { color: var(--gray-700); text-decoration: none; }
+  .breadcrumb > span:not(:last-child) { opacity: 0.4; }
+  .estim-hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    margin: 0.75rem 0 1.5rem;
+    line-height: 1.05;
+  }
+  .estim-hero h1 em { font-style: italic; color: var(--gold-deep); }
+  .estim-hero .lead { max-width: 720px; }
+
+  /* TOOL */
+  .estim-tool {
+    padding: clamp(3rem, 6vw, 5rem) 0;
+    background: var(--white);
+  }
+  .estim-grid {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  /* FORM FIELD */
+  .estim-field {
+    border: none;
+    padding: 0 0 2.5rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2.5rem;
+  }
+  .estim-field:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+
+  .estim-field legend {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 1.75rem;
+  }
+  .estim-field legend .num {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--gold-deep);
+    font-weight: 500;
+  }
+  .estim-field legend .legend-text {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    color: var(--black);
+    font-weight: 500;
+  }
+
+  /* SERVICE PICKER */
+  .service-picker {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 0.6rem;
+  }
+  .service-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding: 1.1rem 1.2rem;
+    border: 1px solid var(--border-strong);
+    cursor: pointer;
+    transition: all 0.2s var(--ease-smooth);
+    background: var(--white);
+  }
+  .service-card input { position: absolute; opacity: 0; pointer-events: none; }
+  .service-card .card-title {
+    font-weight: 600;
+    color: var(--black);
+    font-size: 0.95rem;
+  }
+  .service-card .card-desc {
+    font-size: 0.8rem;
+    color: var(--gray-600);
+    line-height: 1.45;
+  }
+  .service-card:hover { border-color: var(--black); }
+  .service-card:has(input:checked) {
+    border-color: var(--black);
+    background: var(--black);
+  }
+  .service-card:has(input:checked) .card-title { color: var(--white); }
+  .service-card:has(input:checked) .card-desc { color: rgba(255, 255, 255, 0.7); }
+
+  /* VOLUME */
+  .volume-control {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  #volume {
+    flex: 1;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 4px;
+    background: var(--gray-200);
+    border-radius: 2px;
+    outline: none;
+  }
+  #volume::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 22px;
+    height: 22px;
+    background: var(--black);
+    border-radius: 50%;
+    cursor: pointer;
+    border: 3px solid var(--white);
+    box-shadow: 0 0 0 1px var(--gray-300);
+    transition: transform 0.15s ease;
+  }
+  #volume::-webkit-slider-thumb:hover { transform: scale(1.1); }
+  #volume::-moz-range-thumb {
+    width: 22px;
+    height: 22px;
+    background: var(--black);
+    border-radius: 50%;
+    cursor: pointer;
+    border: 3px solid var(--white);
+  }
+  .volume-value {
+    display: flex;
+    align-items: baseline;
+    gap: 0.35rem;
+    min-width: 90px;
+    justify-content: flex-end;
+  }
+  .volume-value output {
+    font-family: var(--font-display);
+    font-size: 2.4rem;
+    font-weight: 600;
+    color: var(--black);
+    line-height: 1;
+  }
+  .volume-value span { font-size: 0.95rem; color: var(--gray-500); }
+
+  .volume-presets {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  .preset {
+    background: var(--white);
+    border: 1px solid var(--border-strong);
+    padding: 0.7rem 0.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s var(--ease-smooth);
+    font-size: 0.82rem;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .preset span { font-size: 0.7rem; color: var(--gray-500); font-weight: 400; }
+  .preset:hover { border-color: var(--black); background: var(--gray-50); }
+  .preset.is-active { background: var(--black); color: var(--white); border-color: var(--black); }
+  .preset.is-active span { color: var(--gold); }
+
+  .hint {
+    font-size: 0.85rem;
+    color: var(--gray-600);
+    line-height: 1.6;
+  }
+
+  /* CHECK LIST */
+  .check-list { display: flex; flex-direction: column; gap: 0.85rem; }
+  .check-item {
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    gap: 0.85rem;
+    align-items: start;
+    padding: 1rem 1.1rem;
+    border: 1px solid var(--border-strong);
+    cursor: pointer;
+    transition: all 0.2s var(--ease-smooth);
+    background: var(--white);
+    position: relative;
+  }
+  .check-item input { position: absolute; opacity: 0; pointer-events: none; }
+  .check-item .check-box {
+    width: 22px;
+    height: 22px;
+    border: 1.5px solid var(--gray-400);
+    transition: all 0.2s;
+    margin-top: 1px;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .check-item .check-box::after {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    background: transparent;
+    transition: background 0.15s;
+  }
+  .check-item:has(input:checked) {
+    border-color: var(--black);
+    background: var(--gray-50);
+  }
+  .check-item:has(input:checked) .check-box {
+    border-color: var(--black);
+    background: var(--black);
+  }
+  .check-item:has(input:checked) .check-box::after {
+    background: var(--gold);
+  }
+  .check-item:hover { border-color: var(--gray-700); }
+  .check-item .check-label strong {
+    display: block;
+    font-size: 0.93rem;
+    color: var(--black);
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+  }
+  .check-item .check-label small {
+    display: block;
+    font-size: 0.82rem;
+    color: var(--gray-600);
+    line-height: 1.5;
+  }
+  .check-item .check-label small em {
+    color: var(--gold-deep);
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  /* INPUTS / TEXTAREA / SELECT */
+  .estim-form input[type="text"],
+  .estim-form input[type="email"],
+  .estim-form input[type="tel"],
+  .estim-form input[type="number"],
+  .estim-form input[type="date"],
+  .estim-form select,
+  .estim-form textarea {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--border-strong);
+    background: var(--white);
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: var(--gray-900);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .estim-form input:focus,
+  .estim-form select:focus,
+  .estim-form textarea:focus {
+    outline: none;
+    border-color: var(--black);
+    background: var(--white);
+  }
+  .estim-form textarea {
+    resize: vertical;
+    min-height: 90px;
+    line-height: 1.55;
+  }
+
+  .form-row {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 0.85rem;
+  }
+  .form-row:last-child { margin-bottom: 0; }
+  .form-input-label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    flex: 1;
+    min-width: 0;
+  }
+  .form-input-label.flex-1 { flex: 1; }
+  .form-input-label.flex-2 { flex: 2; }
+  .estim-form select {
+    text-overflow: ellipsis;
+  }
+  .form-label {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gray-600);
+    font-weight: 600;
+  }
+
+  /* RADIO ROW */
+  .form-radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 0.85rem;
+  }
+  .radio-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .mini-radio {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.55rem 0.95rem;
+    border: 1px solid var(--border-strong);
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--gray-700);
+    transition: all 0.2s;
+  }
+  .mini-radio input { position: absolute; opacity: 0; pointer-events: none; }
+  .mini-radio:has(input:checked) {
+    border-color: var(--black);
+    background: var(--black);
+    color: var(--white);
+  }
+
+  /* ADDRESS BLOCK */
+  .address-block {
+    margin-bottom: 1.5rem;
+  }
+  .address-block:last-child { margin-bottom: 0; }
+  .address-h {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--black);
+    margin: 0 0 0.7rem;
+  }
+  .required-mark {
+    color: var(--gold-deep);
+    font-weight: 700;
+    margin-left: 0.15rem;
+  }
+  .address-block input[type="text"] {
+    margin-bottom: 0.85rem;
+  }
+  .address-fields {
+    display: grid;
+    grid-template-columns: 1fr 140px 1fr;
+    gap: 0.6rem;
+    margin-bottom: 0.85rem;
+  }
+  .address-fields .form-input-label { margin: 0; }
+  .address-fields input { margin-bottom: 0; }
+  @media (max-width: 600px) {
+    .address-fields {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+  }
+  input.is-invalid {
+    border-color: #c92a2a !important;
+    background: rgba(201, 42, 42, 0.04);
+  }
+
+  /* RGPD */
+  .rgpd-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    font-size: 0.85rem;
+    color: var(--gray-700);
+    line-height: 1.5;
+    margin-top: 1rem;
+  }
+  .rgpd-label input { margin-top: 0.2rem; flex-shrink: 0; }
+  .rgpd-label a {
+    color: var(--black);
+    border-bottom: 1px solid var(--gold-deep);
+  }
+
+  /* RESULT (sticky) */
+  .estim-result {
+    position: sticky;
+    top: 100px;
+  }
+  .result-inner {
+    background: var(--black);
+    color: var(--white);
+    padding: 2rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .result-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .result-price {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    font-family: var(--font-display);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .price-value {
+    font-size: 3.4rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1;
+  }
+  .price-currency {
+    font-size: 1.6rem;
+    color: var(--gold);
+    font-weight: 500;
+    line-height: 1;
+    align-self: flex-end;
+    margin-bottom: 0.45rem;
+  }
+  .result-range {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 0.04em;
+  }
+  .result-breakdown {
+    list-style: none;
+    padding: 1rem 0;
+    margin: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .result-breakdown li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.86rem;
+    color: rgba(255, 255, 255, 0.78);
+  }
+  .result-breakdown li.is-discount { color: var(--gold); font-weight: 600; }
+  .result-breakdown li span:last-child {
+    font-weight: 600;
+    color: var(--white);
+    white-space: nowrap;
+  }
+  .result-breakdown li.is-discount span:last-child { color: var(--gold); }
+
+  /* RESULT CUSTOM */
+  .result-custom {
+    text-align: center;
+    padding: 1.5rem 0;
+  }
+  .custom-emoji {
+    font-size: 2.4rem;
+    display: block;
+    margin-bottom: 0.6rem;
+  }
+  .custom-title {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    color: var(--gold);
+    font-weight: 500;
+    margin: 0 0 0.6rem;
+  }
+  .custom-desc {
+    font-size: 0.86rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.55;
+    margin: 0;
+  }
+  .result-summary {
+    list-style: none;
+    padding: 1rem 0;
+    margin: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+  .result-summary li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+  .result-summary li span:first-child {
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+  }
+  .result-summary li span:last-child {
+    color: var(--white);
+    font-weight: 500;
+    font-family: var(--font-display);
+    font-size: 1rem;
+  }
+
+  .result-disclaimer {
+    font-size: 0.76rem;
+    color: rgba(255, 255, 255, 0.55);
+    line-height: 1.6;
+  }
+  .result-disclaimer strong { color: rgba(255, 255, 255, 0.9); font-weight: 600; }
+
+  /* FEEDBACK */
+  .form-feedback {
+    display: none;
+    padding: 0.9rem 1rem;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    border-radius: 2px;
+  }
+  .form-feedback ul { margin: 0.4rem 0 0; padding-left: 1.2rem; }
+  .form-feedback--info {
+    display: block;
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.85);
+    border-left: 2px solid var(--gold);
+  }
+  .form-feedback--success {
+    display: block;
+    background: rgba(74, 222, 128, 0.15);
+    color: #ffffff;
+    border-left: 2px solid #4ade80;
+  }
+  .form-feedback--error {
+    display: block;
+    background: rgba(239, 68, 68, 0.18);
+    color: #ffffff;
+    border-left: 2px solid #ef4444;
+  }
+  /* Contenu injecté dynamiquement par JS, utilise :global pour outrepasser le scoping Astro */
+  .form-feedback :global(strong) { color: #ffffff; font-weight: 700; }
+  .form-feedback--success :global(strong) { color: #86efac; }
+  .form-feedback--error :global(strong) { color: #fca5a5; }
+  .form-feedback :global(ul) {
+    color: #ffffff;
+    margin: 0.5rem 0 0;
+    padding-left: 1.2rem;
+  }
+  .form-feedback :global(li) {
+    color: #ffffff;
+    margin-bottom: 0.25rem;
+    line-height: 1.5;
+  }
+  .form-feedback :global(a) { color: inherit; text-decoration: underline; }
+
+  /* SUBMIT BUTTON */
+  .btn-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 1.25rem;
+    background: var(--gold);
+    color: var(--black);
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s var(--ease-smooth);
+  }
+  .btn-submit:hover:not(:disabled) { background: var(--white); }
+  .btn-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  .btn-submit.is-loading .btn-label::after {
+    content: '...';
+  }
+
+  .btn-phone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.85rem 1.25rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.25s;
+  }
+  .btn-phone:hover {
+    color: var(--gold);
+    border-color: var(--gold);
+  }
+
+  /* INFO */
+  .estim-info {
+    background: var(--off-white);
+    padding: clamp(3rem, 6vw, 5rem) 0;
+  }
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+  .info-card { display: flex; flex-direction: column; gap: 0.85rem; }
+  .info-num {
+    font-family: var(--font-display);
+    color: var(--gold-deep);
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+  .info-card h3 { font-size: 1.25rem; font-weight: 500; }
+  .info-card p { font-size: 0.92rem; line-height: 1.7; color: var(--gray-700); }
+
+  /* RESPONSIVE */
+  @media (max-width: 960px) {
+    .estim-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .estim-result { position: static; order: -1; }
+    .info-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .service-picker { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    .volume-presets { grid-template-columns: repeat(3, 1fr); }
+    .volume-control { flex-direction: column; align-items: stretch; gap: 1rem; }
+    .volume-value { justify-content: center; }
+    .price-value { font-size: 2.6rem; }
+    .form-row { flex-direction: column; }
+  }
+</style>

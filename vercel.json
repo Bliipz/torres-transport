@@ -1,0 +1,62 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    { "source": "/nos-services", "destination": "/services", "permanent": true },
+    { "source": "/nos-services/", "destination": "/services", "permanent": true },
+    { "source": "/service-demenagement", "destination": "/services/demenagement", "permanent": true },
+    { "source": "/service-demenagement/", "destination": "/services/demenagement", "permanent": true },
+    { "source": "/service-de-transport", "destination": "/services/transport", "permanent": true },
+    { "source": "/service-de-transport/", "destination": "/services/transport", "permanent": true },
+    { "source": "/service-montage-de-meubles", "destination": "/services/montage-meubles", "permanent": true },
+    { "source": "/service-montage-de-meubles/", "destination": "/services/montage-meubles", "permanent": true },
+    { "source": "/service-location-vehicule-avec-chauffeur", "destination": "/services/location-vehicule", "permanent": true },
+    { "source": "/service-location-vehicule-avec-chauffeur/", "destination": "/services/location-vehicule", "permanent": true },
+    { "source": "/service-debarras-et-manutentions", "destination": "/services/debarras", "permanent": true },
+    { "source": "/service-debarras-et-manutentions/", "destination": "/services/debarras", "permanent": true },
+    { "source": "/service-lnettoyage-fin-de-chantier", "destination": "/services/nettoyage", "permanent": true },
+    { "source": "/service-lnettoyage-fin-de-chantier/", "destination": "/services/nettoyage", "permanent": true },
+    { "source": "/manutention", "destination": "/services/manutention", "permanent": true },
+    { "source": "/manutention/", "destination": "/services/manutention", "permanent": true },
+    { "source": "/wordpress-resources-at-siteground", "destination": "/blog", "permanent": true },
+    { "source": "/wordpress-resources-at-siteground/", "destination": "/blog", "permanent": true },
+    { "source": "/category/uncategorized", "destination": "/blog", "permanent": true },
+    { "source": "/category/uncategorized/", "destination": "/blog", "permanent": true },
+    { "source": "/metform-form/(.*)", "destination": "/contact", "permanent": true }
+  ],
+  "headers": [
+    {
+      "source": "/_astro/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/(.*)\\.(webp|jpg|jpeg|png|svg|ico|woff2|woff)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/(favicon-(\\d+)\\.png|apple-touch-icon\\.png|icon-\\d+\\.png|site\\.webmanifest)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=604800" }
+      ]
+    },
+    {
+      "source": "/sitemap-(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=3600, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=(), interest-cohort=()" },
+        { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" }
+      ]
+    }
+  ]
+}

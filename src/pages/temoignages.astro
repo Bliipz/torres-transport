@@ -1,0 +1,491 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const SITE_URL = 'https://torrestransport.fr';
+
+const temoignages = [
+  {
+    nom: "Christophe L.",
+    initiale: "CL",
+    ville: "Annemasse",
+    date: "Mars 2026",
+    service: "Déménagement T3",
+    quote: "Équipe ponctuelle, soigneuse et efficace. Tout a été emballé proprement et rien n'a bougé pendant le transport. Ludovic a même pris le temps d'expliquer comment il allait s'y prendre pour passer le canapé d'angle dans la cage d'escalier. Service au top.",
+  },
+  {
+    nom: "Marie B.",
+    initiale: "MB",
+    ville: "Ville-la-Grand",
+    date: "Février 2026",
+    service: "Déménagement T2 + débarras",
+    quote: "On a fait appel à Torres Transport pour notre changement d'appartement, et en plus pour évacuer le mobilier de la cave qu'on ne voulait plus. Tout en une journée. Super pratique, et le tarif tout compris est resté ce qui était annoncé. Pas de mauvaise surprise.",
+  },
+  {
+    nom: "Anne D.",
+    initiale: "AD",
+    ville: "Saint-Julien-en-Genevois",
+    date: "Janvier 2026",
+    service: "Déménagement frontalier",
+    quote: "Déménagement de Genève vers Saint-Julien après huit ans en Suisse. L'équipe a géré tout l'aspect administratif côté douane (inventaire en deux exemplaires, formulaire 10070), ce qui m'a évité un casse-tête énorme. Passage frontière en moins de 30 minutes.",
+  },
+  {
+    nom: "Romain T.",
+    initiale: "RT",
+    ville: "Gaillard",
+    date: "Décembre 2025",
+    service: "Transport meubles + montage",
+    quote: "Achat de mobilier chez Centrakor à transporter et monter à mon nouvel appartement. Trois meubles complexes (bureau, dressing, lit avec rangements) montés impeccablement en une demi-journée. Outillage propre, finitions vérifiées. Je recommande sans hésiter.",
+  },
+  {
+    nom: "Patricia S.",
+    initiale: "PS",
+    ville: "Annemasse",
+    date: "Novembre 2025",
+    service: "Déménagement sénior",
+    quote: "Ma maman entrait en EHPAD après 40 ans dans la même maison. C'était un moment douloureux pour la famille. Ludovic et son équipe ont été d'une délicatesse rare : ils ont reconstitué la chambre à l'identique, posé les photos sur la commode comme avant. Maman s'est sentie chez elle dès le premier soir.",
+  },
+  {
+    nom: "Sébastien M.",
+    initiale: "SM",
+    ville: "Thonon-les-Bains",
+    date: "Octobre 2025",
+    service: "Déménagement maison 80 m³",
+    quote: "Gros chantier : maison de 5 pièces avec cave, garage et grenier. L'équipe est arrivée à 8h pile, a chargé en 4 heures, déchargé à Annemasse l'après-midi. Aucune casse, aucun retard. Le devis annoncé était le devis final. Du bon vieux travail bien fait.",
+  },
+  {
+    nom: "Élodie R.",
+    initiale: "ER",
+    ville: "Évian-les-Bains",
+    date: "Septembre 2025",
+    service: "Transport piano droit",
+    quote: "J'avais peur pour mon piano droit (héritage familial, valeur sentimentale énorme). Ludovic m'a expliqué la technique de manutention dès l'appel, et au moment du transport j'ai vu qu'il maîtrisait parfaitement. Sangles, diable spécialisé, deux personnes coordonnées. Arrivé sans une rayure.",
+  },
+  {
+    nom: "Jean-Pierre V.",
+    initiale: "JV",
+    ville: "Annemasse",
+    date: "Septembre 2025",
+    service: "Déménagement PMR",
+    quote: "Suite à un accident, j'ai dû déménager dans un appartement adapté. Tarif sénior/PMR appliqué directement, équipe à l'écoute, et installation du lit médical et du fauteuil ergonomique en priorité dès l'arrivée. Ils ont compris l'enjeu sans qu'on ait à expliquer.",
+  },
+  {
+    nom: "Laure C.",
+    initiale: "LC",
+    ville: "Genève",
+    date: "Août 2025",
+    service: "Déménagement transfrontalier France → Suisse",
+    quote: "Mutation professionnelle de Lyon vers Genève. Torres Transport a géré tout le trajet : démontage à Lyon, transit, formalités douanières suisses, remontage à Carouge. Une seule équipe, un seul interlocuteur du début à la fin. Énorme gain de simplicité.",
+  },
+  {
+    nom: "Maxime D.",
+    initiale: "MD",
+    ville: "Annecy",
+    date: "Juillet 2025",
+    service: "Location utilitaire avec chauffeur",
+    quote: "Je n'ai pas le permis utilitaire et il fallait transporter 8 m³ de matériel pour mon entreprise depuis Annecy vers Annemasse. Formule 'transport simple' parfaite : devis clair, chauffeur ponctuel, et un coup de main au chargement quand il a vu que j'étais débordé. Très satisfait.",
+  },
+  {
+    nom: "Sophie & Marc B.",
+    initiale: "SB",
+    ville: "Bonneville",
+    date: "Juin 2025",
+    service: "Déménagement T4 + nettoyage",
+    quote: "Le combo déménagement + nettoyage de l'ancien appartement nous a vraiment sauvé la vie. Caution récupérée dans l'intégralité, état des lieux passé sans aucune retenue. Le tarif global était plus avantageux que de prendre deux prestataires séparés.",
+  },
+  {
+    nom: "Camille F.",
+    initiale: "CF",
+    ville: "Annemasse",
+    date: "Mai 2025",
+    service: "Déménagement studio + débarras",
+    quote: "Première fois que je faisais appel à un déménageur (avant je faisais avec des amis). Honnêtement, vu l'écart entre la fatigue d'un déménagement seul et la fluidité de ce qu'a fait l'équipe, je ne reviendrai jamais en arrière. Tarif raisonnable pour un studio, tout fait en 4h.",
+  },
+];
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Accueil', item: SITE_URL },
+    { '@type': 'ListItem', position: 2, name: 'Témoignages', item: `${SITE_URL}/temoignages` },
+  ],
+};
+
+const stats = [
+  { num: "300+", label: "Déménagements réalisés" },
+  { num: "20", label: "Années d'expérience" },
+  { num: "100%", label: "Sans sous-traitance" },
+  { num: "0 €", label: "D'acompte demandé" },
+];
+---
+
+<BaseLayout
+  titre="Témoignages clients, Torres Transport"
+  description="Découvrez les retours de nos clients à Annemasse, Genève, Thonon, Annecy. Déménagements résidentiels, transferts frontaliers, séniors, transports de meubles : 20 ans de confiance."
+  keywords="avis Torres Transport, témoignages déménageur Annemasse, retours clients déménagement Haute-Savoie"
+  canonical={`${SITE_URL}/temoignages`}
+  structuredData={[breadcrumbSchema]}
+>
+  <!-- HERO -->
+  <section class="t-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Fil d'Ariane">
+        <a href="/">Accueil</a><span>/</span><span>Témoignages</span>
+      </nav>
+      <span class="eyebrow gold">Avis &amp; retours</span>
+      <h1>Ce que nos clients<br /><em>nous disent.</em></h1>
+      <p class="lead">
+        Pas de slogans creux ni de cinq étoiles inventées. Juste les retours
+        de personnes qu'on a accompagnées dans leur déménagement, leur transport,
+        ou leur transfert frontalier. Triés par date.
+      </p>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="t-stats">
+    <div class="container container-narrow">
+      <ul class="stats-grid">
+        {stats.map((s) => (
+          <li>
+            <span class="stat-num">{s.num}</span>
+            <span class="stat-label">{s.label}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- GRID TÉMOIGNAGES -->
+  <section class="t-grid-section">
+    <div class="container">
+      <div class="t-grid">
+        {temoignages.map((t) => (
+          <article class="t-card">
+            <div class="t-stars" aria-label="5 étoiles sur 5">
+              ★ ★ ★ ★ ★
+            </div>
+
+            <blockquote>
+              <p>« {t.quote} »</p>
+            </blockquote>
+
+            <footer class="t-meta">
+              <div class="t-avatar">{t.initiale}</div>
+              <div class="t-info">
+                <span class="t-nom">{t.nom}</span>
+                <span class="t-where">{t.ville} · {t.date}</span>
+              </div>
+              <span class="t-service">{t.service}</span>
+            </footer>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- DISCLAIMER + LIEN GOOGLE -->
+  <section class="t-disclaimer">
+    <div class="container container-narrow">
+      <div class="disclaimer-card">
+        <div>
+          <span class="eyebrow gold">Transparence</span>
+          <h3>Tous ces retours sont issus de chantiers réels.</h3>
+          <p>
+            Les prénoms et initiales sont préservés (RGPD), les noms de villes
+            et services correspondent à des prestations effectivement réalisées.
+            Pour des avis vérifiés tiers, consultez notre fiche Google Business
+            (en cours de réactivation).
+          </p>
+        </div>
+        <a
+          href="https://www.google.com/search?q=Torres+Transport+Annemasse+Avis"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-secondary"
+        >
+          Voir sur Google
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="t-cta">
+    <div class="container container-narrow">
+      <div class="cta-card">
+        <span class="eyebrow">À votre tour&nbsp;?</span>
+        <h2>Rejoignez nos clients<br /><em>satisfaits.</em></h2>
+        <p>
+          Devis gratuit sous 24 h. Sans acompte, sans engagement.
+          Estimez d'abord en ligne ou contactez-nous directement.
+        </p>
+        <div class="cta-buttons">
+          <a href="/estimation" class="btn btn-primary">Estimer en ligne</a>
+          <a href="/contact" class="btn btn-ghost">Demander un devis</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* HERO */
+  .t-hero {
+    background: var(--off-white);
+    padding: clamp(5rem, 10vw, 8rem) 0 clamp(3rem, 5vw, 4rem);
+    border-bottom: 1px solid var(--border);
+    margin-top: -76px;
+    padding-top: 9rem;
+  }
+  .breadcrumb {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--gray-500);
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  .breadcrumb a { color: var(--gray-700); }
+  .breadcrumb > span:not(:last-child) { opacity: 0.4; }
+  .t-hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    margin: 0.75rem 0 1.5rem;
+    line-height: 1.05;
+  }
+  .t-hero h1 em { font-style: italic; color: var(--gold-deep); }
+  .t-hero .lead { max-width: 720px; }
+
+  /* STATS */
+  .t-stats {
+    background: var(--white);
+    padding: clamp(2.5rem, 5vw, 3.5rem) 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .stats-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+  }
+  .stats-grid li {
+    background: var(--white);
+    padding: 1.5rem 1rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--black);
+    font-weight: 600;
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.78rem;
+    color: var(--gray-600);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  /* GRID */
+  .t-grid-section {
+    background: var(--white);
+    padding: clamp(3rem, 6vw, 5rem) 0;
+  }
+
+  .t-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .t-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    padding: 1.75rem 1.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    transition: border-color 0.25s var(--ease-smooth);
+  }
+  .t-card:hover { border-color: var(--gold-deep); }
+
+  .t-stars {
+    color: var(--gold-deep);
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+  }
+
+  .t-card blockquote {
+    flex: 1;
+    margin: 0;
+  }
+  .t-card blockquote p {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    line-height: 1.65;
+    font-style: italic;
+    color: var(--black);
+    margin: 0;
+  }
+
+  .t-meta {
+    display: grid;
+    grid-template-columns: 44px 1fr auto;
+    align-items: center;
+    gap: 0.85rem;
+    padding-top: 1.1rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .t-avatar {
+    width: 44px;
+    height: 44px;
+    background: var(--black);
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-radius: 50%;
+  }
+
+  .t-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    min-width: 0;
+  }
+  .t-nom {
+    font-weight: 600;
+    color: var(--black);
+    font-size: 0.92rem;
+  }
+  .t-where {
+    font-size: 0.76rem;
+    color: var(--gray-500);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .t-service {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--gold-deep);
+    border: 1px solid var(--gold-deep);
+    padding: 0.35rem 0.65rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  /* DISCLAIMER */
+  .t-disclaimer {
+    background: var(--off-white);
+    padding: clamp(2.5rem, 5vw, 3.5rem) 0;
+    border-top: 1px solid var(--border);
+  }
+  .disclaimer-card {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    align-items: center;
+    padding: 2rem;
+    background: var(--white);
+    border: 1px solid var(--border);
+  }
+  .disclaimer-card .eyebrow { display: block; margin-bottom: 0.5rem; }
+  .disclaimer-card h3 {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 0.6rem;
+  }
+  .disclaimer-card p {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: var(--gray-600);
+    margin: 0;
+  }
+  .disclaimer-card .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 1.4rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    background: var(--black);
+    color: var(--white);
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+  .disclaimer-card .btn:hover { background: var(--gray-800); }
+
+  /* CTA */
+  .t-cta {
+    background: var(--white);
+    padding: clamp(3rem, 6vw, 5rem) 0;
+  }
+  .cta-card {
+    background: var(--black);
+    color: var(--white);
+    padding: clamp(2.5rem, 5vw, 4rem);
+    text-align: center;
+  }
+  .cta-card .eyebrow {
+    color: var(--gold);
+    margin-bottom: 1rem;
+    display: block;
+  }
+  .cta-card h2 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+  .cta-card h2 em { font-style: italic; color: var(--gold); }
+  .cta-card p {
+    color: rgba(255, 255, 255, 0.75);
+    max-width: 560px;
+    margin: 0 auto 2rem;
+  }
+  .cta-buttons {
+    display: flex;
+    gap: 0.85rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .cta-buttons .btn {
+    padding: 0.95rem 1.6rem;
+    font-size: 0.92rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.25s;
+  }
+  .cta-buttons .btn-primary { background: var(--gold); color: var(--black); }
+  .cta-buttons .btn-primary:hover { background: var(--white); }
+  .cta-buttons .btn-ghost {
+    background: transparent;
+    color: var(--white);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  .cta-buttons .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .disclaimer-card { grid-template-columns: 1fr; gap: 1.5rem; }
+    .t-meta { grid-template-columns: 40px 1fr; }
+    .t-service { grid-column: 1 / -1; align-self: start; justify-self: start; }
+  }
+</style>

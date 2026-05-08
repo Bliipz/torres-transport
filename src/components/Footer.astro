@@ -1,117 +1,336 @@
 ---
+import { getAllCities } from '../data/cities.js';
 const annee = new Date().getFullYear();
+const villesFooter = getAllCities();
 ---
 
 <footer class="footer">
   <div class="container">
-    <div class="footer-content">
-      <div class="footer-section">
-        <img src="/logo.png" alt="Torres Transport" class="footer-logo" />
-        <p>Votre partenaire de confiance pour tous vos déménagements et transports.</p>
+    <!-- BLOC PRINCIPAL : 4 colonnes éditoriales -->
+    <div class="footer-grid">
+      <!-- COLONNE 1 : MARQUE -->
+      <div class="footer-brand">
+        <div class="footer-logo-block">
+          <img src="/logo-white.png" alt="Torres Transport" width="56" height="56" loading="lazy" />
+          <div class="footer-name">
+            <span class="display-name">Torres Transport</span>
+            <span class="display-tagline">Annemasse · Haute-Savoie</span>
+          </div>
+        </div>
+        <p class="footer-pitch">
+          Déménagement, transport et montage de meubles depuis 2024.
+          Une équipe locale forte de 20 ans d'expérience à votre service.
+        </p>
+        <div class="footer-socials">
+          <a
+            href="https://www.facebook.com/profile.php?id=61555592171592"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-link"
+            aria-label="Facebook"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.378 14.192 5 15.115 5H18V0h-3.808C10.596 0 9 1.583 9 4.615V8z"/>
+            </svg>
+          </a>
+        </div>
       </div>
-      
-      <div class="footer-section">
-        <h4>Navigation</h4>
-        <ul>
+
+      <!-- COLONNE 2 : NAVIGATION -->
+      <div class="footer-col">
+        <span class="footer-label">Navigation</span>
+        <ul class="footer-list">
           <li><a href="/">Accueil</a></li>
+          <li><a href="/a-propos">À propos</a></li>
           <li><a href="/services">Nos services</a></li>
-          <li><a href="/contact">Contact</a></li>
+          <li><a href="/zones-intervention">Zones d'intervention</a></li>
+          <li><a href="/estimation">Estimer en ligne</a></li>
+          <li><a href="/temoignages">Témoignages</a></li>
+          <li><a href="/faq">FAQ</a></li>
+          <li><a href="/blog">Journal</a></li>
+          <li><a href="/contact">Contact &amp; devis</a></li>
         </ul>
       </div>
-      
-      <div class="footer-section">
-        <h4>Contact</h4>
-        <ul>
-          <li>📍 Annemasse, 74</li>
-          <li>📞 <a href="tel:+33123456789">01 23 45 67 89</a></li>
-          <li>✉️ <a href="mailto:contact@torrestransport.fr">contact@torrestransport.fr</a></li>
+
+      <!-- COLONNE 3 : VILLES -->
+      <div class="footer-col">
+        <span class="footer-label">Zones desservies</span>
+        <ul class="footer-list">
+          {villesFooter.slice(0, 6).map((v) => (
+            <li><a href={`/demenagement-${v.slug}`}>{v.nom}</a></li>
+          ))}
+          <li><a href="/zones-intervention" class="footer-list-more">Toutes les zones →</a></li>
         </ul>
       </div>
-      
-      <div class="footer-section">
-        <h4>Suivez-nous</h4>
-        <a href="https://www.facebook.com/profile.php?id=61555592171592" target="_blank" class="social-link">
-          Facebook
-        </a>
+
+      <!-- COLONNE 4 : CONTACT -->
+      <div class="footer-col">
+        <span class="footer-label">Contact</span>
+        <ul class="footer-contact-list">
+          <li>
+            <span class="footer-contact-label">Adresse</span>
+            <span>8 rue Fernand David<br />74100 Ville-la-Grand · Haute-Savoie</span>
+          </li>
+          <li>
+            <span class="footer-contact-label">Téléphone</span>
+            <a href="tel:+33659926814" class="footer-strong">06 59 92 68 14</a>
+          </li>
+          <li>
+            <span class="footer-contact-label">Email</span>
+            <a href="mailto:contact@torrestransport.fr">contact@torrestransport.fr</a>
+          </li>
+          <li>
+            <span class="footer-contact-label">Horaires</span>
+            <span>Lundi au Samedi · 8h–19h</span>
+          </li>
+        </ul>
       </div>
     </div>
-    
+
+    <!-- BANDE FINE BAS -->
     <div class="footer-bottom">
-      <p>© {annee} Torres Transport - Tous droits réservés</p>
-      <a href="/mentions-legales">Mentions Légales</a>
+      <div class="footer-bottom-left">
+        <span>© {annee} Torres Transport. Tous droits réservés.</span>
+        <span class="footer-divider">·</span>
+        <span>SIREN 528 686 330</span>
+      </div>
+      <div class="footer-bottom-right">
+        <a href="/mentions-legales">Mentions légales</a>
+      </div>
     </div>
   </div>
 </footer>
 
 <style>
   .footer {
-    background: var(--dark);
-    color: white;
-    padding: 3rem 0 1rem;
-    margin-top: 4rem;
+    background: var(--black);
+    color: rgba(255, 255, 255, 0.7);
+    padding: clamp(4rem, 8vw, 6rem) 0 1.5rem;
   }
-  
-  .footer-content {
+
+  .footer .container {
+    max-width: var(--container-max);
+  }
+
+  /* ==================== GRILLE ==================== */
+  .footer-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-bottom: 2rem;
+    grid-template-columns: 1.4fr 0.9fr 0.9fr 1fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    padding-bottom: 3.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
-  
-  .footer-logo {
-    height: 50px;
-    margin-bottom: 1rem;
-    filter: brightness(0) invert(1);
+
+  /* ==================== BRAND ==================== */
+  .footer-logo-block {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-bottom: 1.5rem;
   }
-  
-  .footer-section h4 {
-    color: white;
-    margin-bottom: 1rem;
+
+  .footer-logo-block img {
+    height: 56px;
+    width: 56px;
+    object-fit: contain;
   }
-  
-  .footer-section ul {
-    list-style: none;
+
+  .footer-name {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
   }
-  
-  .footer-section ul li {
-    margin-bottom: 0.5rem;
+
+  .display-name {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    color: var(--white);
+    font-weight: 600;
+    letter-spacing: -0.01em;
   }
-  
-  .footer-section a {
-    color: #ccc;
-    text-decoration: none;
-    transition: color 0.3s;
+
+  .display-tagline {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--gold);
+    margin-top: 0.4rem;
   }
-  
-  .footer-section a:hover {
-    color: #f5de7e;
+
+  .footer-pitch {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 1.5rem;
+    max-width: 320px;
   }
-  
+
+  /* ==================== SOCIALS ==================== */
+  .footer-socials {
+    display: flex;
+    gap: 0.75rem;
+  }
+
   .social-link {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    background: #0052a3;
-    border-radius: 5px;
-    color: white !important;
-    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--white);
+    transition: all 0.25s var(--ease-smooth);
   }
-  
+
+  .social-link:hover {
+    background: var(--gold);
+    color: var(--black);
+    border-color: var(--gold);
+  }
+
+  /* ==================== COLONNES ==================== */
+  .footer-col {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .footer-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  .footer-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .footer-list a {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: color 0.2s var(--ease-subtle);
+    position: relative;
+    padding-left: 0;
+    transition: padding-left 0.3s var(--ease-smooth), color 0.2s;
+  }
+
+  .footer-list a:hover {
+    color: var(--white);
+    padding-left: 0.4rem;
+  }
+
+  .footer-list-more {
+    color: var(--gold) !important;
+    font-weight: 500;
+    margin-top: 0.4rem;
+  }
+
+  /* ==================== CONTACT LIST ==================== */
+  .footer-contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+  }
+
+  .footer-contact-list li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  .footer-contact-label {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: rgba(255, 255, 255, 0.65);
+    font-weight: 500;
+  }
+
+  .footer-contact-list a {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-contact-list a:hover {
+    color: var(--gold);
+  }
+
+  .footer-strong {
+    color: var(--white) !important;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  /* ==================== BOTTOM BAR ==================== */
   .footer-bottom {
-    border-top: 1px solid #444;
-    padding-top: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
     gap: 1rem;
+    padding-top: 1.5rem;
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.65);
   }
-  
-  .footer-bottom a {
-    color: #ccc;
+
+  .footer-bottom-left {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-divider {
+    color: rgba(255, 255, 255, 0.25);
+  }
+
+  .footer-bottom-right a {
+    color: rgba(255, 255, 255, 0.6);
     text-decoration: none;
+    transition: color 0.2s;
   }
-  
-  .footer-bottom a:hover {
-    color: white;
+
+  .footer-bottom-right a:hover {
+    color: var(--gold);
+  }
+
+  /* ==================== RESPONSIVE ==================== */
+  @media (max-width: 968px) {
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+    }
+
+    .footer-brand {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .footer-bottom {
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+    }
   }
 </style>

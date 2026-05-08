@@ -1,853 +1,1081 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Hero from '../components/Hero.astro';
-import ServiceCard from '../components/ServiceCard.astro';
-import Testimonial from '../components/Testimonial.astro';
-import ProcessStep from '../components/ProcessStep.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import GoogleReviews from "../components/GoogleReviews.astro";
 
-// ==================== DONNÉES : LISTE DES SERVICES ====================
+// Services proposés
 const services = [
-  { titre: "Déménagement", image: "/services/demenagement.jpg", lien: "/services/demenagement" },
-  { titre: "Montage de meubles", image: "/services/montage-de-meuble.jpg", lien: "/services/montage-meubles" },
-  { titre: "Transport", image: "/services/transport.jpg", lien: "/services/transport" },
-  { titre: "Location avec chauffeur", image: "/services/location-vehicule.jpg", lien: "/services/location-vehicule" },
-  { titre: "Manutention", image: "/services/transport.jpg", lien: "/services/manutention" },
-  { titre: "Nettoyage fin de chantier", image: "/services/nettoyage-pro.jpg", lien: "/services/nettoyage" },
-  { titre: "Débarras", image: "/services/debarras.png", lien: "/services/debarras" }
+  { num: "01", titre: "Déménagement", excerpt: "Résidentiel, professionnel, frontalier. Une équipe complète pour un transfert sans accroc.", link: "/services/demenagement" },
+  { num: "02", titre: "Transport", excerpt: "Livraison de meubles, marchandises et objets volumineux à travers la Haute-Savoie.", link: "/services/transport" },
+  { num: "03", titre: "Montage de meubles", excerpt: "IKEA, Conforama, BUT. Outils fournis, montage soigné, prêt à vivre.", link: "/services/montage-meubles" },
+  { num: "04", titre: "Location utilitaire avec chauffeur", excerpt: "Pas de permis utilitaire ? Notre chauffeur vous accompagne, à l'heure ou à la journée.", link: "/services/location-vehicule" },
+  { num: "05", titre: "Manutention", excerpt: "Objets lourds, encombrants, accès difficiles. Notre savoir-faire évite les blessures.", link: "/services/manutention" },
+  { num: "06", titre: "Nettoyage fin de chantier", excerpt: "État des lieux impeccable, récupération de caution facilitée.", link: "/services/nettoyage" },
+  { num: "07", titre: "Débarras", excerpt: "Caves, greniers, appartements. Tri sélectif, recyclage et dons aux associations.", link: "/services/debarras" },
 ];
 
-// ==================== DONNÉES : LISTE DES TÉMOIGNAGES ====================
-const temoignages = [
-  {
-    nom: "Pain Nectar",
-    texte: "C'était parfait : M. Torres est à l'écoute, très professionnel et sympathique. Par ailleurs, les prix sont intéressants. Je recommande !",
-    note: 5
-  },
-  {
-    nom: "Edith Marchand",
-    texte: "Très soigneux dynamiques rapidité super sympa polis et d'autres talent que je recommanderais autour de moi",
-    note: 5
-  },
-  {
-    nom: "Fanette Gerard",
-    texte: "Un grand merci pour la rapidité de réponse et la disponibilité pour chercher à trouver une solution rapide et adaptée à notre besoin de transport de meubles. C'est tellement précieux d'avoir un interlocuteur à l'écoute, qui s'est chargé de toutes les démarches pour nous et qui nous a fourni une prestation sans aucune fausse note. Rapidité, efficacité, rigueur, nous ne pouvons que recommander!",
-    note: 5
-  },
-  {
-    nom: "Alex Nourr",
-    texte: "Monsieur TORRES est un professionnel réactif. Il a su s'adapter à un emploi du temps complexe. Efficace et à l'écoute du client. Je le recommande vivement.",
-    note: 5
-  },
-  {
-    nom: "Christophe Conus",
-    texte: "Je remercie M. Torres et son équipe qui ont été très efficace du début à la fin, même pour un déménagement en deux temps flexibile et ponctuel. Je recommande les yeux fermés.",
-    note: 5
-  },
-  {
-    nom: "Kristin UV",
-    texte: "J'ai eu la chance d'être mise en contact avec Torres Transport pour un déménagement qui s'est déroulé de manière très professionnelle, avec une grande attention à mes meubles. L'équipe de Torres Transport était autant sympathique que consciencieuse. Je recommande chaleureusement!",
-    note: 5
-  },
-  {
-    nom: "Judith Fremaux",
-    texte: "Une connaissance nous avait conseillé ce déménageur. Tout s'est super bien passé. Le prix est tout à fait raisonnable (en comparaison avec un déménageur très connu). Je recommanderai ce professionnel à mon entourage.",
-    note: 5
-  },
-  {
-    nom: "Barbara Delahayes",
-    texte: "Excellent service de déménagement! Bonne communication en amont de la prestation, rapidité et professionnalisme le jour J. En cas de prochain déménagement j'aurais recours à ce service sans hésiter",
-    note: 5
-  },
-  {
-    nom: "Marlene Lucini",
-    texte: "Compétant et réactif, sait faire face à l'imprévu, je recommande cette entreprise",
-    note: 5
-  }
+// Témoignages avec villes + dates
+const testimonials = [
+  { initiale: "C", nom: "Christophe L.", ville: "Annemasse", date: "il y a 2 mois", quote: "Des professionnels sérieux, efficaces et à l'écoute. Je recommande vivement Torres Transport.", service: "Déménagement" },
+  { initiale: "M", nom: "Marie B.", ville: "Ville-la-Grand", date: "il y a 3 mois", quote: "Travail sérieux, réactif suite à mes demandes et devis raisonnables. À bientôt…", service: "Service général" },
+  { initiale: "A", nom: "Anne D.", ville: "Saint-Julien-en-Genevois", date: "il y a 4 mois", quote: "M. Torres est un bon professionnel, rapide, efficace et de bon conseil. J'ai apprécié sa collaboration.", service: "Manutention" },
+  { initiale: "R", nom: "Romain T.", ville: "Annemasse", date: "il y a 8 mois", quote: "Réactivité, soin des affaires, prix compétitif et connaissance du métier. Tout faire rentrer dans le camion : un art.", service: "Transport" },
 ];
+
+// Étapes du process
+const etapes = [
+  { num: "01", titre: "Demande de devis", desc: "Formulaire ou téléphone. Nous vous recontactons sous 24h pour comprendre votre projet." },
+  { num: "02", titre: "Évaluation sur site", desc: "Visite gratuite à domicile pour évaluer le volume, l'accès et identifier les contraintes." },
+  { num: "03", titre: "Devis détaillé", desc: "Proposition transparente, sans frais cachés. Vous validez en toute sérénité." },
+  { num: "04", titre: "Réalisation", desc: "Le jour J, notre équipe prend le relai. Vous récupérez vos biens à destination, intacts." },
+];
+
+// FAQ home
+const homeFaqs = [
+  {
+    question: "Combien coûte un déménagement à Annemasse ?",
+    reponse: "Le tarif dépend du volume, de la distance et des prestations. Comptez à partir de 350 € pour un studio, 750 € pour un F2/F3 et 1 500 € pour une maison. Tous nos devis sont gratuits, transparents et sans frais cachés.",
+  },
+  {
+    question: "En combien de temps recevrai-je mon devis ?",
+    reponse: "Vous recevez votre devis personnalisé sous 24 h ouvrées. Pour une demande urgente, appelez-nous directement et nous nous organisons sous 2 h.",
+  },
+  {
+    question: "Faites-vous des déménagements vers la Suisse ?",
+    reponse: "Oui, c'est une de nos spécialités. Nous gérons les déménagements transfrontaliers vers Genève, Lausanne et toute la Suisse romande, en incluant les formalités douanières.",
+  },
+  {
+    question: "Vos prestations sont-elles assurées ?",
+    reponse: "Oui, toutes nos prestations sont couvertes par notre assurance responsabilité civile professionnelle. Vos biens sont protégés du chargement au déchargement, sans surcoût.",
+  },
+  {
+    question: "Faut-il payer un acompte à la signature ?",
+    reponse: "Non, aucun acompte n'est demandé pour réserver votre déménagement. Vous payez uniquement après la prestation.",
+  },
+];
+
+const homeFaqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: homeFaqs.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: { "@type": "Answer", text: item.reponse },
+  })),
+};
 ---
 
-<BaseLayout titre="Accueil">
-
-<!-- ==================== SECTION HERO ====================
-     Bannière principale avec titre et sous-titre animés
-     Composant : Hero.astro
-========================================================= -->
-<Hero 
-  titre="Simplifiez-vous la vie"
-  sousTitre="Déménagez, Transportez, Montez vos meubles et Débarrassez-vous en toute tranquillité, sans lever le petit doigt !">
-</Hero>
-
-<!-- ==================== SECTION PARTENAIRES ====================
-     Bande de logos qui défilent automatiquement à l'infini
-     Animation : scroll CSS (40s linear infinite)
-     3 sets de logos pour éviter les trous dans l'animation
-============================================================== -->
-<section class="partners-marquee">
-  <div class="marquee">
-    <div class="marquee-content">
-      <!-- Premier set de logos -->
-      <img src="/partners/foir-fouille.svg" alt="La Foir'Fouille" class="partner-logo-img">
-      <img src="/partners/centrakor.png" alt="Centrakor" class="partner-logo-img">
-      <img src="/partners/locabox.png" alt="Locabox" class="partner-logo-img">
-      <img src="/partners/resa-box.png" alt="Resa Box 74" class="partner-logo-img">
-      
-      <!-- Deuxième set (duplication pour continuité) -->
-      <img src="/partners/foir-fouille.svg" alt="La Foir'Fouille" class="partner-logo-img">
-      <img src="/partners/centrakor.png" alt="Centrakor" class="partner-logo-img">
-      <img src="/partners/locabox.png" alt="Locabox" class="partner-logo-img">
-      <img src="/partners/resa-box.png" alt="Resa Box 74" class="partner-logo-img">
-
-      <!-- Troisième set (duplication pour éviter les trous) -->
-      <img src="/partners/foir-fouille.svg" alt="La Foir'Fouille" class="partner-logo-img">
-      <img src="/partners/centrakor.png" alt="Centrakor" class="partner-logo-img">
-      <img src="/partners/locabox.png" alt="Locabox" class="partner-logo-img">
-      <img src="/partners/resa-box.png" alt="Resa Box 74" class="partner-logo-img">
+<BaseLayout
+  title="Déménageur Annemasse &amp; Haute-Savoie | Torres Transport"
+  description="Torres Transport, Déménagement, transport, montage de meubles et débarras à Annemasse, Ville-la-Grand et toute la Haute-Savoie. 20 ans d'expérience. Devis gratuit en 24h."
+  keywords="déménageur Annemasse, déménagement Haute-Savoie, transport meubles 74, montage de meuble Annemasse, débarras Annemasse, déménagement frontalier Suisse, Torres Transport"
+  ogImage="/hero-banner.webp"
+  preloadImage="/hero-banner.webp"
+  structuredData={[homeFaqSchema]}
+>
+  <!-- ==================== HERO ÉDITORIAL ==================== -->
+  <section class="hero">
+    <div class="hero-image">
+      <img src="/hero-banner.webp" alt="Camion Torres Transport en intervention" width="1920" height="1080" fetchpriority="high" />
+      <div class="hero-overlay"></div>
     </div>
-  </div>
-</section>
 
-<!-- ==================== SECTION À PROPOS ====================
-     Présentation de l'entreprise avec :
-     - Effet typewriter sur le texte (caractère par caractère)
-     - Photo style Polaroid avec rotation et animation
-========================================================== -->
-<section class="about-section">
-  <div class="container">
-    <div class="about-content">
-      <!-- Colonne gauche : Texte avec effet typewriter -->
-      <div class="about-text">
-        <h2>Torres Transport</h2>
-        <!-- Zone où le texte s'écrit (remplie par JavaScript) -->
-        <p id="typewriter-text"></p>
-        <!-- Texte caché utilisé comme source pour le typewriter -->
-        <div class="hidden-text">
-          <p>
-            Riche d'une expérience de <strong>20 ans</strong> dans le transport, la livraison et le montage de meubles 
-            pour une grande chaîne de distribution, c'est en 2024 que Torres Transport a vu le jour.
-          </p>
-          <p>
-            Basée à <strong>Annemasse, dans le département 74</strong>, mon entreprise intervient dans toute la France.
-            Spécialisée dans le déménagement, la livraison, le montage de mobilier et l'installation électroménager, 
-            mon savoir-faire et mes compétences sauront vous satisfaire.
-          </p>
-          <p>
-            Notre équipe est dynamique et soucieuse d'un travail de qualité.
-          </p>
-        </div>
+    <div class="container hero-container">
+      <div class="hero-meta">
+        <span class="hero-eyebrow">Torres Transport · Depuis 2024</span>
       </div>
-      
-      <!-- Colonne droite : Photo Polaroid -->
-      <div class="about-image">
-        <img src="/Ludovic.jpeg" alt="Ludovic - Fondateur Torres Transport" />
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- ==================== SECTION SERVICES ====================
-     Grille responsive des 7 services proposés
-     Chaque carte est cliquable et mène vers la page détaillée
-     Composant : ServiceCard.astro
-========================================================== -->
-<section class="services-section">
-  <div class="container">
-    <h2>Nos Services</h2>
-    <div class="services-grid">
-      {services.map(service => (
-        <ServiceCard 
-          titre={service.titre}
-          image={service.image}
-          lien={service.lien}
-        />
-      ))}
-    </div>
-  </div>
-</section>
+      <h1 class="hero-title">
+        Le déménagement,<br />
+        <em>en toute sérénité.</em>
+      </h1>
 
-<!-- ==================== SECTION PROCESS (3 ÉTAPES) ====================
-     Explication du processus en 3 étapes simples
-     Animation : Fade-in depuis la gauche au scroll
-     Composant : ProcessStep.astro
-     
-     Fonctionnement de l'animation :
-     1. Au chargement : Cartes invisibles et décalées à gauche
-     2. Au scroll : Quand la section devient visible (20% visible)
-     3. JavaScript ajoute la classe "visible" à la section
-     4. Les cartes apparaissent l'une après l'autre avec délai progressif
-====================================================================== -->
-<section class="process-section">
-  <div class="container">
-    <h2>Pourquoi nous choisir ? En 3 étapes simples</h2>
-    <div class="process-grid">
-      <ProcessStep 
-        numero="1"
-        icone="📝"
-        titre="Remplissez le formulaire"
-        description="Veuillez remplir le formulaire avec les informations demandées en ligne."
-      />
-      <ProcessStep 
-        numero="2"
-        icone="🏠"
-        titre="Déplacement gratuit"
-        description="Une fois votre formulaire reçu et validé, nous nous déplaçons pour vérifier tous les éléments à transporter ainsi que le volume exact en mètres cubes (m³)."
-      />
-      <ProcessStep 
-        numero="3"
-        icone="💰"
-        titre="Devis personnalisé"
-        description="Une fois les 2 étapes validées, nous vous proposons un prix au plus juste, sans aucun frais supplémentaires."
-      />
-    </div>
-  </div>
-</section>
-
-<!-- ==================== SECTION TÉMOIGNAGES ====================
-     Carrousel d'avis Google automatique et responsive
-     - Desktop : 3 avis visibles
-     - Tablette : 2 avis visibles
-     - Mobile : 1 avis visible
-     - Autoplay toutes les 5 secondes
-     - Navigation : flèches + dots cliquables
-     - Pause au survol de la souris
-     Composant : Testimonial.astro
-============================================================== -->
-<section class="testimonials-section">
-  <div class="container">
-    <!-- En-tête avec lien vers tous les avis Google -->
-    <div class="testimonials-header">
-      <h2>Ils nous font confiance</h2>
-      <p class="google-rating">
-        ⭐⭐⭐⭐⭐ Note moyenne : 5/5 sur Google
-        <a href="https://www.google.com/search?q=torres+transport+annemasse" target="_blank" class="voir-tous-avis">
-          Voir tous nos avis Google →
-        </a>
+      <p class="hero-subtitle">
+        Une équipe locale forte de 20 ans d'expérience à Annemasse, Ville-la-Grand
+        et toute la Haute-Savoie. Service complet, devis transparent, intervention sous 24 h.
       </p>
-    </div>
-    
-    <!-- Conteneur du carrousel avec boutons de navigation -->
-    <div class="carousel-container">
-      <!-- Bouton précédent -->
-      <button class="carousel-btn prev" id="prevBtn">‹</button>
-      
-      <!-- Zone visible du carrousel (overflow hidden) -->
-      <div class="carousel-wrapper">
-        <!-- Piste qui se déplace horizontalement -->
-        <div class="carousel-track" id="carouselTrack">
-          {temoignages.map(temoignage => (
-            <div class="carousel-slide">
-              <Testimonial 
-                nom={temoignage.nom}
-                texte={temoignage.texte}
-                note={temoignage.note}
-              />
-            </div>
-          ))}
+
+      <div class="hero-actions">
+        <a href="/contact" class="btn btn-gold btn-large btn-with-arrow">Demander un devis</a>
+        <a href="tel:+33659926814" class="btn btn-ghost btn-large">06 59 92 68 14</a>
+      </div>
+
+      <div class="hero-footer">
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="stat-num">20</span>
+            <span class="stat-label">années d'expertise</span>
+          </div>
+          <div class="hero-stat">
+            <span class="stat-num">07</span>
+            <span class="stat-label">prestations sur-mesure</span>
+          </div>
+          <div class="hero-stat">
+            <span class="stat-num">9+</span>
+            <span class="stat-label">villes desservies</span>
+          </div>
+        </div>
+        <div class="hero-scroll">
+          <span>Découvrir</span>
+          <span class="hero-scroll-line"></span>
         </div>
       </div>
-      
-      <!-- Bouton suivant -->
-      <button class="carousel-btn next" id="nextBtn">›</button>
     </div>
-    
-    <!-- Points de navigation (dots) -->
-    <div class="carousel-dots" id="carouselDots"></div>
-  </div>
-</section>
+  </section>
 
-<!-- ==================== SECTION CTA (CALL TO ACTION) ====================
-     Appel à l'action final avec bouton vers la page contact
-     Background : Dégradé bleu → orange
-========================================================================= -->
-<section class="cta-section">
-  <div class="container">
-    <h2>Prêt à déménager ?</h2>
-    <p>Demandez votre devis gratuit dès maintenant</p>
-    <a href="/contact" class="btn btn-primary btn-large">Obtenir mon devis</a>
-  </div>
-</section>
+  <!-- ==================== INTRO ÉDITORIAL ==================== -->
+  <section class="section intro-section">
+    <div class="container">
+      <div class="intro-grid">
+        <div class="intro-eyebrow">
+          <span class="eyebrow gold">À propos</span>
+          <hr class="divider divider-gold" />
+        </div>
+        <div class="intro-text">
+          <h2>
+            Une entreprise locale,<br />
+            une équipe humaine.
+          </h2>
+          <p class="lead">
+            Riche de <strong>20 ans d'expérience</strong> dans le transport, la livraison et le
+            montage de meubles, Torres Transport voit le jour en 2024 à Ville-la-Grand. Notre mission&nbsp;:
+            simplifier vos déménagements et transports avec professionnalisme et bienveillance.
+          </p>
+          <p>
+            Nous intervenons dans toute la <strong>Haute-Savoie</strong>, du Genevois français aux rives
+            du Léman, en passant par la vallée de l'Arve. Nos déménagements transfrontaliers vers
+            Genève et la Suisse romande sont une de nos spécialités.
+          </p>
+          <a href="/services" class="link-underline">Voir tous nos services</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<!-- ==================== SCRIPTS JAVASCRIPT ==================== -->
-<script>
-  /* ========================================
-     SCRIPT 1 : EFFET TYPEWRITER
-     ======================================== */
-  const text = `Riche d'une expérience de 20 ans dans le transport, la livraison et le montage de meubles pour une grande chaîne de distribution, c'est en 2024 que Torres Transport a vu le jour.
+  <!-- ==================== SERVICES ==================== -->
+  <section class="section bg-cream services-section" id="services">
+    <div class="container">
+      <header class="section-header">
+        <span class="eyebrow gold">Sept prestations</span>
+        <h2>Un seul prestataire,<br />pour tous vos besoins.</h2>
+      </header>
 
-Basée à Annemasse, dans le département 74, mon entreprise intervient dans toute la France. Spécialisée dans le déménagement, la livraison, le montage de mobilier et l'installation électroménager, mon savoir-faire et mes compétences sauront vous satisfaire.
+      <div class="services-grid">
+        {services.map((s) => (
+          <a href={s.link} class="service-item">
+            <div class="service-num">{s.num}</div>
+            <div class="service-content">
+              <h3>{s.titre}</h3>
+              <p>{s.excerpt}</p>
+              <span class="service-arrow">→</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
 
-Notre équipe est dynamique et soucieuse d'un travail de qualité.`;
+  <!-- ==================== FONDATEUR ==================== -->
+  <section class="section founder-section">
+    <div class="container">
+      <div class="founder-grid">
+        <div class="founder-image">
+          <img src="/Ludovic.webp" alt="Ludovic Torres, fondateur de Torres Transport" width="600" height="624" loading="lazy" />
+        </div>
+        <div class="founder-content">
+          <span class="eyebrow gold">Le fondateur</span>
+          <h2>Ludovic Torres,<br /><em>20 ans dans le métier.</em></h2>
+          <p class="lead">
+            Après deux décennies passées dans le transport et la livraison pour une grande chaîne
+            de distribution, Ludovic crée Torres Transport en 2024.
+          </p>
+          <p>
+            L'idée&nbsp;: offrir un service de qualité, à taille humaine, où chaque client est connu
+            par son prénom et chaque intervention traitée comme la sienne propre. Pas de
+            sous-traitance, pas d'intermédiaire&nbsp;: vous êtes en contact direct avec celui qui
+            mène le travail.
+          </p>
+          <blockquote class="founder-quote">
+            « Notre mission&nbsp;: simplifier vos déménagements avec
+            professionnalisme et bienveillance. »
+            <cite>Ludovic Torres</cite>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  const typewriterElement = document.getElementById('typewriter-text');
-  
-  if (typewriterElement) {
-    let index = 0;
-    const speed = 30;
+  <!-- ==================== PROCESS ==================== -->
+  <section class="section bg-black process-section">
+    <div class="container">
+      <header class="section-header section-header-light">
+        <span class="eyebrow">Notre méthode</span>
+        <h2>Un parcours clair,<br />en quatre étapes.</h2>
+      </header>
 
-    function typeWriter() {
-      if (index < text.length) {
-        if (text.charAt(index) === '\n') {
-          typewriterElement.innerHTML += '<br>';
-        } else {
-          typewriterElement.innerHTML += text.charAt(index);
-        }
-        index++;
-        setTimeout(typeWriter, speed);
-      }
-    }
+      <div class="process-grid">
+        {etapes.map((e) => (
+          <article class="process-step">
+            <div class="step-num">{e.num}</div>
+            <h3>{e.titre}</h3>
+            <p>{e.desc}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
 
-    setTimeout(typeWriter, 500);
-  }
+  <!-- ==================== TÉMOIGNAGES ==================== -->
+  <section class="section testimonials-section">
+    <div class="container">
+      <header class="section-header">
+        <span class="eyebrow gold">Avis clients</span>
+        <h2>Ce que nos clients<br />nous disent.</h2>
+      </header>
 
-  /* ========================================
-     SCRIPT 2 : CARROUSEL D'AVIS
-     ======================================== */
-  const track = document.getElementById('carouselTrack');
-  const slides = document.querySelectorAll('.carousel-slide');
-  const prevBtn = document.getElementById('prevBtn');
-  const nextBtn = document.getElementById('nextBtn');
-  const dotsContainer = document.getElementById('carouselDots');
+      <div class="testimonials-grid">
+        {testimonials.map((t) => (
+          <article class="testimonial">
+            <div class="testimonial-stars" aria-label="5 étoiles sur 5">
+              ★ ★ ★ ★ ★
+            </div>
+            <blockquote>
+              <p>"{t.quote}"</p>
+            </blockquote>
+            <footer class="testimonial-author">
+              <div class="author-avatar">{t.initiale}</div>
+              <div class="author-info">
+                <span class="author-name">{t.nom}</span>
+                <span class="author-meta">{t.ville} · {t.date}</span>
+              </div>
+              <span class="author-service">{t.service}</span>
+            </footer>
+          </article>
+        ))}
+      </div>
 
-  if (track && slides.length > 0 && prevBtn && nextBtn && dotsContainer) {
-    let currentIndex = 0;
-    let slidesPerView = 3;
-    let autoplayInterval;
+      <div class="testimonials-footer">
+        <a
+          href="https://www.google.com/search?q=Torres+Transport+Annemasse+Avis"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-secondary btn-with-arrow"
+        >
+          Voir tous nos avis Google
+        </a>
+      </div>
+    </div>
+  </section>
 
-    function updateSlidesPerView() {
-      if (window.innerWidth < 768) {
-        slidesPerView = 1;
-      } else if (window.innerWidth < 1024) {
-        slidesPerView = 2;
-      } else {
-        slidesPerView = 3;
-      }
-    }
+  <!-- ==================== AVIS GOOGLE (live) ==================== -->
+  <GoogleReviews />
 
-    function createDots() {
-      dotsContainer.innerHTML = '';
-      const totalDots = Math.ceil(slides.length / slidesPerView);
-      
-      for (let i = 0; i < totalDots; i++) {
-        const dot = document.createElement('span');
-        dot.classList.add('dot');
-        if (i === 0) dot.classList.add('active');
-        dot.addEventListener('click', () => goToSlide(i));
-        dotsContainer.appendChild(dot);
-      }
-    }
+  <!-- ==================== ZONES (TEASER) ==================== -->
+  <section class="section bg-cream zones-teaser">
+    <div class="container">
+      <div class="zones-grid">
+        <div class="zones-text">
+          <span class="eyebrow gold">Zones d'intervention</span>
+          <h2>Toute la Haute-Savoie<br />et la Suisse romande.</h2>
+          <p class="lead">
+            De Annemasse à Annecy, en passant par Thonon, Évian, Genève et Saint-Julien-en-Genevois&nbsp;,
+            nous intervenons partout dans le bassin annemassien et au-delà.
+          </p>
+          <a href="/zones-intervention" class="btn btn-primary btn-with-arrow">Voir les zones</a>
+        </div>
+        <ul class="zones-list">
+          <li><span>Annemasse</span><span>74100</span></li>
+          <li><span>Ville-la-Grand</span><span>74100</span></li>
+          <li><span>Gaillard</span><span>74240</span></li>
+          <li><span>Saint-Julien-en-Genevois</span><span>74160</span></li>
+          <li><span>Genève</span><span>CH</span></li>
+          <li><span>Thonon-les-Bains</span><span>74200</span></li>
+          <li><span>Évian-les-Bains</span><span>74500</span></li>
+          <li><span>Annecy</span><span>74000</span></li>
+          <li><span>Bonneville</span><span>74130</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-    function goToSlide(index) {
-      const totalSlides = Math.ceil(slides.length / slidesPerView);
-      currentIndex = Math.max(0, Math.min(index, totalSlides - 1));
-      
-      const slideWidth = 102.5 / slidesPerView;
-      const offset = -(currentIndex * slidesPerView * slideWidth);
-      track.style.transform = `translateX(${offset}%)`;
-      
-      document.querySelectorAll('.dot').forEach((dot, i) => {
-        dot.classList.toggle('active', i === currentIndex);
-      });
-    }
+  <!-- ==================== FAQ ==================== -->
+  <section class="section faq-section">
+    <div class="container container-narrow">
+      <header class="section-header text-center">
+        <span class="eyebrow gold">Questions fréquentes</span>
+        <h2>Vos questions,<br />nos réponses.</h2>
+      </header>
 
-    function nextSlide() {
-      const totalSlides = Math.ceil(slides.length / slidesPerView);
-      if (currentIndex < totalSlides - 1) {
-        goToSlide(currentIndex + 1);
-      } else {
-        goToSlide(0);
-      }
-    }
+      <div class="faq-list">
+        {homeFaqs.map((item, idx) => (
+          <details class="faq-item" open={idx === 0}>
+            <summary>
+              <span>{item.question}</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-answer">
+              <p>{item.reponse}</p>
+            </div>
+          </details>
+        ))}
+      </div>
 
-    function prevSlide() {
-      if (currentIndex > 0) {
-        goToSlide(currentIndex - 1);
-      } else {
-        goToSlide(Math.ceil(slides.length / slidesPerView) - 1);
-      }
-    }
+      <div class="faq-footer">
+        <p>Une autre question&nbsp;?</p>
+        <a href="/contact" class="link-underline">Posez-la nous directement</a>
+      </div>
+    </div>
+  </section>
 
-    function startAutoplay() {
-      autoplayInterval = setInterval(nextSlide, 5000);
-    }
-
-    function stopAutoplay() {
-      clearInterval(autoplayInterval);
-    }
-
-    prevBtn.addEventListener('click', () => {
-      prevSlide();
-      stopAutoplay();
-      startAutoplay();
-    });
-
-    nextBtn.addEventListener('click', () => {
-      nextSlide();
-      stopAutoplay();
-      startAutoplay();
-    });
-
-    track.addEventListener('mouseenter', stopAutoplay);
-    track.addEventListener('mouseleave', startAutoplay);
-
-    updateSlidesPerView();
-    createDots();
-    startAutoplay();
-
-    window.addEventListener('resize', () => {
-      updateSlidesPerView();
-      createDots();
-      goToSlide(0);
-    });
-  }
-
-  /* ========================================
-     SCRIPT 3 : ANIMATION AU SCROLL
-     ======================================== */
-  const processSection = document.querySelector('.process-section');
-
-  if (processSection) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.2 });
-
-    observer.observe(processSection);
-  }
-</script>
-
+  <!-- ==================== CTA FINAL ==================== -->
+  <section class="section bg-black cta-final">
+    <div class="container container-narrow text-center">
+      <span class="eyebrow">Prêt&nbsp;?</span>
+      <h2>Recevez votre devis<br /><em>gratuit en 24h.</em></h2>
+      <p class="lead">
+        Aucun engagement, aucun acompte. Une équipe locale qui vous rappelle dans la journée
+        pour comprendre votre projet.
+      </p>
+      <div class="cta-buttons">
+        <a href="/contact" class="btn btn-gold btn-large btn-with-arrow">Demander un devis</a>
+        <a href="tel:+33659926814" class="btn btn-ghost btn-large">06 59 92 68 14</a>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
 
-<!-- ==================== STYLES CSS ==================== -->
 <style>
-  /* ========================================
-     SECTION À PROPOS
-     ======================================== */
-  .about-section {
-    padding: 4rem 0;
-    background: var(--light-gray);
+  /* ==================== HERO ==================== */
+  .hero {
+    position: relative;
+    min-height: clamp(600px, 90vh, 900px);
+    display: flex;
+    align-items: center;
+    color: var(--white);
+    overflow: hidden;
+    margin-top: -76px; /* compense le padding-top du main */
+    padding-top: 76px;
   }
 
-  /* Masquer le texte source du typewriter */
-  .hidden-text {
+  .hero-image {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.7) 100%),
+      linear-gradient(90deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 70%);
+  }
+
+  .hero-container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    padding-top: 4rem;
+    padding-bottom: 3rem;
+  }
+
+  .hero-meta {
+    margin-bottom: 2rem;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(245, 222, 126, 0.4);
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 7vw, 5.5rem);
+    font-weight: 600;
+    line-height: 1.05;
+    color: var(--white);
+    letter-spacing: -0.03em;
+    margin-bottom: 2rem;
+    max-width: 880px;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 640px;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 4rem;
+  }
+
+  /* Hero footer (stats + scroll) */
+  .hero-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 2rem;
+    padding-top: 3rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: clamp(2rem, 5vw, 5rem);
+  }
+
+  .hero-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .stat-label {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .hero-scroll {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: rgba(255, 255, 255, 0.55);
+  }
+
+  .hero-scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.5), transparent);
+    animation: scroll-line 2s var(--ease-smooth) infinite;
+  }
+
+  @keyframes scroll-line {
+    0% { transform: scaleY(0); transform-origin: top; }
+    50% { transform: scaleY(1); transform-origin: top; }
+    51% { transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+  }
+
+  /* ==================== INTRO ==================== */
+  .intro-section {
+    background: var(--off-white);
+  }
+
+  .intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 2.5fr;
+    gap: clamp(2rem, 6vw, 6rem);
+    align-items: start;
+  }
+
+  .intro-eyebrow {
+    padding-top: 0.5rem;
+  }
+
+  .intro-eyebrow .divider {
+    margin-top: 1rem;
+    margin-bottom: 0;
+    width: 40px;
+  }
+
+  .intro-text h2 {
+    margin-bottom: 2rem;
+  }
+
+  .intro-text p {
+    margin-bottom: 1.25rem;
+  }
+
+  .intro-text p:last-of-type {
+    margin-bottom: 2rem;
+  }
+
+  /* ==================== SECTION HEADER (commun) ==================== */
+  .section-header {
+    margin-bottom: clamp(3rem, 6vw, 5rem);
+    max-width: 720px;
+  }
+
+  .section-header.text-center {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .section-header .eyebrow {
+    margin-bottom: 1rem;
+  }
+
+  .section-header h2 em {
+    font-style: italic;
+    color: var(--gold-deep);
+  }
+
+  .section-header-light h2 {
+    color: var(--white);
+  }
+
+  /* ==================== SERVICES ==================== */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--border-strong);
+    border-left: 1px solid var(--border-strong);
+  }
+
+  .service-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    padding: clamp(2rem, 4vw, 3rem);
+    border-right: 1px solid var(--border-strong);
+    border-bottom: 1px solid var(--border-strong);
+    text-decoration: none;
+    color: inherit;
+    background: var(--cream);
+    transition: background 0.4s var(--ease-smooth);
+    position: relative;
+  }
+
+  .service-item:hover {
+    background: var(--white);
+  }
+
+  .service-item:hover .service-arrow {
+    transform: translateX(8px);
+    color: var(--gold-deep);
+  }
+
+  .service-num {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--gold-deep);
+    flex-shrink: 0;
+    line-height: 1;
+    padding-top: 0.5rem;
+  }
+
+  .service-content {
+    flex: 1;
+    position: relative;
+  }
+
+  .service-content h3 {
+    font-size: clamp(1.4rem, 2vw, 1.75rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .service-content p {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--gray-600);
+    margin: 0;
+    padding-right: 2rem;
+  }
+
+  .service-arrow {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    font-size: 1.5rem;
+    color: var(--gray-400);
+    transition: all 0.3s var(--ease-smooth);
+  }
+
+  /* ==================== FONDATEUR ==================== */
+  .founder-section {
+    background: var(--white);
+  }
+
+  .founder-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: center;
+  }
+
+  .founder-image {
+    position: relative;
+  }
+
+  .founder-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    aspect-ratio: 4 / 5;
+    filter: grayscale(20%);
+    transition: filter 0.6s var(--ease-smooth);
+  }
+
+  .founder-image:hover img {
+    filter: grayscale(0%);
+  }
+
+  .founder-content .eyebrow {
+    margin-bottom: 1rem;
+    display: inline-block;
+  }
+
+  .founder-content h2 {
+    margin-bottom: 1.5rem;
+  }
+
+  .founder-content p {
+    margin-bottom: 1.25rem;
+  }
+
+  .founder-quote {
+    font-family: var(--font-display);
+    font-size: clamp(1.15rem, 1.8vw, 1.4rem);
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--black);
+    border-left: 2px solid var(--gold-deep);
+    padding-left: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 0;
+  }
+
+  .founder-quote cite {
+    display: block;
+    font-style: normal;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--gray-500);
+    margin-top: 1rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* ==================== PROCESS ==================== */
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .process-step {
+    padding: 2.5rem 2rem 2rem 0;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-right: 2rem;
+  }
+
+  .process-step:nth-child(4n) {
+    border-right: none;
+  }
+
+  .step-num {
+    font-family: var(--font-display);
+    font-size: 2.25rem;
+    font-weight: 500;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 1.5rem;
+  }
+
+  .process-step h3 {
+    color: var(--white);
+    font-size: 1.4rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .process-step p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* ==================== TÉMOIGNAGES ==================== */
+  .testimonials-section {
+    background: var(--white);
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .testimonial {
+    background: var(--cream);
+    padding: clamp(2rem, 3vw, 2.5rem);
+    display: flex;
+    flex-direction: column;
+    border-top: 2px solid var(--gold-deep);
+  }
+
+  .testimonial-stars {
+    color: var(--gold-deep);
+    font-size: 1.05rem;
+    letter-spacing: 0.2em;
+    margin-bottom: 1.25rem;
+  }
+
+  .testimonial blockquote {
+    flex: 1;
+    margin: 0 0 1.5rem;
+  }
+
+  .testimonial blockquote p {
+    font-family: var(--font-display);
+    font-size: clamp(1.1rem, 1.4vw, 1.25rem);
+    line-height: 1.55;
+    color: var(--black);
+    font-weight: 500;
+    font-style: italic;
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .author-avatar {
+    width: 38px;
+    height: 38px;
+    background: var(--black);
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    flex-shrink: 0;
+    border-radius: 50%;
+  }
+
+  .author-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.3;
+  }
+
+  .author-name {
+    font-weight: 600;
+    color: var(--black);
+    font-size: 0.92rem;
+  }
+
+  .author-meta {
+    color: var(--gray-700);
+    font-size: 0.78rem;
+    margin-top: 0.15rem;
+  }
+
+  .author-service {
+    background: var(--white);
+    padding: 0.3rem 0.7rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gray-700, #404040);
+    border: 1px solid var(--border);
+  }
+
+  .testimonials-footer {
+    margin-top: 3rem;
+    text-align: center;
+  }
+
+  /* ==================== ZONES TEASER ==================== */
+  .zones-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: center;
+  }
+
+  .zones-text h2 {
+    margin: 1rem 0 1.5rem;
+  }
+
+  .zones-text .lead {
+    margin-bottom: 2rem;
+  }
+
+  .zones-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    border-top: 1px solid var(--border-strong);
+    background: var(--white);
+  }
+
+  .zones-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.1rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+  }
+
+  .zones-list li:nth-child(2n) {
+    border-right: none;
+  }
+
+  .zones-list li span:first-child {
+    font-weight: 500;
+    color: var(--black);
+  }
+
+  .zones-list li span:last-child {
+    font-size: 0.78rem;
+    color: var(--gray-500);
+    font-family: var(--font-mono, monospace);
+  }
+
+  /* ==================== FAQ ==================== */
+  .faq-section {
+    background: var(--off-white);
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--border-strong);
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--border-strong);
+    background: transparent;
+    transition: background 0.3s var(--ease-smooth);
+  }
+
+  .faq-item[open] {
+    background: var(--white);
+  }
+
+  .faq-item summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 1.5rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    font-family: var(--font-display);
+    font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+    font-weight: 500;
+    color: var(--black);
+    transition: padding 0.3s var(--ease-smooth);
+  }
+
+  .faq-item[open] summary {
+    padding: 1.5rem;
+  }
+
+  .faq-item summary::-webkit-details-marker {
     display: none;
   }
 
-  /* Zone où le texte s'écrit */
-  #typewriter-text {
-    min-height: 200px;
-    line-height: 1.8;
-    color: var(--gray);
+  .faq-icon {
+    position: relative;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
   }
 
-  /* Curseur clignotant du typewriter */
-  #typewriter-text::after {
-    content: '|';
-    animation: blink 0.7s infinite;
-    margin-left: 2px;
-  }
-
-  /* Animation du curseur clignotant */
-  @keyframes blink {
-    0%, 50% { opacity: 1; }
-    51%, 100% { opacity: 0; }
-  }
-  
-  /* Grille 2 colonnes (texte + image) */
-  .about-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: center;
-  }
-  
-  .about-text p {
-    margin-bottom: 1rem;
-    color: var(--gray);
-    line-height: 1.8;
-  }
-  
-  /* Photo Polaroid avec rotation et ombre */
-  .about-image img {
+  .faq-icon::before,
+  .faq-icon::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
     width: 100%;
-    max-width: 500px;
-    height: auto;
-    object-fit: cover;
-    border-radius: 0;
-    
-    /* Effet photo imprimée */
-    padding: 1rem;
-    background: white;
-    box-shadow: 
-      0 4px 6px rgba(0, 0, 0, 0.1),
-      0 10px 20px rgba(0, 0, 0, 0.15),
-      0 1px 3px rgba(0, 0, 0, 0.08);
-    transform: rotate(-2deg);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    
-    /* Animation d'entrée */
-    animation: fadeInImage 1.2s ease-out;
+    height: 1px;
+    background: var(--black);
+    transition: transform 0.3s var(--ease-smooth);
   }
 
-  /* Effet hover sur la photo */
-  .about-image img:hover {
-    transform: rotate(0deg) scale(1.02);
-    box-shadow: 
-      0 10px 30px rgba(0, 0, 0, 0.2),
-      0 15px 40px rgba(0, 0, 0, 0.15);
+  .faq-icon::after {
+    transform: rotate(90deg);
   }
 
-  /* Animation fade-in de la photo */
-  @keyframes fadeInImage {
-    from {
-      opacity: 0;
-      transform: rotate(-2deg) translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: rotate(-2deg) translateY(0);
-    }
+  .faq-item[open] .faq-icon::after {
+    transform: rotate(0deg);
   }
-  
-  /* ========================================
-     SECTION SERVICES
-     ======================================== */
-  .services-section {
-    padding: 4rem 0;
+
+  .faq-answer {
+    padding: 0 0 1.5rem;
   }
-  
-  .services-section h2 {
+
+  .faq-item[open] .faq-answer {
+    padding: 0 1.5rem 1.5rem;
+  }
+
+  .faq-answer p {
+    color: var(--gray-700, #404040);
+    line-height: 1.7;
+    max-width: 720px;
+  }
+
+  .faq-footer {
+    margin-top: 3rem;
     text-align: center;
-    margin-bottom: 3rem;
-  }
-  
-  /* Grille responsive des services */
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-  }
-  
-  /* ========================================
-   SECTION PROCESS (3 ÉTAPES)
-   Animation fade-in depuis la gauche au scroll
-   ======================================== */
-.process-section {
-  padding: 4rem 0;
-  background: var(--light-gray);
-}
-
-.process-section h2 {
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
-/* Grille responsive des 3 cartes */
-.process-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-}
-
-/* ========== ANIMATION FADE-IN DEPUIS LA GAUCHE (VERSION SIMPLE) ========== */
-
-/* Par défaut : cartes visibles (si JavaScript ne marche pas) */
-.process-card {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* Animation au scroll avec @keyframes */
-@keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-/* Appliquer l'animation directement */
-.process-section .process-card {
-  animation: slideInLeft 0.6s ease forwards;
-}
-
-/* Délai pour chaque carte */
-.process-grid > :nth-child(1) .process-card,
-.process-grid > :first-child .process-card {
-  animation-delay: 0.3s;
-}
-
-.process-grid > :nth-child(2) .process-card,
-.process-grid > :nth-of-type(2) .process-card {
-  animation-delay: 0.5s;
-}
-
-.process-grid > :nth-child(3) .process-card,
-.process-grid > :last-child .process-card {
-  animation-delay: 0.7s;
-}
-
-/* État initial avant animation */
-.process-section .process-card {
-  opacity: 0;
-  transform: translateX(-50px);
-}
-  
-  /* ========================================
-     SECTION TÉMOIGNAGES - CARROUSEL
-     ======================================== */
-  .testimonials-section {
-    padding: 4rem 0;
-    overflow: hidden; /* Cache les slides en dehors de la zone visible */
+    color: var(--gray-600);
   }
 
-  /* En-tête du carrousel */
-  .testimonials-header {
-    text-align: center;
-    margin-bottom: 3rem;
-  }
-
-  .testimonials-header h2 {
+  .faq-footer p {
     margin-bottom: 0.5rem;
   }
 
-  .google-rating {
-    font-size: 1.1rem;
-    color: var(--gray);
-    margin-top: 0.5rem;
-  }
-
-  .voir-tous-avis {
-    display: inline-block;
-    margin-left: 1rem;
-    color: var(--primary-color);
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s;
-  }
-
-  .voir-tous-avis:hover {
-    color: var(--secondary-color);
-  }
-
-  /* Conteneur principal avec boutons */
-  .carousel-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    margin-bottom: 2rem;
-  }
-
-  /* Zone visible du carrousel */
-  .carousel-wrapper {
-    flex: 1;
-    overflow: hidden; /* Cache les slides en dehors */
-    width: 100%;
-  }
-
-  /* Piste qui se déplace (contient toutes les slides) */
-  .carousel-track {
-    display: flex;
-    transition: transform 0.5s ease; /* Animation du déplacement */
-    gap: 2rem;
-    width: 100%;
-  }
-
-  /* Chaque slide du carrousel */
-  .carousel-slide {
-    min-width: calc(33.333% - 1.33rem); /* 3 slides visibles sur desktop */
-    max-width: calc(33.333% - 1.33rem);
-    flex-shrink: 0;
-    box-sizing: border-box;
-    overflow: hidden;
-  }
-
-  /* Forcer les enfants à respecter la largeur */
-  .carousel-slide * {
-    max-width: 100% !important;
-  }
-
-  /* Boutons de navigation (précédent / suivant) */
-  .carousel-btn {
-    background: var(--primary-color);
-    color: white;
-    border: none;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    font-size: 2rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    flex-shrink: 0;
-  }
-
-  .carousel-btn:hover {
-    background: var(--secondary-color);
-    transform: scale(1.1);
-  }
-
-  /* Points de navigation (dots) */
-  .carousel-dots {
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-    margin-top: 2rem;
-  }
-
-  .dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: #ddd;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-
-  /* Dot actif (allongé) */
-  .dot.active {
-    background: var(--primary-color);
-    width: 30px;
-    border-radius: 6px;
-  }
-
-  .dot:hover {
-    background: var(--secondary-color);
-  }
-  
-  /* ========================================
-     SECTION PARTENAIRES - DÉFILEMENT INFINI
-     ======================================== */
-  .partners-marquee {
-    padding: 2.5rem 0;
-    background: #fafafa;
-    overflow: hidden;
-    border-top: 1px solid #e0e0e0;
-    border-bottom: 1px solid #e0e0e0;
-  }
-
-  .marquee {
-    width: 100%;
-    overflow: hidden;
-    position: relative;
-  }
-
-  /* Contenu qui défile automatiquement */
-  .marquee-content {
-    display: flex;
-    gap: 6rem;
-    animation: scroll 40s linear infinite; /* Défilement infini */
-    width: fit-content;
-    align-items: center;
-  }
-
-  /* Style des logos partenaires */
-  .partner-logo-img {
-    height: 45px; /* Hauteur uniforme */
-    width: auto;
-    max-width: 180px;
-    object-fit: contain;
-    
-    /* Effet gris par défaut */
-    filter: grayscale(100%) brightness(0.4) contrast(1.2);
-    opacity: 0.7;
-    transition: all 0.4s ease;
-  }
-
-  /* Effet hover : couleur + zoom */
-  .partner-logo-img:hover {
-    filter: grayscale(0%) brightness(1) contrast(1);
-    opacity: 1;
-    transform: scale(1.1);
-  }
-
-  /* Animation du défilement */
-  @keyframes scroll {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-33.333%); /* Défile d'1/3 (3 sets de logos) */
-    }
-  }
-
-  /* Pause au survol de la souris */
-  .marquee:hover .marquee-content {
-    animation-play-state: paused;
-  }
-
-  /* ========================================
-     SECTION CTA (CALL TO ACTION)
-     ======================================== */
-  .cta-section {
-    padding: 4rem 0;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    color: white;
+  /* ==================== CTA FINAL ==================== */
+  .cta-final {
     text-align: center;
   }
-  
-  .cta-section h2 {
-    color: white;
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  .cta-section p {
-    font-size: 1.3rem;
-    margin-bottom: 2rem;
-  }
-  
-  .btn-large {
-    font-size: 1.2rem;
-    padding: 1.2rem 3rem;
-  }
-  
-  /* ========================================
-     RESPONSIVE (TABLETTES ET MOBILES)
-     ======================================== */
-  
-  /* Tablettes (< 1024px) */
-  @media (max-width: 1024px) {
-    /* Carrousel : 2 slides visibles */
-    .carousel-slide {
-      min-width: calc(50% - 1rem);
-      max-width: calc(50% - 1rem);
-    }
+
+  .cta-final h2 em {
+    font-style: italic;
+    color: var(--gold);
   }
 
-  /* Mobiles (< 768px) */
-  @media (max-width: 768px) {
-    /* Section À propos : 1 colonne */
-    .about-content {
+  .cta-final .lead {
+    color: rgba(255, 255, 255, 0.75);
+    max-width: 640px;
+    margin: 1.5rem auto 2.5rem;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* ==================== RESPONSIVE ==================== */
+  @media (max-width: 968px) {
+    .intro-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .services-grid {
       grid-template-columns: 1fr;
     }
 
-    /* Carrousel : 1 slide visible */
-    .carousel-slide {
-      min-width: 100%;
-      max-width: 100%;
-    }
-    
-    .carousel-container {
-      gap: 1rem;
-    }
-    
-    /* Boutons plus petits */
-    .carousel-btn {
-      width: 40px;
-      height: 40px;
-      font-size: 1.5rem;
+    .founder-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
     }
 
-    /* Logos partenaires plus petits */
-    .partner-logo-img {
-      height: 35px;
+    .process-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .process-step:nth-child(2n) {
+      border-right: none;
+    }
+
+    .process-step:nth-child(4n) {
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .testimonials-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .zones-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-footer {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2rem;
+    }
+
+    .hero-scroll {
+      display: none;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hero-stats {
+      gap: 1.5rem;
+    }
+
+    .hero-stat:not(:first-child) {
+      padding-left: 1.5rem;
+      border-left: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .stat-num {
+      font-size: 1.8rem;
+    }
+
+    .stat-label {
+      font-size: 0.7rem;
+    }
+
+    .hero-actions {
+      flex-direction: column;
+    }
+
+    .hero-actions .btn {
+      width: 100%;
+    }
+
+    .process-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .process-step {
+      border-right: none !important;
+    }
+
+    .zones-list {
+      grid-template-columns: 1fr;
+    }
+
+    .zones-list li {
+      border-right: none !important;
     }
   }
 </style>

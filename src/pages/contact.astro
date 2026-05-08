@@ -2,469 +2,634 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout titre="Contact">
+<BaseLayout
+  title="Contact &amp; Devis Gratuit | Torres Transport Annemasse"
+  description="Contactez Torres Transport pour votre devis gratuit en 24h. Téléphone : 06 59 92 68 14. Déménagement, transport et montage de meubles à Annemasse, Ville-la-Grand et toute la Haute-Savoie."
+  keywords="contact Torres Transport, devis déménagement Annemasse, devis gratuit déménageur, contact transport meubles Haute-Savoie"
+  ogImage="/banner-form-contact.webp"
+>
+  <!-- ==================== HERO MINIMAL ==================== -->
   <section class="contact-hero">
     <div class="container">
-      <h1>Contactez-nous</h1>
-      <p>Demandez votre devis gratuit dès maintenant</p>
+      <nav class="breadcrumb" aria-label="Fil d'Ariane">
+        <a href="/">Accueil</a><span>/</span><span>Contact</span>
+      </nav>
+      <span class="eyebrow gold">Contactez-nous</span>
+      <h1>Parlons de<br /><em>votre projet.</em></h1>
+      <p class="lead">
+        Une équipe locale joignable du lundi au samedi, 8h–19h. Réponse sous 24h pour
+        les demandes par formulaire, immédiate par téléphone.
+      </p>
     </div>
   </section>
 
-  <section class="contact-section">
+  <!-- ==================== FORM + INFOS ==================== -->
+  <section class="section contact-section">
     <div class="container">
-      <div class="contact-grid">
-        <!-- Formulaire -->
-        <div class="contact-form-container">
-          <h2>Demande de devis</h2>
-          <form class="contact-form" method="POST" action="#">
-            <div class="form-group">
-              <label for="nom">Nom complet *</label>
-              <input type="text" id="nom" name="nom" required />
+      <div class="contact-layout">
+
+        <!-- COLONNE GAUCHE : COORDONNÉES -->
+        <aside class="contact-info">
+          <div class="info-block">
+            <span class="eyebrow gold">Direct &amp; immédiat</span>
+            <h2>Trois façons<br />de nous joindre.</h2>
+          </div>
+
+          <div class="info-list">
+            <div class="info-item">
+              <div class="info-num">01</div>
+              <div class="info-content">
+                <span class="info-label">Téléphone</span>
+                <a href="tel:+33659926814" class="info-value info-value-strong">06 59 92 68 14</a>
+                <span class="info-meta">Lundi au Samedi · 8h–19h</span>
+              </div>
             </div>
 
-            <div class="form-group">
-              <label for="email">Email *</label>
-              <input type="email" id="email" name="email" required />
+            <div class="info-item">
+              <div class="info-num">02</div>
+              <div class="info-content">
+                <span class="info-label">Email</span>
+                <a href="mailto:contact@torrestransport.fr" class="info-value">contact@torrestransport.fr</a>
+                <span class="info-meta">Réponse sous 24 heures</span>
+              </div>
             </div>
 
-            <div class="form-group">
-              <label for="telephone">Téléphone *</label>
-              <input type="tel" id="telephone" name="telephone" required />
+            <div class="info-item">
+              <div class="info-num">03</div>
+              <div class="info-content">
+                <span class="info-label">WhatsApp</span>
+                <a href="https://wa.me/33659926814" target="_blank" rel="noopener" class="info-value">+33 6 59 92 68 14</a>
+                <span class="info-meta">Discussion instantanée</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-address">
+            <span class="eyebrow gold">Notre base</span>
+            <p class="address-line">
+              <strong>8 rue Fernand David</strong><br />
+              74100 Ville-la-Grand<br />
+              Haute-Savoie · France
+            </p>
+            <p class="address-meta">
+              Intervention dans toute la Haute-Savoie et la Suisse romande frontalière.
+            </p>
+          </div>
+        </aside>
+
+        <!-- COLONNE DROITE : FORMULAIRE -->
+        <div class="contact-form-wrap">
+          <div class="form-header">
+            <span class="eyebrow gold">Devis gratuit</span>
+            <h2>Décrivez<br />votre projet.</h2>
+            <p class="lead">
+              Plus vos informations sont précises, plus notre devis sera juste.
+              Sans engagement, sans acompte.
+            </p>
+          </div>
+
+          <form
+            class="contact-form"
+            id="contact-form-element"
+            method="POST"
+            action="/api/contact"
+            novalidate
+          >
+            <div class="form-row">
+              <div class="form-group">
+                <label for="nom">Nom complet *</label>
+                <input type="text" id="nom" name="nom" required minlength="2" autocomplete="name" />
+              </div>
+              <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required autocomplete="email" />
+              </div>
             </div>
 
-            <div class="form-group">
-              <label for="service">Service souhaité *</label>
-              <select id="service" name="service" required>
-                <option value="">Sélectionnez un service</option>
-                <option value="demenagement">Déménagement</option>
-                <option value="montage-meubles">Montage de meubles</option>
-                <option value="transport">Transport</option>
-                <option value="location-vehicule">Location avec chauffeur</option>
-                <option value="manutention">Manutention</option>
-                <option value="nettoyage">Nettoyage</option>
-                <option value="debarras">Débarras</option>
-              </select>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="telephone">Téléphone *</label>
+                <input type="tel" id="telephone" name="telephone" required autocomplete="tel" placeholder="06 12 34 56 78" />
+              </div>
+              <div class="form-group">
+                <label for="service">Service souhaité *</label>
+                <select id="service" name="service" required>
+                  <option value="">Sélectionner</option>
+                  <option value="demenagement">Déménagement</option>
+                  <option value="montage-meubles">Montage de meubles</option>
+                  <option value="transport">Transport</option>
+                  <option value="location-vehicule">Location avec chauffeur</option>
+                  <option value="manutention">Manutention</option>
+                  <option value="nettoyage">Nettoyage</option>
+                  <option value="debarras">Débarras</option>
+                </select>
+              </div>
             </div>
 
-            <div class="form-group">
-              <label for="adresse-depart">Adresse de départ</label>
-              <input type="text" id="adresse-depart" name="adresse-depart" />
+            <div class="form-row">
+              <div class="form-group">
+                <label for="adresse-depart">Adresse de départ</label>
+                <input type="text" id="adresse-depart" name="adresse-depart" placeholder="Ville, code postal" />
+              </div>
+              <div class="form-group">
+                <label for="adresse-arrivee">Adresse d'arrivée</label>
+                <input type="text" id="adresse-arrivee" name="adresse-arrivee" placeholder="Ville, code postal" />
+              </div>
             </div>
 
-            <div class="form-group">
-              <label for="adresse-arrivee">Adresse d'arrivée</label>
-              <input type="text" id="adresse-arrivee" name="adresse-arrivee" />
-            </div>
-
-            <div class="form-group">
-              <label for="date">Date souhaitée</label>
-              <input type="date" id="date" name="date" />
+            <div class="form-row">
+              <div class="form-group form-group-half">
+                <label for="date">Date souhaitée</label>
+                <input type="date" id="date" name="date" />
+              </div>
             </div>
 
             <div class="form-group">
               <label for="message">Détails de votre demande *</label>
-              <textarea id="message" name="message" rows="5" required></textarea>
+              <textarea id="message" name="message" rows="5" required minlength="10" placeholder="Volume à transporter, étage, contraintes particulières, distance…"></textarea>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-full">
-              Envoyer la demande
-            </button>
+            <!-- Honeypot anti-spam -->
+            <div class="honeypot" aria-hidden="true">
+              <label for="website">Site web (laissez vide)</label>
+              <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+            </div>
+
+            <!-- RGPD -->
+            <div class="form-rgpd">
+              <label class="rgpd-label">
+                <input type="checkbox" id="rgpd" name="rgpd" required />
+                <span>
+                  J'accepte que mes données soient utilisées pour traiter ma demande de devis. *
+                  <a href="/mentions-legales" target="_blank" rel="noopener">Politique de confidentialité</a>
+                </span>
+              </label>
+            </div>
+
+            <!-- Feedback dynamique -->
+            <div id="form-feedback" class="form-feedback" role="alert" aria-live="polite"></div>
+
+            <div class="form-submit">
+              <button type="submit" class="btn btn-primary btn-large btn-with-arrow" id="form-submit-btn">
+                <span class="btn-label">Envoyer ma demande</span>
+                <span class="btn-spinner" aria-hidden="true"></span>
+              </button>
+              <p class="form-note">* Champs obligatoires &nbsp;·&nbsp; Réponse sous 24 heures</p>
+            </div>
           </form>
         </div>
 
-        <!-- Informations de contact -->
-        <div class="contact-info">
-          <h2>Nos coordonnées</h2>
-          
-          <div class="info-block">
-            <div class="info-icon">📍</div>
-            <div>
-              <h3>Adresse</h3>
-              <p>Annemasse, Haute-Savoie (74)</p>
-              <p>Intervention dans toute la France</p>
-            </div>
-          </div>
-
-          <div class="info-block">
-            <div class="info-icon">📞</div>
-            <div>
-              <h3>Téléphone</h3>
-              <p><a href="tel:+33123456789">01 23 45 67 89</a></p>
-              <p class="info-note">Du lundi au samedi, 8h-19h</p>
-            </div>
-          </div>
-
-          <div class="info-block">
-            <div class="info-icon">✉️</div>
-            <div>
-              <h3>Email</h3>
-              <p><a href="mailto:torrestransport@hotmail.com">torrestransport@hotmail.com</a></p>
-              <p class="info-note">Réponse sous 24h</p>
-            </div>
-          </div>
-
-          <div class="info-block">
-            <div class="info-icon">📱</div>
-            <div>
-              <h3>Réseaux sociaux</h3>
-              <a href="https://www.facebook.com/profile.php?id=61555592171592" target="_blank" class="social-btn">
-                Facebook
-              </a>
-            </div>
-          </div>
-
-          <div class="horaires-block">
-            <h3>Horaires d'ouverture</h3>
-            <ul>
-              <li><strong>Lundi - Vendredi :</strong> 8h - 19h</li>
-              <li><strong>Samedi :</strong> 9h - 17h</li>
-              <li><strong>Dimanche :</strong> Fermé</li>
-            </ul>
-          </div>
-        </div>
       </div>
     </div>
   </section>
 
-  <!-- Section pourquoi nous choisir -->
-  <section class="why-us">
+  <!-- ==================== POURQUOI NOUS ==================== -->
+  <section class="section bg-cream why-section">
     <div class="container">
-      <h2>Pourquoi nous faire confiance ?</h2>
+      <header class="section-header text-center">
+        <span class="eyebrow gold">Vos garanties</span>
+        <h2>Pourquoi nous<br /><em>faire confiance.</em></h2>
+      </header>
+
       <div class="why-grid">
-        <div class="why-card">
-          <div class="why-icon">✅</div>
-          <h3>Devis gratuit</h3>
-          <p>Déplacement et devis sans engagement</p>
+        <div class="why-item">
+          <div class="why-num">01</div>
+          <h3>Devis sous 24h</h3>
+          <p>Réponse rapide garantie. Pour les urgences, appelez-nous directement, nous nous organisons sous 2 heures.</p>
         </div>
-        <div class="why-card">
-          <div class="why-icon">⚡</div>
-          <h3>Réponse rapide</h3>
-          <p>Retour sous 24h maximum</p>
+        <div class="why-item">
+          <div class="why-num">02</div>
+          <h3>Sans acompte</h3>
+          <p>Aucun versement pour réserver. Vous payez uniquement après la prestation, à la livraison de vos biens.</p>
         </div>
-        <div class="why-card">
-          <div class="why-icon">💰</div>
-          <h3>Prix transparent</h3>
-          <p>Aucun frais caché</p>
+        <div class="why-item">
+          <div class="why-num">03</div>
+          <h3>Assurance incluse</h3>
+          <p>Toutes nos prestations sont couvertes par notre assurance responsabilité civile professionnelle.</p>
         </div>
-        <div class="why-card">
-          <div class="why-icon">🏆</div>
-          <h3>20 ans d'expérience</h3>
-          <p>Expertise et professionnalisme</p>
+        <div class="why-item">
+          <div class="why-num">04</div>
+          <h3>Équipe locale</h3>
+          <p>Pas de sous-traitance. Vous êtes en contact direct avec celui qui mène le travail. Une relation humaine.</p>
         </div>
       </div>
     </div>
   </section>
+
+  <script is:inline>
+    (function () {
+      const form = document.getElementById('contact-form-element');
+      if (!form) return;
+      const submitBtn = document.getElementById('form-submit-btn');
+      const feedback = document.getElementById('form-feedback');
+
+      // Pré-remplit le message si ?msg= est présent (venant de l'estimateur par ex.)
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const prefill = params.get('msg');
+        const messageField = document.getElementById('message');
+        if (prefill && messageField && !messageField.value) {
+          messageField.value = prefill;
+          messageField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      } catch (_) {}
+
+      function setLoading(loading) {
+        if (!submitBtn) return;
+        submitBtn.disabled = loading;
+        submitBtn.classList.toggle('is-loading', loading);
+      }
+
+      function showFeedback(type, message) {
+        if (!feedback) return;
+        feedback.className = 'form-feedback form-feedback--' + type;
+        feedback.innerHTML = message;
+        feedback.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        setLoading(true);
+        showFeedback('info', '<strong>Envoi en cours...</strong>');
+
+        try {
+          const formData = new FormData(form);
+          const response = await fetch('/api/contact', {
+            method: 'POST',
+            body: formData,
+            headers: { Accept: 'application/json' },
+          });
+          const data = await response.json();
+
+          if (response.ok && data.ok) {
+            showFeedback(
+              'success',
+              '<strong>Demande envoyée.</strong><br>' +
+              'Merci, nous vous recontactons sous 24h au numéro indiqué.'
+            );
+            form.reset();
+          } else {
+            const errors = data.errors || ['Erreur inconnue.'];
+            showFeedback(
+              'error',
+              '<strong>Impossible d\'envoyer&nbsp;:</strong><ul>' +
+              errors.map((err) => '<li>' + err + '</li>').join('') + '</ul>'
+            );
+          }
+        } catch (err) {
+          showFeedback(
+            'error',
+            '<strong>Erreur réseau.</strong> ' +
+            'Réessayez ou appelez-nous au <a href="tel:+33659926814">06 59 92 68 14</a>.'
+          );
+        } finally {
+          setLoading(false);
+        }
+      });
+    })();
+  </script>
 </BaseLayout>
 
 <style>
+  /* ==================== HERO ==================== */
   .contact-hero {
-    background-image: url("/public/contact-banner.png");
-    color: white;
-    padding: 10rem 0;
-    text-align: center;
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.2) 100%), url(/contact-banner.png);
-    background-repeat: no-repeat;
-    background-size: cover;
+    background: var(--off-white);
+    padding: clamp(5rem, 10vw, 8rem) 0 clamp(3rem, 5vw, 4rem);
+    border-bottom: 1px solid var(--border);
+    margin-top: -76px;
+    padding-top: 9rem;
   }
+
+  .breadcrumb {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--gray-500);
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  .breadcrumb a { color: var(--gray-700, #404040); text-decoration: none; }
+  .breadcrumb > span:not(:last-child) { opacity: 0.4; }
 
   .contact-hero h1 {
-    color: white;
-    font-size: 3rem;
-    margin-bottom: 1rem;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    margin: 0.75rem 0 1.5rem;
+    max-width: 880px;
   }
+  .contact-hero h1 em { font-style: italic; color: var(--gold-deep); }
+  .contact-hero .lead { max-width: 720px; }
 
-  .contact-hero p {
-    font-size: 1.3rem;
-  }
+  /* ==================== LAYOUT ==================== */
+  .contact-section { background: var(--white); }
 
-  .contact-section {
-    padding: 4rem 0;
-  }
-
-  .contact-grid {
+  .contact-layout {
     display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    gap: 3rem;
+    grid-template-columns: 1fr 1.6fr;
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: start;
   }
 
-  /* Formulaire */
-  .contact-form-container {
-    background: white;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  /* ==================== INFOS ==================== */
+  .contact-info { position: sticky; top: 100px; }
+
+  .info-block { margin-bottom: 3rem; }
+
+  .info-block h2 {
+    font-size: clamp(2rem, 3vw, 2.5rem);
+    margin-top: 1rem;
+    line-height: 1.1;
   }
 
-  .contact-form-container h2 {
-    color: var(--primary-color);
-    margin-bottom: 2rem;
-  }
-
-  .form-group {
-    margin-bottom: 1.5rem;
-  }
-
-  .form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-    color: var(--dark);
-  }
-
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    width: 100%;
-    padding: 0.75rem;
-    border: 2px solid #e0e0e0;
-    border-radius: 5px;
-    font-size: 1rem;
-    font-family: inherit;
-    transition: border-color 0.3s;
-  }
-
-  .form-group input:focus,
-  .form-group select:focus,
-  .form-group textarea:focus {
-    outline: none;
-    border-color: var(--primary-color);
-  }
-
-  .form-group textarea {
-    resize: vertical;
-  }
-
-  .btn-full {
-    width: 100%;
-    font-size: 1.1rem;
-    padding: 1rem;
-  }
-
-  /* Informations de contact */
-  .contact-info {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  .contact-info h2 {
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-  }
-
-  .info-block {
-    background: white;
-    padding: 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
-    display: flex;
-    gap: 1rem;
-  }
-
-  .info-icon {
-    font-size: 2rem;
-  }
-
-  .info-block h3 {
-    color: var(--primary-color);
-    margin-bottom: 0.5rem;
-    font-size: 1.1rem;
-  }
-
-  .info-block p {
-    color: var(--gray);
-    margin-bottom: 0.25rem;
-  }
-
-  .info-block a {
-    color: var(--primary-color);
-    text-decoration: none;
-    font-weight: 600;
-  }
-
-  .info-block a:hover {
-    text-decoration: underline;
-  }
-
-  .info-note {
-    font-size: 0.9rem;
-    font-style: italic;
-  }
-
-  .social-btn {
-    display: inline-block;
-    background: #0052a3;
-    color: white !important;
-    padding: 0.5rem 1.5rem;
-    border-radius: 5px;
-    margin-top: 0.5rem;
-    text-decoration: none !important;
-  }
-
-  .social-btn:hover {
-    background: #000;
-  }
-
-  .horaires-block {
-    background: var(--light-gray);
-    padding: 1.5rem;
-    border-radius: 10px;
-  }
-
-  .horaires-block h3 {
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-  }
-
-  .horaires-block ul {
-    list-style: none;
-  }
-
-  .horaires-block li {
-    padding: 0.5rem 0;
-    color: var(--gray);
-  }
-
-  /* Section Pourquoi nous */
-  .why-us {
-    background: var(--light-gray);
-    padding: 4rem 0;
-  }
-
-  .why-us h2 {
-    text-align: center;
+  .info-list {
+    border-top: 1px solid var(--border-strong);
     margin-bottom: 3rem;
   }
 
-  .why-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
+  .info-item {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--border);
+    align-items: flex-start;
   }
 
-  .why-card {
-    background: white;
-    padding: 2rem;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+  .info-num {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--gold-deep);
+    flex-shrink: 0;
+    line-height: 1;
+    padding-top: 0.4rem;
   }
 
-  .why-icon {
-    font-size: 3rem;
+  .info-content { flex: 1; display: flex; flex-direction: column; gap: 0.3rem; }
+
+  .info-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--gray-500);
+    font-weight: 600;
+  }
+
+  .info-value {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--black);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .info-value-strong {
+    font-size: 1.6rem;
+    font-weight: 600;
+  }
+
+  .info-value:hover { color: var(--gold-deep); }
+
+  .info-meta {
+    font-size: 0.85rem;
+    color: var(--gray-500);
+    margin-top: 0.2rem;
+  }
+
+  .info-address {
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-strong);
+  }
+
+  .address-line {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--gray-800);
+    margin: 1rem 0 1rem;
+  }
+
+  .address-line strong {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    color: var(--black);
+    font-weight: 600;
+  }
+
+  .address-meta {
+    font-size: 0.85rem;
+    color: var(--gray-500);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ==================== FORMULAIRE ==================== */
+  .contact-form-wrap {
+    background: var(--cream);
+    padding: clamp(2rem, 4vw, 3.5rem);
+    border: 1px solid var(--border-strong);
+  }
+
+  .form-header { margin-bottom: 2.5rem; }
+
+  .form-header h2 {
+    font-size: clamp(2rem, 3vw, 2.5rem);
+    margin-top: 1rem;
     margin-bottom: 1rem;
+    line-height: 1.1;
   }
 
-  .why-card h3 {
-    color: var(--primary-color);
+  .form-header .lead {
+    font-size: 1rem;
+    color: var(--gray-700, #404040);
+  }
+
+  .contact-form { display: flex; flex-direction: column; gap: 1.25rem; }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  .form-group { display: flex; flex-direction: column; }
+
+  .form-group-half { max-width: 50%; }
+
+  .form-group label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--gray-700, #404040);
     margin-bottom: 0.5rem;
   }
 
-  .why-card p {
-    color: var(--gray);
+  .contact-form input,
+  .contact-form select,
+  .contact-form textarea {
+    background: var(--white);
+    border: 1px solid var(--border-strong);
+    padding: 0.95rem 1rem;
+    font-size: 0.95rem;
+    transition: border-color 0.2s;
   }
 
-  /* Responsive */
+  .contact-form input:focus,
+  .contact-form select:focus,
+  .contact-form textarea:focus {
+    border-color: var(--black);
+    outline: none;
+  }
+
+  .contact-form textarea { resize: vertical; min-height: 120px; }
+
+  /* Honeypot */
+  .honeypot {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* RGPD */
+  .form-rgpd {
+    padding: 1rem 1.25rem;
+    background: var(--white);
+    border-left: 2px solid var(--gold-deep);
+  }
+
+  .rgpd-label {
+    display: flex;
+    gap: 0.7rem;
+    cursor: pointer;
+    font-size: 0.85rem;
+    line-height: 1.55;
+    color: var(--gray-700, #404040);
+    text-transform: none;
+    letter-spacing: 0;
+    margin: 0;
+    font-weight: 400;
+  }
+
+  .rgpd-label input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-top: 0.15rem;
+    accent-color: var(--black);
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+
+  .rgpd-label a {
+    color: var(--black);
+    text-decoration: underline;
+    font-weight: 500;
+  }
+
+  /* Feedback */
+  .form-feedback {
+    display: none;
+    padding: 1rem 1.25rem;
+    border-left: 2px solid;
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
+
+  .form-feedback:not(:empty) { display: block; }
+
+  .form-feedback ul { margin: 0.5rem 0 0; padding-left: 1.25rem; }
+  .form-feedback li { margin-bottom: 0.25rem; }
+
+  .form-feedback--info { background: #f0f7ff; color: #1e40af; border-color: #1e40af; }
+  .form-feedback--success { background: #f0fdf4; color: #166534; border-color: #15803d; }
+  .form-feedback--error { background: #fef2f2; color: #991b1b; border-color: #b91c1c; }
+
+  .form-feedback a { color: inherit; font-weight: 600; text-decoration: underline; }
+
+  /* Bouton submit */
+  .form-submit { display: flex; flex-direction: column; gap: 1rem; align-items: stretch; }
+
+  #form-submit-btn { width: 100%; padding: 1.15rem; }
+
+  #form-submit-btn .btn-spinner {
+    display: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin-left: 0.5rem;
+  }
+
+  #form-submit-btn.is-loading .btn-spinner { display: inline-block; }
+  #form-submit-btn.is-loading::after { display: none; }
+  #form-submit-btn:disabled { cursor: not-allowed; opacity: 0.7; }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .form-note {
+    font-size: 0.78rem;
+    color: var(--gray-500);
+    text-align: center;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* ==================== POURQUOI ==================== */
+  .why-section { padding: clamp(4rem, 8vw, 6rem) 0; }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--border-strong);
+    border-left: 1px solid var(--border-strong);
+  }
+
+  .why-item {
+    padding: 2rem;
+    border-right: 1px solid var(--border-strong);
+    border-bottom: 1px solid var(--border-strong);
+    background: var(--white);
+  }
+
+  .why-num {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--gold-deep);
+    margin-bottom: 1rem;
+  }
+
+  .why-item h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+  }
+
+  .why-item p {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--gray-700, #404040);
+    margin: 0;
+  }
+
+  /* ==================== RESPONSIVE ==================== */
   @media (max-width: 968px) {
-    .contact-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .contact-hero h1 {
-      font-size: 2rem;
-    }
+    .contact-layout { grid-template-columns: 1fr; }
+    .contact-info { position: static; }
+    .why-grid { grid-template-columns: 1fr 1fr; }
   }
 
-  /* Animations fade-in */
-@keyframes fadeInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-50px);
+  @media (max-width: 600px) {
+    .form-row { grid-template-columns: 1fr; }
+    .form-group-half { max-width: 100%; }
+    .why-grid { grid-template-columns: 1fr; }
   }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes fadeInRight {
-  from {
-    opacity: 0;
-    transform: translateX(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Application des animations */
-.contact-hero h1 {
-  animation: fadeInUp 0.8s ease-out;
-}
-
-.contact-hero p {
-  animation: fadeInUp 1s ease-out;
-}
-
-.contact-form-container {
-  animation: fadeInLeft 1s ease-out;
-}
-
-.contact-info {
-  animation: fadeInRight 1s ease-out;
-}
-
-.why-card {
-  animation: fadeInUp 0.8s ease-out;
-}
-
-/* Décalage pour chaque carte "Pourquoi nous" */
-.why-card:nth-child(1) {
-  animation-delay: 0.1s;
-}
-
-.why-card:nth-child(2) {
-  animation-delay: 0.2s;
-}
-
-.why-card:nth-child(3) {
-  animation-delay: 0.3s;
-}
-
-.why-card:nth-child(4) {
-  animation-delay: 0.4s;
-}
-
-.info-block {
-  animation: fadeInRight 0.8s ease-out;
-}
-
-/* Décalage pour chaque bloc d'info */
-.info-block:nth-child(1) {
-  animation-delay: 0.1s;
-}
-
-.info-block:nth-child(2) {
-  animation-delay: 0.2s;
-}
-
-.info-block:nth-child(3) {
-  animation-delay: 0.3s;
-}
-
-.info-block:nth-child(4) {
-  animation-delay: 0.4s;
-}
 </style>

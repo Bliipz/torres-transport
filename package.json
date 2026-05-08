@@ -9,6 +9,17 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.16.6"
+    "@astrojs/sitemap": "^3.7.2",
+    "@astrojs/vercel": "^8.2.11",
+    "@fontsource/inter": "^5.2.8",
+    "@fontsource/playfair-display": "^5.2.8",
+    "astro": "^5.16.6",
+    "leaflet": "^1.9.4",
+    "resend": "^6.12.2"
+  },
+  "devDependencies": {
+    "satori": "^0.26.0",
+    "satori-html": "^0.3.2",
+    "sharp": "^0.34.5"
   }
 }

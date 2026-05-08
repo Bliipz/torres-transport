@@ -1,0 +1,312 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const services = [
+  {
+    num: "01",
+    titre: "Déménagement",
+    image: "/services/demenagement.webp",
+    excerpt: "Service complet de déménagement résidentiel et professionnel par une équipe expérimentée. Emballage, démontage, transport, assurance incluse.",
+    features: ["Emballage professionnel", "Démontage / remontage", "Matériel fourni", "Assurance incluse"],
+    link: "/services/demenagement",
+  },
+  {
+    num: "02",
+    titre: "Transport de marchandises",
+    image: "/services/transport.webp",
+    excerpt: "Transport sécurisé de vos biens, meubles et objets volumineux partout en France et en Suisse romande.",
+    features: ["Suivi en temps réel", "Assurance transport", "Véhicules adaptés", "Ponctualité garantie"],
+    link: "/services/transport",
+  },
+  {
+    num: "03",
+    titre: "Montage de meubles",
+    image: "/services/montage-de-meuble.webp",
+    excerpt: "Montage professionnel de tous types de meubles : IKEA, Conforama, BUT, Maison du Monde. Gain de temps assuré.",
+    features: ["Toutes marques", "Outils fournis", "Installation TV", "Fixations murales"],
+    link: "/services/montage-meubles",
+  },
+  {
+    num: "04",
+    titre: "Location avec chauffeur",
+    image: "/services/location-vehicule.webp",
+    excerpt: "Location de véhicules utilitaires avec chauffeur professionnel. Pas de permis spécial, pas de stress.",
+    features: ["Chauffeur inclus", "Véhicules récents", "Tarifs dégressifs", "Service flexible"],
+    link: "/services/location-vehicule",
+  },
+  {
+    num: "05",
+    titre: "Manutention",
+    image: "/services/transport.webp",
+    excerpt: "Service de manutention pour déplacer vos objets lourds et encombrants en toute sécurité.",
+    features: ["Équipement adapté", "Évite les blessures", "Matériel professionnel", "Équipe formée"],
+    link: "/services/manutention",
+  },
+  {
+    num: "06",
+    titre: "Nettoyage fin de chantier",
+    image: "/services/nettoyage-pro.webp",
+    excerpt: "Nettoyage complet après déménagement ou travaux. État des lieux impeccable, caution récupérée.",
+    features: ["Produits professionnels", "État impeccable", "Récupération caution", "Intervention rapide"],
+    link: "/services/nettoyage",
+  },
+  {
+    num: "07",
+    titre: "Débarras",
+    image: "/services/debarras.webp",
+    excerpt: "Débarras écologique de caves, greniers, garages, appartements et locaux professionnels.",
+    features: ["Tri professionnel", "Recyclage", "Don associations", "Nettoyage inclus"],
+    link: "/services/debarras",
+  },
+];
+---
+
+<BaseLayout
+  title="Nos Services de Déménagement &amp; Transport en Haute-Savoie | Torres Transport"
+  description="Découvrez nos 7 services à Annemasse : déménagement, transport, montage de meubles, location utilitaire avec chauffeur, manutention, nettoyage et débarras. Devis gratuit."
+  keywords="services déménagement Annemasse, transport meubles Haute-Savoie, montage meuble IKEA, location utilitaire chauffeur 74, manutention Annemasse, débarras Haute-Savoie"
+  ogImage="/services-banner.webp"
+>
+  <!-- ==================== HERO MINIMAL ==================== -->
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Fil d'Ariane">
+        <a href="/">Accueil</a>
+        <span>/</span>
+        <span>Services</span>
+      </nav>
+      <span class="eyebrow gold">Sept prestations</span>
+      <h1>
+        Un seul prestataire,<br />
+        <em>pour tous vos besoins.</em>
+      </h1>
+      <p class="lead">
+        De la simple manutention au déménagement complet transfrontalier vers la Suisse,
+        Torres Transport prend en charge l'ensemble de votre projet. Pas de sous-traitance,
+        pas d'intermédiaire, vous êtes en contact direct avec celui qui fait le travail.
+      </p>
+    </div>
+  </section>
+
+  <!-- ==================== LISTE SERVICES ==================== -->
+  <section class="services-list">
+    <div class="container">
+      {services.map((s, idx) => (
+        <article class={`service-row ${idx % 2 === 1 ? 'reversed' : ''}`}>
+          <div class="service-row-image">
+            <img src={s.image} alt={s.titre} width="800" height="600" loading="lazy" decoding="async" />
+          </div>
+          <div class="service-row-content">
+            <span class="service-row-num">{s.num}</span>
+            <h2>{s.titre}</h2>
+            <p class="lead">{s.excerpt}</p>
+            <ul class="service-row-features">
+              {s.features.map((f) => (
+                <li>{f}</li>
+              ))}
+            </ul>
+            <a href={s.link} class="btn btn-secondary btn-with-arrow">En savoir plus</a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- ==================== CTA ==================== -->
+  <section class="section bg-black cta-final">
+    <div class="container container-narrow text-center">
+      <span class="eyebrow">Pas sûr du service nécessaire&nbsp;?</span>
+      <h2>Décrivez-nous votre projet,<br /><em>nous vous orientons.</em></h2>
+      <p class="lead">
+        Un appel ou un message, et nous vous indiquons la prestation la plus adaptée à vos
+        besoins. Devis gratuit sous 24h.
+      </p>
+      <div class="cta-buttons">
+        <a href="/contact" class="btn btn-gold btn-large btn-with-arrow">Demander un devis</a>
+        <a href="tel:+33659926814" class="btn btn-ghost btn-large">06 59 92 68 14</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* ==================== PAGE HERO MINIMAL ==================== */
+  .page-hero {
+    background: var(--off-white);
+    padding: clamp(4rem, 8vw, 7rem) 0 clamp(3rem, 5vw, 4rem);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .breadcrumb {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--gray-500);
+    margin-bottom: 2.5rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .breadcrumb a {
+    color: var(--gray-700, #404040);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover {
+    color: var(--black);
+  }
+
+  .breadcrumb span:first-of-type,
+  .breadcrumb > span:not(:first-of-type):not(:last-child) {
+    opacity: 0.4;
+  }
+
+  .page-hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    margin: 0.75rem 0 1.5rem;
+    max-width: 920px;
+  }
+
+  .page-hero h1 em {
+    font-style: italic;
+    color: var(--gold-deep);
+  }
+
+  .page-hero .lead {
+    max-width: 720px;
+    margin-top: 1.5rem;
+  }
+
+  /* ==================== LISTE SERVICES ==================== */
+  .services-list {
+    padding: clamp(4rem, 8vw, 7rem) 0;
+  }
+
+  .service-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: center;
+    padding: clamp(3rem, 5vw, 5rem) 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .service-row:last-child {
+    border-bottom: none;
+  }
+
+  .service-row.reversed .service-row-image {
+    order: 2;
+  }
+
+  .service-row-image {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-row-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: 4 / 3;
+    filter: grayscale(15%);
+    transition: filter 0.5s var(--ease-smooth), transform 0.6s var(--ease-smooth);
+  }
+
+  .service-row:hover .service-row-image img {
+    filter: grayscale(0%);
+    transform: scale(1.02);
+  }
+
+  .service-row-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .service-row-num {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--gold-deep);
+    margin-bottom: 1.25rem;
+  }
+
+  .service-row-content h2 {
+    font-size: clamp(1.85rem, 3vw, 2.75rem);
+    margin-bottom: 1.25rem;
+  }
+
+  .service-row-content .lead {
+    margin-bottom: 1.5rem;
+  }
+
+  .service-row-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem 1.5rem;
+    border-top: 1px solid var(--border);
+    padding-top: 1.25rem;
+  }
+
+  .service-row-features li {
+    font-size: 0.9rem;
+    color: var(--gray-700, #404040);
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .service-row-features li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    width: 6px;
+    height: 6px;
+    background: var(--gold-deep);
+    border-radius: 50%;
+  }
+
+  /* ==================== CTA FINAL ==================== */
+  .cta-final {
+    text-align: center;
+  }
+
+  .cta-final h2 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .cta-final .lead {
+    color: rgba(255, 255, 255, 0.75);
+    max-width: 640px;
+    margin: 1.5rem auto 2.5rem;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* ==================== RESPONSIVE ==================== */
+  @media (max-width: 800px) {
+    .service-row {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .service-row.reversed .service-row-image {
+      order: 0;
+    }
+
+    .service-row-features {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

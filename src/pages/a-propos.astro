@@ -1,0 +1,687 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Accueil", item: "https://torrestransport.fr/" },
+    { "@type": "ListItem", position: 2, name: "À propos", item: "https://torrestransport.fr/a-propos" },
+  ],
+};
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Ludovic Torres",
+  jobTitle: "Fondateur, Torres Transport",
+  worksFor: { "@type": "Organization", name: "Torres Transport" },
+  image: "https://torrestransport.fr/Ludovic.webp",
+  telephone: "+33659926814",
+  email: "contact@torrestransport.fr",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Ville-la-Grand",
+    postalCode: "74100",
+    addressRegion: "Haute-Savoie",
+    addressCountry: "FR",
+  },
+};
+
+const valeurs = [
+  {
+    num: "01",
+    titre: "Pas de sous-traitance",
+    text: "Vous traitez directement avec celui qui prend le volant et porte les meubles. Aucun courtier, aucun intermédiaire qui prend une commission. La relation est directe, le prix est juste, la responsabilité est claire.",
+  },
+  {
+    num: "02",
+    titre: "Tarif transparent au volume",
+    text: "Un tarif unique : 47,50 € / m³ tout compris pour un déménagement complet. Camion, manutention, protection, sanglage. Pas de petites lignes en bas du devis qui font monter la facture.",
+  },
+  {
+    num: "03",
+    titre: "Pas d'acompte demandé",
+    text: "Vous ne payez qu'après la prestation, à la livraison de vos biens. C'est notre façon de prouver qu'on assume notre travail, pas un mode de réservation qui retient l'argent au cas où.",
+  },
+  {
+    num: "04",
+    titre: "Taille humaine, pas industrielle",
+    text: "On fait moins de chantiers que les grandes enseignes, mais on les fait mieux. Le jour J, on est là, on connaît votre nom, votre situation, vos contraintes. Ça change la qualité du travail.",
+  },
+];
+
+const engagements = [
+  "Devis gratuit, ferme et détaillé sous 24 h",
+  "Assurance responsabilité civile professionnelle incluse",
+  "Tarif préférentiel séniors et personnes à mobilité réduite (−10 %)",
+  "Réductions cumulables : réservation anticipée, gros volume",
+  "Équipe formée, soigneuse et ponctuelle",
+  "Disponibilité 6 jours sur 7, du lundi au samedi",
+];
+---
+
+<BaseLayout
+  titre="À propos de Torres Transport"
+  description="Découvrez Torres Transport, l'histoire de Ludovic et notre approche du déménagement à Annemasse. 20 ans d'expérience, contact direct, tarif transparent."
+  keywords="Torres Transport, Ludovic Torres, déménageur Annemasse, qui sommes-nous, à propos déménagement Haute-Savoie"
+  canonical="https://torrestransport.fr/a-propos"
+  ogImage="/Ludovic.webp"
+  structuredData={[breadcrumbSchema, personSchema]}
+>
+  <!-- HERO -->
+  <section class="about-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Fil d'Ariane">
+        <a href="/">Accueil</a><span>/</span><span>À propos</span>
+      </nav>
+      <span class="eyebrow gold">L'histoire derrière Torres Transport</span>
+      <h1>Une équipe locale.<br /><em>Un savoir-faire</em><br />qui se transmet.</h1>
+      <p class="lead">
+        Torres Transport n'est pas une grande chaîne. C'est une équipe à taille humaine fondée
+        à Annemasse par <strong>Ludovic Torres</strong>, après deux décennies passées sur le
+        terrain. Voici l'histoire et la façon dont on travaille, sans détour.
+      </p>
+    </div>
+  </section>
+
+  <!-- PORTRAIT FONDATEUR -->
+  <section class="section about-founder">
+    <div class="container">
+      <div class="founder-layout">
+        <div class="founder-image">
+          <img
+            src="/Ludovic.webp"
+            alt="Ludovic Torres, fondateur de Torres Transport"
+            width="600"
+            height="720"
+            loading="lazy"
+          />
+          <div class="founder-tag">
+            <span class="tag-num">01</span>
+            <div>
+              <strong>Ludovic Torres</strong>
+              <small>Fondateur · Annemasse</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="founder-text">
+          <span class="eyebrow gold">Le fondateur</span>
+          <h2>Vingt ans à porter, charger,<br /><em>et faire arriver à bon port.</em></h2>
+
+          <p class="lead">
+            Avant de créer Torres Transport en 2024, Ludovic a passé deux décennies dans
+            le transport et la livraison pour une grande chaîne de distribution. Vingt
+            ans sur la route, à charger des camions, à apprendre à protéger ce qu'on
+            transporte, et à comprendre que <strong>la différence entre un travail bien
+            fait et un travail bâclé tient à des détails qu'on ne voit pas sur un
+            devis</strong>.
+          </p>
+
+          <p>
+            La sangle qu'on serre une fois de trop. La couverture qu'on glisse derrière
+            l'armoire pour éviter qu'elle frotte. Le client à qui on dit "non, ça ne passe
+            pas par l'escalier" plutôt que de forcer et casser. Ces gestes-là ne se
+            facturent pas, ils se font, ou ne se font pas.
+          </p>
+
+          <p>
+            En montant Torres Transport, l'idée était simple&nbsp;: travailler à son
+            compte pour pouvoir <strong>imposer ces standards</strong>, sans hiérarchie qui
+            pousse au rendement, sans sous-traitance qui dilue la responsabilité. Une
+            entreprise petite, locale, mais où chaque déménagement est traité comme s'il
+            s'agissait du sien.
+          </p>
+
+          <blockquote class="founder-quote">
+            « Quand on porte le canapé d'un client, on porte aussi sa confiance.
+            Cette confiance, on n'a pas le droit de la décevoir. »
+            <cite>Ludovic Torres</cite>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALEURS -->
+  <section class="section about-values">
+    <div class="container container-narrow">
+      <header class="section-header">
+        <span class="eyebrow gold">Notre approche</span>
+        <h2>Quatre principes<br /><em>qui ne bougent pas.</em></h2>
+        <p class="lead">
+          Ce sont les choix qui définissent la façon dont on travaille au quotidien.
+          Pas du marketing&nbsp;: des décisions concrètes prises au démarrage et tenues depuis.
+        </p>
+      </header>
+
+      <div class="values-list">
+        {valeurs.map((v) => (
+          <article class="value-item">
+            <div class="value-num">{v.num}</div>
+            <div class="value-content">
+              <h3>{v.titre}</h3>
+              <p>{v.text}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- HISTOIRE / TIMELINE -->
+  <section class="section about-story bg-cream">
+    <div class="container container-narrow">
+      <header class="section-header">
+        <span class="eyebrow gold">Le parcours</span>
+        <h2>De l'apprentissage<br /><em>à l'autonomie.</em></h2>
+      </header>
+
+      <div class="story-timeline">
+        <article class="story-step">
+          <span class="step-year">~ 2004</span>
+          <h3>Premiers chargements</h3>
+          <p>
+            Ludovic démarre dans le transport et la livraison pour une grande chaîne de
+            distribution. Apprentissage du métier sur le terrain&nbsp;: arrimage, gestion
+            d'itinéraires, contraintes des accès, manutention en équipe.
+          </p>
+        </article>
+
+        <article class="story-step">
+          <span class="step-year">2004 à 2024</span>
+          <h3>Vingt ans de pratique</h3>
+          <p>
+            Deux décennies de chargements, de livraisons et de déménagements à travers
+            la Haute-Savoie et la région. Chaque chantier ajoute une compétence&nbsp;:
+            comment passer un piano par une cage d'escalier, comment optimiser un
+            volume mixte, comment annoncer une mauvaise nouvelle à un client.
+          </p>
+        </article>
+
+        <article class="story-step">
+          <span class="step-year">2024</span>
+          <h3>Création de Torres Transport</h3>
+          <p>
+            L'envie de mettre en œuvre ses propres standards pousse à l'indépendance.
+            L'activité démarre à Ville-la-Grand, avec une zone d'intervention couvrant
+            Annemasse, Saint-Julien-en-Genevois, Genève, Thonon, Évian et toute la
+            Haute-Savoie.
+          </p>
+        </article>
+
+        <article class="story-step">
+          <span class="step-year">Aujourd'hui</span>
+          <h3>Une équipe qui grandit</h3>
+          <p>
+            Torres Transport intervient sur tous types de chantiers&nbsp;: déménagements
+            résidentiels, transports professionnels, montage de meubles, débarras,
+            manutention, location utilitaire avec chauffeur. Toujours en direct,
+            toujours sans sous-traitance.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENGAGEMENTS -->
+  <section class="section about-engagements">
+    <div class="container container-narrow">
+      <div class="engagements-grid">
+        <div class="engagements-intro">
+          <span class="eyebrow gold">Nos engagements</span>
+          <h2>Ce qu'on vous garantit,<br /><em>au-delà du tarif.</em></h2>
+          <p>
+            Un déménagement réussi, ce n'est pas seulement un prix correct. C'est aussi des engagements
+            tenus avant, pendant et après la prestation.
+          </p>
+          <a href="/contact" class="link-underline">Nous contacter pour un devis →</a>
+        </div>
+
+        <ul class="engagements-list">
+          {engagements.map((e) => (
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              <span>{e}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ZONES & SERVICES -->
+  <section class="section about-coverage">
+    <div class="container">
+      <div class="coverage-grid">
+        <article class="coverage-card">
+          <span class="coverage-num">01</span>
+          <h3>Une couverture locale solide</h3>
+          <p>
+            Implantés à Ville-la-Grand, nous intervenons dans toute la zone du
+            Genevois français, de Thonon à Annecy en passant par Annemasse,
+            Saint-Julien et Genève côté frontalier.
+          </p>
+          <a href="/zones-intervention" class="link-arrow">Voir toutes les zones</a>
+        </article>
+
+        <article class="coverage-card">
+          <span class="coverage-num">02</span>
+          <h3>Tous types de prestations</h3>
+          <p>
+            Déménagement résidentiel, transport, montage de meubles, manutention,
+            débarras, nettoyage de fin de chantier&nbsp;: nous proposons tout
+            l'écosystème logistique du déménagement.
+          </p>
+          <a href="/services" class="link-arrow">Voir tous nos services</a>
+        </article>
+
+        <article class="coverage-card">
+          <span class="coverage-num">03</span>
+          <h3>Estimation transparente</h3>
+          <p>
+            Notre simulateur en ligne permet d'obtenir une estimation indicative
+            en 30 secondes. Pour un devis ferme, on se déplace gratuitement chez vous.
+          </p>
+          <a href="/estimation" class="link-arrow">Tester le simulateur</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section about-cta">
+    <div class="container container-narrow">
+      <div class="cta-card">
+        <h2>Un projet de déménagement&nbsp;?<br /><em>Parlons-en.</em></h2>
+        <p>
+          Échange direct, sans intermédiaire. Devis gratuit sous 24 h.
+          Vous décidez ensuite, sans pression et sans engagement.
+        </p>
+        <div class="cta-buttons">
+          <a href="/contact" class="btn btn-primary">Demander un devis</a>
+          <a href="tel:+33659926814" class="btn btn-ghost">06 59 92 68 14</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* HERO */
+  .about-hero {
+    background: var(--off-white);
+    padding: clamp(5rem, 10vw, 8rem) 0 clamp(3rem, 5vw, 4rem);
+    border-bottom: 1px solid var(--border);
+    margin-top: -76px;
+    padding-top: 9rem;
+  }
+  .breadcrumb {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--gray-500);
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  .breadcrumb a { color: var(--gray-700); }
+  .breadcrumb > span:not(:last-child) { opacity: 0.4; }
+
+  .about-hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    margin: 0.75rem 0 1.5rem;
+    line-height: 1.05;
+  }
+  .about-hero h1 em { font-style: italic; color: var(--gold-deep); }
+  .about-hero .lead { max-width: 720px; }
+
+  /* FOUNDER */
+  .about-founder {
+    background: var(--white);
+  }
+  .founder-layout {
+    display: grid;
+    grid-template-columns: 0.85fr 1fr;
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: start;
+  }
+
+  .founder-image {
+    position: relative;
+  }
+  .founder-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    aspect-ratio: 5 / 6;
+  }
+
+  .founder-tag {
+    position: absolute;
+    bottom: -1.5rem;
+    left: -1.5rem;
+    background: var(--black);
+    color: var(--white);
+    padding: 1.1rem 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: var(--shadow-elevated);
+    max-width: 280px;
+  }
+  .founder-tag .tag-num {
+    font-family: var(--font-display);
+    color: var(--gold);
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 1;
+  }
+  .founder-tag strong {
+    display: block;
+    font-size: 0.92rem;
+    margin-bottom: 0.15rem;
+  }
+  .founder-tag small {
+    display: block;
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .founder-text h2 {
+    font-size: clamp(1.85rem, 3.5vw, 2.6rem);
+    margin: 0.6rem 0 1.5rem;
+  }
+  .founder-text h2 em { font-style: italic; color: var(--gold-deep); }
+  .founder-text .lead {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    margin-bottom: 1.25rem;
+  }
+  .founder-text p {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: var(--gray-700);
+    margin-bottom: 1.1rem;
+  }
+  .founder-text strong {
+    color: var(--black);
+    font-weight: 600;
+  }
+
+  .founder-quote {
+    border-left: 3px solid var(--gold-deep);
+    padding: 0.4rem 0 0.4rem 1.3rem;
+    margin: 1.75rem 0 0;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.15rem;
+    line-height: 1.55;
+    color: var(--black);
+  }
+  .founder-quote cite {
+    display: block;
+    margin-top: 0.85rem;
+    font-style: normal;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--gray-500);
+    font-family: var(--font-body);
+  }
+
+  /* VALUES */
+  .about-values { background: var(--white); }
+
+  .section-header { margin-bottom: 3rem; }
+  .section-header h2 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    margin: 0.6rem 0 1rem;
+  }
+  .section-header h2 em { font-style: italic; color: var(--gold-deep); }
+  .section-header .lead { max-width: 680px; }
+
+  .values-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .value-item {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 2rem;
+    padding: 2.25rem 0;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+  }
+  .value-item:first-child { padding-top: 0; }
+  .value-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .value-num {
+    font-family: var(--font-display);
+    color: var(--gold-deep);
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 1;
+    padding-top: 0.35rem;
+  }
+
+  .value-content h3 {
+    font-size: 1.35rem;
+    margin-bottom: 0.85rem;
+    font-weight: 500;
+  }
+  .value-content p {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: var(--gray-700);
+  }
+
+  /* STORY / TIMELINE */
+  .about-story { padding-top: clamp(3.5rem, 7vw, 5.5rem); }
+  .bg-cream { background: var(--cream); }
+
+  .story-timeline {
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid var(--border-strong);
+    padding-left: 0;
+    margin-left: 1rem;
+  }
+
+  .story-step {
+    padding: 0 0 2.5rem 2rem;
+    position: relative;
+  }
+  .story-step:last-child { padding-bottom: 0; }
+  .story-step::before {
+    content: '';
+    position: absolute;
+    left: -6px;
+    top: 0.6rem;
+    width: 11px;
+    height: 11px;
+    background: var(--gold-deep);
+    border: 2px solid var(--cream);
+    border-radius: 50%;
+  }
+
+  .step-year {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--gold-deep);
+    letter-spacing: 0.02em;
+  }
+
+  .story-step h3 {
+    font-size: 1.25rem;
+    margin: 0.35rem 0 0.7rem;
+    font-weight: 500;
+  }
+
+  .story-step p {
+    font-size: 0.93rem;
+    line-height: 1.7;
+    color: var(--gray-700);
+  }
+
+  /* ENGAGEMENTS */
+  .about-engagements { background: var(--white); }
+  .engagements-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: start;
+  }
+
+  .engagements-intro h2 {
+    font-size: clamp(1.85rem, 3vw, 2.4rem);
+    margin: 0.6rem 0 1.25rem;
+  }
+  .engagements-intro h2 em { font-style: italic; color: var(--gold-deep); }
+  .engagements-intro p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--gray-700);
+    margin-bottom: 1.5rem;
+  }
+
+  .link-underline {
+    display: inline-block;
+    color: var(--black);
+    font-size: 0.88rem;
+    font-weight: 600;
+    border-bottom: 1px solid var(--gold-deep);
+    padding-bottom: 0.15rem;
+    transition: color 0.2s;
+  }
+  .link-underline:hover { color: var(--gold-deep); }
+
+  .engagements-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+  }
+  .engagements-list li {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: var(--gray-800);
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .engagements-list li:last-child { border-bottom: none; }
+  .engagements-list li svg {
+    color: var(--gold-deep);
+    flex-shrink: 0;
+  }
+
+  /* COVERAGE */
+  .about-coverage { background: var(--off-white); }
+  .coverage-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+  .coverage-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+  .coverage-num {
+    font-family: var(--font-display);
+    color: var(--gold-deep);
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+  .coverage-card h3 {
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+  .coverage-card p {
+    font-size: 0.93rem;
+    line-height: 1.7;
+    color: var(--gray-700);
+    flex: 1;
+  }
+  .link-arrow {
+    color: var(--black);
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-bottom: 1px solid var(--gold-deep);
+    padding-bottom: 0.15rem;
+    align-self: flex-start;
+    transition: color 0.2s;
+  }
+  .link-arrow:hover { color: var(--gold-deep); }
+  .link-arrow::after { content: ' →'; }
+
+  /* CTA */
+  .about-cta { background: var(--white); }
+  .cta-card {
+    background: var(--black);
+    color: var(--white);
+    padding: clamp(2.5rem, 5vw, 4rem);
+    text-align: center;
+  }
+  .cta-card h2 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+  .cta-card h2 em { font-style: italic; color: var(--gold); }
+  .cta-card p {
+    color: rgba(255, 255, 255, 0.75);
+    max-width: 600px;
+    margin: 0 auto 2rem;
+  }
+  .cta-buttons {
+    display: flex;
+    gap: 0.85rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .cta-buttons .btn {
+    padding: 0.95rem 1.6rem;
+    font-size: 0.92rem;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: all 0.25s;
+  }
+  .cta-buttons .btn-primary { background: var(--gold); color: var(--black); }
+  .cta-buttons .btn-primary:hover { background: var(--white); }
+  .cta-buttons .btn-ghost {
+    background: transparent;
+    color: var(--white);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  .cta-buttons .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* RESPONSIVE */
+  @media (max-width: 960px) {
+    .founder-layout { grid-template-columns: 1fr; gap: 3rem; }
+    .founder-tag { left: 0; bottom: -1.5rem; }
+    .engagements-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .coverage-grid { grid-template-columns: 1fr; gap: 2rem; }
+  }
+
+  @media (max-width: 600px) {
+    .value-item { grid-template-columns: 1fr; gap: 0.75rem; }
+    .value-num { font-size: 1.1rem; padding-top: 0; }
+    .story-timeline { margin-left: 0.5rem; }
+    .story-step { padding-left: 1.5rem; }
+  }
+</style>

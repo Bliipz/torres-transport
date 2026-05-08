@@ -1,0 +1,886 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { cities, getAllCitySlugs } from '../data/cities.js';
+import { getArticlesForCity } from '../data/articles.js';
+
+const SITE_URL = 'https://torrestransport.fr';
+
+type CitySlug = keyof typeof cities;
+
+export function getStaticPaths() {
+  return getAllCitySlugs().map((slug) => ({
+    params: { ville: slug },
+    props: { city: cities[slug as CitySlug] },
+  }));
+}
+
+const { city } = Astro.props;
+const { ville } = Astro.params;
+const pageURL = `${SITE_URL}/demenagement-${ville}`;
+const cityArticles = getArticlesForCity(ville, 3);
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Déménagement',
+  name: `Déménagement à ${city.nom}`,
+  description: city.metaDescription,
+  provider: {
+    '@type': 'MovingCompany',
+    '@id': `${SITE_URL}/#business`,
+    name: 'Torres Transport',
+  },
+  areaServed: {
+    '@type': 'City',
+    name: city.nom,
+    containedInPlace: {
+      '@type': 'AdministrativeArea',
+      name: city.departement,
+    },
+  },
+  url: pageURL,
+  image: `${SITE_URL}${city.bannier}`,
+  offers: {
+    '@type': 'AggregateOffer',
+    priceCurrency: 'EUR',
+    lowPrice: city.tarifs.studio.replace(/[^\d]/g, ''),
+    highPrice: city.tarifs.maison.replace(/[^\d]/g, ''),
+  },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: city.faq.map((item: { question: string; reponse: string }) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.reponse },
+  })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Accueil', item: SITE_URL },
+    { '@type': 'ListItem', position: 2, name: "Zones d'intervention", item: `${SITE_URL}/zones-intervention` },
+    { '@type': 'ListItem', position: 3, name: `Déménagement ${city.nom}`, item: pageURL },
+  ],
+};
+---
+
+<BaseLayout
+  title={city.metaTitle}
+  description={city.metaDescription}
+  keywords={city.keywords}
+  ogImage={city.bannier}
+  structuredData={[serviceSchema, faqSchema, breadcrumbSchema]}
+>
+  <!-- ==================== HERO ==================== -->
+  <section class="ville-hero" style={`background-image: url('${city.bannier}')`}>
+    <div class="hero-overlay"></div>
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Fil d'Ariane">
+        <a href="/">Accueil</a><span>/</span>
+        <a href="/zones-intervention">Zones</a><span>/</span>
+        <span>{city.nom}</span>
+      </nav>
+      <span class="eyebrow gold">{city.codePostal} · {city.departement}</span>
+      <h1>{city.titreH1}</h1>
+
+      <div class="hero-meta-row">
+        <div class="hero-meta-item">
+          <span class="meta-label">Population</span>
+          <span class="meta-value">{city.population}</span>
+        </div>
+        <div class="hero-meta-item">
+          <span class="meta-label">Distance de notre base</span>
+          <span class="meta-value">{city.distanceKm === 0 ? 'Sur place' : `${city.distanceKm} km`}</span>
+        </div>
+        <div class="hero-meta-item">
+          <span class="meta-label">Délai d'intervention</span>
+          <span class="meta-value">24 heures</span>
+        </div>
+      </div>
+
+      <div class="hero-actions">
+        <a href="/contact" class="btn btn-gold btn-large btn-with-arrow">Demander un devis</a>
+        <a href="tel:+33659926814" class="btn btn-ghost btn-large">06 59 92 68 14</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== INTRO ==================== -->
+  <section class="section intro-section">
+    <div class="container">
+      <div class="intro-grid">
+        <div class="intro-eyebrow">
+          <span class="eyebrow gold">Présentation</span>
+          <hr class="divider divider-gold" />
+        </div>
+        <div class="intro-text">
+          <p class="lead" set:html={city.intro}></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== POURQUOI NOUS ==================== -->
+  <section class="section bg-cream">
+    <div class="container">
+      <div class="pourquoi-grid">
+        <div class="pourquoi-text">
+          <span class="eyebrow gold">Notre approche locale</span>
+          <h2>Pourquoi Torres Transport<br />à <em>{city.nom}</em>&nbsp;?</h2>
+          <p set:html={city.pourquoiNous}></p>
+        </div>
+        <div class="atouts-list">
+          <div class="atout">
+            <span class="atout-num">01</span>
+            <div>
+              <h4>Intervention rapide</h4>
+              <p>Sous 24h pour les urgences{city.distanceKm > 0 ? `, à ${city.distanceKm} km de notre base` : ''}.</p>
+            </div>
+          </div>
+          <div class="atout">
+            <span class="atout-num">02</span>
+            <div>
+              <h4>20 ans d'expérience</h4>
+              <p>Une équipe formée qui maîtrise les contraintes locales.</p>
+            </div>
+          </div>
+          <div class="atout">
+            <span class="atout-num">03</span>
+            <div>
+              <h4>Devis transparent</h4>
+              <p>Sans frais cachés, après visite gratuite à votre domicile.</p>
+            </div>
+          </div>
+          <div class="atout">
+            <span class="atout-num">04</span>
+            <div>
+              <h4>Assurance incluse</h4>
+              <p>Vos biens sont couverts pendant toute la prestation.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== QUARTIERS ==================== -->
+  <section class="section quartiers-section">
+    <div class="container">
+      <header class="section-header text-center">
+        <span class="eyebrow gold">Couverture précise</span>
+        <h2>Nos interventions à {city.nom},<br /><em>quartier par quartier.</em></h2>
+        <p class="lead">
+          Notre connaissance fine du terrain permet d'optimiser chaque déménagement, quels
+          que soient l'étage, l'accès ou les contraintes de stationnement.
+        </p>
+      </header>
+      <div class="quartiers-grid">
+        {city.quartiers.map((quartier: string) => (
+          <div class="quartier-item">{quartier}</div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TARIFS ==================== -->
+  <section class="section bg-black tarifs-section">
+    <div class="container">
+      <header class="section-header section-header-light text-center">
+        <span class="eyebrow">Tarifs indicatifs</span>
+        <h2>Combien coûte un déménagement<br /><em>à {city.nom}</em>&nbsp;?</h2>
+        <p class="lead">
+          Ces tarifs de départ couvrent les déménagements standards. Un devis personnalisé
+          est établi gratuitement après visite à votre domicile.
+        </p>
+      </header>
+
+      <div class="tarifs-grid">
+        <article class="tarif-card">
+          <span class="tarif-type">Studio</span>
+          <span class="tarif-prix">{city.tarifs.studio}</span>
+          <span class="tarif-desc">Idéal étudiants &amp; jeunes actifs</span>
+        </article>
+        <article class="tarif-card">
+          <span class="tarif-type">F2 / F3</span>
+          <span class="tarif-prix">{city.tarifs.f2f3}</span>
+          <span class="tarif-desc">Couples &amp; petites familles</span>
+        </article>
+        <article class="tarif-card tarif-featured">
+          <span class="tarif-badge">Le plus demandé</span>
+          <span class="tarif-type">Maison</span>
+          <span class="tarif-prix">{city.tarifs.maison}</span>
+          <span class="tarif-desc">Familles, T4 et plus</span>
+        </article>
+        <article class="tarif-card">
+          <span class="tarif-type">Professionnel</span>
+          <span class="tarif-prix">{city.tarifs.pro}</span>
+          <span class="tarif-desc">Bureaux &amp; locaux commerciaux</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SERVICES À LA VILLE ==================== -->
+  <section class="section services-locale">
+    <div class="container">
+      <header class="section-header">
+        <span class="eyebrow gold">Au-delà du déménagement</span>
+        <h2>Nos sept services<br /><em>à {city.nom}.</em></h2>
+      </header>
+
+      <div class="services-locale-grid">
+        <a href="/services/demenagement" class="service-locale-link"><span>01</span><span>Déménagement complet</span></a>
+        <a href="/services/transport" class="service-locale-link"><span>02</span><span>Transport de marchandises</span></a>
+        <a href="/services/montage-meubles" class="service-locale-link"><span>03</span><span>Montage de meubles</span></a>
+        <a href="/services/location-vehicule" class="service-locale-link"><span>04</span><span>Location utilitaire avec chauffeur</span></a>
+        <a href="/services/manutention" class="service-locale-link"><span>05</span><span>Manutention</span></a>
+        <a href="/services/nettoyage" class="service-locale-link"><span>06</span><span>Nettoyage fin de chantier</span></a>
+        <a href="/services/debarras" class="service-locale-link"><span>07</span><span>Débarras</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FAQ ==================== -->
+  <section class="section bg-cream faq-section">
+    <div class="container container-narrow">
+      <header class="section-header text-center">
+        <span class="eyebrow gold">Questions fréquentes</span>
+        <h2>Tout savoir sur le déménagement<br /><em>à {city.nom}.</em></h2>
+      </header>
+
+      <div class="faq-list">
+        {city.faq.map((item: { question: string; reponse: string }, idx: number) => (
+          <details class="faq-item" open={idx === 0}>
+            <summary>
+              <span>{item.question}</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-answer"><p>{item.reponse}</p></div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== VILLES VOISINES ==================== -->
+  <section class="section voisines-section">
+    <div class="container">
+      <header class="section-header">
+        <span class="eyebrow gold">Aux alentours</span>
+        <h2>Villes voisines<br /><em>que nous desservons.</em></h2>
+      </header>
+
+      <div class="voisines-grid">
+        {city.villesVoisines.map((voisine: { nom: string; slug: string }) => (
+          <a href={`/demenagement-${voisine.slug}`} class="voisine-card">
+            <span class="voisine-label">Déménagement</span>
+            <span class="voisine-nom">{voisine.nom}</span>
+            <span class="voisine-arrow">→</span>
+          </a>
+        ))}
+      </div>
+
+      <div class="voisines-footer">
+        <a href="/zones-intervention" class="link-underline">Voir toutes les zones d'intervention</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CONSEILS / ARTICLES ==================== -->
+  {cityArticles.length > 0 && (
+    <section class="section ville-articles">
+      <div class="container">
+        <header class="section-header">
+          <span class="eyebrow gold">Pour aller plus loin</span>
+          <h2>Conseils &amp; ressources<br /><em>pour votre déménagement.</em></h2>
+        </header>
+
+        <div class="ville-articles-grid">
+          {cityArticles.map((a: any) => (
+            <a href={`/blog/${a.slug}`} class="ville-article-card">
+              <div class="article-thumb">
+                <img src={a.image} alt={a.title} width="400" height="300" loading="lazy" />
+              </div>
+              <div class="article-info">
+                <span class="article-cat">{a.category}</span>
+                <h3>{a.title}</h3>
+                <p>{a.excerpt}</p>
+                <span class="article-link">Lire l'article →</span>
+              </div>
+            </a>
+          ))}
+        </div>
+
+        <div class="ville-articles-footer">
+          <a href="/blog" class="link-underline">Tous nos articles</a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ==================== CTA ==================== -->
+  <section class="section bg-black cta-final">
+    <div class="container container-narrow text-center">
+      <span class="eyebrow">Prêt à déménager à {city.nom}&nbsp;?</span>
+      <h2>Recevez votre devis<br /><em>gratuit en 24h.</em></h2>
+      <p class="lead">Sans engagement, sans acompte. Une équipe locale qui vous rappelle dans la journée.</p>
+      <div class="cta-buttons">
+        <a href="/contact" class="btn btn-gold btn-large btn-with-arrow">Demander un devis</a>
+        <a href="tel:+33659926814" class="btn btn-ghost btn-large">06 59 92 68 14</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* ==================== HERO ==================== */
+  .ville-hero {
+    position: relative;
+    min-height: clamp(540px, 80vh, 720px);
+    background-size: cover;
+    background-position: center;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    padding: 8rem 0 4rem;
+    margin-top: -76px;
+  }
+
+  .hero-overlay {
+    position: absolute; inset: 0; z-index: 0;
+    background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(0,0,0,0.45) 60%);
+  }
+
+  .ville-hero .container { position: relative; z-index: 1; }
+
+  .breadcrumb {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .breadcrumb a { color: var(--gold); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+  .breadcrumb > span:not(:last-child) { opacity: 0.5; }
+
+  .ville-hero h1 {
+    color: var(--white);
+    font-size: clamp(2.25rem, 5.5vw, 4.25rem);
+    margin: 0.75rem 0 2.5rem;
+    max-width: 900px;
+    line-height: 1.1;
+  }
+
+  .hero-meta-row {
+    display: flex;
+    gap: 0;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+  }
+
+  .hero-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: 1.25rem 2rem 1.25rem 0;
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .hero-meta-item:not(:last-child) {
+    border-right: 1px solid rgba(255,255,255,0.15);
+    padding-right: 2rem;
+    margin-right: 2rem;
+  }
+
+  .meta-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: rgba(255,255,255,0.55);
+  }
+
+  .meta-value {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--white);
+  }
+
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  /* ==================== INTRO ==================== */
+  .intro-section { background: var(--white); }
+
+  .intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 2.5fr;
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: start;
+  }
+
+  .intro-eyebrow .divider {
+    margin-top: 1rem;
+    margin-bottom: 0;
+    width: 40px;
+  }
+
+  .intro-text .lead {
+    font-size: clamp(1.15rem, 1.5vw, 1.35rem);
+    line-height: 1.65;
+    color: var(--gray-800);
+  }
+
+  /* ==================== POURQUOI ==================== */
+  .pourquoi-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: start;
+  }
+
+  .pourquoi-text h2 {
+    margin: 1rem 0 1.5rem;
+  }
+
+  .pourquoi-text h2 em {
+    font-style: italic;
+    color: var(--gold-deep);
+  }
+
+  .atouts-list {
+    display: grid;
+    gap: 0;
+    border-top: 1px solid var(--border-strong);
+  }
+
+  .atout {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--border-strong);
+    align-items: flex-start;
+  }
+
+  .atout-num {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--gold-deep);
+    flex-shrink: 0;
+    line-height: 1;
+    padding-top: 0.25rem;
+  }
+
+  .atout h4 {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+  }
+
+  .atout p {
+    font-size: 0.95rem;
+    margin: 0;
+  }
+
+  /* ==================== QUARTIERS ==================== */
+  .quartiers-section { background: var(--white); }
+
+  .quartiers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 0;
+    border-top: 1px solid var(--border-strong);
+    border-left: 1px solid var(--border-strong);
+  }
+
+  .quartier-item {
+    padding: 1.1rem 1.5rem;
+    border-right: 1px solid var(--border-strong);
+    border-bottom: 1px solid var(--border-strong);
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--black);
+    background: var(--off-white);
+    position: relative;
+    padding-left: 2.5rem;
+  }
+
+  .quartier-item::before {
+    content: '';
+    position: absolute;
+    left: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    background: var(--gold-deep);
+    border-radius: 50%;
+  }
+
+  /* ==================== TARIFS ==================== */
+  .tarifs-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+
+  .tarif-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 2rem 1.5rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    position: relative;
+    transition: all 0.3s var(--ease-smooth);
+  }
+
+  .tarif-card:hover {
+    background: rgba(245,222,126,0.06);
+    border-color: var(--gold);
+  }
+
+  .tarif-featured {
+    background: var(--gold);
+    color: var(--black);
+    border-color: var(--gold);
+  }
+
+  .tarif-featured:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+    transform: translateY(-4px);
+  }
+
+  .tarif-badge {
+    position: absolute;
+    top: -10px;
+    left: 1.5rem;
+    background: var(--black);
+    color: var(--gold);
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 600;
+    padding: 0.3rem 0.75rem;
+  }
+
+  .tarif-type {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.6);
+    font-weight: 500;
+  }
+
+  .tarif-featured .tarif-type {
+    color: rgba(0,0,0,0.6);
+  }
+
+  .tarif-prix {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.1;
+    margin: 0.4rem 0;
+  }
+
+  .tarif-featured .tarif-prix {
+    color: var(--black);
+  }
+
+  .tarif-desc {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.5;
+  }
+
+  .tarif-featured .tarif-desc {
+    color: rgba(0,0,0,0.7);
+  }
+
+  /* ==================== SERVICES LOCALE ==================== */
+  .services-locale-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--border-strong);
+    border-left: 1px solid var(--border-strong);
+  }
+
+  .service-locale-link {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.4rem 2rem;
+    border-right: 1px solid var(--border-strong);
+    border-bottom: 1px solid var(--border-strong);
+    color: var(--black);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s var(--ease-smooth);
+    background: var(--white);
+  }
+
+  .service-locale-link:hover {
+    background: var(--cream);
+  }
+
+  .service-locale-link span:first-child {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--gold-deep);
+  }
+
+  /* ==================== FAQ ==================== */
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--border-strong);
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--border-strong);
+    background: transparent;
+    transition: background 0.3s var(--ease-smooth);
+  }
+
+  .faq-item[open] { background: var(--white); }
+
+  .faq-item summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 1.5rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    font-family: var(--font-display);
+    font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+    font-weight: 500;
+    color: var(--black);
+    transition: padding 0.3s var(--ease-smooth);
+  }
+
+  .faq-item[open] summary { padding: 1.5rem; }
+  .faq-item summary::-webkit-details-marker { display: none; }
+
+  .faq-icon {
+    position: relative;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  .faq-icon::before, .faq-icon::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--black);
+    transition: transform 0.3s var(--ease-smooth);
+  }
+
+  .faq-icon::after { transform: rotate(90deg); }
+  .faq-item[open] .faq-icon::after { transform: rotate(0deg); }
+
+  .faq-answer { padding: 0 0 1.5rem; }
+  .faq-item[open] .faq-answer { padding: 0 1.5rem 1.5rem; }
+  .faq-answer p { color: var(--gray-700, #404040); line-height: 1.7; }
+
+  /* ==================== VOISINES ==================== */
+  .voisines-section { background: var(--white); }
+
+  .voisines-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 0;
+    border-top: 1px solid var(--border-strong);
+    border-left: 1px solid var(--border-strong);
+  }
+
+  .voisine-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding: 2rem;
+    border-right: 1px solid var(--border-strong);
+    border-bottom: 1px solid var(--border-strong);
+    text-decoration: none;
+    color: var(--black);
+    background: var(--off-white);
+    transition: background 0.3s var(--ease-smooth);
+    position: relative;
+  }
+
+  .voisine-card:hover {
+    background: var(--black);
+    color: var(--white);
+  }
+
+  .voisine-card:hover .voisine-arrow {
+    color: var(--gold);
+    transform: translateX(8px);
+  }
+
+  .voisine-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--gray-500);
+  }
+
+  .voisine-card:hover .voisine-label { color: rgba(255,255,255,0.6); }
+
+  .voisine-nom {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .voisine-arrow {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    color: var(--gray-400);
+    font-size: 1.25rem;
+    transition: all 0.3s var(--ease-smooth);
+  }
+
+  .voisines-footer {
+    margin-top: 3rem;
+    text-align: center;
+  }
+
+  /* ==================== ARTICLES VILLE ==================== */
+  .ville-articles {
+    background: var(--off-white);
+    border-top: 1px solid var(--border);
+  }
+
+  .ville-articles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .ville-article-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--white);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s var(--ease-smooth);
+    border: 1px solid var(--border);
+  }
+  .ville-article-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--gold-deep);
+  }
+  .ville-article-card:hover .article-thumb img {
+    transform: scale(1.04);
+  }
+
+  .article-thumb {
+    overflow: hidden;
+    aspect-ratio: 1200 / 630;
+  }
+  .article-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s var(--ease-smooth);
+  }
+
+  .article-info {
+    padding: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    flex: 1;
+  }
+
+  .article-cat {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--gold-deep);
+    font-weight: 600;
+  }
+
+  .article-info h3 {
+    font-size: 1.05rem;
+    line-height: 1.35;
+    font-weight: 500;
+    color: var(--black);
+  }
+
+  .article-info p {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--gray-600);
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .article-link {
+    font-size: 0.82rem;
+    color: var(--black);
+    font-weight: 600;
+    margin-top: auto;
+    border-bottom: 1px solid var(--gold-deep);
+    align-self: flex-start;
+    padding-bottom: 0.15rem;
+  }
+
+  .ville-articles-footer {
+    margin-top: 3rem;
+    text-align: center;
+  }
+
+  /* ==================== CTA FINAL ==================== */
+  .cta-final { text-align: center; }
+  .cta-final h2 em { font-style: italic; color: var(--gold); }
+  .cta-final .lead { color: rgba(255,255,255,0.75); max-width: 640px; margin: 1.5rem auto 2.5rem; }
+  .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+  /* ==================== RESPONSIVE ==================== */
+  @media (max-width: 968px) {
+    .intro-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .pourquoi-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .tarifs-grid { grid-template-columns: 1fr 1fr; }
+    .services-locale-grid { grid-template-columns: 1fr; }
+    .hero-meta-item:not(:last-child) { border-right: none; padding-right: 0; margin-right: 0; }
+    .ville-articles-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    .tarifs-grid { grid-template-columns: 1fr; }
+    .quartiers-grid { grid-template-columns: 1fr; }
+    .voisines-grid { grid-template-columns: 1fr; }
+  }
+</style>

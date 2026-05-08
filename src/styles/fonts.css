@@ -1,0 +1,17 @@
+/* ============================================================
+   FONTS, Self-hébergées (RGPD compliant, pas de requête à Google)
+   Poids importés selon usage réel dans le design system.
+   ============================================================ */
+
+/* Inter, texte courant, UI, boutons (400/500/600) */
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+
+/* Playfair Display, titres, accents éditoriaux (400/500/600/700 + italique 400/500) */
+@import '@fontsource/playfair-display/400.css';
+@import '@fontsource/playfair-display/500.css';
+@import '@fontsource/playfair-display/600.css';
+@import '@fontsource/playfair-display/700.css';
+@import '@fontsource/playfair-display/400-italic.css';
+@import '@fontsource/playfair-display/500-italic.css';

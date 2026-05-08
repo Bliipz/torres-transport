@@ -1,0 +1,641 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getAllCities } from '../data/cities.js';
+
+const SITE_URL = 'https://torrestransport.fr';
+const cities = getAllCities();
+const sortedCities = [...cities].sort((a: any, b: any) => a.distanceKm - b.distanceKm);
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Accueil', item: SITE_URL },
+    { '@type': 'ListItem', position: 2, name: "Zones d'intervention", item: `${SITE_URL}/zones-intervention` },
+  ],
+};
+
+const itemListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: "Zones d'intervention Torres Transport",
+  itemListElement: cities.map((city: any, idx: number) => ({
+    '@type': 'ListItem',
+    position: idx + 1,
+    name: `Déménagement à ${city.nom}`,
+    url: `${SITE_URL}/demenagement-${city.slug}`,
+  })),
+};
+---
+
+<BaseLayout
+  title="Zones d'intervention, Toute la Haute-Savoie | Torres Transport"
+  description="Torres Transport intervient dans toute la Haute-Savoie : Annemasse, Ville-la-Grand, Gaillard, Saint-Julien, Thonon, Évian, Annecy, Bonneville et Genève. Service de déménagement local et frontalier."
+  keywords="zones d'intervention déménageur, déménagement Haute-Savoie, communes desservies Annemasse, déménageur Annecy Thonon Évian Genève, transport meubles 74"
+  ogImage="/services-banner.webp"
+  structuredData={[breadcrumbSchema, itemListSchema]}
+>
+  <!-- ==================== HERO ÉDITORIAL ==================== -->
+  <section class="zones-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Fil d'Ariane">
+        <a href="/">Accueil</a><span>/</span><span>Zones d'intervention</span>
+      </nav>
+      <span class="eyebrow gold">Couverture géographique</span>
+      <h1>Toute la Haute-Savoie<br /><em>et la Suisse romande.</em></h1>
+      <p class="lead">
+        Basée à Ville-la-Grand, notre équipe intervient quotidiennement dans le bassin
+        annemassien et au-delà. Du Genevois français aux rives du Léman, en passant par la
+        vallée de l'Arve.
+      </p>
+      <div class="zones-stats">
+        <div class="zone-stat">
+          <span class="stat-num">{cities.length}</span>
+          <span class="stat-label">villes desservies</span>
+        </div>
+        <div class="zone-stat">
+          <span class="stat-num">200K+</span>
+          <span class="stat-label">habitants couverts</span>
+        </div>
+        <div class="zone-stat">
+          <span class="stat-num">24h</span>
+          <span class="stat-label">délai d'intervention</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CARTE INTERACTIVE ==================== -->
+  <section class="section map-section">
+    <div class="container">
+      <header class="section-header text-center">
+        <span class="eyebrow gold">Notre rayon</span>
+        <h2>Visualiser nos zones<br /><em>sur la carte.</em></h2>
+      </header>
+      <div class="map-wrapper">
+        <div id="zones-map" aria-label="Carte des zones d'intervention Torres Transport"></div>
+      </div>
+      <p class="map-note">
+        Notre base à <strong>Ville-la-Grand</strong> est indiquée par le marqueur doré.
+        Cliquez sur les marqueurs pour découvrir chaque ville.
+      </p>
+    </div>
+  </section>
+
+  <!-- ==================== LISTE VILLES ==================== -->
+  <section class="section bg-cream cities-section">
+    <div class="container">
+      <header class="section-header">
+        <span class="eyebrow gold">Toutes les communes</span>
+        <h2>Neuf villes,<br /><em>une seule équipe.</em></h2>
+      </header>
+
+      <div class="cities-grid">
+        {sortedCities.map((city: any, idx: number) => (
+          <a href={`/demenagement-${city.slug}`} class="city-card">
+            <div class="city-card-num">{String(idx + 1).padStart(2, '0')}</div>
+            <div class="city-card-content">
+              <div class="city-card-header">
+                <h3>{city.nom}</h3>
+                <span class="city-cp">{city.codePostal}</span>
+              </div>
+              <p class="city-tagline">
+                {city.metaDescription.split('.')[0]}.
+              </p>
+              <div class="city-meta">
+                <span>{city.distanceKm === 0 ? 'Sur place' : `${city.distanceKm} km`}</span>
+                <span class="dot">·</span>
+                <span>{city.population}</span>
+              </div>
+              <span class="city-cta">Voir nos services <span class="arrow">→</span></span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== AILLEURS ==================== -->
+  <section class="section bg-black ailleurs-section">
+    <div class="container">
+      <div class="ailleurs-grid">
+        <div class="ailleurs-text">
+          <span class="eyebrow">Au-delà de la liste</span>
+          <h2>Nous intervenons aussi<br /><em>partout en France et en Suisse.</em></h2>
+          <p class="lead">
+            Notre zone principale couvre la Haute-Savoie et la Suisse romande frontalière.
+            Pour les missions plus lointaines, nous établissons un devis personnalisé.
+          </p>
+          <a href="/contact" class="btn btn-gold btn-large btn-with-arrow">Demander un devis</a>
+        </div>
+        <ul class="ailleurs-list">
+          <li>
+            <span class="ailleurs-icon">→</span>
+            Toute la <strong>Haute-Savoie</strong>&nbsp;: Sallanches, Cluses, Megève, Chamonix, La Roche-sur-Foron…
+          </li>
+          <li>
+            <span class="ailleurs-icon">→</span>
+            Toute la <strong>Suisse romande</strong>&nbsp;: Genève, Lausanne, Nyon, Morges, Vevey, Montreux…
+          </li>
+          <li>
+            <span class="ailleurs-icon">→</span>
+            Toute la <strong>France</strong>&nbsp;: Paris, Lyon, Marseille, Bordeaux, Toulouse…
+          </li>
+          <li>
+            <span class="ailleurs-icon">→</span>
+            Pays voisins&nbsp;: <strong>Italie</strong>, <strong>Allemagne</strong>, <strong>Espagne</strong>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SERVICES ==================== -->
+  <section class="section services-recap">
+    <div class="container">
+      <header class="section-header text-center">
+        <span class="eyebrow gold">Au-delà du déménagement</span>
+        <h2>Nos sept services<br /><em>dans toutes ces villes.</em></h2>
+      </header>
+
+      <div class="services-recap-grid">
+        <a href="/services/demenagement" class="service-pill"><span>01</span>Déménagement</a>
+        <a href="/services/transport" class="service-pill"><span>02</span>Transport</a>
+        <a href="/services/montage-meubles" class="service-pill"><span>03</span>Montage de meubles</a>
+        <a href="/services/location-vehicule" class="service-pill"><span>04</span>Location utilitaire</a>
+        <a href="/services/manutention" class="service-pill"><span>05</span>Manutention</a>
+        <a href="/services/nettoyage" class="service-pill"><span>06</span>Nettoyage</a>
+        <a href="/services/debarras" class="service-pill"><span>07</span>Débarras</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEAFLET CSS -->
+  <link
+    slot="head"
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  />
+
+  <script
+    is:inline
+    type="application/json"
+    id="cities-data"
+    set:html={JSON.stringify(
+      cities.map((c: any) => ({
+        slug: c.slug,
+        nom: c.nom,
+        codePostal: c.codePostal,
+        lat: c.geo.lat,
+        lng: c.geo.lng,
+        distance: c.distanceKm,
+      }))
+    )}
+  />
+
+  <script>
+    function initMap() {
+      const mapEl = document.getElementById('zones-map');
+      const dataEl = document.getElementById('cities-data');
+      if (!mapEl || !dataEl || mapEl.dataset.initialized) return;
+      mapEl.dataset.initialized = 'true';
+
+      const cities = JSON.parse(dataEl.textContent || '[]');
+
+      // @ts-ignore
+      import('leaflet').then((L) => {
+        const map = L.map('zones-map', { scrollWheelZoom: false }).setView([46.2, 6.3], 9);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          maxZoom: 18,
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        }).addTo(map);
+
+        const baseIcon = L.divIcon({
+          className: 'custom-marker base-marker',
+          html: '<div class="marker-pin base-pin"></div>',
+          iconSize: [44, 44],
+          iconAnchor: [22, 44],
+          popupAnchor: [0, -40],
+        });
+
+        const cityIcon = L.divIcon({
+          className: 'custom-marker city-marker',
+          html: '<div class="marker-pin city-pin"></div>',
+          iconSize: [38, 38],
+          iconAnchor: [19, 38],
+          popupAnchor: [0, -34],
+        });
+
+        cities.forEach((city: { slug: string; nom: string; codePostal: string; lat: number; lng: number; distance: number }) => {
+          const isBase = city.slug === 'ville-la-grand';
+          const marker = L.marker([city.lat, city.lng], {
+            icon: isBase ? baseIcon : cityIcon,
+            title: `Déménagement à ${city.nom}`,
+          }).addTo(map);
+
+          const popupHtml = `
+            <div class="map-popup">
+              <strong>${city.nom}</strong>
+              <span class="popup-cp">${city.codePostal}</span>
+              ${isBase ? '<div class="popup-badge">Notre siège</div>' : ''}
+              <div class="popup-distance">${city.distance === 0 ? 'Sur place' : `À ${city.distance} km`}</div>
+              <a href="/demenagement-${city.slug}" class="popup-link">Voir nos services</a>
+            </div>
+          `;
+          marker.bindPopup(popupHtml);
+        });
+
+        mapEl.addEventListener('click', () => map.scrollWheelZoom.enable());
+        mapEl.addEventListener('mouseleave', () => map.scrollWheelZoom.disable());
+      });
+    }
+
+    const mapEl = document.getElementById('zones-map');
+    if (mapEl && 'IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            initMap();
+            observer.disconnect();
+          }
+        });
+      }, { rootMargin: '200px' });
+      observer.observe(mapEl);
+    } else {
+      initMap();
+    }
+  </script>
+</BaseLayout>
+
+<style>
+  /* ==================== HERO ==================== */
+  .zones-hero {
+    background: var(--off-white);
+    padding: clamp(5rem, 10vw, 8rem) 0 clamp(4rem, 6vw, 5rem);
+    border-bottom: 1px solid var(--border);
+    margin-top: -76px;
+    padding-top: 9rem;
+  }
+
+  .breadcrumb {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--gray-500);
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .breadcrumb a { color: var(--gray-700, #404040); text-decoration: none; }
+  .breadcrumb > span:not(:last-child) { opacity: 0.4; }
+
+  .zones-hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    margin: 0.75rem 0 1.5rem;
+    max-width: 920px;
+  }
+
+  .zones-hero h1 em { font-style: italic; color: var(--gold-deep); }
+  .zones-hero .lead { max-width: 720px; margin-bottom: 3rem; }
+
+  .zones-stats {
+    display: flex;
+    gap: 0;
+    border-top: 1px solid var(--border-strong);
+    padding-top: 2rem;
+  }
+
+  .zone-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    flex: 1;
+  }
+
+  .zone-stat:not(:last-child) {
+    border-right: 1px solid var(--border);
+    padding-right: 2rem;
+    margin-right: 2rem;
+  }
+
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 600;
+    color: var(--black);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .stat-label {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--gray-500);
+  }
+
+  /* ==================== CARTE ==================== */
+  .map-section { background: var(--white); }
+
+  .map-wrapper {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--border-strong);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  #zones-map {
+    width: 100%;
+    height: 520px;
+    background: var(--off-white);
+  }
+
+  .map-note {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: var(--gray-600);
+  }
+
+  :global(.custom-marker) { background: transparent !important; border: none !important; }
+
+  :global(.marker-pin) {
+    width: 38px;
+    height: 38px;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    border: 2px solid white;
+    position: relative;
+  }
+
+  :global(.marker-pin)::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+  }
+
+  :global(.city-pin) { background: #1a1a1a; }
+  :global(.base-pin) {
+    width: 44px;
+    height: 44px;
+    background: #f5de7e;
+    border: 3px solid #1a1a1a;
+    z-index: 1000;
+  }
+  :global(.base-pin)::after { background: #1a1a1a; }
+
+  :global(.leaflet-popup-content-wrapper) {
+    border-radius: 0;
+    padding: 4px;
+  }
+
+  :global(.leaflet-popup-content) { margin: 14px 18px !important; line-height: 1.4 !important; }
+
+  :global(.map-popup strong) {
+    display: block;
+    color: #1a1a1a;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    margin-bottom: 4px;
+  }
+
+  :global(.popup-cp) {
+    display: inline-block;
+    color: #6b6b6b;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+  }
+
+  :global(.popup-badge) {
+    background: #1a1a1a;
+    color: #f5de7e;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-weight: 600;
+    padding: 4px 10px;
+    display: inline-block;
+    margin: 4px 0;
+  }
+
+  :global(.popup-distance) { font-size: 0.82rem; color: #525252; margin: 6px 0 12px; }
+
+  :global(.popup-link) {
+    display: inline-block;
+    background: #1a1a1a;
+    color: #fff !important;
+    padding: 9px 14px;
+    text-decoration: none !important;
+    font-weight: 600;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    transition: background 0.2s;
+  }
+
+  :global(.popup-link:hover) { background: #c9a230; color: #1a1a1a !important; }
+
+  /* ==================== CITIES GRID ==================== */
+  .cities-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--border-strong);
+    border-left: 1px solid var(--border-strong);
+  }
+
+  .city-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding: 2rem;
+    border-right: 1px solid var(--border-strong);
+    border-bottom: 1px solid var(--border-strong);
+    background: var(--white);
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.3s var(--ease-smooth);
+    position: relative;
+    min-height: 220px;
+  }
+
+  .city-card:hover {
+    background: var(--cream);
+  }
+
+  .city-card-num {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--gold-deep);
+    flex-shrink: 0;
+    line-height: 1;
+    padding-top: 0.5rem;
+  }
+
+  .city-card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .city-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+  }
+
+  .city-card h3 {
+    font-size: 1.5rem;
+    margin: 0;
+  }
+
+  .city-cp {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gray-500);
+  }
+
+  .city-tagline {
+    font-size: 0.9rem;
+    line-height: 1.55;
+    color: var(--gray-700, #404040);
+    margin: 0;
+  }
+
+  .city-meta {
+    display: flex;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--gray-500);
+    margin-top: auto;
+    padding-top: 0.5rem;
+  }
+
+  .dot { color: var(--gray-300); }
+
+  .city-cta {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--black);
+    margin-top: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .city-cta .arrow { transition: transform 0.3s var(--ease-smooth); display: inline-block; }
+  .city-card:hover .city-cta .arrow { transform: translateX(6px); }
+
+  /* ==================== AILLEURS ==================== */
+  .ailleurs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: center;
+  }
+
+  .ailleurs-text h2 { color: var(--white); margin: 1rem 0 1.5rem; }
+  .ailleurs-text h2 em { font-style: italic; color: var(--gold); }
+  .ailleurs-text .lead { color: rgba(255,255,255,0.75); margin-bottom: 2rem; }
+
+  .ailleurs-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid rgba(255,255,255,0.15);
+  }
+
+  .ailleurs-list li {
+    padding: 1.25rem 0 1.25rem 2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.85);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    position: relative;
+  }
+
+  .ailleurs-icon {
+    position: absolute;
+    left: 0;
+    top: 1.4rem;
+    color: var(--gold);
+    font-weight: 600;
+  }
+
+  .ailleurs-list li strong { color: var(--white); }
+
+  /* ==================== SERVICES RECAP ==================== */
+  .services-recap { background: var(--off-white); }
+
+  .services-recap-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0;
+    border-top: 1px solid var(--border-strong);
+    border-left: 1px solid var(--border-strong);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .service-pill {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.4rem 1.75rem;
+    border-right: 1px solid var(--border-strong);
+    border-bottom: 1px solid var(--border-strong);
+    color: var(--black);
+    text-decoration: none;
+    font-weight: 500;
+    background: var(--white);
+    transition: all 0.3s var(--ease-smooth);
+  }
+
+  .service-pill:hover {
+    background: var(--black);
+    color: var(--white);
+  }
+
+  .service-pill > span:first-child {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    color: var(--gold-deep);
+  }
+
+  .service-pill:hover > span:first-child { color: var(--gold); }
+
+  /* ==================== RESPONSIVE ==================== */
+  @media (max-width: 968px) {
+    .cities-grid { grid-template-columns: 1fr 1fr; }
+    .ailleurs-grid { grid-template-columns: 1fr; }
+    .zones-stats { flex-direction: column; align-items: stretch; gap: 1rem; }
+    .zone-stat:not(:last-child) {
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+      padding: 0 0 1rem 0;
+      margin: 0 0 0.5rem 0;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .cities-grid { grid-template-columns: 1fr; }
+  }
+</style>

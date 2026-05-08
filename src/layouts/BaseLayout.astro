@@ -1,26 +1,697 @@
 ---
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import '../styles/global.css';
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
 
-const { titre } = Astro.props;
+// ==================== SEO PROPS ====================
+const SITE_URL = "https://torrestransport.fr";
+const DEFAULT_DESCRIPTION =
+  "Torres Transport, Déménagement, transport, montage de meubles, manutention, débarras et nettoyage à Annemasse, Ville-la-Grand et toute la Haute-Savoie. 20 ans d'expérience. Devis gratuit.";
+const DEFAULT_OG_IMAGE = "/banner-demenagement.webp";
+
+const {
+  titre,
+  title,
+  description = DEFAULT_DESCRIPTION,
+  keywords = "déménagement Annemasse, déménageur Haute-Savoie, transport meubles 74, montage meuble, débarras, Torres Transport",
+  canonical,
+  ogImage = DEFAULT_OG_IMAGE,
+  ogType = "website",
+  noindex = false,
+  structuredData,
+  preloadImage,
+} = Astro.props;
+
+const pageTitle = title || titre;
+const fullTitle = pageTitle?.includes("Torres Transport")
+  ? pageTitle
+  : `${pageTitle}, Torres Transport`;
+
+const canonicalURL = canonical || new URL(Astro.url.pathname, SITE_URL).href;
+const ogImageURL = ogImage?.startsWith("http")
+  ? ogImage
+  : new URL(ogImage, SITE_URL).href;
+
+// Schema LocalBusiness global
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "MovingCompany",
+  "@id": `${SITE_URL}/#business`,
+  name: "Torres Transport",
+  legalName: "Torres Transport",
+  alternateName: "Torres Transport Annemasse",
+  description:
+    "Entreprise de déménagement, transport et montage de meubles à Annemasse, Ville-la-Grand et toute la Haute-Savoie. 20 ans d'expérience. Tarif unique 47,50 €/m³ tout compris.",
+  url: SITE_URL,
+  telephone: "+33659926814",
+  email: "contact@torrestransport.fr",
+  image: [`${SITE_URL}/logo.png`, `${SITE_URL}/banner-demenagement.webp`],
+  logo: `${SITE_URL}/logo.png`,
+  priceRange: "€€",
+  currenciesAccepted: "EUR",
+  paymentAccepted: "Espèces, Virement bancaire, Chèque",
+  foundingDate: "2024",
+  founder: {
+    "@type": "Person",
+    name: "Ludovic Torres",
+    jobTitle: "Fondateur",
+    worksFor: { "@id": `${SITE_URL}/#business` },
+  },
+  taxID: "528 686 330 00051",
+  vatID: "FR71528686330",
+  iso6523Code: "0009:528686330",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "8 rue Fernand David",
+    addressLocality: "Ville-la-Grand",
+    postalCode: "74100",
+    addressRegion: "Haute-Savoie",
+    addressCountry: "FR",
+  },
+  geo: { "@type": "GeoCoordinates", latitude: 46.1965, longitude: 6.2542 },
+  areaServed: [
+    { "@type": "City", name: "Annemasse" },
+    { "@type": "City", name: "Ville-la-Grand" },
+    { "@type": "City", name: "Gaillard" },
+    { "@type": "City", name: "Saint-Julien-en-Genevois" },
+    { "@type": "City", name: "Bonneville" },
+    { "@type": "City", name: "Thonon-les-Bains" },
+    { "@type": "City", name: "Évian-les-Bains" },
+    { "@type": "City", name: "Annecy" },
+    { "@type": "City", name: "Genève" },
+    { "@type": "AdministrativeArea", name: "Haute-Savoie" },
+    { "@type": "AdministrativeArea", name: "Pays de Gex" },
+  ],
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      opens: "08:00",
+      closes: "19:00",
+    },
+  ],
+  sameAs: [
+    "https://www.facebook.com/profile.php?id=61555592171592",
+  ],
+  knowsAbout: [
+    "Déménagement résidentiel",
+    "Déménagement professionnel",
+    "Transport transfrontalier France-Suisse",
+    "Montage de meubles",
+    "Manutention",
+    "Débarras",
+    "Nettoyage de fin de chantier",
+  ],
+  slogan: "Une équipe locale. Un savoir-faire qui se transmet.",
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Services Torres Transport",
+    itemListElement: [
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Déménagement" },
+        price: "47.50",
+        priceCurrency: "EUR",
+        priceSpecification: {
+          "@type": "UnitPriceSpecification",
+          price: "47.50",
+          priceCurrency: "EUR",
+          unitText: "m³",
+        },
+      },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Transport de marchandises" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Montage de meubles" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Location utilitaire avec chauffeur" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Manutention" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Nettoyage fin de chantier" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Débarras" } },
+    ],
+  },
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "customer service",
+    telephone: "+33659926814",
+    email: "contact@torrestransport.fr",
+    areaServed: "FR",
+    availableLanguage: ["French"],
+  },
+};
+
+const extraSchemas = structuredData
+  ? Array.isArray(structuredData) ? structuredData : [structuredData]
+  : [];
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Torres Transport - Déménagement et transport à Annemasse">
-  <title>{titre} - Torres Transport</title>
-</head>
-<body>
-  <Header />
-  
-  <main>
-    <slot />
-  </main>
-  
-  <Footer />
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO META -->
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <link rel="canonical" href={canonicalURL} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <meta name="author" content="Torres Transport" />
+    <meta name="geo.region" content="FR-74" />
+    <meta name="geo.placename" content="Ville-la-Grand, Annemasse, Haute-Savoie" />
+    <meta name="geo.position" content="46.1965;6.2542" />
+    <meta name="ICBM" content="46.1965, 6.2542" />
+
+    <!-- OPEN GRAPH -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content="Torres Transport" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:alt" content={`${pageTitle} - Torres Transport`} />
+
+    <!-- TWITTER CARD -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+
+    <!-- FAVICONS -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#0a0a0a" />
+
+    <!-- PRELOAD IMAGE (LCP) -->
+    {preloadImage && <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />}
+
+    <!-- Fonts self-hébergées (RGPD compliant), chargées via global.css → fonts.css -->
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- SCHEMA.ORG -->
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+    {extraSchemas.map((schema) => (
+      <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+    ))}
+
+    <slot name="head" />
+
+    <style>
+      /* ==================== NAVBAR ==================== */
+      .nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+        transition: all 0.3s var(--ease-smooth);
+      }
+
+      .nav-inner {
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 1.1rem clamp(1rem, 4vw, 2.5rem);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+      }
+
+      .nav-logo {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        flex-shrink: 0;
+      }
+
+      .nav-logo img {
+        height: 48px;
+        width: auto;
+        display: block;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 2.25rem;
+      }
+
+      .nav-link {
+        font-size: 0.88rem;
+        font-weight: 500;
+        color: var(--gray-800);
+        text-decoration: none;
+        letter-spacing: 0.01em;
+        position: relative;
+        padding: 0.25rem 0;
+        transition: color 0.2s var(--ease-subtle);
+      }
+
+      .nav-link::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -2px;
+        width: 100%;
+        height: 1px;
+        background: var(--gold-deep);
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 0.4s var(--ease-smooth);
+      }
+
+      .nav-link:hover {
+        color: var(--black);
+      }
+
+      .nav-link:hover::after {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .nav-phone {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: var(--black);
+        text-decoration: none;
+        padding: 0.45rem 0;
+        border-bottom: 1px solid transparent;
+        transition: border-color 0.2s var(--ease-subtle);
+      }
+
+      .nav-phone:hover {
+        border-color: var(--gold-deep);
+      }
+
+      .nav-phone-icon {
+        width: 16px;
+        height: 16px;
+        opacity: 0.7;
+      }
+
+      .nav-cta {
+        background: var(--black);
+        color: var(--white);
+        padding: 0.7rem 1.25rem;
+        font-size: 0.82rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        text-decoration: none;
+        transition: all 0.25s var(--ease-smooth);
+        white-space: nowrap;
+      }
+
+      .nav-cta:hover {
+        background: var(--gold);
+        color: var(--black);
+      }
+
+      /* Burger button */
+      .nav-burger {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        width: 40px;
+        height: 40px;
+        background: transparent;
+        cursor: pointer;
+        z-index: 101;
+      }
+
+      .nav-burger span {
+        display: block;
+        width: 22px;
+        height: 1.5px;
+        background: var(--black);
+        transition: all 0.3s var(--ease-smooth);
+      }
+
+      .nav-burger.is-open span:nth-child(1) {
+        transform: translateY(6.5px) rotate(45deg);
+      }
+      .nav-burger.is-open span:nth-child(2) {
+        opacity: 0;
+      }
+      .nav-burger.is-open span:nth-child(3) {
+        transform: translateY(-6.5px) rotate(-45deg);
+      }
+
+      /* ==================== MOBILE MENU ==================== */
+      .mobile-menu {
+        position: fixed;
+        inset: 0;
+        background: var(--black);
+        z-index: 99;
+        transform: translateX(100%);
+        transition: transform 0.5s var(--ease-smooth);
+        padding-top: 80px;
+        overflow-y: auto;
+      }
+
+      .mobile-menu.is-open {
+        transform: translateX(0);
+      }
+
+      .mobile-menu-inner {
+        padding: 2rem clamp(1.5rem, 5vw, 3rem);
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+
+      .mobile-menu .nav-link {
+        color: var(--white);
+        font-family: var(--font-display);
+        font-size: 2rem;
+        font-weight: 500;
+        padding: 1rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        letter-spacing: -0.01em;
+      }
+
+      .mobile-menu .nav-link::after {
+        background: var(--gold);
+      }
+
+      .mobile-menu-actions {
+        margin-top: auto;
+        padding-top: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.85rem;
+      }
+
+      .mobile-menu-phone {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.6rem;
+        padding: 1.1rem;
+        background: var(--gold);
+        color: var(--black);
+        font-weight: 600;
+        font-size: 1rem;
+        text-decoration: none;
+        letter-spacing: 0.02em;
+      }
+
+      .mobile-menu-cta {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 1.1rem;
+        background: transparent;
+        color: var(--white);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        font-weight: 600;
+        font-size: 1rem;
+        text-decoration: none;
+        letter-spacing: 0.02em;
+      }
+
+      /* ==================== STICKY CTA MOBILE ==================== */
+      .sticky-bar {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 90;
+        background: var(--white);
+        border-top: 1px solid var(--border);
+        padding: 0.6rem 0.5rem;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 0.4rem;
+        box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.06);
+      }
+
+      .sticky-action {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.25rem;
+        padding: 0.55rem 0.3rem;
+        text-decoration: none;
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        transition: opacity 0.2s;
+      }
+
+      .sticky-action svg {
+        width: 22px;
+        height: 22px;
+      }
+
+      .sticky-action.call {
+        background: var(--black);
+        color: var(--white);
+      }
+
+      .sticky-action.whatsapp {
+        background: #0d6e63;
+        color: var(--white);
+      }
+
+      .sticky-action.quote {
+        background: var(--gold);
+        color: var(--black);
+      }
+
+      .sticky-action:active {
+        opacity: 0.8;
+      }
+
+      /* ==================== WHATSAPP FLOATING (DESKTOP) ==================== */
+      .whatsapp-float {
+        position: fixed;
+        bottom: 28px;
+        right: 28px;
+        width: 56px;
+        height: 56px;
+        background: #25d366;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 8px 24px rgba(37, 211, 102, 0.35);
+        z-index: 95;
+        transition: all 0.3s var(--ease-smooth);
+      }
+
+      .whatsapp-float:hover {
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 12px 32px rgba(37, 211, 102, 0.5);
+      }
+
+      .whatsapp-float svg {
+        width: 30px;
+        height: 30px;
+      }
+
+      /* ==================== RESPONSIVE ==================== */
+      @media (max-width: 1024px) {
+        .nav-links {
+          display: none;
+        }
+        .nav-burger {
+          display: flex;
+        }
+        .nav-actions .nav-phone {
+          display: none;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .nav-actions .nav-cta {
+          display: none;
+        }
+        .nav-logo img {
+          height: 42px;
+        }
+        .sticky-bar {
+          display: grid;
+        }
+        .whatsapp-float {
+          display: none;
+        }
+        body {
+          padding-bottom: 70px;
+        }
+      }
+
+      /* main padding pour la navbar fixe */
+      main {
+        padding-top: 76px;
+      }
+
+      /* Skip-link a11y (WCAG 2.4.1), visible au focus clavier uniquement */
+      .skip-link {
+        position: absolute;
+        top: -100px;
+        left: 1rem;
+        background: var(--black);
+        color: var(--white);
+        padding: 0.85rem 1.25rem;
+        font-weight: 600;
+        font-size: 0.9rem;
+        text-decoration: none;
+        z-index: 1000;
+        transition: top 0.15s ease;
+      }
+      .skip-link:focus {
+        top: 1rem;
+        outline: 2px solid var(--gold);
+        outline-offset: 2px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Skip-link accessibilité -->
+    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+
+    <!-- ==================== NAVBAR ==================== -->
+    <nav class="nav" aria-label="Navigation principale">
+      <div class="nav-inner">
+        <a href="/" class="nav-logo" aria-label="Torres Transport, Accueil">
+          <img src="/logo.png" alt="Torres Transport" width="48" height="48" fetchpriority="high" />
+        </a>
+
+        <div class="nav-links">
+          <a href="/" class="nav-link">Accueil</a>
+          <a href="/a-propos" class="nav-link">À propos</a>
+          <a href="/services" class="nav-link">Services</a>
+          <a href="/zones-intervention" class="nav-link">Zones</a>
+          <a href="/estimation" class="nav-link">Estimer</a>
+          <a href="/blog" class="nav-link">Journal</a>
+          <a href="/contact" class="nav-link">Contact</a>
+        </div>
+
+        <div class="nav-actions">
+          <a href="tel:+33659926814" class="nav-phone" aria-label="Appeler Torres Transport">
+            <svg class="nav-phone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13 1.05.37 2.07.7 3.05a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.98.33 2 .57 3.05.7a2 2 0 0 1 1.72 2.04z"/>
+            </svg>
+            06 59 92 68 14
+          </a>
+          <a href="/contact" class="nav-cta">Devis gratuit</a>
+          <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ==================== MENU MOBILE ==================== -->
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+      <div class="mobile-menu-inner">
+        <a href="/" class="nav-link">Accueil</a>
+        <a href="/a-propos" class="nav-link">À propos</a>
+        <a href="/services" class="nav-link">Services</a>
+        <a href="/zones-intervention" class="nav-link">Zones</a>
+        <a href="/estimation" class="nav-link">Estimer en ligne</a>
+        <a href="/temoignages" class="nav-link">Témoignages</a>
+        <a href="/faq" class="nav-link">FAQ</a>
+        <a href="/blog" class="nav-link">Journal</a>
+        <a href="/contact" class="nav-link">Contact</a>
+
+        <div class="mobile-menu-actions">
+          <a href="tel:+33659926814" class="mobile-menu-phone">06 59 92 68 14</a>
+          <a href="/contact" class="mobile-menu-cta">Demander un devis</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== STICKY BOTTOM BAR (mobile) ==================== -->
+    <div class="sticky-bar" aria-label="Actions rapides">
+      <a href="tel:+33659926814" class="sticky-action call" aria-label="Appeler">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13 1.05.37 2.07.7 3.05a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.98.33 2 .57 3.05.7a2 2 0 0 1 1.72 2.04z"/></svg>
+        Appeler
+      </a>
+      <a href="https://wa.me/33659926814" target="_blank" rel="noopener" class="sticky-action whatsapp" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+        WhatsApp
+      </a>
+      <a href="/contact" class="sticky-action quote" aria-label="Devis">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        Devis
+      </a>
+    </div>
+
+    <!-- ==================== WHATSAPP FLOAT (desktop) ==================== -->
+    <a
+      href="https://wa.me/33659926814?text=Bonjour%2C%20je%20souhaite%20un%20devis%20pour..."
+      target="_blank"
+      rel="noopener"
+      class="whatsapp-float"
+      aria-label="Contacter sur WhatsApp"
+    >
+      <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+    </a>
+
+    <main id="main-content">
+      <slot />
+    </main>
+
+    <Footer />
+
+    <script is:inline>
+      (function () {
+        const burger = document.getElementById('navBurger');
+        const menu = document.getElementById('mobileMenu');
+        if (!burger || !menu) return;
+
+        function toggleMenu(open) {
+          burger.classList.toggle('is-open', open);
+          burger.setAttribute('aria-expanded', String(open));
+          menu.classList.toggle('is-open', open);
+          menu.setAttribute('aria-hidden', String(!open));
+          document.body.style.overflow = open ? 'hidden' : '';
+        }
+
+        burger.addEventListener('click', () => {
+          const isOpen = menu.classList.contains('is-open');
+          toggleMenu(!isOpen);
+        });
+
+        // Fermer au clic sur un lien
+        menu.querySelectorAll('a').forEach((link) => {
+          link.addEventListener('click', () => toggleMenu(false));
+        });
+
+        // Échap pour fermer
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && menu.classList.contains('is-open')) {
+            toggleMenu(false);
+          }
+        });
+
+        // Resize : ferme le menu si on revient en desktop
+        window.addEventListener('resize', () => {
+          if (window.innerWidth > 1024 && menu.classList.contains('is-open')) {
+            toggleMenu(false);
+          }
+        });
+      })();
+    </script>
+  </body>
 </html>

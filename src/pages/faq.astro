@@ -1,0 +1,478 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const SITE_URL = 'https://torrestransport.fr';
+
+const categories = [
+  {
+    id: 'tarifs',
+    titre: 'Tarifs et devis',
+    icon: '01',
+    questions: [
+      {
+        q: "Combien coûte un déménagement chez Torres Transport ?",
+        r: `Notre tarif unique est de <strong>47,50 € / m³ tout compris</strong> pour un déménagement complet (camion, manutention, protection du mobilier, sanglage). Pour un T2 (≈ 25 m³), comptez environ 1 187 €. Vous pouvez obtenir une estimation immédiate via notre <a href="/estimation">simulateur en ligne</a>.`,
+      },
+      {
+        q: "Le devis est-il vraiment gratuit ?",
+        r: `Oui, et sans engagement. Nous vous envoyons un devis ferme et détaillé sous 24 h après votre demande. Vous décidez ensuite, sans pression. Aucune somme n'est demandée pour la simple consultation.`,
+      },
+      {
+        q: "Faut-il verser un acompte à la réservation ?",
+        r: `Non, jamais. C'est notre politique : vous payez uniquement après la prestation, à la livraison de vos biens. C'est notre façon d'assumer la qualité de ce qu'on fait.`,
+      },
+      {
+        q: "Existe-t-il des réductions ?",
+        r: `Trois remises possibles, cumulables :
+        <ul>
+          <li>Tarif préférentiel <strong>séniors et PMR</strong> : −10 %</li>
+          <li>Réservation <strong>anticipée</strong> (plus de 30 jours avant) : −5 %</li>
+          <li>Volumes importants (plus de 30 m³) : −5 %</li>
+        </ul>
+        Soit jusqu'à <strong>20 % de remise totale</strong> sur certains profils.`,
+      },
+      {
+        q: "Quels modes de paiement acceptez-vous ?",
+        r: `Espèces, virement bancaire, chèque. Pas de paiement par carte sur place pour le moment, mais vous pouvez régler par virement avant la livraison si c'est plus pratique.`,
+      },
+    ],
+  },
+  {
+    id: 'preparation',
+    titre: 'Préparation du déménagement',
+    icon: '02',
+    questions: [
+      {
+        q: "Comment estimer correctement le volume m³ à déménager ?",
+        r: `Comptez environ <strong>1 m³ pour 4 cartons</strong> et 5 m³ par pièce moyenne. Pour une estimation précise, utilisez notre <a href="/estimation">simulateur</a>, ou demandez-nous une visite gratuite à domicile (recommandée au-delà de 30 m³). Notre <a href="/blog/estimer-volume-demenagement-m3">guide d'estimation des volumes</a> détaille la méthode pièce par pièce.`,
+      },
+      {
+        q: "Combien de temps à l'avance dois-je réserver ?",
+        r: `Idéalement 4 à 8 semaines avant la date prévue, surtout entre <strong>juin et septembre</strong> (haute saison). Plus vous anticipez, plus vous sécurisez votre créneau et bénéficiez d'avantages comme la remise réservation anticipée.`,
+      },
+      {
+        q: "Devez-vous emballer mes affaires ou je le fais moi-même ?",
+        r: `Vous avez le choix. Le tarif standard de 47,50 €/m³ ne comprend pas l'emballage des cartons (vous le faites vous-même). Si vous voulez qu'on s'en occupe, c'est une option chiffrée au cas par cas selon le volume.`,
+      },
+      {
+        q: "Démontez-vous les meubles ?",
+        r: `Oui, le démontage et remontage du mobilier (lits, armoires, dressings, cuisines équipées) est une option. Compter environ +10 à +15 % du tarif de base pour un T3 standard. À chiffrer précisément lors du devis.`,
+      },
+      {
+        q: "Comment réserver un emplacement pour le camion ?",
+        r: `À Annemasse et dans les centres-villes réglementés, une autorisation de stationnement temporaire doit être demandée à la mairie au moins 15 jours à l'avance. <strong>Nous nous chargeons gratuitement de cette démarche</strong> pour nos clients. Détails dans notre <a href="/blog/stationnement-camion-demenagement-annemasse">article dédié</a>.`,
+      },
+    ],
+  },
+  {
+    id: 'jour-j',
+    titre: 'Le jour du déménagement',
+    icon: '03',
+    questions: [
+      {
+        q: "À quelle heure arrivez-vous ?",
+        r: `Sauf exception, nous démarrons à 8 h du matin. L'horaire exact est confirmé la veille selon les contraintes (état des lieux, ascenseur réservé, etc.).`,
+      },
+      {
+        q: "Combien de personnes intervenez-vous ?",
+        r: `L'équipe est dimensionnée selon le volume : 2 personnes minimum, jusqu'à 4-5 pour un déménagement de maison ou pour des chantiers complexes (étages, monte-meuble, accès difficiles).`,
+      },
+      {
+        q: "Que se passe-t-il en cas de casse ?",
+        r: `Toutes nos prestations sont couvertes par notre <strong>assurance responsabilité civile professionnelle</strong>. En cas de dommage, vous le mentionnez sur le bordereau de livraison à la fin de la prestation, et nous engageons la procédure d'indemnisation. Aucun coût pour vous.`,
+      },
+      {
+        q: "Puis-je modifier la prestation le jour même ?",
+        r: `Oui, dans une limite raisonnable. Ajout d'objets oubliés, changement d'ordre de chargement, transport d'un meuble en plus à débarrasser : on s'adapte. Pour un changement majeur (volume très supérieur, nouvel arrêt), un avenant au devis sera émis.`,
+      },
+    ],
+  },
+  {
+    id: 'zones',
+    titre: 'Zones et frontaliers',
+    icon: '04',
+    questions: [
+      {
+        q: "Dans quelles villes intervenez-vous ?",
+        r: `Notre zone principale couvre tout le Genevois français : Annemasse, Ville-la-Grand, Gaillard, Saint-Julien-en-Genevois, Bonneville, Thonon-les-Bains, Évian-les-Bains, Annecy. Côté frontalier : Genève et le canton. Voir notre <a href="/zones-intervention">carte d'intervention complète</a>.`,
+      },
+      {
+        q: "Faites-vous les déménagements transfrontaliers Suisse-France ?",
+        r: `Oui, dans les deux sens. Nous gérons les passages frontière, l'inventaire douanier en deux exemplaires, les formalités. Notre <a href="/blog/demenagement-suisse-vers-france">guide retour Suisse → France</a> détaille toutes les démarches.`,
+      },
+      {
+        q: "Faites-vous des longues distances (Lyon, Paris, Marseille) ?",
+        r: `Oui, nous organisons des déménagements partout en France métropolitaine. Le tarif au m³ reste la base, avec un coût km au-delà de la zone locale. Devis sur demande.`,
+      },
+      {
+        q: "Intervenez-vous en zone de montagne ou d'accès difficile ?",
+        r: `Oui. Nos camions sont adaptés à la circulation alpine, et nous évaluons les contraintes d'accès (route étroite, pente, virage en épingle) lors de la visite ou de l'échange préalable. Cela peut nécessiter un véhicule plus petit ou un transbordement.`,
+      },
+    ],
+  },
+  {
+    id: 'special',
+    titre: 'Situations particulières',
+    icon: '05',
+    questions: [
+      {
+        q: "Pouvez-vous gérer un déménagement de personne âgée ou PMR ?",
+        r: `C'est un de nos points forts. Nous bénéficions d'une <strong>remise de 10 %</strong> et d'une approche adaptée (rythme respectueux, reconstitution de l'environnement à l'arrivée, dialogue avec la famille). Détails dans notre <a href="/blog/demenagement-senior-annemasse">guide dédié</a>.`,
+      },
+      {
+        q: "Faites-vous le débarras et la déchetterie ?",
+        r: `Oui, c'est une option de notre prestation. Profitez du déménagement pour vous séparer des meubles, électroménagers ou objets dont vous ne voulez plus. Tarif selon le volume à évacuer.`,
+      },
+      {
+        q: "Faites-vous le nettoyage de fin de chantier ?",
+        r: `Oui, nous proposons un service de <a href="/services/nettoyage">nettoyage de fin de chantier</a> pour récupérer votre caution sans accroc. À chiffrer selon la surface.`,
+      },
+      {
+        q: "Est-il possible d'avoir uniquement un camion + chauffeur sans manutention ?",
+        r: `Oui, c'est notre <a href="/services/location-vehicule">formule transport simple</a>. Vous avez tout emballé et démonté, on vient avec véhicule + équipe légère, on charge et décharge. Environ 30 % moins cher que la formule complète.`,
+      },
+      {
+        q: "Pouvez-vous déménager un piano ou une œuvre d'art ?",
+        r: `Oui. Le piano (droit ou demi-queue) est manutentionné avec sangles, diable spécialisé et protections renforcées. Pour les œuvres d'art ou objets de grande valeur, nous prévoyons un emballage sur mesure et un transport sécurisé. Devis spécifique.`,
+      },
+    ],
+  },
+];
+
+// Schema FAQPage agrégeant TOUTES les questions
+const allQuestions = categories.flatMap((c) => c.questions);
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: allQuestions.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.r.replace(/<[^>]+>/g, '') },
+  })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Accueil', item: SITE_URL },
+    { '@type': 'ListItem', position: 2, name: 'FAQ', item: `${SITE_URL}/faq` },
+  ],
+};
+---
+
+<BaseLayout
+  titre="FAQ, Questions fréquentes"
+  description="Toutes les réponses sur le déménagement avec Torres Transport : tarifs, préparation, jour J, zones, frontaliers, situations particulières. Réponse claire à toutes vos questions."
+  keywords="FAQ déménagement, questions déménageur Annemasse, tarifs déménagement Haute-Savoie, comment préparer déménagement"
+  canonical={`${SITE_URL}/faq`}
+  structuredData={[faqSchema, breadcrumbSchema]}
+>
+  <!-- HERO -->
+  <section class="faq-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Fil d'Ariane">
+        <a href="/">Accueil</a><span>/</span><span>FAQ</span>
+      </nav>
+      <span class="eyebrow gold">Questions fréquentes</span>
+      <h1>Toutes les réponses,<br /><em>au même endroit.</em></h1>
+      <p class="lead">
+        Tarifs, préparation, jour J, frontaliers, situations particulières.
+        On a regroupé les questions qu'on nous pose le plus souvent.
+        Vous ne trouvez pas votre réponse ? <a href="/contact">Posez-la nous directement</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- INDEX RAPIDE -->
+  <section class="faq-index">
+    <div class="container container-narrow">
+      <ul class="index-list">
+        {categories.map((c) => (
+          <li>
+            <a href={`#${c.id}`}>
+              <span class="index-num">{c.icon}</span>
+              <span class="index-titre">{c.titre}</span>
+              <span class="index-count">{c.questions.length} questions</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- CONTENU -->
+  <section class="faq-content">
+    <div class="container container-narrow">
+      {categories.map((cat) => (
+        <article class="faq-cat" id={cat.id}>
+          <header class="cat-header">
+            <span class="cat-num">{cat.icon}</span>
+            <h2>{cat.titre}</h2>
+          </header>
+
+          <div class="faq-list">
+            {cat.questions.map((item, idx) => (
+              <details class="faq-item" open={cat.id === 'tarifs' && idx === 0}>
+                <summary>
+                  <span class="faq-q">{item.q}</span>
+                  <span class="faq-icon" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  </span>
+                </summary>
+                <div class="faq-answer" set:html={item.r}></div>
+              </details>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="faq-cta">
+    <div class="container container-narrow">
+      <div class="cta-card">
+        <span class="eyebrow">Vous avez une autre question&nbsp;?</span>
+        <h2>Parlons-en<br /><em>directement.</em></h2>
+        <p>
+          On répond personnellement à chaque demande sous 24 h.
+          Échange direct, sans intermédiaire, sans script.
+        </p>
+        <div class="cta-buttons">
+          <a href="/contact" class="btn btn-primary">Poser ma question</a>
+          <a href="tel:+33659926814" class="btn btn-ghost">06 59 92 68 14</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* HERO */
+  .faq-hero {
+    background: var(--off-white);
+    padding: clamp(5rem, 10vw, 8rem) 0 clamp(3rem, 5vw, 4rem);
+    border-bottom: 1px solid var(--border);
+    margin-top: -76px;
+    padding-top: 9rem;
+  }
+  .breadcrumb {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--gray-500);
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  .breadcrumb a { color: var(--gray-700); }
+  .breadcrumb > span:not(:last-child) { opacity: 0.4; }
+  .faq-hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    margin: 0.75rem 0 1.5rem;
+    line-height: 1.05;
+  }
+  .faq-hero h1 em { font-style: italic; color: var(--gold-deep); }
+  .faq-hero .lead { max-width: 720px; }
+  .faq-hero .lead a {
+    color: var(--black);
+    border-bottom: 1px solid var(--gold-deep);
+    font-weight: 600;
+  }
+
+  /* INDEX */
+  .faq-index {
+    background: var(--white);
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .index-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.5rem;
+  }
+  .index-list a {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: 1rem 1.2rem;
+    border: 1px solid var(--border);
+    color: var(--gray-800);
+    text-decoration: none;
+    transition: all 0.2s var(--ease-smooth);
+  }
+  .index-list a:hover {
+    border-color: var(--black);
+    background: var(--off-white);
+  }
+  .index-num {
+    font-family: var(--font-display);
+    color: var(--gold-deep);
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .index-titre {
+    font-weight: 600;
+    color: var(--black);
+    font-size: 0.95rem;
+  }
+  .index-count {
+    font-size: 0.75rem;
+    color: var(--gray-500);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* CONTENT */
+  .faq-content {
+    background: var(--white);
+    padding: clamp(3rem, 6vw, 5rem) 0;
+  }
+
+  .faq-cat {
+    padding-top: clamp(2.5rem, 4vw, 3.5rem);
+  }
+  .faq-cat:first-child { padding-top: 0; }
+
+  .cat-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border-strong);
+  }
+  .cat-num {
+    font-family: var(--font-display);
+    color: var(--gold-deep);
+    font-size: 1.4rem;
+    font-weight: 500;
+  }
+  .cat-header h2 {
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
+    font-weight: 500;
+    line-height: 1.2;
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+  }
+  .faq-item:last-child { border-bottom: none; }
+
+  .faq-item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    padding: 1.4rem 0;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+    transition: color 0.2s;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary:hover { color: var(--gold-deep); }
+
+  .faq-q {
+    font-family: var(--font-display);
+    font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+    color: var(--black);
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  .faq-icon {
+    flex-shrink: 0;
+    color: var(--gold-deep);
+    transition: transform 0.3s var(--ease-smooth);
+  }
+  .faq-item[open] .faq-icon { transform: rotate(45deg); }
+
+  .faq-answer {
+    padding: 0 0 1.5rem;
+    color: var(--gray-700);
+    font-size: 0.95rem;
+    line-height: 1.75;
+  }
+  .faq-answer :global(p) { margin-bottom: 0.85rem; }
+  .faq-answer :global(p:last-child) { margin-bottom: 0; }
+  .faq-answer :global(ul) {
+    margin: 0.85rem 0;
+    padding-left: 1.5rem;
+  }
+  .faq-answer :global(li) { margin-bottom: 0.4rem; line-height: 1.6; }
+  .faq-answer :global(strong) { color: var(--black); font-weight: 600; }
+  .faq-answer :global(a) {
+    color: var(--black);
+    border-bottom: 1px solid var(--gold-deep);
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .faq-answer :global(a:hover) { color: var(--gold-deep); }
+
+  /* CTA */
+  .faq-cta {
+    background: var(--off-white);
+    padding: clamp(3rem, 6vw, 5rem) 0;
+    border-top: 1px solid var(--border);
+  }
+  .cta-card {
+    background: var(--black);
+    color: var(--white);
+    padding: clamp(2.5rem, 5vw, 4rem);
+    text-align: center;
+  }
+  .cta-card .eyebrow {
+    color: var(--gold);
+    margin-bottom: 1rem;
+    display: block;
+  }
+  .cta-card h2 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+  .cta-card h2 em { font-style: italic; color: var(--gold); }
+  .cta-card p {
+    color: rgba(255, 255, 255, 0.75);
+    max-width: 520px;
+    margin: 0 auto 2rem;
+  }
+  .cta-buttons {
+    display: flex;
+    gap: 0.85rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .cta-buttons .btn {
+    padding: 0.95rem 1.6rem;
+    font-size: 0.92rem;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: all 0.25s;
+  }
+  .cta-buttons .btn-primary { background: var(--gold); color: var(--black); }
+  .cta-buttons .btn-primary:hover { background: var(--white); }
+  .cta-buttons .btn-ghost {
+    background: transparent;
+    color: var(--white);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  .cta-buttons .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .index-list { grid-template-columns: 1fr; }
+    .faq-q { font-size: 1rem; }
+  }
+</style>

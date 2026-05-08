@@ -1,142 +1,493 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { servicesData } from '../../data/services.js';
+import { getAllCities } from '../../data/cities.js';
 
-// Cette fonction génère toutes les pages de services
+const allCities = getAllCities();
+
+const SITE_URL = 'https://torrestransport.fr';
+
+type ServiceKey = keyof typeof servicesData;
+
 export function getStaticPaths() {
-  return Object.keys(servicesData).map(slug => ({
+  return (Object.keys(servicesData) as ServiceKey[]).map((slug) => ({
     params: { slug },
-    props: { service: servicesData[slug] }
+    props: { service: servicesData[slug] },
   }));
 }
 
 const { service } = Astro.props;
 const { slug } = Astro.params;
+const pageURL = `${SITE_URL}/services/${slug}`;
+
+const seoTitle = `${service.titre} à Annemasse & Haute-Savoie | Torres Transport`;
+const seoDescription = `${service.description} Intervention à Annemasse, Ville-la-Grand, Saint-Julien et toute la Haute-Savoie. Devis gratuit. 20 ans d'expérience.`;
+
+// Tarif au m³ uniquement pertinent pour le service Déménagement
+const isDemenagement = slug === 'demenagement';
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: service.titre,
+  name: service.titre,
+  description: service.description,
+  provider: {
+    '@type': 'MovingCompany',
+    '@id': `${SITE_URL}/#business`,
+    name: 'Torres Transport',
+  },
+  areaServed: [
+    { '@type': 'City', name: 'Annemasse' },
+    { '@type': 'City', name: 'Ville-la-Grand' },
+    { '@type': 'City', name: 'Saint-Julien-en-Genevois' },
+    { '@type': 'City', name: 'Genève' },
+    { '@type': 'AdministrativeArea', name: 'Haute-Savoie' },
+  ],
+  url: pageURL,
+  image: service.banner ? `${SITE_URL}${service.banner}` : `${SITE_URL}${service.image}`,
+  ...(isDemenagement && {
+    offers: {
+      '@type': 'Offer',
+      price: '47.50',
+      priceCurrency: 'EUR',
+      priceSpecification: {
+        '@type': 'UnitPriceSpecification',
+        price: '47.50',
+        priceCurrency: 'EUR',
+        unitText: 'm³',
+        referenceQuantity: { '@type': 'QuantitativeValue', value: '1', unitText: 'm³' },
+      },
+      availability: 'https://schema.org/InStock',
+      validFrom: '2026-01-01',
+      seller: { '@type': 'MovingCompany', '@id': `${SITE_URL}/#business` },
+    },
+  }),
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: `Prestations ${service.titre}`,
+    itemListElement: service.details.map((detail: string, idx: number) => ({
+      '@type': 'Offer',
+      position: idx + 1,
+      itemOffered: { '@type': 'Service', name: detail },
+    })),
+  },
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Accueil', item: SITE_URL },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: `${SITE_URL}/services` },
+    { '@type': 'ListItem', position: 3, name: service.titre, item: pageURL },
+  ],
+};
 ---
 
-<BaseLayout titre={service.titre}>
-  <!-- Hero du service -->
-  <section class="service-hero">
+<BaseLayout
+  title={seoTitle}
+  description={seoDescription}
+  ogImage={service.banner || service.image}
+  structuredData={[serviceSchema, breadcrumbSchema]}
+>
+  <!-- ==================== HERO IMAGE ==================== -->
+  <section class="service-hero" style={`background-image: url('${service.banner || service.image}')`}>
+    <div class="hero-overlay"></div>
     <div class="container">
-      <div class="hero-icon">{service.icone}</div>
+      <nav class="breadcrumb" aria-label="Fil d'Ariane">
+        <a href="/">Accueil</a>
+        <span>/</span>
+        <a href="/services">Services</a>
+        <span>/</span>
+        <span>{service.titre}</span>
+      </nav>
+      <span class="eyebrow gold">Service</span>
       <h1>{service.titre}</h1>
       <p class="lead">{service.description}</p>
-      <a href="/contact" class="btn btn-primary">Demander un devis</a>
-    </div>
-  </section>
-
-  <!-- Détails du service -->
-  <section class="service-details">
-    <div class="container">
-      <div class="details-grid">
-        <div class="details-card">
-          <h2>Ce qui est inclus</h2>
-          <ul class="features-list">
-            {service.details.map(detail => (
-              <li>✓ {detail}</li>
-            ))}
-          </ul>
-        </div>
-
-        <div class="details-card">
-          <h2>Nos avantages</h2>
-          <ul class="features-list">
-            {service.avantages.map(avantage => (
-              <li>⭐ {avantage}</li>
-            ))}
-          </ul>
-        </div>
+      <div class="hero-actions">
+        <a href={`/estimation?service=${slug}`} class="btn btn-gold btn-large btn-with-arrow">Demander un devis</a>
+        <a href="tel:+33659926814" class="btn btn-ghost btn-large">06 59 92 68 14</a>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="service-cta">
+  <!-- ==================== INTRO RÉDIGÉE (si présente) ==================== -->
+  {service.intro && (
+    <section class="section service-intro">
+      <div class="container container-narrow">
+        <div class="intro-content" set:html={service.intro}></div>
+      </div>
+    </section>
+  )}
+
+  <!-- ==================== DÉTAILS ==================== -->
+  <section class="section service-details">
     <div class="container">
-      <h2>Intéressé par ce service ?</h2>
-      <p>Contactez-nous pour obtenir un devis gratuit et personnalisé</p>
+      <div class="details-grid">
+        <article class="details-card">
+          <span class="eyebrow gold">Ce qui est inclus</span>
+          <h2>Notre prestation<br /><em>en détail.</em></h2>
+          <ul class="details-list">
+            {service.details.map((d: string) => (
+              <li>{d}</li>
+            ))}
+          </ul>
+        </article>
+
+        <article class="details-card details-card-dark">
+          <span class="eyebrow">Pourquoi nous</span>
+          <h2>Nos atouts,<br /><em>vos garanties.</em></h2>
+          <ul class="details-list details-list-light">
+            {service.avantages.map((a: string) => (
+              <li>{a}</li>
+            ))}
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ZONES D'INTERVENTION (maillage) ==================== -->
+  <section class="section service-zones">
+    <div class="container container-narrow">
+      <header class="section-header">
+        <span class="eyebrow gold">Où nous intervenons</span>
+        <h2>{service.titre}<br /><em>partout en Haute-Savoie.</em></h2>
+        <p class="lead">
+          Nous intervenons dans tout le Genevois français et au-delà.
+          Cliquez sur votre ville pour découvrir notre offre locale détaillée.
+        </p>
+      </header>
+
+      <ul class="service-cities">
+        {allCities.map((c: any) => (
+          <li>
+            <a href={`/demenagement-${c.slug}`}>
+              <span class="city-name">{c.nom}</span>
+              <span class="city-cp">{c.codePostal}</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <div class="service-zones-footer">
+        <a href="/zones-intervention" class="link-underline">Voir la carte complète des zones</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CTA FINAL ==================== -->
+  <section class="section bg-cream service-cta">
+    <div class="container container-narrow text-center">
+      <span class="eyebrow gold">Intéressé par ce service&nbsp;?</span>
+      <h2>Recevez votre devis<br /><em>personnalisé en 24h.</em></h2>
+      <p class="lead">
+        Sans engagement, sans acompte. Une équipe locale qui vous rappelle dans la journée.
+      </p>
       <div class="cta-buttons">
-        <a href="/contact" class="btn btn-primary">Demander un devis</a>
-        <a href="/services" class="btn btn-secondary">Voir tous nos services</a>
+        <a href={`/estimation?service=${slug}`} class="btn btn-primary btn-large btn-with-arrow">Demander un devis</a>
+        <a href="tel:+33659926814" class="btn btn-secondary btn-large">06 59 92 68 14</a>
+        <a href="/services" class="btn btn-ghost btn-large">Tous nos services</a>
       </div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
+  /* ==================== HERO ==================== */
   .service-hero {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    color: white;
-    padding: 4rem 0;
-    text-align: center;
+    position: relative;
+    min-height: clamp(440px, 65vh, 620px);
+    background-size: cover;
+    background-position: center;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    padding: clamp(4rem, 8vw, 6rem) 0;
+    margin-top: -76px;
+    padding-top: 8rem;
   }
 
-  .hero-icon {
-    font-size: 5rem;
-    margin-bottom: 1rem;
+  /* ==================== INTRO RÉDIGÉE ==================== */
+  .service-intro {
+    background: var(--white);
+    padding: clamp(3.5rem, 6vw, 5rem) 0 clamp(0.5rem, 1vw, 1rem);
+  }
+  .intro-content {
+    font-size: clamp(1rem, 1.1vw, 1.08rem);
+    line-height: 1.8;
+    color: var(--gray-800);
+  }
+  .intro-content :global(p) {
+    margin-bottom: 1.4rem;
+  }
+  .intro-content :global(p:last-child) { margin-bottom: 0; }
+  .intro-content :global(p:first-of-type) {
+    font-size: clamp(1.1rem, 1.25vw, 1.18rem);
+    color: var(--black);
+    line-height: 1.7;
+    border-left: 3px solid var(--gold-deep);
+    padding-left: 1.5rem;
+    margin-bottom: 1.8rem;
+  }
+  .intro-content :global(strong) {
+    color: var(--black);
+    font-weight: 600;
+  }
+  .intro-content :global(a) {
+    color: var(--black);
+    border-bottom: 1px solid var(--gold-deep);
+    transition: color 0.2s;
+  }
+  .intro-content :global(a:hover) {
+    color: var(--gold-deep);
+  }
+  .intro-content :global(ol),
+  .intro-content :global(ul) {
+    margin: 1rem 0 1.4rem;
+    padding-left: 1.5rem;
+  }
+  .intro-content :global(li) {
+    margin-bottom: 0.6rem;
+    line-height: 1.7;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.5));
+    z-index: 0;
+  }
+
+  .service-hero .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .breadcrumb {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .breadcrumb a {
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+
+  .breadcrumb span:first-of-type,
+  .breadcrumb > span:not(:last-child) {
+    opacity: 0.5;
   }
 
   .service-hero h1 {
-    color: white;
-    margin-bottom: 1rem;
+    color: var(--white);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    margin: 0.75rem 0 1.5rem;
+    max-width: 880px;
   }
 
-  .lead {
-    font-size: 1.3rem;
-    margin-bottom: 2rem;
-    opacity: 0.95;
+  .service-hero .lead {
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 720px;
+    margin-bottom: 2.5rem;
   }
 
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  /* ==================== DÉTAILS ==================== */
   .service-details {
-    padding: 4rem 0;
+    background: var(--white);
   }
 
   .details-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 2rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-top: 1px solid var(--border-strong);
+    border-left: 1px solid var(--border-strong);
   }
 
   .details-card {
-    background: white;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    padding: clamp(2.5rem, 5vw, 4rem);
+    border-right: 1px solid var(--border-strong);
+    border-bottom: 1px solid var(--border-strong);
+    background: var(--off-white);
   }
 
-  .details-card h2 {
-    color: var(--primary-color);
-    margin-bottom: 1.5rem;
+  .details-card-dark {
+    background: var(--black);
+    color: var(--white);
   }
 
-  .features-list {
-    list-style: none;
+  .details-card-dark h2 {
+    color: var(--white);
   }
 
-  .features-list li {
-    padding: 0.75rem 0;
-    border-bottom: 1px solid var(--light-gray);
-    font-size: 1.1rem;
-  }
-
-  .features-list li:last-child {
-    border-bottom: none;
-  }
-
-  .service-cta {
-    background: var(--light-gray);
-    padding: 4rem 0;
-    text-align: center;
-  }
-
-  .service-cta h2 {
+  .details-card .eyebrow {
     margin-bottom: 1rem;
   }
 
-  .service-cta p {
-    font-size: 1.2rem;
-    color: var(--gray);
+  .details-card-dark .eyebrow {
+    color: var(--gold);
+  }
+
+  .details-card h2 {
+    font-size: clamp(1.85rem, 3vw, 2.5rem);
     margin-bottom: 2rem;
+  }
+
+  .details-card h2 em {
+    font-style: italic;
+    color: var(--gold-deep);
+  }
+
+  .details-card-dark h2 em {
+    color: var(--gold);
+  }
+
+  .details-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .details-list li {
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 1rem;
+    color: var(--gray-700, #404040);
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .details-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 1.3rem;
+    width: 8px;
+    height: 1px;
+    background: var(--gold-deep);
+  }
+
+  .details-list-light li {
+    color: rgba(255, 255, 255, 0.8);
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .details-list-light li::before {
+    background: var(--gold);
+  }
+
+  .details-list li:last-child {
+    border-bottom: none;
+  }
+
+  /* ==================== ZONES D'INTERVENTION ==================== */
+  .service-zones {
+    background: var(--white);
+    border-top: 1px solid var(--border);
+  }
+  .service-zones .section-header { margin-bottom: 2.5rem; }
+  .service-zones .section-header h2 em {
+    font-style: italic;
+    color: var(--gold-deep);
+  }
+
+  .service-cities {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .service-cities li {
+    border-bottom: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+  }
+  .service-cities li:nth-child(3n) { border-right: none; }
+
+  .service-cities a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.1rem 1.25rem;
+    color: var(--gray-800);
+    text-decoration: none;
+    transition: all 0.25s var(--ease-smooth);
+  }
+
+  .service-cities a:hover {
+    background: var(--off-white);
+    color: var(--black);
+    padding-left: 1.5rem;
+  }
+
+  .service-cities a svg {
+    color: var(--gold-deep);
+    transition: transform 0.25s;
+    flex-shrink: 0;
+  }
+
+  .service-cities a:hover svg {
+    transform: translateX(4px);
+  }
+
+  .city-name {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 500;
+    flex: 1;
+  }
+
+  .city-cp {
+    font-size: 0.78rem;
+    color: var(--gray-500);
+    letter-spacing: 0.05em;
+  }
+
+  .service-zones-footer {
+    margin-top: 2.5rem;
+    text-align: center;
+  }
+
+  /* ==================== CTA FINAL ==================== */
+  .service-cta {
+    text-align: center;
+  }
+
+  .service-cta h2 em {
+    font-style: italic;
+    color: var(--gold-deep);
+  }
+
+  .service-cta .lead {
+    max-width: 640px;
+    margin: 1.5rem auto 2.5rem;
   }
 
   .cta-buttons {
@@ -146,9 +497,27 @@ const { slug } = Astro.params;
     flex-wrap: wrap;
   }
 
-  @media (max-width: 768px) {
+  .btn-ghost {
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    color: var(--black);
+  }
+  .btn-ghost:hover {
+    background: var(--black);
+    color: var(--white);
+    border-color: var(--black);
+  }
+
+  /* ==================== RESPONSIVE ==================== */
+  @media (max-width: 800px) {
     .details-grid {
       grid-template-columns: 1fr;
+    }
+    .service-cities {
+      grid-template-columns: 1fr;
+    }
+    .service-cities li {
+      border-right: none;
     }
   }
 </style>

@@ -1,0 +1,673 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getRelatedArticles, getRelatedCities, getRelatedServices } from '../../data/articles.js';
+
+const SITE_URL = 'https://torrestransport.fr';
+
+export async function getStaticPaths() {
+  const { articles } = await import('../../data/articles.js');
+  return articles.map((article: any) => ({
+    params: { slug: article.slug },
+    props: { article },
+  }));
+}
+
+const { article } = Astro.props;
+const relatedArticles = getRelatedArticles(article, 3);
+const relatedCities = getRelatedCities(article, 4);
+const relatedServices = getRelatedServices(article, 2);
+
+const articleURL = `${SITE_URL}/blog/${article.slug}`;
+const articleImage = article.image?.startsWith('http')
+  ? article.image
+  : `${SITE_URL}${article.image}`;
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: article.title,
+  description: article.excerpt,
+  image: articleImage,
+  author: { '@type': 'Person', name: article.author || 'Ludovic Torres' },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Torres Transport',
+    logo: { '@type': 'ImageObject', url: `${SITE_URL}/logo.png` },
+  },
+  datePublished: article.date,
+  dateModified: article.date,
+  mainEntityOfPage: { '@type': 'WebPage', '@id': articleURL },
+  keywords: article.seo?.keywords?.join(', '),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Accueil', item: SITE_URL },
+    { '@type': 'ListItem', position: 2, name: 'Journal', item: `${SITE_URL}/blog` },
+    { '@type': 'ListItem', position: 3, name: article.title, item: articleURL },
+  ],
+};
+
+const formatDate = (date: string) =>
+  new Date(date).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+
+<BaseLayout
+  title={article.seo?.metaTitle || article.title}
+  description={article.seo?.metaDescription || article.excerpt}
+  keywords={article.seo?.keywords?.join(', ')}
+  canonical={articleURL}
+  ogImage={article.image}
+  ogType="article"
+  structuredData={[articleSchema, breadcrumbSchema]}
+>
+  <!-- ==================== HERO ARTICLE ==================== -->
+  <article class="article-page">
+    <header class="article-hero">
+      <div class="container container-narrow">
+        <nav class="breadcrumb" aria-label="Fil d'Ariane">
+          <a href="/">Accueil</a><span>/</span>
+          <a href="/blog">Journal</a><span>/</span>
+          <span>{article.title}</span>
+        </nav>
+
+        <span class="article-category">{article.category}</span>
+
+        <h1 class="article-title">{article.title}</h1>
+
+        <div class="article-meta">
+          <div class="meta-item">
+            <span class="meta-label">Publié le</span>
+            <time datetime={article.date}>{formatDate(article.date)}</time>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Par</span>
+            <span>{article.author || 'Ludovic Torres'}</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Lecture</span>
+            <span>{article.readTime || '5 min'}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="article-cover">
+        <img src={article.image} alt={article.title} width="1200" height="630" fetchpriority="high" decoding="async" />
+      </div>
+    </header>
+
+    <!-- ==================== CORPS ARTICLE ==================== -->
+    <section class="article-body">
+      <div class="container container-narrow">
+        <div class="article-excerpt">
+          <p>{article.excerpt}</p>
+        </div>
+
+        <div class="article-content" set:html={article.content}></div>
+
+        <!-- Tags -->
+        {article.tags && article.tags.length > 0 && (
+          <div class="article-tags">
+            <span class="eyebrow gold">Tags</span>
+            <div class="tags-list">
+              {article.tags.map((tag: string) => (
+                <span class="tag">{tag}</span>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <!-- Auteur -->
+        <div class="article-author">
+          <div class="author-avatar">
+            <img src="/Ludovic.webp" alt="Ludovic Torres" width="80" height="80" loading="lazy" />
+          </div>
+          <div class="author-info">
+            <span class="eyebrow gold">L'auteur</span>
+            <h3>Ludovic Torres</h3>
+            <p>
+              Fondateur de Torres Transport, Ludovic met à profit ses 20 ans d'expérience
+              dans le transport et la logistique en Haute-Savoie pour vous livrer des conseils
+              pratiques et éprouvés.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CTA INLINE ==================== -->
+    <section class="article-cta-inline">
+      <div class="container container-narrow">
+        <div class="cta-card">
+          <span class="eyebrow gold">Vous préparez un déménagement&nbsp;?</span>
+          <h2>Recevez votre devis personnalisé<br /><em>sous 24 heures.</em></h2>
+          <p class="lead">
+            Notre équipe locale vous rappelle dans la journée pour discuter de votre projet.
+            Sans engagement, sans acompte.
+          </p>
+          <div class="cta-actions">
+            <a href="/contact" class="btn btn-primary btn-large btn-with-arrow">Demander un devis</a>
+            <a href="tel:+33659926814" class="btn btn-secondary btn-large">06 59 92 68 14</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== ARTICLES LIÉS ==================== -->
+    {relatedArticles.length > 0 && (
+      <section class="section bg-cream related-section">
+        <div class="container">
+          <header class="section-header">
+            <span class="eyebrow gold">À lire ensuite</span>
+            <h2>D'autres conseils,<br /><em>pour aller plus loin.</em></h2>
+          </header>
+          <div class="related-grid">
+            {relatedArticles.map((rel: any) => (
+              <a href={`/blog/${rel.slug}`} class="related-card">
+                <div class="related-image">
+                  <img src={rel.image} alt={rel.title} width="400" height="300" loading="lazy" />
+                </div>
+                <div class="related-body">
+                  <span class="article-category">{rel.category}</span>
+                  <h3>{rel.title}</h3>
+                  <time datetime={rel.date}>{formatDate(rel.date)}</time>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- ==================== MAILLAGE : VILLES & SERVICES ==================== -->
+    <section class="section bg-white crosslinks-section">
+      <div class="container container-narrow">
+        <div class="crosslinks-grid">
+          <div class="crosslinks-block">
+            <span class="eyebrow gold">Zones d'intervention</span>
+            <h3>Nous déménageons aussi&nbsp;:</h3>
+            <ul class="crosslinks-list">
+              {relatedCities.map((c: any) => (
+                <li>
+                  <a href={`/demenagement-${c.slug}`}>
+                    <span>Déménagement à {c.nom}</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                  </a>
+                </li>
+              ))}
+              <li>
+                <a href="/zones-intervention" class="crosslinks-more">
+                  <span>Voir toutes les zones d'intervention</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="crosslinks-block">
+            <span class="eyebrow gold">Services associés</span>
+            <h3>Notre savoir-faire&nbsp;:</h3>
+            <ul class="crosslinks-list">
+              {relatedServices.map((s: any) => (
+                <li>
+                  <a href={`/services/${s.slug}`}>
+                    <span>{s.nom}</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                  </a>
+                </li>
+              ))}
+              <li>
+                <a href="/estimation" class="crosslinks-list-highlight">
+                  <span>Estimer mon déménagement en ligne</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+              </li>
+              <li>
+                <a href="/services" class="crosslinks-more">
+                  <span>Tous nos services</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </article>
+</BaseLayout>
+
+<style>
+  /* ==================== HERO ==================== */
+  .article-hero {
+    background: var(--off-white);
+    padding: clamp(4rem, 8vw, 6rem) 0 0;
+    margin-top: -76px;
+    padding-top: 9rem;
+  }
+
+  .breadcrumb {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--gray-500);
+    margin-bottom: 2.5rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .breadcrumb a { color: var(--gray-700, #404040); text-decoration: none; }
+  .breadcrumb > span:not(:last-child) { opacity: 0.4; }
+  .breadcrumb > span:last-child {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 280px;
+  }
+
+  .article-category {
+    display: inline-block;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--gold-deep);
+    font-weight: 600;
+    padding: 0.4rem 0.85rem;
+    border: 1px solid var(--gold-deep);
+    margin-bottom: 1.5rem;
+  }
+
+  .article-title {
+    font-size: clamp(2rem, 5vw, 4rem);
+    line-height: 1.1;
+    margin-bottom: 2.5rem;
+    letter-spacing: -0.025em;
+  }
+
+  .article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 3rem;
+  }
+
+  .meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .meta-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--gray-500);
+    font-weight: 600;
+  }
+
+  .meta-item time,
+  .meta-item span:not(.meta-label) {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    color: var(--black);
+    font-weight: 500;
+  }
+
+  /* Cover image */
+  .article-cover {
+    margin-top: 3rem;
+  }
+
+  .article-cover img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    aspect-ratio: 1200 / 630;
+    max-height: 700px;
+    background: var(--cream);
+  }
+
+  /* ==================== BODY ==================== */
+  .article-body {
+    background: var(--white);
+    padding: clamp(3rem, 6vw, 5rem) 0;
+  }
+
+  .article-excerpt {
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 1.8vw, 1.5rem);
+    line-height: 1.55;
+    color: var(--black);
+    font-weight: 500;
+    font-style: italic;
+    border-left: 2px solid var(--gold-deep);
+    padding: 0.5rem 0 0.5rem 2rem;
+    margin: 0 0 3rem;
+    max-width: 720px;
+  }
+
+  .article-excerpt p { margin: 0; }
+
+  /* Contenu de l'article (HTML injecté) */
+  .article-content {
+    font-size: clamp(1rem, 1.15vw, 1.1rem);
+    line-height: 1.8;
+    color: var(--gray-800);
+  }
+
+  .article-content :global(h2) {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 2.5vw, 2.25rem);
+    margin: 3rem 0 1.25rem;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  .article-content :global(h3) {
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 1.8vw, 1.5rem);
+    margin: 2.5rem 0 1rem;
+    line-height: 1.25;
+  }
+
+  .article-content :global(p) {
+    margin-bottom: 1.5rem;
+    color: var(--gray-800);
+  }
+
+  .article-content :global(p strong) { color: var(--black); }
+
+  .article-content :global(ul),
+  .article-content :global(ol) {
+    margin: 1.5rem 0;
+    padding-left: 1.5rem;
+  }
+
+  .article-content :global(li) {
+    margin-bottom: 0.75rem;
+    line-height: 1.7;
+  }
+
+  .article-content :global(blockquote) {
+    margin: 2.5rem 0;
+    padding: 1.5rem 2rem;
+    background: var(--cream);
+    border-left: 3px solid var(--gold-deep);
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    line-height: 1.55;
+    font-style: italic;
+    color: var(--black);
+  }
+
+  .article-content :global(blockquote p) { margin: 0; }
+
+  .article-content :global(a) {
+    color: var(--black);
+    border-bottom: 1px solid var(--gold-deep);
+    transition: color 0.2s;
+  }
+
+  .article-content :global(a:hover) {
+    color: var(--gold-deep);
+  }
+
+  /* Tags */
+  .article-tags {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .article-tags .eyebrow {
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .tags-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    background: var(--cream);
+    padding: 0.45rem 0.95rem;
+    font-size: 0.82rem;
+    color: var(--gray-700, #404040);
+    border: 1px solid var(--border);
+  }
+
+  /* Auteur */
+  .article-author {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 4rem;
+    padding: 2rem;
+    background: var(--off-white);
+    border-left: 2px solid var(--gold-deep);
+    align-items: flex-start;
+  }
+
+  .author-avatar img {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    object-fit: cover;
+    filter: grayscale(20%);
+  }
+
+  .author-info { flex: 1; }
+  .author-info .eyebrow { display: block; margin-bottom: 0.5rem; }
+
+  .author-info h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .author-info p {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ==================== CTA INLINE ==================== */
+  .article-cta-inline {
+    background: var(--white);
+    padding: 0 0 clamp(3rem, 6vw, 5rem);
+  }
+
+  .cta-card {
+    background: var(--cream);
+    padding: clamp(2.5rem, 5vw, 4rem);
+    border: 1px solid var(--border-strong);
+    text-align: center;
+  }
+
+  .cta-card .eyebrow {
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .cta-card h2 {
+    font-size: clamp(1.85rem, 3vw, 2.5rem);
+    margin-bottom: 1rem;
+  }
+
+  .cta-card h2 em {
+    font-style: italic;
+    color: var(--gold-deep);
+  }
+
+  .cta-card .lead {
+    max-width: 540px;
+    margin: 1.5rem auto 2rem;
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* ==================== RELATED ==================== */
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .related-card {
+    background: var(--white);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s var(--ease-smooth);
+  }
+
+  .related-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .related-card:hover .related-image img {
+    transform: scale(1.04);
+  }
+
+  .related-image {
+    overflow: hidden;
+    aspect-ratio: 1200 / 630;
+  }
+
+  .related-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s var(--ease-smooth);
+  }
+
+  .related-body {
+    padding: 1.5rem;
+  }
+
+  .related-body .article-category {
+    margin-bottom: 0.85rem;
+    font-size: 0.7rem;
+    padding: 0.25rem 0.6rem;
+  }
+
+  .related-body h3 {
+    font-size: 1.15rem;
+    line-height: 1.3;
+    margin-bottom: 0.85rem;
+  }
+
+  .related-body time {
+    font-size: 0.78rem;
+    color: var(--gray-500);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* ==================== CROSSLINKS (maillage) ==================== */
+  .crosslinks-section {
+    padding: clamp(3rem, 6vw, 4.5rem) 0;
+    background: var(--white);
+    border-top: 1px solid var(--border);
+  }
+  .bg-white { background: var(--white); }
+
+  .crosslinks-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 5vw, 4rem);
+  }
+
+  .crosslinks-block .eyebrow {
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+
+  .crosslinks-block h3 {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    margin-bottom: 1.25rem;
+    font-weight: 500;
+  }
+
+  .crosslinks-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .crosslinks-list li { margin: 0; padding: 0; }
+
+  .crosslinks-list a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.95rem 0;
+    color: var(--gray-800);
+    border-bottom: 1px solid var(--border);
+    transition: color 0.2s, padding-left 0.25s var(--ease-smooth);
+    font-size: 0.95rem;
+    text-decoration: none;
+    border-bottom-style: solid !important;
+  }
+
+  .crosslinks-list a svg {
+    color: var(--gold-deep);
+    transition: transform 0.25s var(--ease-smooth);
+    flex-shrink: 0;
+  }
+
+  .crosslinks-list a:hover {
+    color: var(--black);
+    padding-left: 0.4rem;
+  }
+
+  .crosslinks-list a:hover svg {
+    transform: translateX(3px);
+  }
+
+  .crosslinks-list-highlight {
+    background: var(--cream);
+    padding-left: 0.85rem !important;
+    padding-right: 0.85rem !important;
+    margin-top: 0.5rem;
+    font-weight: 600;
+    color: var(--black) !important;
+  }
+  .crosslinks-list-highlight:hover {
+    background: var(--gold);
+  }
+
+  .crosslinks-more {
+    color: var(--gray-500) !important;
+    font-size: 0.85rem !important;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.85rem 0 0 !important;
+    border-bottom: none !important;
+  }
+  .crosslinks-more:hover {
+    color: var(--gold-deep) !important;
+  }
+
+  /* ==================== RESPONSIVE ==================== */
+  @media (max-width: 800px) {
+    .article-meta { gap: 1.5rem; }
+    .article-author { flex-direction: column; }
+    .related-grid { grid-template-columns: 1fr; }
+    .cta-actions { flex-direction: column; align-items: stretch; }
+    .cta-actions .btn { width: 100%; }
+    .crosslinks-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  }
+</style>
