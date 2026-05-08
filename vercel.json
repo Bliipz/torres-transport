@@ -37,7 +37,25 @@
       ]
     },
     {
-      "source": "/(favicon-(\\d+)\\.png|apple-touch-icon\\.png|icon-\\d+\\.png|site\\.webmanifest)",
+      "source": "/favicon-:size.png",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=604800" }
+      ]
+    },
+    {
+      "source": "/apple-touch-icon.png",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=604800" }
+      ]
+    },
+    {
+      "source": "/icon-:size.png",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=604800" }
+      ]
+    },
+    {
+      "source": "/site.webmanifest",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=604800" }
       ]
