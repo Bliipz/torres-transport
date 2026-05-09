@@ -1,17 +1,11 @@
 /* ============================================================
    FONTS, Self-hébergées (RGPD compliant, pas de requête à Google)
-   Poids importés selon usage réel dans le design system.
+   Variable fonts : 1 fichier woff2 par famille couvre tous les poids 100-900
    ============================================================ */
 
-/* Inter, texte courant, UI, boutons (400/500/600) */
-@import '@fontsource/inter/400.css';
-@import '@fontsource/inter/500.css';
-@import '@fontsource/inter/600.css';
+/* Inter Variable, texte courant, UI, boutons */
+@import '@fontsource-variable/inter';
 
-/* Playfair Display, titres, accents éditoriaux (400/500/600/700 + italique 400/500) */
-@import '@fontsource/playfair-display/400.css';
-@import '@fontsource/playfair-display/500.css';
-@import '@fontsource/playfair-display/600.css';
-@import '@fontsource/playfair-display/700.css';
-@import '@fontsource/playfair-display/400-italic.css';
-@import '@fontsource/playfair-display/500-italic.css';
+/* Playfair Display Variable, titres, accents éditoriaux */
+@import '@fontsource-variable/playfair-display';
+@import '@fontsource-variable/playfair-display/wght-italic.css';

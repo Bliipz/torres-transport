@@ -28,16 +28,16 @@ async function processImage(name, processor) {
 }
 
 async function main() {
-  // 1. Ludovic.webp — resize + recompress
+  // 1. Ludovic.webp — resize + recompress (cible affichage 797x829, donc 1000x1040 = 1.25x retina)
   await processImage('Ludovic.webp', (s) =>
-    s.resize({ width: 1200, height: 1248, fit: 'cover', position: 'top' })
-     .webp({ quality: 80, effort: 6 })
+    s.resize({ width: 1000, height: 1040, fit: 'cover', position: 'top' })
+     .webp({ quality: 75, effort: 6 })
      .toBuffer()
   );
 
-  // 2. hero-banner.webp — recompress (garder dimensions)
+  // 2. hero-banner.webp — compression aggressive (quality 60, effort 6)
   await processImage('hero-banner.webp', (s) =>
-    s.webp({ quality: 72, effort: 6 })
+    s.webp({ quality: 60, effort: 6 })
      .toBuffer()
   );
 
