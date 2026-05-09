@@ -1,6 +1,152 @@
 // Articles de blog pour Torres Transport
 export const articles = [
   {
+    id: "garde-meuble-stockage-annemasse",
+    title: "Garde-meuble à Annemasse : la solution sereine entre deux logements",
+    slug: "garde-meuble-stockage-annemasse",
+    excerpt: "Vente avant achat, mutation pro, séparation, retour de Suisse : il y a des moments où il faut un toit pour ses meubles avant le suivant. Voici comment bien choisir son garde-meuble à Annemasse, ce qu'on facture vraiment, et les pièges à éviter.",
+    content: `
+      <p>Sur les chantiers, il y a une situation qu'on rencontre beaucoup à Annemasse&nbsp;: <strong>le client a signé pour partir, mais pas encore pour arriver</strong>. Vente immobilière qui se finalise avant l'achat suivant, mutation pro qui démarre dans 3 semaines, séparation où il faut quitter le logement vite mais où on ne sait pas encore où on dort dans 2 mois&nbsp;: ces "trous" entre deux toits sont fréquents. Et c'est là que le garde-meuble devient incontournable.</p>
+
+      <p>En 20 ans de transport et de déménagement en Haute-Savoie, j'ai accompagné des centaines de clients dans cette situation. Voici ce qu'il faut savoir pour ne pas se faire piéger sur les tarifs, les conditions ou la qualité du stockage.</p>
+
+      <h2>Pourquoi le garde-meuble est devenu indispensable à Annemasse</h2>
+
+      <p>Notre bassin a une particularité&nbsp;: la pression immobilière côté Genève fait que les transactions s'enchaînent à des rythmes parfois imprévisibles. Sur dix dossiers de déménagement qu'on traite chaque mois, environ <strong>trois nécessitent une étape de stockage temporaire</strong>. Pas par confort&nbsp;: par nécessité.</p>
+
+      <h3>Les 4 situations classiques où ça arrive</h3>
+
+      <ul>
+        <li><strong>Vente avant achat&nbsp;:</strong> votre acquéreur est pressé d'emménager, mais votre propre achat n'est pas encore signé. Décalage typique&nbsp;: 4 à 12 semaines.</li>
+        <li><strong>Mutation professionnelle&nbsp;:</strong> votre nouveau poste démarre à Lyon, Paris ou Suisse, mais vous gardez un pied à Annemasse pendant 1 à 6 mois.</li>
+        <li><strong>Séparation conjugale&nbsp;:</strong> il faut quitter le logement commun rapidement, le temps de retrouver un appartement à soi.</li>
+        <li><strong>Travaux dans le logement neuf&nbsp;:</strong> peinture, sols, cuisine&nbsp;: le futur logement n'est pas habitable tout de suite, on stocke 3 à 8 semaines en attendant.</li>
+      </ul>
+
+      <p>Dans ces 4 cas, louer un garde-meuble est <strong>moins cher et bien plus simple</strong> que prendre une location courte ou stocker chez un proche (qui finit par se lasser après 2 mois).</p>
+
+      <h2>Combien ça coûte vraiment&nbsp;? Le tarif transparent</h2>
+
+      <p>Beaucoup de prestataires affichent des tarifs d'appel à 30&nbsp;€/mois qui font rêver, mais qui correspondent à un box de 1&nbsp;m³ (l'équivalent de 4 cartons). Pour un T2-T3 réel, comptez plutôt&nbsp;:</p>
+
+      <ul>
+        <li><strong>Studio (10-12&nbsp;m³)</strong>&nbsp;: 90 à 130&nbsp;€/mois</li>
+        <li><strong>T2 (15-20&nbsp;m³)</strong>&nbsp;: 130 à 180&nbsp;€/mois</li>
+        <li><strong>T3 (25-30&nbsp;m³)</strong>&nbsp;: 180 à 250&nbsp;€/mois</li>
+        <li><strong>T4-T5 (35-50&nbsp;m³)</strong>&nbsp;: 250 à 380&nbsp;€/mois</li>
+      </ul>
+
+      <blockquote>
+        <p><strong>💡 Bon à savoir&nbsp;:</strong> nos clients combinent souvent garde-meuble + déménagement complet en une seule prestation. Sur un dossier groupé "déménagement aller + stockage 2 mois + déménagement retour", on remise généralement 5 à 10&nbsp;% par rapport à deux interventions séparées. Demandez toujours un devis groupé.</p>
+      </blockquote>
+
+      <h3>Ce qui fait varier le tarif (et ce qui ne devrait pas)</h3>
+
+      <p>Les vrais facteurs de prix&nbsp;:</p>
+
+      <ul>
+        <li><strong>Volume réel</strong> en m³, mesuré en amont chez vous (méfiance des estimations sur photos)</li>
+        <li><strong>Durée</strong> de stockage (engagement minimal&nbsp;: 1 mois en général)</li>
+        <li><strong>Accessibilité au box</strong> (libre 7j/7 ou sur RDV&nbsp;?)</li>
+        <li><strong>Conditions climatiques</strong> (chauffé, ventilé, sec&nbsp;: indispensable pour bois, livres, électronique)</li>
+      </ul>
+
+      <p>Les <strong>faux frais</strong> à fuir&nbsp;: "frais d'entrée" déguisés, "assurance obligatoire" surfacturée à 25&nbsp;€/mois alors qu'elle devrait être incluse, "frais de sortie" non mentionnés au devis. Si un prestataire vous parle de tout ça après signature, c'est mauvais signe.</p>
+
+      <h2>Quelle durée pour quel besoin&nbsp;?</h2>
+
+      <h3>Stockage court (1 à 4 semaines)</h3>
+
+      <p>Typique pour&nbsp;: travaux dans le futur logement, attente de remise des clés, week-end de transition. Solution simple&nbsp;: votre déménageur garde tout dans son camion fermé ou dans son entrepôt local pour quelques jours, sans ré-emballage. Tarif&nbsp;: souvent inclus dans la prestation principale ou très réduit.</p>
+
+      <h3>Stockage moyen (1 à 3 mois)</h3>
+
+      <p>Le cas le plus fréquent à Annemasse. Un garde-meuble traditionnel ou self-stockage bien situé suffit. Vérifiez surtout la <strong>climatisation</strong> et l'<strong>étanchéité</strong>&nbsp;: dans la région, l'humidité de l'arrière-saison peut abîmer du mobilier en bois si le local n'est pas correctement ventilé.</p>
+
+      <h3>Stockage long (3 à 12 mois et plus)</h3>
+
+      <p>Mutation à l'étranger, expatriation, projet de construction qui s'étale&nbsp;: pour les durées longues, le garde-meuble traditionnel devient cher. Privilégiez alors un <strong>self-stockage</strong> où vous accédez quand vous voulez, ou un <strong>container individuel</strong> scellé que vous ne ré-ouvrirez qu'une fois. Les tarifs descendent souvent à 4-7&nbsp;€/m³/mois sur engagement long.</p>
+
+      <h2>Garde-meuble traditionnel ou self-stockage&nbsp;? Le bon choix</h2>
+
+      <p>C'est la question qui revient à chaque devis. Voici la différence concrète&nbsp;:</p>
+
+      <h3>Garde-meuble traditionnel (avec ou via votre déménageur)</h3>
+
+      <ul>
+        <li>✅ Vos meubles sont <strong>chargés et déchargés par des pros</strong> (zéro effort de votre côté)</li>
+        <li>✅ Inventaire détaillé fourni à l'entrée</li>
+        <li>✅ Local mutualisé sécurisé, climatisé</li>
+        <li>⚠️ Accès à vos affaires uniquement sur RDV (24-48h de préavis)</li>
+        <li>💰 Tarif moyen Haute-Savoie&nbsp;: 8 à 12&nbsp;€/m³/mois</li>
+      </ul>
+
+      <h3>Self-stockage (location de box individuel)</h3>
+
+      <ul>
+        <li>✅ Accès libre 7j/7 (pratique si vous récupérez des choses régulièrement)</li>
+        <li>✅ Vous gérez votre box comme vous voulez</li>
+        <li>⚠️ Vous chargez/déchargez vous-même (sauf si vous payez le déménageur en plus)</li>
+        <li>⚠️ Pas d'inventaire fourni&nbsp;: si quelque chose disparaît, vous devez prouver qu'il était là</li>
+        <li>💰 Tarif moyen Annemasse&nbsp;: 5 à 9&nbsp;€/m³/mois (selon emplacement)</li>
+      </ul>
+
+      <p><strong>Notre reco terrain&nbsp;:</strong> pour 1 à 3 mois sans besoin d'accès, le garde-meuble traditionnel est plus simple et plus sûr. Pour 6+ mois ou si vous voulez piocher dedans régulièrement, le self-stockage devient cohérent.</p>
+
+      <h2>Ce qu'on fait chez Torres Transport pour ces situations</h2>
+
+      <p>Quand un client nous appelle pour un déménagement avec étape de stockage, on traite le tout <strong>en une seule prestation</strong>&nbsp;:</p>
+
+      <ol>
+        <li><strong>Visite gratuite chez vous</strong> pour mesurer le volume précis et identifier les meubles fragiles</li>
+        <li><strong>Devis ferme groupé</strong>&nbsp;: déménagement aller + stockage par mois + déménagement retour. Pas de surprise.</li>
+        <li><strong>Emballage professionnel</strong> avec couvertures, sangles et housses adaptées au stockage longue durée (différent d'un déménagement direct&nbsp;: on protège plus contre l'humidité et la poussière)</li>
+        <li><strong>Inventaire signé</strong> à l'entrée du garde-meuble (chaque meuble numéroté, photographié)</li>
+        <li><strong>Stockage dans notre réseau partenaire</strong> en Haute-Savoie&nbsp;: locaux climatisés, sécurisés, à proximité d'Annemasse</li>
+        <li><strong>Récupération à la date convenue</strong>&nbsp;: même équipe, même camion, livraison directe à votre nouveau logement</li>
+      </ol>
+
+      <p>Avantage du <strong>tout-en-un</strong>&nbsp;: une seule équipe touche vos meubles de bout en bout. Si quelque chose est cassé entre l'aller et le retour, c'est notre responsabilité, pas celle d'un prestataire de stockage anonyme avec qui vous devriez vous battre.</p>
+
+      <h2>Les 5 questions à poser avant de signer</h2>
+
+      <p>Quel que soit le prestataire, posez ces questions pour éviter les déconvenues&nbsp;:</p>
+
+      <ol>
+        <li><strong>"Le local est-il chauffé et ventilé&nbsp;?"</strong> En Haute-Savoie, sans climat contrôlé, les meubles bois et l'électronique se dégradent en 6 mois.</li>
+        <li><strong>"L'assurance est-elle incluse ou en supplément&nbsp;?"</strong> Demandez le montant exact et le plafond de garantie.</li>
+        <li><strong>"Que se passe-t-il en cas de prolongation au-delà de la durée prévue&nbsp;?"</strong> Tarif identique au prorata, ou pénalité&nbsp;?</li>
+        <li><strong>"Comment je récupère mes affaires&nbsp;?"</strong> Délai de préavis, frais de sortie, créneaux disponibles.</li>
+        <li><strong>"Puis-je visiter le local avant signature&nbsp;?"</strong> Si refus, fuyez. Un prestataire sérieux est fier de montrer ses installations.</li>
+      </ol>
+
+      <h2>Cas particulier&nbsp;: les frontaliers qui rentrent de Suisse</h2>
+
+      <p>Une situation qu'on traite régulièrement&nbsp;: vous quittez votre logement à Genève, votre acquéreur d'appartement à Annemasse a un délai. Vous voulez stocker en France pour éviter les complications douanières au retour.</p>
+
+      <p>Bonne idée&nbsp;: les meubles transitant par un garde-meuble français évitent toute question de re-déclaration. Si vous avez déjà fait la déclaration de transfert lors du passage de la frontière (cf. notre <a href="/blog/demenagement-transfrontalier-suisse">guide des formalités France-Suisse</a>), le stockage local n'ajoute aucune contrainte administrative.</p>
+
+      <h2>Conclusion&nbsp;: anticipez et groupez</h2>
+
+      <p>Si vous savez à l'avance qu'il y aura un trou entre vos deux logements, parlez-en à votre déménageur <strong>au moment du devis initial</strong>, pas après coup. Vous obtiendrez un tarif groupé bien plus avantageux qu'en cherchant un garde-meuble en urgence à 2 semaines du départ.</p>
+
+      <p>Et surtout, <strong>ne sous-estimez pas la durée</strong>&nbsp;: la majorité de nos clients qui prévoyaient 6 semaines de stockage finissent par y rester 2 à 4 mois. Une vente immobilière, des travaux, un emménagement&nbsp;: ça déborde toujours un peu. Mieux vaut prévoir une durée confortable et résilier en avance que d'avoir à prolonger en panique.</p>
+
+      <p><strong>Vous avez un projet de déménagement avec étape de stockage à Annemasse, Ville-la-Grand ou ailleurs en Haute-Savoie&nbsp;?</strong> <a href="/contact">Demandez un devis groupé gratuit</a>&nbsp;: on étudie votre situation, on vous propose la meilleure formule, et on s'occupe de tout de bout en bout. Sans acompte, sans surprise.</p>
+    `,
+    date: "2026-05-09",
+    author: "Ludovic Torres",
+    tags: ["garde-meuble", "stockage", "annemasse", "transition", "haute-savoie"],
+    image: "/blog/header-garde-meuble-stockage-annemasse.webp",
+    readTime: "7 min",
+    category: "Conseils Déménagement",
+    seo: {
+      metaTitle: "Garde-meuble Annemasse : stocker entre deux logements (tarifs 2026)",
+      metaDescription: "Garde-meuble à Annemasse : situations, tarifs réels par m³, durée, traditionnel vs self-stockage. 20 ans d'expérience Torres Transport en Haute-Savoie.",
+      keywords: ["garde-meuble Annemasse", "stockage temporaire Haute-Savoie", "garde-meuble Ville-la-Grand", "stocker meubles Annemasse", "self-stockage 74"],
+    },
+  },
+  {
     id: "conseils-demenagement-reussi",
     title: "Déménagement Réussi à Annemasse : Guide Complet 2025",
     slug: "conseils-demenagement-reussi",
