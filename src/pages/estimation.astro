@@ -452,9 +452,10 @@ const services = [
                 </label>
               </div>
 
-              <!-- Honeypot anti-spam -->
+              <!-- Honeypot anti-spam + timestamp pour rate-limit time-based -->
               <div style="position:absolute;left:-9999px;visibility:hidden;" aria-hidden="true">
                 <label>Site web (laissez vide) <input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+                <input type="hidden" name="form_loaded_at" id="form_loaded_at" value="" />
               </div>
 
               <label class="rgpd-label">
@@ -500,7 +501,7 @@ const services = [
               </p>
 
               <!-- Feedback dynamique -->
-              <div id="form-feedback" class="form-feedback" role="alert"></div>
+              <div id="form-feedback" class="form-feedback" role="alert" aria-live="polite" aria-atomic="true"></div>
 
               <button type="submit" class="btn-submit" id="submitBtn">
                 <span class="btn-label">Envoyer ma demande</span>
@@ -850,6 +851,10 @@ const services = [
     });
 
     applyServiceVisibility();
+
+    // Timestamp pour le rate-limit time-based (anti-bot)
+    const loadedAtInput = document.getElementById('form_loaded_at');
+    if (loadedAtInput) loadedAtInput.value = String(Date.now());
   })();
 </script>
 

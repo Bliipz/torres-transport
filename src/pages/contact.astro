@@ -149,10 +149,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               <textarea id="message" name="message" rows="5" required minlength="10" placeholder="Volume à transporter, étage, contraintes particulières, distance…"></textarea>
             </div>
 
-            <!-- Honeypot anti-spam -->
+            <!-- Honeypot anti-spam + timestamp pour rate-limit time-based -->
             <div class="honeypot" aria-hidden="true">
               <label for="website">Site web (laissez vide)</label>
               <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+              <input type="hidden" name="form_loaded_at" id="contact-form-loaded-at" value="" />
             </div>
 
             <!-- RGPD -->
@@ -167,7 +168,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             </div>
 
             <!-- Feedback dynamique -->
-            <div id="form-feedback" class="form-feedback" role="alert" aria-live="polite"></div>
+            <div id="form-feedback" class="form-feedback" role="alert" aria-live="polite" aria-atomic="true"></div>
 
             <div class="form-submit">
               <button type="submit" class="btn btn-primary btn-large btn-with-arrow" id="form-submit-btn">
@@ -286,6 +287,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           setLoading(false);
         }
       });
+
+      // Timestamp pour le rate-limit time-based (anti-bot)
+      const loadedAtInput = document.getElementById('contact-form-loaded-at');
+      if (loadedAtInput) loadedAtInput.value = String(Date.now());
     })();
   </script>
 </BaseLayout>

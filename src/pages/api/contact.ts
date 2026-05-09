@@ -6,6 +6,14 @@
 
 import type { APIRoute } from 'astro';
 import { Resend } from 'resend';
+import {
+  SERVICE_LABELS,
+  ASCENSEUR_LABELS,
+  TYPE_LIEU_LABELS,
+  SERVICES_NEED_DEPART,
+  SERVICES_NEED_ARRIVEE,
+} from '../../lib/labels';
+import { buildAddress } from '../../lib/address';
 
 export const prerender = false;
 
@@ -28,39 +36,6 @@ function isValidPhone(phone: string): boolean {
   const cleaned = phone.replace(/[\s.\-]/g, '');
   return /^(\+33|0)[1-9]\d{8}$/.test(cleaned);
 }
-
-// Construit "rue, CP ville" si les 3 champs sont valides, sinon ''
-function buildAddress(rue: string, cp: string, ville: string): string {
-  const r = (rue || '').trim();
-  const c = (cp || '').trim();
-  const v = (ville || '').trim();
-  if (r.length < 3 || !/^\d{5}$/.test(c) || v.length < 2) return '';
-  return `${r}, ${c} ${v}`;
-}
-
-const SERVICE_LABELS: Record<string, string> = {
-  demenagement: 'Déménagement',
-  transport: 'Transport simple',
-  'montage-meubles': 'Montage de meubles',
-  manutention: 'Manutention',
-  debarras: 'Débarras',
-  'location-vehicule': 'Location utilitaire avec chauffeur',
-  nettoyage: 'Nettoyage fin de chantier',
-};
-
-const ASCENSEUR_LABELS: Record<string, string> = {
-  aucun: 'Sans ascenseur',
-  '2p': 'Ascenseur 2 personnes',
-  '4p': 'Ascenseur 4 personnes',
-  grand: 'Ascenseur +4 personnes',
-};
-
-const TYPE_LIEU_LABELS: Record<string, string> = {
-  appartement: 'Appartement',
-  maison: 'Maison',
-  local: 'Local commercial',
-  bureau: 'Bureau',
-};
 
 // Construit la section "détails de la prestation" selon le service
 function buildDetailsHtml(service: string, fd: FormData): string {
@@ -185,10 +160,20 @@ export const POST: APIRoute = async ({ request }) => {
   try {
     const formData = await request.formData();
 
-    // 🍯 Honeypot anti-spam
+    // 🍯 Honeypot anti-spam (champ invisible que les bots remplissent)
     const honeypot = formData.get('website')?.toString().trim();
     if (honeypot) {
       return new Response(JSON.stringify({ ok: true }), { status: 200, headers });
+    }
+
+    // ⏱️ Rate limit time-based : un humain met au moins 3 secondes à remplir.
+    // Les bots soumettent en < 1s. On retourne un faux succès pour pas leur signaler.
+    const loadedAt = parseInt(formData.get('form_loaded_at')?.toString() || '0', 10);
+    if (loadedAt > 0) {
+      const elapsedMs = Date.now() - loadedAt;
+      if (elapsedMs < 3000) {
+        return new Response(JSON.stringify({ ok: true }), { status: 200, headers });
+      }
     }
 
     // Champs requis
@@ -208,10 +193,6 @@ export const POST: APIRoute = async ({ request }) => {
       formData.get('cp_arrivee')?.toString() || '',
       formData.get('ville_arrivee')?.toString() || '',
     );
-
-    // Services qui exigent une adresse complète (rue, code postal, ville)
-    const SERVICES_NEED_DEPART = ['demenagement', 'transport', 'montage-meubles', 'manutention', 'debarras', 'nettoyage'];
-    const SERVICES_NEED_ARRIVEE = ['demenagement', 'transport'];
 
     // ==================== VALIDATION ====================
     const errors: string[] = [];

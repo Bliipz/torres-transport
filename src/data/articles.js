@@ -1786,6 +1786,37 @@ export function getRelatedServices(article, limit = 2) {
   return services.slice(0, limit);
 }
 
+// Récupère les articles pertinents pour une page service donnée.
+// Cherche les articles dont les tags matchent le service (via SERVICE_TAG_MAP),
+// puis complète avec les articles récents si pas assez de matches.
+export function getArticlesForService(serviceSlug, limit = 3) {
+  // Cherche les tags qui pointent vers ce service slug
+  const matchingTags = Object.entries(SERVICE_TAG_MAP)
+    .filter(([_, svc]) => svc.slug === serviceSlug)
+    .map(([tag]) => tag);
+
+  if (matchingTags.length === 0) {
+    return getRecentArticles(limit);
+  }
+
+  const targeted = articles.filter((a) =>
+    (a.tags || []).some((t) => matchingTags.includes(normalize(t)))
+  );
+
+  if (targeted.length >= limit) {
+    return targeted
+      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+      .slice(0, limit);
+  }
+
+  // Compléter avec articles généralistes récents
+  const seen = new Set(targeted.map((a) => a.slug));
+  const extras = articles
+    .filter((a) => !seen.has(a.slug))
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  return [...targeted, ...extras].slice(0, limit);
+}
+
 // Fonction pour obtenir toutes les catégories
 export function getCategories() {
   const categories = [...new Set(articles.map(article => article.category))];

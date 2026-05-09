@@ -2,6 +2,8 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { servicesData } from '../../data/services.js';
 import { getAllCities } from '../../data/cities.js';
+import { serviceFaqs } from '../../data/service-faqs.js';
+import { getArticlesForService } from '../../data/articles.js';
 
 const allCities = getAllCities();
 
@@ -83,13 +85,33 @@ const breadcrumbSchema = {
     { '@type': 'ListItem', position: 3, name: service.titre, item: pageURL },
   ],
 };
+
+// Articles de blog pertinents pour ce service (internal linking SEO)
+const relatedArticles = getArticlesForService(slug as string, 3);
+
+const formatDate = (date: string) =>
+  new Date(date).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' });
+
+// FAQ schema spécifique au service pour rich snippets Google
+const faqs = (serviceFaqs as Record<string, Array<{ question: string; reponse: string }>>)[slug as string] || [];
+const faqSchema = faqs.length > 0 ? {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.question,
+    acceptedAnswer: { '@type': 'Answer', text: f.reponse },
+  })),
+} : null;
+
+const allSchemas = [serviceSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema] : [])];
 ---
 
 <BaseLayout
   title={seoTitle}
   description={seoDescription}
   ogImage={service.banner || service.image}
-  structuredData={[serviceSchema, breadcrumbSchema]}
+  structuredData={allSchemas}
 >
   <!-- ==================== HERO IMAGE ==================== -->
   <section class="service-hero" style={`background-image: url('${service.banner || service.image}')`}>
@@ -177,6 +199,58 @@ const breadcrumbSchema = {
       </div>
     </div>
   </section>
+
+  <!-- ==================== ARTICLES UTILES ==================== -->
+  {relatedArticles.length > 0 && (
+    <section class="section bg-cream service-articles">
+      <div class="container">
+        <header class="section-header">
+          <span class="eyebrow gold">À lire pour préparer</span>
+          <h2>Nos guides<br /><em>sur ce service.</em></h2>
+        </header>
+        <div class="service-articles-grid">
+          {relatedArticles.map((art: any) => (
+            <a href={`/blog/${art.slug}`} class="service-article-card">
+              <div class="service-article-image">
+                <img src={art.image} alt={art.title} width="400" height="210" loading="lazy" decoding="async" />
+              </div>
+              <div class="service-article-body">
+                <span class="article-category">{art.category}</span>
+                <h3>{art.title}</h3>
+                <p>{art.excerpt}</p>
+                <span class="service-article-cta">Lire l'article <span class="arrow">→</span></span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ==================== FAQ ==================== -->
+  {faqs.length > 0 && (
+    <section class="section service-faq">
+      <div class="container container-narrow">
+        <header class="section-header">
+          <span class="eyebrow gold">Questions fréquentes</span>
+          <h2>Vos questions<br /><em>sur ce service.</em></h2>
+        </header>
+        <div class="faq-list">
+          {faqs.map((faq: any, idx: number) => (
+            <details class="faq-item" open={idx === 0}>
+              <summary>
+                <h3>{faq.question}</h3>
+                <span class="faq-icon" aria-hidden="true"></span>
+              </summary>
+              <div class="faq-answer">
+                <p>{faq.reponse}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
 
   <!-- ==================== CTA FINAL ==================== -->
   <section class="section bg-cream service-cta">
@@ -474,6 +548,134 @@ const breadcrumbSchema = {
     margin-top: 2.5rem;
     text-align: center;
   }
+
+  /* ==================== ARTICLES UTILES ==================== */
+  .service-articles { background: var(--cream); }
+  .service-articles .section-header { margin-bottom: 2.5rem; }
+  .service-articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .service-article-card {
+    background: var(--white);
+    border: 1px solid var(--border-strong);
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.3s var(--ease-smooth);
+  }
+  .service-article-card:hover { border-color: var(--gold-deep); }
+  .service-article-card:hover .service-article-cta .arrow { transform: translateX(6px); }
+  .service-article-card:hover .service-article-image img { transform: scale(1.04); }
+  .service-article-image {
+    overflow: hidden;
+    aspect-ratio: 1200 / 630;
+  }
+  .service-article-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s var(--ease-smooth);
+  }
+  .service-article-body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .service-article-body .article-category {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--gold-deep);
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+  .service-article-body h3 {
+    font-size: 1.15rem;
+    line-height: 1.3;
+    margin-bottom: 0.75rem;
+  }
+  .service-article-body p {
+    font-size: 0.92rem;
+    color: var(--gray-700, #404040);
+    line-height: 1.55;
+    margin-bottom: 1.25rem;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .service-article-cta {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--black);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .service-article-cta .arrow {
+    display: inline-block;
+    transition: transform 0.3s var(--ease-smooth);
+  }
+
+  /* ==================== FAQ ==================== */
+  .service-faq { background: var(--white); }
+  .service-faq .section-header { margin-bottom: 2.5rem; }
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .faq-item {
+    border: 1px solid var(--border-strong);
+    background: var(--white);
+    transition: border-color 0.2s var(--ease-smooth);
+  }
+  .faq-item[open] { border-color: var(--gold-deep); }
+  .faq-item summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 1.4rem 1.6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary h3 {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--black);
+    line-height: 1.4;
+    margin: 0;
+  }
+  .faq-icon {
+    position: relative;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+  .faq-icon::before, .faq-icon::after {
+    content: '';
+    position: absolute;
+    inset: 50% 0 auto;
+    height: 2px;
+    background: var(--gold-deep);
+    transform: translateY(-50%);
+    transition: transform 0.3s var(--ease-smooth);
+  }
+  .faq-icon::after { transform: translateY(-50%) rotate(90deg); }
+  .faq-item[open] .faq-icon::after { transform: translateY(-50%) rotate(0deg); }
+  .faq-answer {
+    padding: 0 1.6rem 1.4rem;
+    color: var(--gray-800);
+    line-height: 1.7;
+  }
+  .faq-answer p { margin: 0; font-size: 0.98rem; }
 
   /* ==================== CTA FINAL ==================== */
   .service-cta {
