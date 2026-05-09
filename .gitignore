@@ -27,3 +27,5 @@ pnpm-debug.log*
 
 # Vercel local config (project IDs, not secrets but local-only)
 .vercel/
+
+.vercel

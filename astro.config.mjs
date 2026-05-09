@@ -10,10 +10,15 @@ export default defineConfig({
   trailingSlash: 'ignore',
   // Mode hybride : pages statiques par défaut, API routes en serverless
   output: 'static',
-  // Prefetch des liens internes au survol/visible — navigation perçue ~instantanée
+  // Prefetch des liens internes au survol/visible, navigation perçue ~instantanée
   prefetch: {
     prefetchAll: true,
     defaultStrategy: 'viewport',
+  },
+  // Inline les feuilles CSS pour éliminer le render-blocking
+  // (économie ~150ms LCP/FCP selon PageSpeed Insights)
+  build: {
+    inlineStylesheets: 'always',
   },
   adapter: vercel({
     webAnalytics: { enabled: true },
