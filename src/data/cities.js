@@ -49,6 +49,9 @@ export const cities = {
 
     villesVoisines: [
       { nom: 'Ville-la-Grand', slug: 'ville-la-grand' },
+      { nom: 'Vétraz-Monthoux', slug: 'vetraz-monthoux' },
+      { nom: 'Étrembières', slug: 'etrembieres' },
+      { nom: 'Ambilly', slug: 'ambilly' },
       { nom: 'Saint-Julien-en-Genevois', slug: 'saint-julien-en-genevois' },
       { nom: 'Genève', slug: 'geneve' },
     ],
@@ -692,6 +695,367 @@ export const cities = {
         question: 'Intervenez-vous aussi à Annecy-le-Vieux et Cran-Gevrier ?',
         reponse:
           "Oui, depuis la fusion des communes en 2017, Annecy-le-Vieux, Cran-Gevrier, Meythet, Pringy et Seynod font partie d'Annecy. Nos prestations couvrent l'ensemble du nouveau territoire communal.",
+      },
+    ],
+  },
+
+  // ------------------------------------------------------------------
+  // ÉTREMBIÈRES, frontière sud d'Annemasse (74100)
+  // ------------------------------------------------------------------
+  'etrembieres': {
+    slug: 'etrembieres',
+    nom: 'Étrembières',
+    codePostal: '74100',
+    departement: 'Haute-Savoie',
+    geo: { lat: 46.166, lng: 6.226 },
+    distanceKm: 3,
+    population: '1 900 habitants',
+    bannier: '/banner-transport.webp',
+
+    titreH1: 'Déménagement à Étrembières (74100), au pied du Salève',
+    metaTitle: "Déménageur Étrembières (74100) | Torres Transport Annemasse",
+    metaDescription:
+      "Déménageur professionnel à Étrembières (74100). Pas-de-l'Échelle, ZAC Mont-Blanc, village. Frontalier Suisse, base Ville-la-Grand à 3 km. 20 ans d'expérience. Devis gratuit en 24h.",
+    keywords:
+      'déménageur Étrembières, déménagement Étrembières 74100, déménageur Pas-de-l\'Échelle, déménagement Salève, déménageur frontalier Suisse Étrembières',
+
+    intro: `<strong>Étrembières</strong> est cette petite commune de 1 900 habitants posée au pied du <strong>Mont Salève</strong>, à la frontière sud d'Annemasse. Trois entités la composent et ont chacune leur logique de déménagement&nbsp;: le <strong>Pas-de-l'Échelle</strong>, frontalier direct avec Genève (côté Veyrier), la <strong>ZAC du Mont-Blanc</strong> avec ses immeubles récents et zone commerciale, et le village historique d'Étrembières lui-même. Torres Transport intervient sous 24h depuis Ville-la-Grand (3 km).`,
+
+    pourquoiNous: `La spécificité d'Étrembières, c'est sa <strong>topographie variée</strong> qui change tout en pratique : le Pas-de-l'Échelle est plat et accessible, le village d'Étrembières est en hauteur sur les pentes du Salève (rues étroites, accès parfois compliqués pour les utilitaires &gt;&nbsp;20&nbsp;m³), et la ZAC est aux normes immeubles modernes (parking dédié, ascenseur). Notre équipe connaît ces différences et adapte le matériel selon le quartier. Le téléphérique du Salève, juste à côté, reste un repère évident pour expliquer un trajet à un client.`,
+
+    quartiers: [
+      'Pas-de-l\'Échelle (frontalier)',
+      'ZAC du Mont-Blanc',
+      'Étrembières-village',
+      'Plaine de l\'Arve',
+      'Sous-le-Salève',
+    ],
+
+    tarifs: {
+      studio: 'À partir de 380 €',
+      f2f3: 'À partir de 780 €',
+      maison: 'À partir de 1 550 €',
+      pro: 'Sur devis personnalisé',
+    },
+
+    villesVoisines: [
+      { nom: 'Annemasse', slug: 'annemasse' },
+      { nom: 'Genève', slug: 'geneve' },
+      { nom: 'Gaillard', slug: 'gaillard' },
+    ],
+
+    faq: [
+      {
+        question: 'Quel est le tarif d\'un déménagement à Étrembières ?',
+        reponse:
+          "Comptez à partir de 380 € pour un studio, 780 € pour un F2/F3, 1 550 € pour une maison. La proximité de Ville-la-Grand (3 km) permet une intervention sans surcoût kilométrique.",
+      },
+      {
+        question: 'Pouvez-vous déménager dans le village haut d\'Étrembières ?',
+        reponse:
+          "Oui. Les rues étroites du village haut imposent l'utilisation de camions de 12-15 m³ plutôt que des 30 m³. Pour les volumes importants, on fait des navettes avec relais sur la place du village.",
+      },
+      {
+        question: 'Faites-vous des déménagements Étrembières-Genève ?',
+        reponse:
+          "Régulièrement. Le Pas-de-l'Échelle est limitrophe direct du canton de Genève (Veyrier, Carouge). Nous gérons les formalités douanières (déclaration de transfert) et connaissons les contraintes du passage frontalier.",
+      },
+      {
+        question: 'Intervenez-vous dans la ZAC Mont-Blanc ?',
+        reponse:
+          "Oui, c'est l'un de nos secteurs les plus actifs sur Étrembières. Immeubles récents, ascenseurs adaptés, parkings privés. Idéal pour des déménagements rapides sans contrainte de stationnement.",
+      },
+      {
+        question: 'Quelle est la différence de tarif vs Annemasse ?',
+        reponse:
+          "Aucune. Étrembières étant à 3 km de notre base, nous appliquons le même tarif qu'Annemasse. Pas de frais de déplacement.",
+      },
+    ],
+  },
+
+  // ------------------------------------------------------------------
+  // VÉTRAZ-MONTHOUX, limitrophe direct Annemasse (74100)
+  // ------------------------------------------------------------------
+  'vetraz-monthoux': {
+    slug: 'vetraz-monthoux',
+    nom: 'Vétraz-Monthoux',
+    codePostal: '74100',
+    departement: 'Haute-Savoie',
+    geo: { lat: 46.183, lng: 6.276 },
+    distanceKm: 3,
+    population: '7 400 habitants',
+    bannier: '/banner-demenagement.webp',
+
+    titreH1: 'Déménagement à Vétraz-Monthoux (74100), commune voisine d\'Annemasse',
+    metaTitle: "Déménageur Vétraz-Monthoux (74100) | Torres Transport",
+    metaDescription:
+      "Déménageur à Vétraz-Monthoux (74100), 7 400 habitants, limitrophe d'Annemasse. ZAE du Mésa, Le Genevray, quartier Brénaz. Base Ville-la-Grand à 3 km. Devis 24h.",
+    keywords:
+      'déménageur Vétraz-Monthoux, déménagement Vétraz-Monthoux 74100, déménageur Le Genevray, ZAE Mésa Vétraz, déménagement entre Annemasse Vétraz',
+
+    intro: `<strong>Vétraz-Monthoux</strong> est une commune résidentielle de <strong>7 400 habitants</strong> directement collée à l'est d'Annemasse, et l'une des destinations préférées des familles qui veulent quitter le centre dense d'Annemasse pour une zone pavillonnaire calme. Pour Torres Transport, c'est un <strong>territoire quasi quotidien</strong> : nos camions y passent toutes les semaines pour des déménagements résidentiels, et la ZAE du Mésa concentre quelques transferts d'entreprises.`,
+
+    pourquoiNous: `Vétraz-Monthoux a une particularité : <strong>une grande majorité de pavillons individuels</strong> (Le Genevray, Brénaz, Mésa, Jaillet, Romagny côté Annemasse), donc des accès véhicules plutôt simples, des distances de portage modérées, et peu de problématiques d'ascenseur ou d'étages élevés. C'est l'inverse exact d'Annemasse-centre. La ZAE du Mésa concentre quant à elle des entreprises (BTP, services, garages), où les transferts pro nécessitent une logistique différente : weekend ou nocturne pour ne pas perturber l'activité, manutention de matériel lourd, parfois passages de palettes.`,
+
+    quartiers: [
+      'Le Genevray',
+      'Brénaz',
+      'Mésa (ZAE)',
+      'Jaillet',
+      'Romagny (limitrophe Annemasse)',
+      'Centre village',
+    ],
+
+    tarifs: {
+      studio: 'À partir de 380 €',
+      f2f3: 'À partir de 780 €',
+      maison: 'À partir de 1 550 €',
+      pro: 'Sur devis personnalisé',
+    },
+
+    villesVoisines: [
+      { nom: 'Annemasse', slug: 'annemasse' },
+      { nom: 'Cranves-Sales', slug: 'cranves-sales' },
+      { nom: 'Ville-la-Grand', slug: 'ville-la-grand' },
+    ],
+
+    faq: [
+      {
+        question: 'Combien coûte un déménagement à Vétraz-Monthoux ?',
+        reponse:
+          "Tarifs identiques à Annemasse vu la proximité (3 km de notre base) : 380 € pour un studio, 780 € pour un F2/F3, 1 550 € pour une maison. Devis personnalisé pour les pavillons avec gros volumes.",
+      },
+      {
+        question: 'Quelles sont les contraintes de stationnement ?',
+        reponse:
+          "Vétraz-Monthoux est très facile vs Annemasse-centre : la majorité des biens disposent de parkings privés ou de rues larges. Aucune autorisation mairie nécessaire dans 90% des cas.",
+      },
+      {
+        question: 'Pouvez-vous gérer un transfert d\'entreprise dans la ZAE du Mésa ?',
+        reponse:
+          "Oui, c'est l'un de nos secteurs sur Vétraz. Pour les transferts pro (BTP, garages, services), nous travaillons en weekend ou nocturne pour ne pas couper l'activité. Manutention matériel lourd et palettes incluses.",
+      },
+      {
+        question: 'Faites-vous Annemasse-Vétraz régulièrement ?',
+        reponse:
+          "Oui, c'est l'un de nos trajets les plus fréquents. Beaucoup de jeunes familles quittent Annemasse-centre pour des pavillons à Vétraz. Trajet 5-10 minutes, déménagement souvent en demi-journée.",
+      },
+      {
+        question: 'Faites-vous des déménagements pavillon-pavillon dans Vétraz ?',
+        reponse:
+          "Régulièrement. Les déménagements internes à Vétraz (changement de quartier ou agrandissement de famille) sont notre quotidien. Tarif optimisé puisque le trajet est court : remise possible si volume entier dans le camion sans demi-tour.",
+      },
+    ],
+  },
+
+  // ------------------------------------------------------------------
+  // CRANVES-SALES, est du bassin annemassien (74380)
+  // ------------------------------------------------------------------
+  'cranves-sales': {
+    slug: 'cranves-sales',
+    nom: 'Cranves-Sales',
+    codePostal: '74380',
+    departement: 'Haute-Savoie',
+    geo: { lat: 46.184, lng: 6.318 },
+    distanceKm: 5,
+    population: '6 500 habitants',
+    bannier: '/banner-demenagement.webp',
+
+    titreH1: 'Déménagement à Cranves-Sales (74380), bassin annemassien étendu',
+    metaTitle: "Déménageur Cranves-Sales (74380) | Torres Transport",
+    metaDescription:
+      "Déménageur à Cranves-Sales (74380), 6 500 habitants. Quartiers Mépaillat, Veluz, Borly. Vue Salève. Pavillons et résidentiel. Base Ville-la-Grand à 5 km.",
+    keywords:
+      'déménageur Cranves-Sales, déménagement Cranves-Sales 74380, déménageur Mépaillat, déménagement Veluz Borly, déménageur 74380',
+
+    intro: `<strong>Cranves-Sales</strong> est une commune résidentielle de <strong>6 500 habitants</strong>, à 5 km de notre base, qui a vu sa population augmenter régulièrement avec l'extension du bassin annemassien. Beaucoup de pavillons individuels et de petits collectifs, vue panoramique sur le Salève, calme garanti. Torres Transport intervient régulièrement à Cranves-Sales pour les <strong>déménagements de jeunes familles</strong> qui s'installent durablement après avoir quitté Annemasse-centre.`,
+
+    pourquoiNous: `Cranves-Sales a la particularité d'être <strong>étalée géographiquement</strong> avec plusieurs hameaux (Mépaillat, Veluz, Laplagne, Borly) qui ne sont pas tous au même niveau. Selon le quartier, les contraintes diffèrent : Mépaillat et Veluz sont plats, Laplagne et Borly sont en altitude. Notre équipe choisit le bon véhicule (12 m³ pour les hameaux étroits, 30 m³ pour les pavillons en plaine) après avoir vu les photos. La connaissance fine de cette commune nous permet d'éviter les erreurs de planning (un camion 30 m³ qui n'arrive pas à tourner dans une rue de hameau, ça arrive aux concurrents).`,
+
+    quartiers: [
+      'Mépaillat',
+      'Veluz',
+      'Laplagne',
+      'Borly',
+      'Centre village',
+    ],
+
+    tarifs: {
+      studio: 'À partir de 400 €',
+      f2f3: 'À partir de 810 €',
+      maison: 'À partir de 1 600 €',
+      pro: 'Sur devis personnalisé',
+    },
+
+    villesVoisines: [
+      { nom: 'Vétraz-Monthoux', slug: 'vetraz-monthoux' },
+      { nom: 'Annemasse', slug: 'annemasse' },
+      { nom: 'Bonneville', slug: 'bonneville' },
+    ],
+
+    faq: [
+      {
+        question: 'Combien coûte un déménagement à Cranves-Sales ?',
+        reponse:
+          "Comptez à partir de 400 € pour un studio, 810 € pour un F2/F3, 1 600 € pour une maison. Léger surcoût vs Annemasse à cause de la distance (5 km vs 2 km).",
+      },
+      {
+        question: 'Pouvez-vous accéder aux hameaux en altitude (Borly, Laplagne) ?',
+        reponse:
+          "Oui, mais avec un véhicule adapté. Pour ces hameaux, nous utilisons des camions de 12-15 m³ plutôt que des 30 m³. Si volume important, navette avec relais en bas du hameau.",
+      },
+      {
+        question: 'Faites-vous des déménagements Cranves-Sales vers Annemasse ?',
+        reponse:
+          "Régulièrement. C'est même un trajet fréquent quand des seniors quittent leur maison de Cranves pour un appartement à Annemasse, plus pratique pour la mobilité.",
+      },
+      {
+        question: 'Intervenez-vous pour les nouveaux lotissements ?',
+        reponse:
+          "Oui. Cranves-Sales a vu plusieurs lotissements neufs sortir ces dernières années (côté Mépaillat). Aucune contrainte particulière, accès véhicule prévu dans la conception.",
+      },
+    ],
+  },
+
+  // ------------------------------------------------------------------
+  // AMBILLY, frontalier direct Genève (74100)
+  // ------------------------------------------------------------------
+  'ambilly': {
+    slug: 'ambilly',
+    nom: 'Ambilly',
+    codePostal: '74100',
+    departement: 'Haute-Savoie',
+    geo: { lat: 46.198, lng: 6.244 },
+    distanceKm: 2,
+    population: '7 000 habitants',
+    bannier: '/banner-form-contact.webp',
+
+    titreH1: 'Déménagement à Ambilly (74100), commune frontalière avec Genève',
+    metaTitle: "Déménageur Ambilly (74100) | Frontalier Genève | Torres Transport",
+    metaDescription:
+      "Déménageur à Ambilly (74100), commune frontalière avec Genève (tram 17). 7 000 habitants. Centre dense, immeubles, transfrontaliers. Base Ville-la-Grand à 2 km. Devis 24h.",
+    keywords:
+      'déménageur Ambilly, déménagement Ambilly 74100, déménageur frontalier Genève Ambilly, tram 17 déménagement, déménageur Eaux-Vives',
+
+    intro: `<strong>Ambilly</strong> est cette petite commune dense de <strong>7 000 habitants</strong> coincée entre Annemasse et la frontière suisse, à 2 km de notre base. Sa particularité&nbsp;: elle est <strong>directement reliée à Genève par le tram 17</strong> (terminus Annemasse-Lycée), ce qui en fait l'une des destinations préférées des frontaliers travaillant à Genève qui veulent un loyer plus bas tout en gardant des transports rapides. Torres Transport y déménage très régulièrement des familles, des jeunes actifs frontaliers, et des transferts vers la Suisse.`,
+
+    pourquoiNous: `Ambilly est <strong>très dense</strong> par rapport à sa taille : peu de pavillons, beaucoup d'immeubles collectifs, des quartiers historiques (Centre, Eaux-Vives) et des secteurs plus récents (Mélézins). Cette densité urbaine impose des contraintes&nbsp;: rues étroites en centre, parkings limités, ascenseurs parfois petits. Notre équipe connaît ces particularités et planifie en conséquence : créneaux matinaux pour les rues piétonnes, demande d'autorisation municipale pour le stationnement temporaire si nécessaire. Les <strong>déménagements vers la Suisse</strong> sont quant à eux notre spécialité&nbsp;: nous gérons les formalités douanières et le passage à la frontière sans que vous ayez à vous en occuper.`,
+
+    quartiers: [
+      'Centre',
+      'Eaux-Vives',
+      'Mélézins',
+      'Piscine',
+      'Quartier de la Mairie',
+    ],
+
+    tarifs: {
+      studio: 'À partir de 380 €',
+      f2f3: 'À partir de 780 €',
+      maison: 'À partir de 1 550 €',
+      pro: 'Sur devis personnalisé',
+    },
+
+    villesVoisines: [
+      { nom: 'Annemasse', slug: 'annemasse' },
+      { nom: 'Genève', slug: 'geneve' },
+      { nom: 'Ville-la-Grand', slug: 'ville-la-grand' },
+    ],
+
+    faq: [
+      {
+        question: 'Combien coûte un déménagement à Ambilly ?',
+        reponse:
+          "Tarifs identiques à Annemasse (2 km de notre base) : 380 € pour un studio, 780 € pour un F2/F3, 1 550 € pour une maison.",
+      },
+      {
+        question: 'Faites-vous des déménagements Ambilly-Genève ?',
+        reponse:
+          "Très régulièrement. Le tram 17 reliant Ambilly à Genève fait que beaucoup de frontaliers déménagent dans cette commune ou en partent vers la Suisse. Nous gérons les formalités douanières.",
+      },
+      {
+        question: 'Quelles sont les contraintes de stationnement à Ambilly ?',
+        reponse:
+          "Ambilly-centre est dense : peu de places, rues étroites. Nous demandons l'autorisation municipale pour stationner temporairement si nécessaire. Pour Eaux-Vives et Mélézins, c'est plus simple (parkings d'immeubles).",
+      },
+      {
+        question: 'Pouvez-vous accéder aux résidences avec petits ascenseurs ?',
+        reponse:
+          "Oui. Pour les immeubles avec ascenseurs étroits (commun en centre Ambilly), nous prévoyons un démontage poussé du mobilier (lits, armoires démontés en pièces) plutôt que de tout passer par les escaliers.",
+      },
+      {
+        question: 'Intervenez-vous le weekend pour les frontaliers ?',
+        reponse:
+          "Oui, sur demande. Beaucoup de frontaliers ne peuvent déménager qu'en weekend (travail à Genève en semaine). Pas de surcoût weekend chez nous.",
+      },
+    ],
+  },
+
+  // ------------------------------------------------------------------
+  // JUVIGNY, petit village hauteur (74100)
+  // ------------------------------------------------------------------
+  'juvigny': {
+    slug: 'juvigny',
+    nom: 'Juvigny',
+    codePostal: '74100',
+    departement: 'Haute-Savoie',
+    geo: { lat: 46.176, lng: 6.328 },
+    distanceKm: 6,
+    population: '1 300 habitants',
+    bannier: '/banner-blog-hero.webp',
+
+    titreH1: 'Déménagement à Juvigny (74100), village calme avec vue Mont-Blanc',
+    metaTitle: "Déménageur Juvigny (74100) | Torres Transport",
+    metaDescription:
+      "Déménageur à Juvigny (74100), petit village de 1 300 habitants. Vue Mont-Blanc et Léman. Pavillons et résidentiel calme. Base Ville-la-Grand à 6 km.",
+    keywords:
+      'déménageur Juvigny, déménagement Juvigny 74100, déménageur Le Bourg La Croisette, déménagement résidentiel Juvigny',
+
+    intro: `<strong>Juvigny</strong>, c'est ce <strong>petit village de 1 300 habitants</strong> perché à 600 m d'altitude, qu'on choisit pour le calme, la vue sur le Mont-Blanc et le lac Léman, et la sensation d'être à la campagne tout en restant à 10 minutes d'Annemasse. Torres Transport intervient à Juvigny pour des <strong>déménagements de couples qui s'installent</strong> (souvent venus d'Annemasse-centre ou de la périphérie genevoise) et de seniors qui veulent finir leur vie dans un cadre paisible.`,
+
+    pourquoiNous: `Juvigny a deux <strong>spécificités logistiques</strong>&nbsp;: (1) la route d'accès est <strong>en pente avec virages serrés</strong>, donc les très gros camions (30+ m³) doivent prévoir leurs manœuvres ; (2) les hameaux comme Les Côtes ou La Rosière sont sur des chemins étroits où on ne passe qu'avec des véhicules de 15 m³ max. Notre connaissance de cette topographie évite les mauvaises surprises le jour J. Beaucoup de nos clients à Juvigny sont aussi des <strong>retraités ou pré-retraités</strong> : nous adaptons le rythme et appliquons systématiquement notre <strong>remise sénior de 10%</strong> pour les 60+.`,
+
+    quartiers: [
+      'Le Bourg',
+      'Les Côtes',
+      'La Croisette',
+      'La Rosière',
+      'Sous-le-Mont',
+    ],
+
+    tarifs: {
+      studio: 'À partir de 410 €',
+      f2f3: 'À partir de 830 €',
+      maison: 'À partir de 1 650 €',
+      pro: 'Sur devis personnalisé',
+    },
+
+    villesVoisines: [
+      { nom: 'Cranves-Sales', slug: 'cranves-sales' },
+      { nom: 'Annemasse', slug: 'annemasse' },
+      { nom: 'Bonneville', slug: 'bonneville' },
+    ],
+
+    faq: [
+      {
+        question: 'Combien coûte un déménagement à Juvigny ?',
+        reponse:
+          "Comptez à partir de 410 € pour un studio, 830 € pour un F2/F3, 1 650 € pour une maison. Léger surcoût lié à la distance (6 km) et la topographie pentue.",
+      },
+      {
+        question: 'Pouvez-vous accéder aux hameaux étroits (Les Côtes, La Rosière) ?',
+        reponse:
+          "Oui, avec des véhicules de 12-15 m³ adaptés. Pour les volumes plus importants, on fait des navettes avec relais en bas du hameau ou sur la place du village.",
+      },
+      {
+        question: 'Beaucoup de seniors à Juvigny : avez-vous une remise dédiée ?',
+        reponse:
+          "Oui, notre remise sénior/PMR de 10% s'applique automatiquement pour les 60+ ans. Cumulable avec la remise réservation anticipée (-5% si plus de 30 jours).",
+      },
+      {
+        question: 'Quels sont les délais d\'intervention sur Juvigny ?',
+        reponse:
+          "Sous 24-48 heures pour les urgences, 2 à 4 semaines pour les planifiés. La distance étant courte (6 km), aucune contrainte horaire vs Annemasse.",
       },
     ],
   },
