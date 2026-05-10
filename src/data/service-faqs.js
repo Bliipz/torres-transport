@@ -96,32 +96,4 @@ export const serviceFaqs = {
       reponse: "Un studio se débarrasse en 2-4h, un T3 en une journée, une maison familiale entière en 1-3 jours selon le volume. Devis en visite gratuite.",
     },
   ],
-  'location-vehicule': [
-    {
-      question: "Que comprend la location de véhicule avec chauffeur ?",
-      reponse: "Le camion (3,5T, 12 ou 20 m³ selon besoin), le carburant, le chauffeur professionnel et son aide. Vous chargez/déchargez avec eux. Idéal si vous voulez gérer vos affaires mais pas conduire.",
-    },
-    {
-      question: "Quels sont les tarifs en demi-journée et journée complète ?",
-      reponse: "Demi-journée (4h) : 250 à 350 €. Journée complète (8h) : 450 à 600 €. Location longue durée sur devis (réduction tarifs progressifs au-delà de 3 jours).",
-    },
-    {
-      question: "Puis-je louer le véhicule sans chauffeur ?",
-      reponse: "Non, nos camions ne sont pas en location libre. Pour un camion sans chauffeur, contactez les loueurs traditionnels (Hertz, Europcar, Drivy). En revanche, nous pouvons vous fournir un chauffeur seul si vous avez votre propre véhicule.",
-    },
-  ],
-  nettoyage: [
-    {
-      question: "Quel est le tarif d'un nettoyage de fin de chantier ?",
-      reponse: "Comptez 5 à 8 €/m². Pour un T3 standard de 70m², environ 350 à 560 €. Inclus : aspiration poussières, nettoyage sols/murs/sanitaires, vitres si demandé. Sur devis pour grande surface.",
-    },
-    {
-      question: "Intervenez-vous après un déménagement ou des travaux ?",
-      reponse: "Les deux. Nettoyage de fin de bail (état des lieux), nettoyage post-rénovation (peinture, sols, plâtre), nettoyage avant emménagement. Adapté à votre situation.",
-    },
-    {
-      question: "Le nettoyage des vitres est-il inclus ?",
-      reponse: "C'est une option (compter +30 à 80 € selon le nombre de fenêtres). Pour les vitres en hauteur, nous avons une perche télescopique adaptée jusqu'à 4 mètres.",
-    },
-  ],
 };

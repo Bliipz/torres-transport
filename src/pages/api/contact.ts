@@ -83,25 +83,6 @@ function buildDetailsHtml(service: string, fd: FormData): string {
       }
       break;
     }
-    case 'location-vehicule': {
-      const duree = get('duree_location');
-      if (duree) {
-        const map: Record<string, string> = {
-          'demi-journee': '1/2 journée', journee: 'Journée', 'multi-jours': 'Plusieurs jours',
-        };
-        rows.push(['Durée souhaitée', map[duree] || duree]);
-      }
-      const desc = get('description_location');
-      if (desc) rows.push(['Description', desc]);
-      break;
-    }
-    case 'nettoyage': {
-      const surface = get('surface_m2');
-      if (surface) rows.push(['Surface', `${surface} m²`]);
-      const desc = get('description_nettoyage');
-      if (desc) rows.push(['Description', desc]);
-      break;
-    }
   }
 
   // Adresses (commun) — reconstituées depuis les 3 champs séparés

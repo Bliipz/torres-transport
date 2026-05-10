@@ -84,35 +84,6 @@ export const servicesData = {
     ],
   },
 
-  "location-vehicule": {
-    titre: "Location de Véhicule avec Chauffeur",
-    icone: "🚐",
-    image: "/services/location-vehicule.webp",
-    banner: "/banner-location-vehicule.webp",
-    description: "Location de véhicules utilitaires avec chauffeur professionnel.",
-    intro: `
-      <p>Vous n'avez pas le permis utilitaire (B96 ou C) et vous avez besoin d'un véhicule plus gros qu'une voiture pour transporter du mobilier, du matériel pro ou des marchandises&nbsp;? Notre formule "location avec chauffeur" répond exactement à ce besoin. Vous nous indiquez les adresses, le créneau et le volume estimé, on vient avec le bon véhicule conduit par un chauffeur expérimenté qui vous donne aussi un coup de main au chargement et déchargement.</p>
-      <p><strong>Trois formules&nbsp;:</strong> demi-journée (idéal pour un trajet court intra-Annemasse ou un seul gros meuble), journée complète (déménagement partiel, livraison multi-points, transport entreprise), plusieurs jours (chantier B2B, événementiel, location longue durée). Tarification dégressive sur les durées étendues.</p>
-      <p><strong>Nos véhicules&nbsp;:</strong> utilitaires de 12&nbsp;m³ (équivalent Trafic) à 30&nbsp;m³ (équivalent Master), tous récents, climatisés, avec hayon élévateur disponibles à la demande pour les charges lourdes. Carte Total Card pour ravitaillement immédiat. Tous nos chauffeurs ont la FIMO ou FCO selon les besoins (transport pro régulier).</p>
-      <p><strong>Cas typiques d'usage&nbsp;:</strong> entreprise sans permis utilitaire qui doit livrer du matériel ponctuellement, particulier qui achète un meuble en magasin et n'a aucun moyen de le transporter, événementiel (livraison stand pour salon, mariage, événement entreprise), travaux ponctuels (apport de gravats à la déchetterie, livraison de matériaux).</p>
-    `,
-    details: [
-      "Véhicules de 12 à 30 m³ avec chauffeur",
-      "Hayon élévateur disponible à la demande",
-      "Demi-journée, journée ou multi-jours",
-      "Chauffeur FIMO/FCO pour transport pro",
-      "Aide au chargement et déchargement incluse",
-      "Solution sans engagement permis utilitaire",
-      "Tarifs dégressifs sur durée",
-    ],
-    avantages: [
-      "Pas de permis utilitaire nécessaire",
-      "Pas d'assurance véhicule à souscrire",
-      "Chauffeur qui aide au chargement",
-      "Tarifs dégressifs sur les longues durées",
-    ],
-  },
-
   "manutention": {
     titre: "Manutention",
     icone: "💪",
@@ -143,41 +114,11 @@ export const servicesData = {
     ],
   },
 
-  "nettoyage": {
-    titre: "Nettoyage Fin de Chantier",
-    icone: "🧹",
-    image: "/services/nettoyage-pro.webp",
-    banner: "/banner-form-contact.webp",
-    description: "Nettoyage complet après déménagement ou travaux.",
-    intro: `
-      <p>Le nettoyage de fin de chantier, c'est ce qui sépare la <strong>caution récupérée</strong> de la caution amputée de 200 à 800&nbsp;€ pour "nettoyage à la charge du locataire". Notre service intervient après votre déménagement (ou à la fin de travaux) pour rendre les lieux dans un état impeccable, conforme aux exigences d'un état des lieux sortant strict.</p>
-      <p><strong>Ce que comprend la prestation&nbsp;:</strong> nettoyage complet sols (aspiration, lavage à l'eau et désinfection), murs (taches, traces de meubles, marques de scotch), vitres (intérieur + extérieur si accessibles), volets, plinthes, radiateurs, prises et interrupteurs (souvent oubliés et critiques en état des lieux), cuisine complète (four, hotte, plaques, frigo intérieur, placards), salle de bain (joints, robinetterie, calcaire, miroirs), toilettes désinfection complète, réseau d'évacuation (siphons, canalisations).</p>
-      <p><strong>Nos produits&nbsp;:</strong> dégraissants pro pour cuisines très grasses, anticalcaire industriel pour salles de bain, désinfectants normés EN 14476 (efficaces contre les virus enveloppés), produits écolabel pour les surfaces où vous reviendrez. Aucun produit corrosif sur les surfaces fragiles. Tout le matériel est apporté.</p>
-      <p><strong>Zones d'intervention&nbsp;:</strong> appartements (du studio au T6+), maisons individuelles, locaux commerciaux, bureaux. Pour les surfaces &gt;&nbsp;100&nbsp;m² et les chantiers post-travaux (poussière de plâtre, gravats), nous intervenons en équipe et avec aspirateurs à chantier (filtration HEPA).</p>
-      <p><strong>Garantie&nbsp;:</strong> si l'état des lieux sortant relève une zone que nous avons nettoyée comme insuffisamment propre, nous revenons gratuitement dans les 48&nbsp;h pour reprise. C'est notre engagement de récupération de caution.</p>
-    `,
-    details: [
-      "Nettoyage post-déménagement complet",
-      "Nettoyage post-travaux (poussière, gravats, peinture)",
-      "Cuisine : four, hotte, plaques, placards intérieurs",
-      "Salle de bain : joints, calcaire, désinfection",
-      "Vitres intérieures et extérieures (si accessibles)",
-      "Aspirateur HEPA pour chantiers post-travaux",
-      "Garantie reprise gratuite sous 48 h si insuffisant",
-    ],
-    avantages: [
-      "Récupération intégrale de la caution",
-      "Produits pro fournis (dégraissant, anticalcaire, désinfectants)",
-      "Garantie reprise sous 48 h",
-      "Équipe formée aux exigences état des lieux",
-    ],
-  },
-
   "debarras": {
     titre: "Service Débarras",
     icone: "♻️",
     image: "/services/debarras.webp",
-    banner: "/banner-location-vehicule.webp",
+    banner: "/banner-transport.webp",
     description: "Débarras de caves, greniers, garages, appartements et locaux professionnels.",
     intro: `
       <p>Le débarras n'est jamais "juste" du débarras. C'est souvent une <strong>période compliquée</strong> qui se cache derrière&nbsp;: une succession à gérer après le décès d'un proche, un parent qui entre en EHPAD, un divorce qui impose de vider rapidement, un déménagement où il faut se séparer de meubles devenus inutiles. Notre approche tient compte de cette dimension humaine, pas de jugement, pas de pression, juste un travail efficace et discret.</p>

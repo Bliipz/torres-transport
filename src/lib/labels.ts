@@ -7,8 +7,6 @@ export const SERVICE_LABELS: Record<string, string> = {
   'montage-meubles': 'Montage de meubles',
   manutention: 'Manutention',
   debarras: 'Débarras',
-  'location-vehicule': 'Location utilitaire avec chauffeur',
-  nettoyage: 'Nettoyage fin de chantier',
 };
 
 export const ASCENSEUR_LABELS: Record<string, string> = {
@@ -32,7 +30,6 @@ export const SERVICES_NEED_DEPART = [
   'montage-meubles',
   'manutention',
   'debarras',
-  'nettoyage',
 ];
 
 // Services qui exigent en plus une adresse d'arrivée

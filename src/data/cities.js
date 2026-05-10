@@ -67,7 +67,7 @@ export const cities = {
       {
         question: 'Quels services proposez-vous à Annemasse ?',
         reponse:
-          "Nous proposons 7 prestations à Annemasse : déménagement complet, transport de marchandises, montage de meubles (IKEA, Conforama, BUT), location utilitaire avec chauffeur, manutention, nettoyage fin de chantier et débarras. Chaque service est réalisé par notre équipe directement, sans sous-traitance.",
+          "Nous proposons 5 prestations à Annemasse : déménagement complet, transport de marchandises, montage de meubles (IKEA, Conforama, BUT), manutention et débarras. Chaque service est réalisé par notre équipe directement, sans sous-traitance.",
       },
       {
         question: "Pouvez-vous déménager d'Annemasse vers la Suisse ?",
@@ -169,7 +169,7 @@ export const cities = {
     geo: { lat: 46.144, lng: 6.082 },
     distanceKm: 18,
     population: '15 800 habitants',
-    bannier: '/banner-location-vehicule.webp',
+    bannier: '/banner-transport.webp',
 
     titreH1: 'Déménagement à Saint-Julien-en-Genevois (74160), Spécialiste frontalier',
     metaTitle: "Déménageur Saint-Julien-en-Genevois | Torres Transport",
@@ -476,7 +476,7 @@ export const cities = {
     geo: { lat: 46.402, lng: 6.589 },
     distanceKm: 45,
     population: '9 000 habitants',
-    bannier: '/banner-location-vehicule.webp',
+    bannier: '/banner-form-contact.webp',
 
     titreH1: 'Déménagement à Évian-les-Bains (74500), Service personnalisé',
     metaTitle: 'Déménageur Évian-les-Bains | Torres Transport',

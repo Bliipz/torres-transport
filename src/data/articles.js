@@ -1706,8 +1706,6 @@ const SERVICE_TAG_MAP = {
   manutention: { slug: 'manutention', nom: 'Manutention' },
   débarras: { slug: 'debarras', nom: 'Débarras' },
   debarras: { slug: 'debarras', nom: 'Débarras' },
-  nettoyage: { slug: 'nettoyage', nom: 'Nettoyage fin de chantier' },
-  utilitaire: { slug: 'location-vehicule', nom: 'Location utilitaire' },
 };
 
 // Normalise un tag : minuscule + sans accent

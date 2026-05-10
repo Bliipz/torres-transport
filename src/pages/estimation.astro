@@ -19,8 +19,6 @@ const services = [
   { value: 'montage-meubles', label: 'Montage de meubles', desc: 'IKEA, Conforama, BUT, sur-mesure' },
   { value: 'manutention', label: 'Manutention', desc: 'Charge, décharge, objets lourds' },
   { value: 'debarras', label: 'Débarras', desc: 'Caves, greniers, déchetterie' },
-  { value: 'location-vehicule', label: 'Location utilitaire avec chauffeur', desc: 'Sans permis utilitaire requis' },
-  { value: 'nettoyage', label: 'Nettoyage fin de chantier', desc: 'Récupération de caution' },
 ];
 ---
 
@@ -229,61 +227,9 @@ const services = [
             </div>
 
             <!-- =================================================
-                 LOCATION UTILITAIRE
+                 ADRESSES (commun à déménagement, transport, montage, débarras, manutention)
                  ================================================= -->
-            <div data-service-section="location-vehicule">
-              <fieldset class="estim-field">
-                <legend>
-                  <span class="num">02</span>
-                  <span class="legend-text">Détails de la location</span>
-                </legend>
-
-                <label class="form-radio-group">
-                  <span class="form-label">Durée souhaitée</span>
-                  <span class="radio-row">
-                    <label class="mini-radio"><input type="radio" name="duree_location" value="demi-journee" checked /> <span>1/2 journée</span></label>
-                    <label class="mini-radio"><input type="radio" name="duree_location" value="journee" /> <span>Journée</span></label>
-                    <label class="mini-radio"><input type="radio" name="duree_location" value="multi-jours" /> <span>Plusieurs jours</span></label>
-                  </span>
-                </label>
-
-                <textarea
-                  name="description_location"
-                  rows="3"
-                  placeholder="Ex : besoin d'un utilitaire 12 m³ avec chauffeur pour un déménagement Annemasse → Lyon le 15 juin, retour à vide."
-                ></textarea>
-              </fieldset>
-            </div>
-
-            <!-- =================================================
-                 NETTOYAGE FIN DE CHANTIER
-                 ================================================= -->
-            <div data-service-section="nettoyage">
-              <fieldset class="estim-field">
-                <legend>
-                  <span class="num">02</span>
-                  <span class="legend-text">Détails du nettoyage</span>
-                </legend>
-
-                <div class="form-row">
-                  <label class="form-input-label">
-                    <span class="form-label">Surface (m²)</span>
-                    <input type="number" name="surface_m2" min="10" max="1000" step="5" placeholder="Ex : 65" />
-                  </label>
-                </div>
-
-                <textarea
-                  name="description_nettoyage"
-                  rows="3"
-                  placeholder="Ex : T3 après déménagement avant état des lieux, vitres comprises. Ou : maison entière après travaux de peinture."
-                ></textarea>
-              </fieldset>
-            </div>
-
-            <!-- =================================================
-                 ADRESSES (commun à déménagement, transport, montage, débarras, manutention, nettoyage)
-                 ================================================= -->
-            <div data-service-section="demenagement transport montage-meubles manutention debarras nettoyage">
+            <div data-service-section="demenagement transport montage-meubles manutention debarras">
               <fieldset class="estim-field">
                 <legend>
                   <span class="num">04</span>
@@ -598,7 +544,7 @@ const services = [
       if (addrDepartLabel) {
         if (current === 'demenagement' || current === 'transport') {
           addrDepartLabel.textContent = 'Adresse de départ';
-        } else if (current === 'montage-meubles' || current === 'manutention' || current === 'nettoyage') {
+        } else if (current === 'montage-meubles' || current === 'manutention') {
           addrDepartLabel.textContent = "Adresse d'intervention";
         } else if (current === 'debarras') {
           addrDepartLabel.textContent = 'Adresse à débarrasser';
@@ -695,8 +641,6 @@ const services = [
         'montage-meubles': 'Montage de meubles',
         manutention: 'Manutention',
         debarras: 'Débarras',
-        'location-vehicule': 'Location utilitaire avec chauffeur',
-        nettoyage: 'Nettoyage fin de chantier',
       };
       const items = [];
       items.push({ label: 'Prestation', value: labelMap[current] || ',' });
@@ -731,7 +675,7 @@ const services = [
     }
 
     // Services qui exigent une adresse de départ / arrivée
-    const SERVICES_NEED_DEPART = ['demenagement', 'transport', 'montage-meubles', 'manutention', 'debarras', 'nettoyage'];
+    const SERVICES_NEED_DEPART = ['demenagement', 'transport', 'montage-meubles', 'manutention', 'debarras'];
     const SERVICES_NEED_ARRIVEE = ['demenagement', 'transport'];
 
     function clearInvalid() {
