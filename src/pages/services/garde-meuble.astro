@@ -1,0 +1,601 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { serviceFaqs } from "../../data/service-faqs.js";
+import { articles } from "../../data/articles.js";
+
+const SITE_URL = 'https://torrestransport.fr';
+const pageURL = `${SITE_URL}/services/garde-meuble`;
+const faqs = (serviceFaqs as Record<string, Array<{ question: string; reponse: string }>>)['garde-meuble'] || [];
+const articleStorage = (articles as any[]).find((a) => a.slug === 'garde-meuble-stockage-annemasse');
+
+// ⚠️ TARIFS À VALIDER AVEC LE CLIENT
+// Ces fourchettes sont des valeurs de marché représentatives
+// pour la région Annemasse / Haute-Savoie. À ajuster selon
+// les capacités réelles et grille tarifaire du client.
+const formats = [
+  {
+    taille: "5 m³",
+    prix: "35 €",
+    desc: "Studio meublé ou affaires de saison",
+    contenance: "Idéal pour : meubles d'un studio, vêtements hors-saison, archives de bureau, équipement sportif (ski/vélo).",
+  },
+  {
+    taille: "10 m³",
+    prix: "65 €",
+    desc: "T1 ou T2 complet",
+    contenance: "Idéal pour : mobilier d'un T1/T2, électroménager, ~30 cartons. Volume le plus demandé pour les transitions courtes.",
+  },
+  {
+    taille: "20 m³",
+    prix: "110 €",
+    desc: "T3 ou T4 partiel",
+    contenance: "Idéal pour : mobilier d'un T3 entier, équipement complet de cuisine, électroménager lourd, ~60 cartons.",
+  },
+  {
+    taille: "30 m³+",
+    prix: "Sur devis",
+    desc: "T4, T5, maison",
+    contenance: "Pour les volumes supérieurs ou les besoins spécifiques (mobilier d'art, archives volumineuses, stocks pro).",
+  },
+];
+
+const usages = [
+  {
+    titre: "Vente avant achat immobilier",
+    desc: "Le compromis est signé pour la vente, mais l'achat suivant n'est pas encore prêt. Stockage 1-3 mois en moyenne.",
+  },
+  {
+    titre: "Mutation professionnelle",
+    desc: "Vous démarrez un nouveau poste mais le logement n'est pas encore disponible. Stockage le temps de la transition.",
+  },
+  {
+    titre: "Travaux ou rénovation",
+    desc: "Vos meubles doivent quitter le logement pendant des travaux longs. On stocke, on rapporte à la fin.",
+  },
+  {
+    titre: "Séparation ou divorce",
+    desc: "Besoin de vider rapidement le logement commun le temps de trouver son nouveau toit. Discrétion absolue.",
+  },
+  {
+    titre: "Retour de Suisse / expatriation",
+    desc: "Affaires rapatriées avant de trouver son logement définitif. Stockage le temps des démarches.",
+  },
+  {
+    titre: "Succession",
+    desc: "Le temps de trier et décider du devenir des biens d'un proche disparu. Pas de pression, on stocke à votre rythme.",
+  },
+];
+
+const inclus = [
+  "Box individuels et nominatifs (vos affaires ne se mélangent jamais à celles d'autres clients)",
+  "Local sec, ventilé, propre, surveillé",
+  "Accès libre du lundi au samedi (8h-19h)",
+  "Accès en dehors des horaires sur demande 24h à l'avance",
+  "Aucun frais de dossier, aucun engagement de durée",
+  "Facturation au mois, préavis d'1 semaine",
+  "Inventaire détaillé fourni à l'entrée",
+  "Premier mois offert si combiné avec déménagement",
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Garde-meuble et stockage',
+  name: 'Garde-meuble et box de stockage à Annemasse',
+  description:
+    "Location de box de stockage et garde-meuble à Annemasse. Box individuels nominatifs de 5 à 30+ m³, accès libre, à partir de 35 €/mois. Combinable avec service de déménagement Torres Transport.",
+  provider: {
+    '@type': 'MovingCompany',
+    '@id': `${SITE_URL}/#business`,
+    name: 'Torres Transport',
+  },
+  areaServed: [
+    { '@type': 'City', name: 'Annemasse' },
+    { '@type': 'City', name: 'Ville-la-Grand' },
+    { '@type': 'City', name: 'Gaillard' },
+    { '@type': 'City', name: 'Saint-Julien-en-Genevois' },
+    { '@type': 'City', name: 'Bonneville' },
+    { '@type': 'City', name: 'Genève' },
+    { '@type': 'AdministrativeArea', name: 'Haute-Savoie' },
+  ],
+  url: pageURL,
+  image: `${SITE_URL}/banner-demenagement.webp`,
+  offers: [
+    {
+      '@type': 'Offer',
+      name: 'Box 5 m³',
+      description: 'Box de stockage 5 m³ — équivalent studio meublé',
+      price: '35.00',
+      priceCurrency: 'EUR',
+      priceSpecification: {
+        '@type': 'UnitPriceSpecification',
+        price: '35.00',
+        priceCurrency: 'EUR',
+        unitText: 'mois',
+      },
+      availability: 'https://schema.org/InStock',
+    },
+    {
+      '@type': 'Offer',
+      name: 'Box 10 m³',
+      description: 'Box de stockage 10 m³ — équivalent T1/T2',
+      price: '65.00',
+      priceCurrency: 'EUR',
+      priceSpecification: {
+        '@type': 'UnitPriceSpecification',
+        price: '65.00',
+        priceCurrency: 'EUR',
+        unitText: 'mois',
+      },
+      availability: 'https://schema.org/InStock',
+    },
+    {
+      '@type': 'Offer',
+      name: 'Box 20 m³',
+      description: 'Box de stockage 20 m³ — équivalent T3',
+      price: '110.00',
+      priceCurrency: 'EUR',
+      priceSpecification: {
+        '@type': 'UnitPriceSpecification',
+        price: '110.00',
+        priceCurrency: 'EUR',
+        unitText: 'mois',
+      },
+      availability: 'https://schema.org/InStock',
+    },
+  ],
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Accueil', item: SITE_URL },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: `${SITE_URL}/services` },
+    { '@type': 'ListItem', position: 3, name: 'Garde-meuble', item: pageURL },
+  ],
+};
+
+const faqSchema = faqs.length > 0 ? {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.question,
+    acceptedAnswer: { '@type': 'Answer', text: f.reponse },
+  })),
+} : null;
+
+const allSchemas = [serviceSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema] : [])];
+---
+
+<BaseLayout
+  title="Garde-meuble Annemasse - Box de stockage dès 35€/mois | Torres Transport"
+  description="Garde-meuble et box de stockage à Annemasse à partir de 35 €/mois. Box nominatifs de 5 à 30+ m³, accès libre, sans engagement. Combinable avec déménagement. Devis sous 24h."
+  keywords="garde-meuble Annemasse, box stockage Annemasse, stockage meubles 74, garde-meuble Haute-Savoie, location box Annemasse, self-stockage 74, garde-meuble pas cher Annemasse"
+  canonical={pageURL}
+  ogImage="/banner-demenagement.webp"
+  structuredData={allSchemas}
+>
+  <!-- ==================== HERO ==================== -->
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Fil d'Ariane">
+        <a href="/">Accueil</a><span>/</span>
+        <a href="/services">Services</a><span>/</span>
+        <span>Garde-meuble</span>
+      </nav>
+      <span class="eyebrow gold">Spécialité dédiée</span>
+      <h1>Garde-meuble Annemasse,<br /><em>vos affaires en sécurité.</em></h1>
+      <p class="lead">
+        Vente avant achat, mutation pro, séparation, travaux, retour de Suisse&nbsp;:
+        il y a des moments où il faut un toit pour ses meubles avant le suivant.
+        Nos box nominatifs de <strong>5 à 30+ m³</strong> à partir de
+        <strong>35&nbsp;€/mois</strong> répondent à cette transition, sans
+        engagement, et combinables avec notre service de déménagement.
+      </p>
+      <div class="hero-actions">
+        <a href="/contact" class="btn btn-gold btn-large btn-with-arrow">Réserver un box</a>
+        <a href="tel:+33659926814" class="btn btn-ghost btn-large">06 59 92 68 14</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TARIFS ==================== -->
+  <section class="section">
+    <div class="container">
+      <header class="section-header">
+        <span class="eyebrow gold">Quatre formats</span>
+        <h2>Choisissez la taille<br /><em>adaptée à vos besoins.</em></h2>
+        <p class="section-intro">
+          Vous ne payez que ce dont vous avez besoin. Pas sûr du volume&nbsp;?
+          On évalue gratuitement sur photos ou en visite avant la réservation.
+        </p>
+      </header>
+
+      <div class="formats-grid">
+        {formats.map((f) => (
+          <article class="format-card">
+            <header class="format-head">
+              <span class="format-taille">{f.taille}</span>
+              <span class="format-prix">
+                <span class="prix-num">{f.prix}</span>
+                {f.prix !== "Sur devis" && <span class="prix-unit">/ mois</span>}
+              </span>
+            </header>
+            <p class="format-desc"><strong>{f.desc}</strong></p>
+            <p class="format-contenance">{f.contenance}</p>
+            <a href="/contact" class="format-cta">Réserver ce box →</a>
+          </article>
+        ))}
+      </div>
+
+      <p class="format-note">
+        💡 <strong>Bonus combiné</strong>&nbsp;: pour un dossier groupé "déménagement
+        aller + stockage + déménagement retour", remise de 5 à 10&nbsp;% par rapport
+        à deux prestations séparées. Premier mois de box offert si vous démarrez
+        avec un déménagement Torres Transport.
+      </p>
+    </div>
+  </section>
+
+  <!-- ==================== USAGES ==================== -->
+  <section class="section bg-cream">
+    <div class="container">
+      <header class="section-header">
+        <span class="eyebrow gold">Quand louer un garde-meuble</span>
+        <h2>Six situations<br /><em>où le stockage devient indispensable.</em></h2>
+      </header>
+
+      <div class="usages-grid">
+        {usages.map((u, idx) => (
+          <article class="usage-card">
+            <span class="usage-num">{String(idx + 1).padStart(2, '0')}</span>
+            <h3>{u.titre}</h3>
+            <p>{u.desc}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== INCLUS ==================== -->
+  <section class="section">
+    <div class="container">
+      <header class="section-header">
+        <span class="eyebrow gold">Notre prestation</span>
+        <h2>Ce qui est inclus<br /><em>dans la location.</em></h2>
+      </header>
+      <ul class="inclus-list">
+        {inclus.map((i) => (
+          <li>{i}</li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ==================== FAQ ==================== -->
+  {faqs.length > 0 && (
+    <section class="section bg-cream">
+      <div class="container container-narrow">
+        <header class="section-header text-center">
+          <span class="eyebrow gold">Questions fréquentes</span>
+          <h2>Tout savoir<br /><em>sur le garde-meuble.</em></h2>
+        </header>
+        <div class="faq-list">
+          {faqs.map((f) => (
+            <details class="faq-item">
+              <summary>{f.question}</summary>
+              <p>{f.reponse}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {articleStorage && (
+    <!-- ==================== ARTICLE LIÉ ==================== -->
+    <section class="section">
+      <div class="container container-narrow">
+        <header class="section-header">
+          <span class="eyebrow gold">Aller plus loin</span>
+          <h2>Notre guide complet<br /><em>du garde-meuble à Annemasse.</em></h2>
+        </header>
+        <a href={`/blog/${articleStorage.slug}`} class="article-link-card">
+          <span class="article-link-eyebrow">Article du journal</span>
+          <h3>{articleStorage.title}</h3>
+          <p>{articleStorage.excerpt}</p>
+          <span class="article-link-arrow">Lire l'article complet →</span>
+        </a>
+      </div>
+    </section>
+  )}
+
+  <!-- ==================== CTA ==================== -->
+  <section class="section bg-black cta-final">
+    <div class="container container-narrow text-center">
+      <span class="eyebrow">Besoin d'un box rapidement&nbsp;?</span>
+      <h2>Box disponibles immédiatement,<br /><em>devis sous 24 h.</em></h2>
+      <p class="lead">
+        Visitez avant de réserver, payez au mois, libérez-vous quand vous voulez.
+        Aucun engagement, aucun frais de dossier.
+      </p>
+      <div class="cta-buttons">
+        <a href="/contact" class="btn btn-gold btn-large btn-with-arrow">Réserver un box</a>
+        <a href="tel:+33659926814" class="btn btn-ghost btn-large">06 59 92 68 14</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    background: var(--off-white);
+    padding: clamp(4rem, 8vw, 7rem) 0 clamp(3rem, 5vw, 4rem);
+    border-bottom: 1px solid var(--border);
+  }
+  .breadcrumb {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--gray-500);
+    margin-bottom: 2.5rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  .breadcrumb a {
+    color: var(--gray-700, #404040);
+    text-decoration: none;
+  }
+  .breadcrumb a:hover { color: var(--black); }
+  .breadcrumb > span:not(:last-child) { opacity: 0.4; }
+
+  .page-hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    margin: 0.75rem 0 1.5rem;
+    max-width: 920px;
+  }
+  .page-hero h1 em {
+    font-style: italic;
+    color: var(--gold-deep);
+  }
+  .page-hero .lead { max-width: 720px; margin-top: 1.5rem; }
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+  }
+
+  .section-intro {
+    margin-top: 1.25rem;
+    max-width: 720px;
+    color: var(--gray-700);
+    font-size: 1.05rem;
+    line-height: 1.65;
+  }
+
+  /* FORMATS GRID — TARIFS */
+  .formats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .format-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.25s;
+  }
+  .format-card:hover {
+    border-color: var(--gold-deep);
+    transform: translateY(-3px);
+  }
+  .format-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1rem;
+    margin-bottom: 1.25rem;
+  }
+  .format-taille {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--black);
+  }
+  .format-prix {
+    text-align: right;
+  }
+  .prix-num {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--gold-deep);
+  }
+  .prix-unit {
+    font-size: 0.78rem;
+    color: var(--gray-600);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-left: 0.25rem;
+  }
+  .format-desc {
+    font-size: 1rem;
+    color: var(--black);
+    margin-bottom: 0.85rem;
+  }
+  .format-contenance {
+    font-size: 0.92rem;
+    color: var(--gray-700);
+    line-height: 1.6;
+    flex: 1;
+    margin-bottom: 1.5rem;
+  }
+  .format-cta {
+    color: var(--gold-deep);
+    font-weight: 600;
+    font-size: 0.92rem;
+    text-decoration: none;
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+  }
+  .format-cta:hover { color: var(--black); }
+  .format-note {
+    margin-top: 2.5rem;
+    padding: 1.5rem 2rem;
+    background: var(--off-white);
+    border-left: 3px solid var(--gold-deep);
+    font-size: 0.96rem;
+    line-height: 1.7;
+    color: var(--gray-700);
+  }
+
+  /* USAGES GRID */
+  .usages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .usage-card {
+    background: var(--white);
+    padding: 1.85rem;
+    border: 1px solid var(--border);
+  }
+  .usage-num {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    color: var(--gold-deep);
+    display: block;
+    margin-bottom: 0.85rem;
+  }
+  .usage-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.7rem;
+  }
+  .usage-card p {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--gray-700);
+  }
+
+  /* INCLUS LIST */
+  .inclus-list {
+    list-style: none;
+    padding: 0;
+    margin: 3rem 0 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 0.85rem 2.5rem;
+  }
+  .inclus-list li {
+    font-size: 1rem;
+    color: var(--gray-700);
+    padding: 0.85rem 0 0.85rem 1.75rem;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    line-height: 1.5;
+  }
+  .inclus-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: 0.85rem;
+    color: var(--gold-deep);
+    font-weight: 700;
+  }
+
+  /* FAQ */
+  .faq-list { margin-top: 3rem; }
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+    padding: 1.5rem 0;
+  }
+  .faq-item summary {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    cursor: pointer;
+    list-style: none;
+    position: relative;
+    padding-right: 2.5rem;
+    font-weight: 500;
+    color: var(--black);
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: '+';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gold-deep);
+    font-size: 1.5rem;
+    transition: transform 0.25s;
+  }
+  .faq-item[open] summary::after { content: '−'; }
+  .faq-item p {
+    margin-top: 1rem;
+    color: var(--gray-700);
+    line-height: 1.7;
+    font-size: 0.98rem;
+  }
+
+  /* ARTICLE LINK */
+  .article-link-card {
+    display: block;
+    margin-top: 2.5rem;
+    padding: 2.25rem;
+    background: var(--off-white);
+    border: 1px solid var(--border);
+    text-decoration: none;
+    color: var(--black);
+    transition: all 0.25s;
+  }
+  .article-link-card:hover {
+    border-color: var(--gold-deep);
+    background: var(--white);
+  }
+  .article-link-eyebrow {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--gold-deep);
+    font-weight: 600;
+  }
+  .article-link-card h3 {
+    font-size: 1.4rem;
+    margin: 0.85rem 0;
+  }
+  .article-link-card p {
+    color: var(--gray-700);
+    line-height: 1.65;
+    margin-bottom: 1.25rem;
+  }
+  .article-link-arrow {
+    color: var(--gold-deep);
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  /* CTA FINAL */
+  .cta-final { text-align: center; }
+  .cta-final h2 em { color: var(--gold); font-style: italic; }
+  .cta-final .lead {
+    color: rgba(255,255,255,0.75);
+    max-width: 580px;
+    margin: 1.5rem auto 2.5rem;
+  }
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+</style>

@@ -173,6 +173,39 @@ const homeFaqSchema = {
     </div>
   </section>
 
+  <!-- ==================== SPÉCIALITÉS ==================== -->
+  <section class="section specialites-home">
+    <div class="container">
+      <header class="section-header">
+        <span class="eyebrow gold">Spécialités</span>
+        <h2>Deux niches<br /><em>où nous excellons.</em></h2>
+      </header>
+
+      <div class="specialites-home-grid">
+        <a href="/services/demenagement-senior" class="specialite-tile">
+          <span class="specialite-tile-eyebrow">Spécialité 01</span>
+          <h3>Déménagement senior &amp; EHPAD</h3>
+          <p>
+            Entrée en EHPAD, sortie d'hôpital, regroupement familial. Tarif sénior
+            <strong>&minus;10%</strong> automatique, équipe formée, intervention sous 48-72&nbsp;h.
+          </p>
+          <span class="specialite-tile-cta">En savoir plus →</span>
+        </a>
+
+        <a href="/services/garde-meuble" class="specialite-tile">
+          <span class="specialite-tile-eyebrow">Spécialité 02</span>
+          <h3>Garde-meuble &amp; box stockage</h3>
+          <p>
+            Box nominatifs de <strong>5 à 30+ m³</strong> à partir de
+            <strong>35&nbsp;€/mois</strong>. Sans engagement, premier mois offert
+            si combiné avec déménagement.
+          </p>
+          <span class="specialite-tile-cta">Voir les tarifs →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- ==================== FONDATEUR ==================== -->
   <section class="section founder-section">
     <div class="container">
@@ -618,6 +651,62 @@ const homeFaqSchema = {
     font-size: 1.5rem;
     color: var(--gray-400);
     transition: all 0.3s var(--ease-smooth);
+  }
+
+  /* ==================== SPÉCIALITÉS HOME ==================== */
+  .specialites-home {
+    padding: clamp(4rem, 8vw, 6rem) 0;
+    background: var(--white);
+  }
+  .specialites-home-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .specialite-tile {
+    display: flex;
+    flex-direction: column;
+    background: var(--off-white);
+    border: 1px solid var(--border);
+    padding: 2.5rem;
+    text-decoration: none;
+    color: var(--black);
+    transition: border-color 0.25s, transform 0.25s, background 0.25s;
+  }
+  .specialite-tile:hover {
+    border-color: var(--gold-deep);
+    background: var(--white);
+    transform: translateY(-3px);
+  }
+  .specialite-tile-eyebrow {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--gold-deep);
+    font-weight: 600;
+    margin-bottom: 0.85rem;
+  }
+  .specialite-tile h3 {
+    font-size: clamp(1.4rem, 2.2vw, 1.75rem);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  .specialite-tile p {
+    font-size: 0.98rem;
+    line-height: 1.65;
+    color: var(--gray-700);
+    margin-bottom: 1.5rem;
+    flex: 1;
+  }
+  .specialite-tile-cta {
+    color: var(--gold-deep);
+    font-weight: 600;
+    font-size: 0.92rem;
+    transition: padding-left 0.25s;
+  }
+  .specialite-tile:hover .specialite-tile-cta {
+    padding-left: 0.4rem;
   }
 
   /* ==================== FONDATEUR ==================== */

@@ -96,6 +96,56 @@ const services = [
     </div>
   </section>
 
+  <!-- ==================== SPÉCIALITÉS ==================== -->
+  <section class="section bg-cream specialites-section">
+    <div class="container">
+      <header class="section-header">
+        <span class="eyebrow gold">Nos spécialités</span>
+        <h2>Deux expertises<br /><em>au-delà du déménagement classique.</em></h2>
+        <p class="section-intro">
+          Au fil des années, certaines situations sont devenues des spécialités à part entière.
+          Notre équipe formée et notre infrastructure dédiée nous permettent de vous accompagner
+          au mieux sur ces deux niches.
+        </p>
+      </header>
+
+      <div class="specialites-grid">
+        <a href="/services/demenagement-senior" class="specialite-card">
+          <span class="specialite-eyebrow">Spécialité 01</span>
+          <h3>Déménagement senior &amp; EHPAD</h3>
+          <p>
+            Entrée en EHPAD, sortie d'hôpital, regroupement familial après veuvage,
+            succession à gérer. Tarif sénior &minus;10% appliqué automatiquement,
+            équipe formée à l'accompagnement humain, intervention possible sous 48-72&nbsp;h.
+          </p>
+          <ul class="specialite-features">
+            <li>Tarif sénior/PMR : &minus;10% automatique</li>
+            <li>Coordination EHPAD &amp; services sociaux</li>
+            <li>Photos avant/pendant/après pour la famille</li>
+          </ul>
+          <span class="specialite-cta">En savoir plus →</span>
+        </a>
+
+        <a href="/services/garde-meuble" class="specialite-card">
+          <span class="specialite-eyebrow">Spécialité 02</span>
+          <h3>Garde-meuble &amp; box de stockage</h3>
+          <p>
+            Vente avant achat, mutation pro, séparation, travaux. Box nominatifs
+            de <strong>5 à 30+ m³</strong> à partir de <strong>35&nbsp;€/mois</strong>,
+            sans engagement, accès libre du lundi au samedi. Premier mois offert
+            si combiné avec déménagement.
+          </p>
+          <ul class="specialite-features">
+            <li>Box individuels nominatifs (jamais mélangés)</li>
+            <li>Local sec, ventilé, surveillé</li>
+            <li>Sans engagement, facturation au mois</li>
+          </ul>
+          <span class="specialite-cta">Voir les tarifs →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- ==================== CTA ==================== -->
   <section class="section bg-black cta-final">
     <div class="container container-narrow text-center">
@@ -276,6 +326,92 @@ const services = [
     gap: 1rem;
     justify-content: center;
     flex-wrap: wrap;
+  }
+
+  /* ==================== SPÉCIALITÉS ==================== */
+  .specialites-section {
+    padding: clamp(4rem, 8vw, 7rem) 0;
+  }
+  .section-intro {
+    margin-top: 1.25rem;
+    max-width: 720px;
+    color: var(--gray-700);
+    font-size: 1.05rem;
+    line-height: 1.65;
+  }
+  .specialites-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  .specialite-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--white);
+    border: 1px solid var(--border);
+    padding: 2.5rem;
+    text-decoration: none;
+    color: var(--black);
+    transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+  }
+  .specialite-card:hover {
+    border-color: var(--gold-deep);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  }
+  .specialite-eyebrow {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--gold-deep);
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  .specialite-card h3 {
+    font-size: clamp(1.5rem, 2.5vw, 1.85rem);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  .specialite-card > p {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--gray-700);
+    margin-bottom: 1.5rem;
+  }
+  .specialite-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.75rem;
+    border-top: 1px solid var(--border);
+    padding-top: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+  .specialite-features li {
+    font-size: 0.92rem;
+    color: var(--gray-700);
+    padding-left: 1.25rem;
+    position: relative;
+  }
+  .specialite-features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--gold-deep);
+    font-weight: 700;
+  }
+  .specialite-cta {
+    margin-top: auto;
+    color: var(--gold-deep);
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: color 0.2s, padding-left 0.25s;
+  }
+  .specialite-card:hover .specialite-cta {
+    color: var(--black);
+    padding-left: 0.4rem;
   }
 
   /* ==================== RESPONSIVE ==================== */

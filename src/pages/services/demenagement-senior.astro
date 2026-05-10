@@ -1,0 +1,474 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { serviceFaqs } from "../../data/service-faqs.js";
+import { articles } from "../../data/articles.js";
+
+const SITE_URL = 'https://torrestransport.fr';
+const pageURL = `${SITE_URL}/services/demenagement-senior`;
+const faqs = (serviceFaqs as Record<string, Array<{ question: string; reponse: string }>>)['demenagement-senior'] || [];
+const articleSenior = (articles as any[]).find((a) => a.slug === 'demenagement-senior-annemasse');
+
+const cas = [
+  {
+    titre: "Entrée en EHPAD ou résidence senior",
+    desc: "Réduction forte de surface (souvent maison → chambre 18 m²). On accompagne le tri, on préserve les souvenirs essentiels, on évacue le reste sans jugement.",
+  },
+  {
+    titre: "Sortie d'hôpital vers un nouveau logement",
+    desc: "Délai serré (48-72 h). On coordonne avec la famille pour préparer le logement d'arrivée pendant l'hospitalisation. Aménagement adapté à la mobilité réduite.",
+  },
+  {
+    titre: "Regroupement familial après veuvage",
+    desc: "Déménagement vers le domicile d'un enfant ou un appartement plus petit. Approche émotionnelle respectueuse, rythme adapté à la personne.",
+  },
+  {
+    titre: "Succession et gestion familiale",
+    desc: "Héritiers multiples, décisions sur place, désaccords parfois. Notre rôle : exécuter sans pression, photographier, tracer le devenir de chaque bien.",
+  },
+];
+
+const inclus = [
+  "Tarif sénior/PMR : remise automatique de 10%",
+  "Équipe formée à l'accompagnement de personnes âgées",
+  "Tri sur place avec respect du rythme",
+  "Démontage / remontage avec précaution accrue",
+  "Réinstallation à l'arrivée (lit fait, vaisselle rangée si demandé)",
+  "Photos avant/pendant/après pour la famille",
+  "Possibilité de procuration (si la personne ne peut pas être présente)",
+  "Coordination avec EHPAD, foyer-logement, services sociaux",
+];
+
+const engagements = [
+  "Aucun acompte demandé, paiement après prestation",
+  "Devis ferme transparent, sans frais cachés",
+  "Délai d'intervention sous 48-72 h pour les urgences",
+  "Récapitulatif écrit du devenir des biens (don/recyclage/vente)",
+  "Discrétion totale, respect de la dimension émotionnelle",
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Déménagement senior',
+  name: 'Déménagement senior et entrée en EHPAD à Annemasse',
+  description:
+    "Service de déménagement spécialisé pour personnes âgées : entrée en EHPAD, sortie d'hôpital, regroupement familial. Tarif sénior -10%, équipe formée, accompagnement humain. Annemasse, Ville-la-Grand et toute la Haute-Savoie.",
+  provider: {
+    '@type': 'MovingCompany',
+    '@id': `${SITE_URL}/#business`,
+    name: 'Torres Transport',
+  },
+  areaServed: [
+    { '@type': 'City', name: 'Annemasse' },
+    { '@type': 'City', name: 'Ville-la-Grand' },
+    { '@type': 'City', name: 'Saint-Julien-en-Genevois' },
+    { '@type': 'City', name: 'Thonon-les-Bains' },
+    { '@type': 'City', name: 'Annecy' },
+    { '@type': 'AdministrativeArea', name: 'Haute-Savoie' },
+  ],
+  audience: {
+    '@type': 'PeopleAudience',
+    suggestedMinAge: 60,
+    name: 'Personnes âgées et familles',
+  },
+  url: pageURL,
+  image: `${SITE_URL}/banner-demenagement.webp`,
+  offers: {
+    '@type': 'Offer',
+    description: "Tarif unique 47,50 €/m³ avec remise sénior/PMR automatique de 10%.",
+    priceCurrency: 'EUR',
+    availability: 'https://schema.org/InStock',
+    seller: { '@type': 'MovingCompany', '@id': `${SITE_URL}/#business` },
+  },
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Accueil', item: SITE_URL },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: `${SITE_URL}/services` },
+    { '@type': 'ListItem', position: 3, name: 'Déménagement senior', item: pageURL },
+  ],
+};
+
+const faqSchema = faqs.length > 0 ? {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.question,
+    acceptedAnswer: { '@type': 'Answer', text: f.reponse },
+  })),
+} : null;
+
+const allSchemas = [serviceSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema] : [])];
+---
+
+<BaseLayout
+  title="Déménageur senior Annemasse - EHPAD &amp; résidence senior | Torres Transport"
+  description="Déménagement senior à Annemasse : entrée en EHPAD, sortie d'hôpital, regroupement familial. Tarif -10% sénior/PMR, équipe formée, accompagnement humain. Toute la Haute-Savoie. Devis 24h."
+  keywords="déménagement senior Annemasse, déménageur EHPAD, déménagement personne âgée Haute-Savoie, déménagement résidence senior, déménageur senior 74, sortie d'hôpital déménagement"
+  canonical={pageURL}
+  ogImage="/banner-demenagement.webp"
+  structuredData={allSchemas}
+>
+  <!-- ==================== HERO ==================== -->
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Fil d'Ariane">
+        <a href="/">Accueil</a><span>/</span>
+        <a href="/services">Services</a><span>/</span>
+        <span>Déménagement senior</span>
+      </nav>
+      <span class="eyebrow gold">Spécialité dédiée</span>
+      <h1>Déménagement senior,<br /><em>accompagnement humain et expertise.</em></h1>
+      <p class="lead">
+        Entrée en EHPAD, sortie d'hôpital, regroupement familial après veuvage,
+        succession à gérer&nbsp;: déménager un proche âgé demande de la délicatesse,
+        de la patience et un savoir-faire spécifique. Torres Transport en a fait
+        une de ses spécialités depuis 20 ans, avec un <strong>tarif sénior de
+        −10&nbsp;%</strong> appliqué automatiquement.
+      </p>
+      <div class="hero-actions">
+        <a href="/contact" class="btn btn-gold btn-large btn-with-arrow">Demander un devis senior</a>
+        <a href="tel:+33659926814" class="btn btn-ghost btn-large">06 59 92 68 14</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CAS D'USAGE ==================== -->
+  <section class="section">
+    <div class="container">
+      <header class="section-header">
+        <span class="eyebrow gold">Quand intervenons-nous</span>
+        <h2>Quatre situations<br /><em>que nous gérons quotidiennement.</em></h2>
+        <p class="section-intro">
+          Le déménagement senior n'est jamais "juste" un déménagement. Il s'inscrit
+          dans une étape de vie, parfois compliquée. Notre équipe est formée pour
+          gérer aussi bien la logistique que la dimension humaine.
+        </p>
+      </header>
+
+      <div class="cas-grid">
+        {cas.map((c, idx) => (
+          <article class="cas-card">
+            <span class="cas-num">{String(idx + 1).padStart(2, '0')}</span>
+            <h3>{c.titre}</h3>
+            <p>{c.desc}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== INCLUS ==================== -->
+  <section class="section bg-cream">
+    <div class="container">
+      <header class="section-header">
+        <span class="eyebrow gold">Notre prestation</span>
+        <h2>Ce qui est inclus<br /><em>dans un déménagement senior.</em></h2>
+      </header>
+      <ul class="inclus-list">
+        {inclus.map((i) => (
+          <li>{i}</li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ==================== ENGAGEMENTS ==================== -->
+  <section class="section">
+    <div class="container container-narrow">
+      <header class="section-header">
+        <span class="eyebrow gold">Nos engagements</span>
+        <h2>Cinq promesses<br /><em>pour les familles.</em></h2>
+      </header>
+      <div class="engagements-grid">
+        {engagements.map((e, idx) => (
+          <div class="engagement-card">
+            <span class="engagement-num">{String(idx + 1).padStart(2, '0')}</span>
+            <p>{e}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FAQ ==================== -->
+  {faqs.length > 0 && (
+    <section class="section bg-cream">
+      <div class="container container-narrow">
+        <header class="section-header text-center">
+          <span class="eyebrow gold">Questions fréquentes</span>
+          <h2>Tout savoir<br /><em>sur le déménagement senior.</em></h2>
+        </header>
+        <div class="faq-list">
+          {faqs.map((f) => (
+            <details class="faq-item">
+              <summary>{f.question}</summary>
+              <p>{f.reponse}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {articleSenior && (
+    <!-- ==================== ARTICLE LIÉ ==================== -->
+    <section class="section">
+      <div class="container container-narrow">
+        <header class="section-header">
+          <span class="eyebrow gold">Aller plus loin</span>
+          <h2>Notre guide complet<br /><em>du déménagement senior.</em></h2>
+        </header>
+        <a href={`/blog/${articleSenior.slug}`} class="article-link-card">
+          <span class="article-link-eyebrow">Article du journal</span>
+          <h3>{articleSenior.title}</h3>
+          <p>{articleSenior.excerpt}</p>
+          <span class="article-link-arrow">Lire l'article complet →</span>
+        </a>
+      </div>
+    </section>
+  )}
+
+  <!-- ==================== CTA ==================== -->
+  <section class="section bg-black cta-final">
+    <div class="container container-narrow text-center">
+      <span class="eyebrow">Un parent à déménager&nbsp;?</span>
+      <h2>Parlons-en<br /><em>en toute sérénité.</em></h2>
+      <p class="lead">
+        Devis gratuit sous 24 h, intervention possible sous 48-72 h pour les
+        urgences (sortie d'hôpital, entrée EHPAD imminente).
+      </p>
+      <div class="cta-buttons">
+        <a href="/contact" class="btn btn-gold btn-large btn-with-arrow">Demander un devis</a>
+        <a href="tel:+33659926814" class="btn btn-ghost btn-large">06 59 92 68 14</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    background: var(--off-white);
+    padding: clamp(4rem, 8vw, 7rem) 0 clamp(3rem, 5vw, 4rem);
+    border-bottom: 1px solid var(--border);
+  }
+  .breadcrumb {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--gray-500);
+    margin-bottom: 2.5rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  .breadcrumb a {
+    color: var(--gray-700, #404040);
+    text-decoration: none;
+  }
+  .breadcrumb a:hover { color: var(--black); }
+  .breadcrumb > span:not(:last-child) { opacity: 0.4; }
+
+  .page-hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    margin: 0.75rem 0 1.5rem;
+    max-width: 920px;
+  }
+  .page-hero h1 em {
+    font-style: italic;
+    color: var(--gold-deep);
+  }
+  .page-hero .lead { max-width: 720px; margin-top: 1.5rem; }
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+  }
+
+  .section-intro {
+    margin-top: 1.25rem;
+    max-width: 720px;
+    color: var(--gray-700);
+    font-size: 1.05rem;
+    line-height: 1.65;
+  }
+
+  /* CAS GRID */
+  .cas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  .cas-card {
+    padding: 2rem;
+    background: var(--white);
+    border: 1px solid var(--border);
+    transition: border-color 0.25s, transform 0.25s;
+  }
+  .cas-card:hover {
+    border-color: var(--gold-deep);
+    transform: translateY(-2px);
+  }
+  .cas-num {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    color: var(--gold-deep);
+    display: block;
+    margin-bottom: 1rem;
+  }
+  .cas-card h3 {
+    font-size: 1.35rem;
+    margin-bottom: 0.85rem;
+  }
+  .cas-card p {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--gray-700);
+  }
+
+  /* INCLUS LIST */
+  .inclus-list {
+    list-style: none;
+    padding: 0;
+    margin: 3rem 0 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 0.85rem 2.5rem;
+  }
+  .inclus-list li {
+    font-size: 1rem;
+    color: var(--gray-700);
+    padding: 0.85rem 0 0.85rem 1.75rem;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+  .inclus-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: 0.85rem;
+    color: var(--gold-deep);
+    font-weight: 700;
+  }
+
+  /* ENGAGEMENTS */
+  .engagements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .engagement-card {
+    background: var(--off-white);
+    border-left: 3px solid var(--gold-deep);
+    padding: 1.5rem 1.5rem 1.5rem 1.75rem;
+  }
+  .engagement-num {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    color: var(--gold-deep);
+    display: block;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.1em;
+  }
+  .engagement-card p {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: var(--black);
+    margin: 0;
+    font-weight: 500;
+  }
+
+  /* FAQ */
+  .faq-list { margin-top: 3rem; }
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+    padding: 1.5rem 0;
+  }
+  .faq-item summary {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    cursor: pointer;
+    list-style: none;
+    position: relative;
+    padding-right: 2.5rem;
+    font-weight: 500;
+    color: var(--black);
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: '+';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gold-deep);
+    font-size: 1.5rem;
+    transition: transform 0.25s;
+  }
+  .faq-item[open] summary::after { content: '−'; }
+  .faq-item p {
+    margin-top: 1rem;
+    color: var(--gray-700);
+    line-height: 1.7;
+    font-size: 0.98rem;
+  }
+
+  /* ARTICLE LINK CARD */
+  .article-link-card {
+    display: block;
+    margin-top: 2.5rem;
+    padding: 2.25rem;
+    background: var(--off-white);
+    border: 1px solid var(--border);
+    text-decoration: none;
+    color: var(--black);
+    transition: all 0.25s;
+  }
+  .article-link-card:hover {
+    border-color: var(--gold-deep);
+    background: var(--white);
+  }
+  .article-link-eyebrow {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--gold-deep);
+    font-weight: 600;
+  }
+  .article-link-card h3 {
+    font-size: 1.4rem;
+    margin: 0.85rem 0;
+  }
+  .article-link-card p {
+    color: var(--gray-700);
+    line-height: 1.65;
+    margin-bottom: 1.25rem;
+  }
+  .article-link-arrow {
+    color: var(--gold-deep);
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  /* CTA FINAL */
+  .cta-final { text-align: center; }
+  .cta-final h2 em { color: var(--gold); font-style: italic; }
+  .cta-final .lead {
+    color: rgba(255,255,255,0.75);
+    max-width: 580px;
+    margin: 1.5rem auto 2.5rem;
+  }
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+</style>

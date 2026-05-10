@@ -78,6 +78,58 @@ export const serviceFaqs = {
       reponse: "Idéalement 1 semaine à l'avance. Pour les urgences (location de camion déjà prise), nous pouvons intervenir sous 24-48h selon nos créneaux disponibles.",
     },
   ],
+  'demenagement-senior': [
+    {
+      question: "Quel est le tarif d'un déménagement senior à Annemasse ?",
+      reponse: "Notre tarif unique est de 47,50 €/m³, et nous appliquons une remise sénior/PMR de 10% automatique. Pour un T2 sénior typique de 25 m³, comptez environ 1 070 € au lieu de 1 187 €. Cumulable avec les autres avantages (réservation anticipée, gros volume).",
+    },
+    {
+      question: "Intervenez-vous pour les entrées en EHPAD ou résidence senior ?",
+      reponse: "Oui, c'est une part importante de notre activité. Nous accompagnons régulièrement des entrées en EHPAD, foyer-logement, résidence service. Notre équipe sait gérer la dimension émotionnelle et la forte réduction de surface (souvent passage maison → chambre 18 m²).",
+    },
+    {
+      question: "Pouvez-vous gérer la sortie d'hôpital vers un nouveau logement ?",
+      reponse: "Oui. Nous coordonnons avec la famille pour préparer le logement d'arrivée pendant que la personne est encore hospitalisée. Délai d'intervention sous 48-72 h pour ces situations urgentes.",
+    },
+    {
+      question: "Que faites-vous des meubles que la personne âgée ne peut pas garder ?",
+      reponse: "Nous proposons un service de débarras associé, avec tri systématique : don aux associations partenaires (Emmaüs, Croix-Rouge), recyclage en déchetterie, vente en dépôt-vente si valeur. La famille reçoit un récapitulatif écrit du devenir des biens.",
+    },
+    {
+      question: "Pouvez-vous faire le déménagement sans la personne âgée présente ?",
+      reponse: "Absolument. C'est même fréquent quand la personne est déjà en EHPAD ou hospitalisée. Nous travaillons sur procuration ou avec un mandataire familial. Photos avant/pendant/après pour traçabilité totale.",
+    },
+    {
+      question: "Avez-vous l'expérience des successions et de la gestion familiale délicate ?",
+      reponse: "Oui, nous gérons régulièrement des situations sensibles : héritiers multiples avec décisions à prendre sur place, désaccords familiaux, succession après décès. Notre approche est patiente, sans pression, sans jugement.",
+    },
+  ],
+  'garde-meuble': [
+    {
+      question: "Combien coûte un garde-meuble à Annemasse ?",
+      reponse: "Nos tarifs démarrent à environ 35 €/mois pour un box de 5 m³ (équivalent studio), 65 €/mois pour 10 m³ (T1/T2), 110 €/mois pour 20 m³ (T3) et sur devis pour plus grand. Aucun frais de dossier. Premier mois offert si combiné avec déménagement.",
+    },
+    {
+      question: "Quelle taille de box choisir selon mon volume ?",
+      reponse: "5 m³ pour un studio meublé, 10 m³ pour un T1/T2, 15-20 m³ pour un T3, 25-30 m³ pour un T4 et plus. En cas de doute, on évalue gratuitement sur photos ou en visite. Vous ne payez que ce dont vous avez besoin.",
+    },
+    {
+      question: "Comment accède-t-on au box de stockage ?",
+      reponse: "Accès libre du lundi au samedi pendant nos horaires d'ouverture (8h-19h). Demandez-nous au moins 24h à l'avance pour un accès en dehors de ces créneaux. Le box vous est attribué nominativement, vos affaires ne sont jamais déplacées sans votre accord.",
+    },
+    {
+      question: "Mes biens sont-ils assurés dans votre garde-meuble ?",
+      reponse: "Oui, notre assurance responsabilité civile professionnelle (contrat n° 149 572 243) couvre les dommages causés par notre fait. Pour une couverture étendue (vol, incendie, dégât des eaux), nous recommandons d'étendre votre assurance habitation au stockage temporaire — démarche simple chez votre assureur.",
+    },
+    {
+      question: "Pour combien de temps minimum / maximum peut-on louer ?",
+      reponse: "Pas d'engagement minimum : 1 semaine, 1 mois, 6 mois, 2 ans, à votre rythme. Facturation au mois. Préavis d'1 semaine pour libérer le box.",
+    },
+    {
+      question: "Pouvez-vous combiner déménagement et stockage en une prestation ?",
+      reponse: "Oui, c'est même notre spécialité. Pour un dossier groupé 'déménagement aller + stockage X mois + déménagement retour vers nouveau logement', nous remisons généralement 5 à 10% par rapport à deux prestations séparées. Demandez le devis groupé.",
+    },
+  ],
   debarras: [
     {
       question: "Le débarras est-il payant ou gratuit ?",
