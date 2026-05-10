@@ -302,14 +302,14 @@ export const cities = {
     population: '36 000 habitants',
     bannier: '/banner-blog-hero.webp',
 
-    titreH1: 'Déménagement à Thonon-les-Bains (74200), Bord du Léman',
+    titreH1: 'Déménagement à Thonon-les-Bains (74200), Chablais',
     metaTitle: 'Déménageur Thonon-les-Bains | Torres Transport',
     metaDescription:
-      "Déménageur professionnel à Thonon-les-Bains (74200) sur les rives du Léman. Service complet déménagement, montage, transport. Devis gratuit. 20 ans d'expérience en Haute-Savoie.",
+      "Déménageur professionnel à Thonon-les-Bains (74200), sous-préfecture du Chablais. Service complet déménagement, montage, transport. Devis gratuit. 20 ans d'expérience en Haute-Savoie.",
     keywords:
-      'déménageur Thonon-les-Bains, déménagement Thonon 74200, déménageur Léman, transport meubles Thonon, déménagement Chablais',
+      'déménageur Thonon-les-Bains, déménagement Thonon 74200, déménageur Chablais, transport meubles Thonon, déménageur 74200',
 
-    intro: `<strong>Thonon-les-Bains</strong>, sous-préfecture de Haute-Savoie située sur les rives sud du lac Léman, est un bassin résidentiel attractif avec ses 36 000 habitants. Torres Transport intervient à Thonon depuis Ville-la-Grand (35 km) pour répondre aux besoins de déménagement de cette région du Chablais. Nous accompagnons aussi bien les <strong>déménagements internes à Thonon</strong> que les transferts vers/depuis Annemasse et toute la Haute-Savoie.`,
+    intro: `<strong>Thonon-les-Bains</strong>, sous-préfecture de Haute-Savoie au cœur du Chablais, est un bassin résidentiel attractif avec ses 36 000 habitants. Torres Transport intervient à Thonon depuis Ville-la-Grand (35 km) pour répondre aux besoins de déménagement de cette région. Nous accompagnons aussi bien les <strong>déménagements internes à Thonon</strong> que les transferts vers/depuis Annemasse et toute la Haute-Savoie.`,
 
     pourquoiNous: `La <strong>région du Chablais</strong> a ses propres spécificités logistiques : centres-villes anciens aux rues étroites (Rives, Vieux Thonon), nouvelles résidences en périphérie (Concise, Tully), accès parfois difficiles aux propriétés du bord du lac. Notre savoir-faire de 20 ans en Haute-Savoie nous permet de traiter ces particularités sans difficulté.`,
 
@@ -350,7 +350,7 @@ export const cities = {
       {
         question: 'Intervenez-vous aussi à Évian et alentours ?',
         reponse:
-          "Bien sûr. Évian-les-Bains, Publier, Marin, Anthy-sur-Léman, Sciez et tout le bord du lac jusqu'à Saint-Gingolph sont dans notre zone d'intervention.",
+          "Bien sûr. Évian-les-Bains, Publier, Marin, Anthy-sur-Léman, Sciez et tout le Chablais jusqu'à Saint-Gingolph sont dans notre zone d'intervention.",
       },
       {
         question: 'Faites-vous du transport de bateaux ou objets nautiques ?',
