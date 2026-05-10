@@ -7,7 +7,7 @@ export const servicesData = {
     description: "Déménagement complet avec une équipe professionnelle et du matériel adapté.",
     intro: `
       <p>Le déménagement est notre cœur de métier depuis 20 ans. À Torres&nbsp;Transport, nous avons fait un choix simple : <strong>un tarif unique au m³</strong>, tout compris, plutôt qu'une facture qui gonfle au fil du devis. <strong>47,50&nbsp;€&nbsp;/&nbsp;m³</strong> couvre le camion, l'équipe, la protection du mobilier, les sangles, l'arrimage. Aucun supplément caché.</p>
-      <p>Que ce soit un studio à Annemasse, un T4 familial à Ville-la-Grand, une maison à Thonon ou un transfert frontalier vers Genève, l'équipe est dimensionnée selon le volume et l'accessibilité (étages, monte-meuble si nécessaire, distances de portage). On vient en visite gratuite chez vous pour les volumes &gt;&nbsp;30&nbsp;m³, ou on échange par photos pour les studios et T2.</p>
+      <p>Que ce soit un studio à Annemasse, un T4 familial à Ville-la-Grand, une maison à Thonon ou un transfert vers une autre région française, l'équipe est dimensionnée selon le volume et l'accessibilité (étages, monte-meuble si nécessaire, distances de portage). On vient en visite gratuite chez vous pour les volumes &gt;&nbsp;30&nbsp;m³, ou on échange par photos pour les studios et T2.</p>
       <p>Notre approche : pas de sous-traitance, pas d'acompte, pas de pression. Vous payez après la prestation, à la livraison de vos biens. C'est notre façon d'assumer la qualité de ce qu'on fait.</p>
     `,
     details: [
@@ -65,14 +65,12 @@ export const servicesData = {
       <p>Le transport simple est notre formule pour les clients qui ont déjà tout préparé eux-mêmes, emballé, démonté, prêt à charger, et qui veulent juste un camion + une équipe de manutention pour le trajet. Tarif environ <strong>30&nbsp;%</strong> moins cher qu'un déménagement complet, idéal pour les budgets serrés ou les transferts simples.</p>
       <p><strong>Cas typiques&nbsp;:</strong> achat d'un meuble volumineux (canapé, frigo américain, armoire) à transporter du magasin (Centrakor, La Foir'Fouille, Locabox) à votre domicile&nbsp;; livraison entre deux particuliers (LeBonCoin, Vinted Pro)&nbsp;; transport d'objets professionnels (matériel de chantier, marchandises pour entreprises)&nbsp;; rapatriement d'affaires depuis un garde-meubles ou un local pro.</p>
       <p>Nous gérons aussi les <strong>longues distances</strong> : transport Annemasse vers Lyon, Grenoble, Paris, Marseille, devis avec coût km au-delà de la zone locale. Possibilité de groupage si plusieurs clients vont vers la même destination (économie supplémentaire).</p>
-      <p><strong>Pour le transfrontalier France–Suisse</strong>, nous gérons les formalités douanières (inventaire en deux exemplaires, formulaire 10070 pour les biens personnels). Voir notre <a href="/blog/demenagement-suisse-vers-france">guide retour Suisse → France</a> et notre <a href="/blog/demenagement-transfrontalier-suisse">guide France → Suisse</a> pour les démarches détaillées.</p>
     `,
     details: [
       "Transport de meubles (canapé, armoire, lit, frigo)",
       "Livraison de colis volumineux",
       "Transport longue distance partout en France",
       "Groupage possible (économie sur destinations communes)",
-      "Transfert transfrontalier France-Suisse",
       "Véhicules de 12 à 30 m³ selon le besoin",
       "Assurance transport incluse",
     ],

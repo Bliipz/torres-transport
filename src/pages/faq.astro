@@ -89,20 +89,16 @@ const categories = [
   },
   {
     id: 'zones',
-    titre: 'Zones et frontaliers',
+    titre: 'Zones et longue distance',
     icon: '04',
     questions: [
       {
         q: "Dans quelles villes intervenez-vous ?",
-        r: `Notre zone principale couvre tout le Genevois français : Annemasse, Ville-la-Grand, Gaillard, Saint-Julien-en-Genevois, Bonneville, Thonon-les-Bains, Évian-les-Bains, Annecy. Côté frontalier : Genève et le canton. Voir notre <a href="/zones-intervention">carte d'intervention complète</a>.`,
-      },
-      {
-        q: "Faites-vous les déménagements transfrontaliers Suisse-France ?",
-        r: `Oui, dans les deux sens. Nous gérons les passages frontière, l'inventaire douanier en deux exemplaires, les formalités. Notre <a href="/blog/demenagement-suisse-vers-france">guide retour Suisse → France</a> détaille toutes les démarches.`,
+        r: `Notre zone principale couvre toute la Haute-Savoie : Annemasse, Ville-la-Grand, Gaillard, Saint-Julien-en-Genevois, Bonneville, Thonon-les-Bains, Évian-les-Bains, Annecy. Voir notre <a href="/zones-intervention">carte d'intervention complète</a>.`,
       },
       {
         q: "Faites-vous des longues distances (Lyon, Paris, Marseille) ?",
-        r: `Oui, nous organisons des déménagements partout en France métropolitaine. Le tarif au m³ reste la base, avec un coût km au-delà de la zone locale. Devis sur demande.`,
+        r: `Oui, nous organisons des déménagements partout en France métropolitaine. Le tarif au m³ reste la base, avec un coût km au-delà de la zone locale. Devis sur demande, ferme sous 24h sans surcoût caché.`,
       },
       {
         q: "Intervenez-vous en zone de montagne ou d'accès difficile ?",
@@ -159,7 +155,7 @@ const breadcrumbSchema = {
 
 <BaseLayout
   titre="FAQ, Questions fréquentes"
-  description="Toutes les réponses sur le déménagement avec Torres Transport : tarifs, préparation, jour J, zones, frontaliers, situations particulières. Réponse claire à toutes vos questions."
+  description="Toutes les réponses sur le déménagement avec Torres Transport : tarifs, préparation, jour J, zones, situations particulières. Réponse claire à toutes vos questions."
   keywords="FAQ déménagement, questions déménageur Annemasse, tarifs déménagement Haute-Savoie, comment préparer déménagement"
   canonical={`${SITE_URL}/faq`}
   structuredData={[faqSchema, breadcrumbSchema]}
@@ -173,7 +169,7 @@ const breadcrumbSchema = {
       <span class="eyebrow gold">Questions fréquentes</span>
       <h1>Toutes les réponses,<br /><em>au même endroit.</em></h1>
       <p class="lead">
-        Tarifs, préparation, jour J, frontaliers, situations particulières.
+        Tarifs, préparation, jour J, zones, situations particulières.
         On a regroupé les questions qu'on nous pose le plus souvent.
         Vous ne trouvez pas votre réponse ? <a href="/contact">Posez-la nous directement</a>.
       </p>

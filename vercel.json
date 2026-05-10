@@ -25,7 +25,15 @@
     { "source": "/wordpress-resources-at-siteground/", "destination": "/blog", "permanent": true },
     { "source": "/category/uncategorized", "destination": "/blog", "permanent": true },
     { "source": "/category/uncategorized/", "destination": "/blog", "permanent": true },
-    { "source": "/metform-form/(.*)", "destination": "/contact", "permanent": true }
+    { "source": "/metform-form/(.*)", "destination": "/contact", "permanent": true },
+    { "source": "/demenagement-geneve", "destination": "/zones-intervention", "permanent": true },
+    { "source": "/demenagement-geneve/", "destination": "/zones-intervention", "permanent": true },
+    { "source": "/blog/demenagement-transfrontalier-suisse", "destination": "/blog", "permanent": true },
+    { "source": "/blog/demenagement-transfrontalier-suisse/", "destination": "/blog", "permanent": true },
+    { "source": "/blog/demenagement-suisse-vers-france", "destination": "/blog", "permanent": true },
+    { "source": "/blog/demenagement-suisse-vers-france/", "destination": "/blog", "permanent": true },
+    { "source": "/blog/demenagement-etudiant-annemasse-geneve", "destination": "/blog", "permanent": true },
+    { "source": "/blog/demenagement-etudiant-annemasse-geneve/", "destination": "/blog", "permanent": true }
   ],
   "headers": [
     {

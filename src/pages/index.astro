@@ -4,7 +4,7 @@ import GoogleReviews from "../components/GoogleReviews.astro";
 
 // Services proposés
 const services = [
-  { num: "01", titre: "Déménagement", excerpt: "Résidentiel, professionnel, frontalier. Une équipe complète pour un transfert sans accroc.", link: "/services/demenagement" },
+  { num: "01", titre: "Déménagement", excerpt: "Résidentiel, professionnel, longue distance. Une équipe complète pour un transfert sans accroc.", link: "/services/demenagement" },
   { num: "02", titre: "Transport", excerpt: "Livraison de meubles, marchandises et objets volumineux à travers la Haute-Savoie.", link: "/services/transport" },
   { num: "03", titre: "Montage de meubles", excerpt: "IKEA, Conforama, BUT. Outils fournis, montage soigné, prêt à vivre.", link: "/services/montage-meubles" },
   { num: "04", titre: "Manutention", excerpt: "Objets lourds, encombrants, accès difficiles. Notre savoir-faire évite les blessures.", link: "/services/manutention" },
@@ -38,8 +38,8 @@ const homeFaqs = [
     reponse: "Vous recevez votre devis personnalisé sous 24 h ouvrées. Pour une demande urgente, appelez-nous directement et nous nous organisons sous 2 h.",
   },
   {
-    question: "Faites-vous des déménagements vers la Suisse ?",
-    reponse: "Oui, c'est une de nos spécialités. Nous gérons les déménagements transfrontaliers vers Genève, Lausanne et toute la Suisse romande, en incluant les formalités douanières.",
+    question: "Faites-vous des déménagements longue distance partout en France ?",
+    reponse: "Oui, c'est notre quotidien. Annemasse-Lyon, Annemasse-Paris, Annemasse-Marseille, Annemasse-Bordeaux. Devis ferme sous 24h, tarif au km au-delà de la zone locale, aucun surcoût caché.",
   },
   {
     question: "Vos prestations sont-elles assurées ?",
@@ -64,8 +64,8 @@ const homeFaqSchema = {
 
 <BaseLayout
   title="Déménageur Annemasse &amp; France entière | Torres Transport"
-  description="Torres Transport, déménagement et transport partout en France au départ d'Annemasse (74). Expertise locale Haute-Savoie + transfrontalier Suisse. 20 ans d'expérience. Devis gratuit en 24h."
-  keywords="déménageur Annemasse, déménageur France entière, déménagement longue distance, transport meubles 74, montage de meuble Annemasse, débarras Annemasse, déménagement frontalier Suisse, Torres Transport"
+  description="Torres Transport, déménagement et transport partout en France au départ d'Annemasse (74). Expertise locale Haute-Savoie. 20 ans d'expérience. Devis gratuit en 24h."
+  keywords="déménageur Annemasse, déménageur France entière, déménagement longue distance, transport meubles 74, montage de meuble Annemasse, débarras Annemasse, Torres Transport"
   ogImage="/hero-banner.webp"
   preloadImage="/hero-banner.webp"
   structuredData={[homeFaqSchema]}
@@ -88,7 +88,7 @@ const homeFaqSchema = {
       </h1>
 
       <p class="hero-subtitle">
-        Basés en Haute-Savoie, nous intervenons partout en France et en Suisse romande.
+        Basés en Haute-Savoie, nous intervenons partout en France.
         20 ans d'expérience, service complet, devis transparent sous 24 h.
       </p>
 
@@ -139,10 +139,9 @@ const homeFaqSchema = {
             simplifier vos déménagements et transports avec professionnalisme et bienveillance.
           </p>
           <p>
-            Notre base est en <strong>Haute-Savoie</strong>, mais nous intervenons <strong>partout en France</strong>
-            et en Suisse romande. Nos déménagements transfrontaliers vers Genève sont une
-            spécialité, et pour les longues distances (Paris, Lyon, Marseille, Bordeaux…),
-            nous établissons un devis personnalisé sous 24&nbsp;h.
+            Notre base est en <strong>Haute-Savoie</strong>, mais nous intervenons <strong>partout en France</strong>.
+            Pour les longues distances (Paris, Lyon, Marseille, Bordeaux…), nous établissons
+            un devis personnalisé sous 24&nbsp;h, sans surcoût caché.
           </p>
           <a href="/services" class="link-underline">Voir tous nos services</a>
         </div>
@@ -310,17 +309,18 @@ const homeFaqSchema = {
           <h2>Partout en France,<br />expertise locale en Haute-Savoie.</h2>
           <p class="lead">
             Notre base à Ville-la-Grand nous donne une connaissance fine du bassin annemassien
-            et du transfrontalier Suisse, mais nous nous déplaçons partout en France pour les
-            missions longue distance. Aucune commune n'est trop loin.
+            et de toute la Haute-Savoie. Pour les missions longue distance, nous nous
+            déplaçons partout en France. Aucune commune n'est trop loin.
           </p>
           <a href="/zones-intervention" class="btn btn-primary btn-with-arrow">Voir les zones</a>
         </div>
         <ul class="zones-list">
           <li><span>Annemasse</span><span>74100</span></li>
           <li><span>Ville-la-Grand</span><span>74100</span></li>
+          <li><span>Étrembières</span><span>74100</span></li>
+          <li><span>Vétraz-Monthoux</span><span>74100</span></li>
           <li><span>Gaillard</span><span>74240</span></li>
           <li><span>Saint-Julien-en-Genevois</span><span>74160</span></li>
-          <li><span>Genève</span><span>CH</span></li>
           <li><span>Thonon-les-Bains</span><span>74200</span></li>
           <li><span>Évian-les-Bains</span><span>74500</span></li>
           <li><span>Annecy</span><span>74000</span></li>

@@ -30,7 +30,7 @@ const garanties = [
   "20 ans d'expérience en Haute-Savoie",
   "Devis gratuit, transparent, sans surprise",
   "Pas de sous-traitance, équipe dédiée",
-  "Spécialiste des déménagements vers la Suisse",
+  "Intervention partout en France au départ d'Annemasse",
 ];
 
 const serviceSchema = {
@@ -46,11 +46,11 @@ const serviceSchema = {
     name: 'Torres Transport',
   },
   areaServed: [
+    { '@type': 'Country', name: 'France' },
     { '@type': 'City', name: 'Annemasse' },
     { '@type': 'City', name: 'Ville-la-Grand' },
     { '@type': 'City', name: 'Gaillard' },
     { '@type': 'City', name: 'Saint-Julien-en-Genevois' },
-    { '@type': 'City', name: 'Genève' },
     { '@type': 'AdministrativeArea', name: 'Haute-Savoie' },
   ],
   url: pageURL,
@@ -137,8 +137,8 @@ const allSchemas = [serviceSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema]
           </p>
           <p>
             Nous intervenons dans toute la <strong>Haute-Savoie</strong>, du Genevois français
-            au Léman, et organisons régulièrement des déménagements transfrontaliers vers
-            <strong>Genève et la Suisse romande</strong>.
+            au Léman, et nous nous déplaçons <strong>partout en France</strong> pour les
+            missions longue distance (Lyon, Paris, Marseille, Bordeaux…).
           </p>
         </div>
         <div class="intro-stats">
@@ -195,8 +195,8 @@ const allSchemas = [serviceSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema]
         <span class="eyebrow gold">Où nous intervenons</span>
         <h2>Déménagement<br /><em>partout en Haute-Savoie.</em></h2>
         <p class="lead">
-          Annemasse, Ville-la-Grand, Saint-Julien-en-Genevois, Genève, Thonon, Évian,
-          Bonneville, Annecy. Cliquez pour découvrir notre offre locale détaillée.
+          Annemasse, Ville-la-Grand, Étrembières, Vétraz-Monthoux, Saint-Julien-en-Genevois,
+          Thonon, Évian, Bonneville, Annecy. Cliquez pour découvrir notre offre locale détaillée.
         </p>
       </header>
 

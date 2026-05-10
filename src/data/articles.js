@@ -4,7 +4,7 @@ export const articles = [
     id: "garde-meuble-stockage-annemasse",
     title: "Garde-meuble à Annemasse : la solution sereine entre deux logements",
     slug: "garde-meuble-stockage-annemasse",
-    excerpt: "Vente avant achat, mutation pro, séparation, retour de Suisse : il y a des moments où il faut un toit pour ses meubles avant le suivant. Voici comment bien choisir son garde-meuble à Annemasse, ce qu'on facture vraiment, et les pièges à éviter.",
+    excerpt: "Vente avant achat, mutation pro, séparation, travaux : il y a des moments où il faut un toit pour ses meubles avant le suivant. Voici comment bien choisir son garde-meuble à Annemasse, ce qu'on facture vraiment, et les pièges à éviter.",
     content: `
       <p>Sur les chantiers, il y a une situation qu'on rencontre beaucoup à Annemasse&nbsp;: <strong>le client a signé pour partir, mais pas encore pour arriver</strong>. Vente immobilière qui se finalise avant l'achat suivant, mutation pro qui démarre dans 3 semaines, séparation où il faut quitter le logement vite mais où on ne sait pas encore où on dort dans 2 mois&nbsp;: ces "trous" entre deux toits sont fréquents. Et c'est là que le garde-meuble devient incontournable.</p>
 
@@ -12,13 +12,13 @@ export const articles = [
 
       <h2>Pourquoi le garde-meuble est devenu indispensable à Annemasse</h2>
 
-      <p>Notre bassin a une particularité&nbsp;: la pression immobilière côté Genève fait que les transactions s'enchaînent à des rythmes parfois imprévisibles. Sur dix dossiers de déménagement qu'on traite chaque mois, environ <strong>trois nécessitent une étape de stockage temporaire</strong>. Pas par confort&nbsp;: par nécessité.</p>
+      <p>Notre bassin a une particularité&nbsp;: la pression immobilière sur la Haute-Savoie fait que les transactions s'enchaînent à des rythmes parfois imprévisibles. Sur dix dossiers de déménagement qu'on traite chaque mois, environ <strong>trois nécessitent une étape de stockage temporaire</strong>. Pas par confort&nbsp;: par nécessité.</p>
 
       <h3>Les 4 situations classiques où ça arrive</h3>
 
       <ul>
         <li><strong>Vente avant achat&nbsp;:</strong> votre acquéreur est pressé d'emménager, mais votre propre achat n'est pas encore signé. Décalage typique&nbsp;: 4 à 12 semaines.</li>
-        <li><strong>Mutation professionnelle&nbsp;:</strong> votre nouveau poste démarre à Lyon, Paris ou Suisse, mais vous gardez un pied à Annemasse pendant 1 à 6 mois.</li>
+        <li><strong>Mutation professionnelle&nbsp;:</strong> votre nouveau poste démarre à Lyon, Paris ou ailleurs, mais vous gardez un pied à Annemasse pendant 1 à 6 mois.</li>
         <li><strong>Séparation conjugale&nbsp;:</strong> il faut quitter le logement commun rapidement, le temps de retrouver un appartement à soi.</li>
         <li><strong>Travaux dans le logement neuf&nbsp;:</strong> peinture, sols, cuisine&nbsp;: le futur logement n'est pas habitable tout de suite, on stocke 3 à 8 semaines en attendant.</li>
       </ul>
@@ -120,12 +120,6 @@ export const articles = [
         <li><strong>"Puis-je visiter le local avant signature&nbsp;?"</strong> Si refus, fuyez. Un prestataire sérieux est fier de montrer ses installations.</li>
       </ol>
 
-      <h2>Cas particulier&nbsp;: les frontaliers qui rentrent de Suisse</h2>
-
-      <p>Une situation qu'on traite régulièrement&nbsp;: vous quittez votre logement à Genève, votre acquéreur d'appartement à Annemasse a un délai. Vous voulez stocker en France pour éviter les complications douanières au retour.</p>
-
-      <p>Bonne idée&nbsp;: les meubles transitant par un garde-meuble français évitent toute question de re-déclaration. Si vous avez déjà fait la déclaration de transfert lors du passage de la frontière (cf. notre <a href="/blog/demenagement-transfrontalier-suisse">guide des formalités France-Suisse</a>), le stockage local n'ajoute aucune contrainte administrative.</p>
-
       <h2>Conclusion&nbsp;: anticipez et groupez</h2>
 
       <p>Si vous savez à l'avance qu'il y aura un trou entre vos deux logements, parlez-en à votre déménageur <strong>au moment du devis initial</strong>, pas après coup. Vous obtiendrez un tarif groupé bien plus avantageux qu'en cherchant un garde-meuble en urgence à 2 semaines du départ.</p>
@@ -179,7 +173,7 @@ export const articles = [
       <p>Le choix de votre entreprise de déménagement détermine largement la réussite de votre projet. À Annemasse, zone frontalière dynamique, plusieurs critères spécifiques méritent votre attention.</p>
       
       <h3>Expertise locale et réglementaire</h3>
-      <p>Privilégiez un déménageur connaissant parfaitement la région. Les spécificités d'Annemasse (circulation, stationnement, proximité de Genève) nécessitent une expertise locale. Torres Transport maîtrise ces contraintes depuis deux décennies.</p>
+      <p>Privilégiez un déménageur connaissant parfaitement la région. Les spécificités d'Annemasse (circulation, stationnement, accès aux résidences hautes) nécessitent une expertise locale. Torres Transport maîtrise ces contraintes depuis deux décennies.</p>
       
       <h3>Transparence tarifaire et assurances</h3>
       <p>Exigez un devis détaillé mentionnant tous les postes de coût. Méfiez-vous des tarifs anormalement bas qui cachent souvent des suppléments. Vérifiez également les garanties d'assurance, particulièrement importantes pour les biens de valeur.</p>
@@ -262,139 +256,6 @@ export const articles = [
       metaDescription: "Guide expert pour réussir votre déménagement à Annemasse. Conseils, techniques et astuces de Torres Transport, 20 ans d'expérience en Haute-Savoie.",
       keywords: ["déménagement annemasse", "déménageur haute-savoie", "conseils déménagement", "torres transport", "guide déménagement 2024"],
       canonicalUrl: "/blog/conseils-demenagement-reussi"
-    }
-  },
-  {
-    id: "demenagement-transfrontalier-suisse",
-    title: "Déménagement France-Suisse : Guide Complet des Formalités",
-    slug: "demenagement-transfrontalier-suisse",
-    excerpt: "Déménager de France vers la Suisse ? Découvrez toutes les formalités, documents et conseils d'expert Torres Transport pour un transfert transfrontalier réussi.",
-    content: `
-      <!-- INTRODUCTION (130 mots) -->
-      <p>Vous envisagez un déménagement de la France vers la Suisse ? Cette transition représente bien plus qu'un simple changement d'adresse. Avec plus de 200 000 frontaliers travaillant en Suisse depuis la région d'Annemasse, nous connaissons parfaitement les enjeux de ces déménagements spécifiques.</p>
-      
-      <p>Chez Torres Transport, nous accompagnons depuis 20 ans les familles et professionnels dans leurs projets transfrontaliers. Notre position stratégique à Annemasse, aux portes de Genève, nous confère une expertise unique dans les procédures douanières et réglementaires.</p>
-      
-      <p>Ce guide détaillé vous révèle toutes les étapes essentielles pour réussir votre déménagement transfrontalier sans stress ni surprise administrative.</p>
-      
-      <!-- SECTION 1 (260 mots) -->
-      <h2>Formalités Douanières : Naviguer dans la Réglementation</h2>
-      <p>Le déménagement vers la Suisse implique des démarches douanières strictes. Une préparation minutieuse évite 95% des blocages administratifs que nous observons.</p>
-      
-      <h3>Déclaration obligatoire en douane</h3>
-      <p>Tout transfert de biens personnels vers la Suisse nécessite une déclaration préalable. Cette formalité doit être effectuée avant le passage de la frontière, sous peine de sanctions financières importantes.</p>
-      
-      <ul>
-        <li><strong>Délai de déclaration :</strong> 48h minimum avant le déménagement</li>
-        <li><strong>Lieu de déclaration :</strong> Bureau des douanes de Bardonnex ou Ferney-Voltaire</li>
-        <li><strong>Coût de la procédure :</strong> Gratuit pour les biens personnels</li>
-        <li><strong>Validité :</strong> 6 mois à compter de la délivrance</li>
-      </ul>
-      
-      <h3>Conditions d'exonération fiscale</h3>
-      <p>Pour bénéficier de l'exonération de droits de douane, vos biens doivent répondre à des critères précis. Ils doivent être utilisés depuis au moins 6 mois et destinés à votre usage personnel exclusif.</p>
-      
-      <blockquote>
-      <p><strong>💡 Astuce de pro :</strong> Conservez tous vos justificats d'achat et photos datées de vos biens. Ces preuves facilitent grandement les contrôles douaniers et accélèrent les procédures.</p>
-      </blockquote>
-      
-      <!-- SECTION 2 (250 mots) -->
-      <h2>Documents Indispensables : Votre Checklist Complète</h2>
-      <p>La constitution du dossier administratif détermine la fluidité de votre déménagement transfrontalier. Chaque document manquant peut retarder votre installation de plusieurs semaines.</p>
-      
-      <h3>Pièces d'identité et justificatifs de résidence</h3>
-      <p>Préparez l'ensemble de vos documents d'identité et de résidence en Suisse. Les autorités douanières vérifient systématiquement la légitimité de votre installation.</p>
-      
-      <ul>
-        <li><strong>Passeport ou carte d'identité :</strong> En cours de validité</li>
-        <li><strong>Permis de séjour suisse :</strong> B, C ou autorisation de travail</li>
-        <li><strong>Contrat de bail ou acte de propriété :</strong> Preuve de domicile en Suisse</li>
-        <li><strong>Attestation d'employeur :</strong> Si applicable</li>
-      </ul>
-      
-      <h3>Inventaire détaillé et évaluation</h3>
-      <p>L'inventaire constitue le document central de votre dossier. Il doit être exhaustif, précis et évalué en francs suisses. Notre équipe Torres Transport vous assiste dans cette démarche cruciale.</p>
-      
-      <h3>Formulaires douaniers spécifiques</h3>
-      <p>Plusieurs formulaires officiels doivent être complétés selon votre situation. Le formulaire 18.44 concerne les effets personnels, tandis que le 18.43 s'applique aux véhicules. Une erreur de formulaire peut invalider l'ensemble de votre dossier.</p>
-      
-      <!-- CTA INTERMÉDIAIRE (48 mots) -->
-      <p><strong>Besoin d'aide pour vos formalités douanières ?</strong> Notre équipe Torres Transport maîtrise parfaitement les procédures transfrontalières. <a href="/contact">Contactez-nous</a> pour un accompagnement personnalisé de votre déménagement France-Suisse.</p>
-      
-      <!-- SECTION 3 (240 mots) -->
-      <h2>Transport Transfrontalier : Logistique et Contraintes</h2>
-      <p>Le transport de vos biens vers la Suisse nécessite une logistique spécialisée. Les contraintes réglementaires et géographiques imposent une expertise technique particulière.</p>
-      
-      <h3>Véhicules et équipements adaptés</h3>
-      <p>Nos camions de déménagement respectent les normes environnementales suisses (Euro 6 minimum). Cette conformité évite les refus d'accès aux centres-villes et les amendes environnementales.</p>
-      
-      <h3>Chauffeurs expérimentés et habilités</h3>
-      <p>Nos conducteurs possèdent les certifications requises pour les transports transfrontaliers. Leur connaissance des procédures douanières garantit la fluidité des contrôles aux postes frontières.</p>
-      
-      <ul>
-        <li><strong>Formation douanière :</strong> Procédures spécifiques France-Suisse</li>
-        <li><strong>Certification ADR :</strong> Transport de matières sensibles</li>
-        <li><strong>Assurance internationale :</strong> Couverture complète des biens</li>
-      </ul>
-      
-      <h3>Planification des créneaux de passage</h3>
-      <p>Les postes frontières d'Annemasse-Genève connaissent des pics de trafic. Nous planifions vos passages aux heures optimales pour éviter les embouteillages et réduire les temps d'attente.</p>
-      
-      <blockquote>
-      <p><strong>⚠️ Point d'attention :</strong> Les contrôles douaniers peuvent durer 2 à 4 heures selon la complexité du dossier. Prévoyez cette durée dans votre planning de déménagement.</p>
-      </blockquote>
-      
-      <!-- SECTION 4 (220 mots) -->
-      <h2>Questions Fréquentes : Lever les Dernières Incertitudes</h2>
-      <p>Nos 20 ans d'expérience nous permettent d'anticiper vos interrogations les plus courantes sur le déménagement transfrontalier.</p>
-      
-      <h3>Puis-je déménager mes animaux de compagnie ?</h3>
-      <p>Oui, mais avec des formalités spécifiques. Vos animaux doivent être identifiés (puce électronique), vaccinés et accompagnés d'un passeport européen. Un certificat vétérinaire de moins de 10 jours est également requis.</p>
-      
-      <h3>Quels biens sont interdits ou réglementés ?</h3>
-      <p>Certains produits nécessitent des autorisations particulières :</p>
-      <ul>
-        <li><strong>Alcools et tabacs :</strong> Quantités limitées selon les franchises</li>
-        <li><strong>Médicaments :</strong> Ordonnance médicale obligatoire</li>
-        <li><strong>Armes et munitions :</strong> Autorisation préfectorale requise</li>
-        <li><strong>Œuvres d'art :</strong> Certificat d'authenticité recommandé</li>
-      </ul>
-      
-      <h3>Combien coûte un déménagement transfrontalier ?</h3>
-      <p>Le coût varie selon le volume, la distance et les services. Comptez 20 à 30% de surcoût par rapport à un déménagement national, principalement dû aux formalités administratives et aux assurances spécifiques.</p>
-      
-      <!-- SECTION 5 (170 mots) -->
-      <h2>Points Essentiels à Retenir</h2>
-      <p>Voici les éléments clés pour réussir votre déménagement transfrontalier :</p>
-      <ul>
-        <li>✓ <strong>Anticipation :</strong> Commencez les démarches 3 mois à l'avance</li>
-        <li>✓ <strong>Documentation :</strong> Constituez un dossier complet et précis</li>
-        <li>✓ <strong>Déclaration douanière :</strong> Effectuez-la 48h avant le déménagement</li>
-        <li>✓ <strong>Inventaire détaillé :</strong> Listez et évaluez tous vos biens</li>
-        <li>✓ <strong>Transport spécialisé :</strong> Choisissez un déménageur expérimenté</li>
-        <li>✓ <strong>Assurance adaptée :</strong> Vérifiez la couverture internationale</li>
-        <li>✓ <strong>Torres Transport :</strong> Expertise transfrontalière depuis 20 ans</li>
-      </ul>
-      
-      <!-- CONCLUSION (120 mots) -->
-      <h2>Conclusion</h2>
-      <p>Un déménagement transfrontalier France-Suisse réussi repose sur une préparation administrative rigoureuse et le choix d'un partenaire expérimenté. Les enjeux réglementaires et logistiques nécessitent une expertise spécialisée que seuls les professionnels du secteur maîtrisent parfaitement.</p>
-      
-      <p><strong>Vous planifiez un déménagement vers la Suisse depuis Annemasse ou la Haute-Savoie ?</strong> Torres Transport met à votre service son expertise reconnue dans les déménagements transfrontaliers. Notre équipe vous accompagne dans toutes les démarches, de la constitution du dossier à l'installation finale.</p>
-      
-      <p><strong>👉 <a href="/contact">Demandez votre devis gratuit</a></strong> ou appelez-nous pour discuter de votre projet transfrontalier.</p>
-    `,
-    author: "Torres Transport",
-    date: "2024-12-29",
-    category: "Transport Professionnel",
-    tags: ["transfrontalier", "suisse", "douanes", "annemasse", "genève"],
-    image: "/blog/header-demenagement-transfrontalier-suisse.webp",
-    readTime: "6 min",
-    seo: {
-      metaTitle: "Déménagement France-Suisse : Formalités et Guide | Torres Transport",
-      metaDescription: "Guide complet du déménagement transfrontalier France-Suisse. Formalités douanières, documents requis et conseils d'expert Torres Transport Annemasse.",
-      keywords: ["déménagement france suisse", "déménagement transfrontalier", "douanes déménagement", "annemasse genève", "torres transport"],
-      canonicalUrl: "/blog/demenagement-transfrontalier-suisse"
     }
   },
   {
@@ -780,111 +641,6 @@ export const articles = [
     }
   },
   {
-    id: "demenagement-suisse-vers-france",
-    title: "Déménagement Suisse vers France : le guide retour pour les frontaliers",
-    slug: "demenagement-suisse-vers-france",
-    excerpt: "Vous quittez Genève ou le canton pour vous installer en Haute-Savoie ? Formalités, douane, conseils pour un retour transfrontalier sans accroc.",
-    content: `
-      <p>Le mouvement classique, c'est le frontalier qui part travailler en Suisse en gardant son logement en France. Mais le mouvement inverse existe aussi&nbsp;: ceux qui rentrent en France après plusieurs années à Genève ou dans le canton de Vaud. Le déménagement Suisse → France a ses propres règles.</p>
-
-      <h2>Pourquoi rentrer en France après la Suisse</h2>
-      <p>Sans rentrer dans la sociologie, on observe quatre grands cas chez nos clients qui font ce trajet&nbsp;:</p>
-
-      <ul>
-        <li><strong>Fin de mission ou de mandat&nbsp;:</strong> retour après un contrat à durée limitée</li>
-        <li><strong>Retraite&nbsp;:</strong> souvent vers la Haute-Savoie qu'on connaît déjà depuis les week-ends</li>
-        <li><strong>Choix de vie familial&nbsp;:</strong> écoles françaises, prix immobilier plus accessible côté français</li>
-        <li><strong>Retour en région d'origine&nbsp;:</strong> Lyon, Annecy, ou côté frontière directe (Annemasse, Saint-Julien)</li>
-      </ul>
-
-      <h2>Les formalités douanières du retour</h2>
-      <p>Bonne nouvelle&nbsp;: ramener vos effets personnels en France est globalement plus simple que dans le sens inverse, mais il y a des règles à respecter pour éviter les frais de douane et la TVA française.</p>
-
-      <h3>Le régime des "biens personnels"</h3>
-      <p>Pour bénéficier de la franchise totale de droits et taxes, vos biens doivent répondre à plusieurs conditions cumulatives&nbsp;:</p>
-
-      <ul>
-        <li><strong>Résidence préalable en Suisse</strong> d'au moins 12 mois consécutifs</li>
-        <li><strong>Possession des biens depuis au moins 6 mois</strong> avant le déménagement</li>
-        <li><strong>Usage personnel et familial</strong> (pas commercial)</li>
-        <li><strong>Transfert de la résidence principale en France</strong> attesté</li>
-        <li><strong>Importation dans les 12 mois</strong> suivant l'installation en France</li>
-      </ul>
-
-      <h3>Les documents à préparer</h3>
-      <ul>
-        <li>Inventaire détaillé en deux exemplaires (en français), valorisé en euros</li>
-        <li>Justificatif de résidence en Suisse (attestation de domicile, factures)</li>
-        <li>Justificatif de la nouvelle résidence en France (bail, acte de propriété, attestation d'hébergement)</li>
-        <li>Pièce d'identité ou passeport</li>
-        <li>Formulaire douanier 10070 ("changement de résidence") rempli</li>
-        <li>Pour un véhicule&nbsp;: gris suisse + facture d'achat + certificat de conformité européen</li>
-      </ul>
-
-      <blockquote>
-      <p><strong>💡 Astuce&nbsp;:</strong> conservez les factures d'achat de vos biens de valeur ou prenez des photos datées avant le départ. En cas de contrôle, la preuve d'achat &gt; 6 mois lève toute ambiguïté immédiatement.</p>
-      </blockquote>
-
-      <h2>Les biens qui restent réglementés</h2>
-      <p>Même en franchise, certains articles font l'objet de règles spécifiques côté français&nbsp;:</p>
-
-      <ul>
-        <li><strong>Alcools et tabacs&nbsp;:</strong> franchises limitées (10 L spiritueux, 90 L vin, 800 cigarettes pour usage personnel)</li>
-        <li><strong>Médicaments&nbsp;:</strong> ordonnance ou carnet de santé requis</li>
-        <li><strong>Animaux de compagnie&nbsp;:</strong> passeport européen, identification puce, vaccinations à jour</li>
-        <li><strong>Armes&nbsp;:</strong> autorisation préfectorale obligatoire (et toujours interdites pour de nombreux modèles autorisés en Suisse)</li>
-        <li><strong>Œuvres d'art &gt; 50&nbsp;000&nbsp;CHF&nbsp;:</strong> certificat d'export du canton</li>
-      </ul>
-
-      <h2>L'organisation logistique du transit</h2>
-      <p>Le passage de la frontière représente le moment le plus sensible. Quelques bonnes pratiques&nbsp;:</p>
-
-      <ul>
-        <li><strong>Choisir un poste frontière calme&nbsp;:</strong> Bardonnex côté Genève, Saint-Julien-en-Genevois côté France, plus rapides que Cornavin sur l'axe routier principal</li>
-        <li><strong>Privilégier les heures creuses&nbsp;:</strong> 10h-15h en semaine, éviter le vendredi soir et le dimanche</li>
-        <li><strong>Avoir l'inventaire et les documents accessibles</strong> dans la cabine du camion</li>
-        <li><strong>Compter 1 à 3 heures</strong> pour le passage avec contrôle, davantage en cas de dossier complexe</li>
-      </ul>
-
-      <h2>Côté pratique&nbsp;: emballage et identification</h2>
-      <p>Pour faciliter le contrôle douanier (qui peut exister), nous appliquons une règle simple&nbsp;: chaque carton est numéroté et son contenu est listé dans l'inventaire. En cas d'inspection ciblée d'un carton précis, le douanier vérifie en 2 minutes au lieu de 30. Cela rassure et accélère.</p>
-
-      <h2>Ce qu'on prend en charge à Torres&nbsp;Transport</h2>
-      <p>Pour les déménagements Suisse → France de nos clients en Haute-Savoie, on s'occupe de&nbsp;:</p>
-
-      <ul>
-        <li>L'emballage et le démontage côté suisse</li>
-        <li>L'inventaire détaillé en français/euros, conforme aux exigences douanières</li>
-        <li>Le transit avec passage frontière organisé</li>
-        <li>Le déchargement et le remontage côté France</li>
-        <li>Les conseils sur les formalités (sans toutefois remplacer un service douane officiel)</li>
-      </ul>
-
-      <h2>Ce qu'il faut retenir</h2>
-      <ul>
-        <li>✓ Franchise possible si résidence Suisse &gt; 12 mois et biens &gt; 6 mois</li>
-        <li>✓ Inventaire détaillé en français, en euros, en deux exemplaires</li>
-        <li>✓ Formulaire 10070 et justificatifs de résidence à préparer</li>
-        <li>✓ Anticiper le passage frontière (heures creuses, dossier prêt)</li>
-        <li>✓ Articles réglementés&nbsp;: alcools, armes, médicaments, vigilance</li>
-      </ul>
-
-      <p><strong>Vous quittez la Suisse pour vous installer en Haute-Savoie&nbsp;?</strong> <a href="/contact">Contactez Torres&nbsp;Transport</a>, on est basés à Annemasse, on connaît la frontière par cœur, et on simplifie toute la partie logistique pour vous.</p>
-    `,
-    author: "Torres Transport",
-    date: "2026-03-18",
-    category: "Transport Professionnel",
-    tags: ["transfrontalier", "suisse", "france", "douanes", "frontaliers"],
-    image: "/blog/header-demenagement-suisse-vers-france.webp",
-    readTime: "7 min",
-    seo: {
-      metaTitle: "Déménagement Suisse vers France : guide retour | Torres Transport",
-      metaDescription: "Quitter Genève ou le canton pour la Haute-Savoie ? Toutes les formalités douanières, documents et conseils pour un retour transfrontalier réussi.",
-      keywords: ["déménagement suisse france", "retour france suisse", "frontalier déménagement", "douane retour france", "torres transport"],
-      canonicalUrl: "/blog/demenagement-suisse-vers-france"
-    }
-  },
-  {
     id: "demenagement-senior-annemasse",
     title: "Déménager une personne âgée à Annemasse : checklist humaine",
     slug: "demenagement-senior-annemasse",
@@ -976,132 +732,6 @@ export const articles = [
     }
   },
   {
-    id: "demenagement-etudiant-annemasse-geneve",
-    title: "Déménagement étudiant à Annemasse et Genève : guide pratique",
-    slug: "demenagement-etudiant-annemasse-geneve",
-    excerpt: "Petit volume, budget serré, deadlines serrées : déménager pour ses études dans le bassin annemassien suit ses propres règles. Voici comment s'organiser sans stress.",
-    content: `
-      <p>Chaque été, le bassin annemassien voit débarquer des centaines d'étudiants : université de Genève, écoles de commerce annéciennes, BTS d'Annemasse, école d'infirmière de Saint-Julien. Et chaque été, on assiste aux mêmes galères : camion trop petit, parents épuisés, oublis administratifs. Voici le guide qu'on aurait aimé qu'on nous donne.</p>
-
-      <h2>Le profil "déménagement étudiant" : ce qui le rend différent</h2>
-      <p>Un déménagement étudiant n'est pas un déménagement classique. Trois spécificités importantes :</p>
-
-      <ul>
-        <li><strong>Petit volume</strong> : entre 5 et 15&nbsp;m³ en moyenne (chambre meublée + affaires perso + cartons de cours)</li>
-        <li><strong>Budget serré</strong> : peu de marge financière, les parents financent souvent</li>
-        <li><strong>Calendrier compressé</strong> : entre la fin du bail précédent et la rentrée, parfois 48&nbsp;h seulement</li>
-        <li><strong>Mobilier IKEA fragile</strong> : démonté/remonté plusieurs fois, vis fatiguées, planches décollées</li>
-      </ul>
-
-      <h2>Combien ça coûte concrètement</h2>
-      <p>Avec notre tarif unique de 47,50&nbsp;€&nbsp;/&nbsp;m³, voici les ordres de grandeur typiques pour un déménagement étudiant :</p>
-
-      <ul>
-        <li><strong>Chambre meublée seule</strong> (≈ 5&nbsp;m³) : environ <strong>237&nbsp;€</strong></li>
-        <li><strong>Studio meublé minimaliste</strong> (≈ 10&nbsp;m³) : environ <strong>475&nbsp;€</strong></li>
-        <li><strong>T1 avec mobilier propre</strong> (≈ 15&nbsp;m³) : environ <strong>712&nbsp;€</strong></li>
-      </ul>
-
-      <p>Avec la <strong>réservation anticipée (−5&nbsp;%)</strong>, le tarif chute encore. Et les déménagements étudiants étant en juillet-août, les créneaux se réservent vite, anticiper de 2 mois est largement payant.</p>
-
-      <blockquote>
-      <p><strong>💡 Astuce&nbsp;:</strong> regroupez avec un colocataire ou un voisin qui déménage le même jour. Si le total dépasse 30&nbsp;m³, vous bénéficiez aussi de la <strong>remise gros volume (−5&nbsp;%)</strong>. Tout le monde y gagne.</p>
-      </blockquote>
-
-      <h2>Genève → Annemasse, le grand classique</h2>
-      <p>Beaucoup d'étudiants suisses ou frontaliers rentrent en France après leurs études. Ce trajet transfrontalier est notre quotidien. Quelques particularités :</p>
-
-      <ul>
-        <li><strong>Formalités douanières simplifiées</strong> : pour des effets personnels d'usage courant, c'est très rapide</li>
-        <li><strong>Inventaire en deux exemplaires</strong> à préparer (en français, en euros)</li>
-        <li><strong>Postes frontière</strong> à privilégier : Saint-Julien-en-Genevois ou Bardonnex en heures creuses</li>
-        <li><strong>Délai global</strong> : 2 à 4 heures incluant le passage frontière</li>
-      </ul>
-
-      <p>Voir notre <a href="/blog/demenagement-suisse-vers-france">guide retour Suisse → France</a> pour les détails complets.</p>
-
-      <h2>Annemasse → Lyon / Grenoble / Paris : longue distance étudiante</h2>
-      <p>L'autre cas fréquent : l'étudiant qui quitte Annemasse pour rejoindre une école dans une grande ville. Pour ce trajet :</p>
-
-      <ul>
-        <li>Tarif de base au m³ + supplément kilométrique au-delà de la zone locale</li>
-        <li>Possibilité de groupage avec d'autres déménagements vers la même destination (réduction possible)</li>
-        <li>Délai de transit : 1 à 2 jours selon la distance</li>
-      </ul>
-
-      <h2>La checklist administrative étudiante</h2>
-      <p>Au-delà du transport physique, plusieurs démarches à anticiper :</p>
-
-      <ul>
-        <li><strong>CROUS</strong> : signaler le changement d'adresse pour les bourses</li>
-        <li><strong>CAF</strong> : APL à activer dans le nouveau logement (effet rétroactif possible sur 30 jours)</li>
-        <li><strong>Sécurité sociale étudiante</strong> : mise à jour de l'adresse</li>
-        <li><strong>Banque</strong> : changement d'agence ou simple notification</li>
-        <li><strong>Mutuelle</strong> : transfert ou nouvelle adhésion</li>
-        <li><strong>Permis de séjour</strong> (étudiants étrangers) : mise à jour préfecture</li>
-        <li><strong>Université / école</strong> : signaler la nouvelle adresse au secrétariat</li>
-        <li><strong>EDF / fournisseur internet</strong> : résiliation ancien contrat + souscription nouveau</li>
-      </ul>
-
-      <h2>Astuces budget pour étudiant</h2>
-
-      <h3>1. Tri massif avant déménagement</h3>
-      <p>Chaque m³ que vous emmenez, c'est 47,50&nbsp;€. Donc 1&nbsp;m³ que vous donnez/vendez, c'est 47,50&nbsp;€ d'économisés. Vendez sur Vinted, donnez à des asso (Emmaüs, Croix-Rouge), publiez sur Marketplace.</p>
-
-      <h3>2. Boîte commune avec le coloc</h3>
-      <p>Vaisselle, ustensiles, produits ménagers, un seul jeu pour deux. Vous diviserez à l'arrivée selon les besoins.</p>
-
-      <h3>3. Récupérer des cartons gratuits</h3>
-      <p>Magasins de quartier (Carrefour Express, Casino, etc.) jettent des cartons tous les jours. Demandez le matin, ils vous en mettent de côté. Évitez les cartons "fragiles" type alimentaire (peuvent attirer humidité/insectes).</p>
-
-      <h3>4. Réservation anticipée</h3>
-      <p>Plus vous réservez tôt, plus vous gagnez : <strong>−5&nbsp;% si plus de 30 jours à l'avance</strong>. Et les bons créneaux d'été partent en mai, voire avril.</p>
-
-      <h3>5. Formule transport simple</h3>
-      <p>Si vous gérez l'emballage et le démontage vous-même (avec amis ou parents), notre formule "transport simple" coûte ~30&nbsp;% moins cher. Vous payez juste le camion + équipe légère + chargement/déchargement.</p>
-
-      <h2>Le piège classique à éviter</h2>
-      <p>L'erreur 90&nbsp;% : <strong>louer un utilitaire avec son permis B et déménager soi-même avec 3 amis</strong>. En théorie c'est moins cher. En pratique :</p>
-
-      <ul>
-        <li>Location du Trafic : 90 à 130&nbsp;€/jour</li>
-        <li>Carburant + km supplémentaires : 30 à 60&nbsp;€</li>
-        <li>Assurance casse non couverte par votre habitation : 0 protection</li>
-        <li>Cartons + scotch achetés en grande surface : 80 à 120&nbsp;€</li>
-        <li>Repas pour les amis qui aident : 60&nbsp;€</li>
-        <li><strong>Total réaliste : 280 à 370&nbsp;€</strong></li>
-      </ul>
-
-      <p>Pour un déménagement étudiant T1 chez nous : ~712&nbsp;€ avec −5&nbsp;% anticipé = <strong>676&nbsp;€</strong>. La différence (~340&nbsp;€) achète : zéro fatigue, équipe pro, assurance, sangles, couvertures, du temps libre, et 0 risque pour vos meubles.</p>
-
-      <p>Si vous tenez vraiment à faire vous-même : voir notre comparaison <a href="/blog/auto-demenagement-ou-demenageur-pro">auto-déménagement vs pro</a>.</p>
-
-      <h2>Ce qu'il faut retenir</h2>
-      <ul>
-        <li>✓ Volume étudiant moyen : 5 à 15&nbsp;m³</li>
-        <li>✓ Tarif typique : 237&nbsp;€ à 712&nbsp;€ chez nous</li>
-        <li>✓ Réserver 2 mois à l'avance pour −5&nbsp;%</li>
-        <li>✓ Regrouper avec coloc/voisin = −5&nbsp;% supplémentaire si total &gt; 30&nbsp;m³</li>
-        <li>✓ Préparer toutes les démarches admin AVANT le déménagement</li>
-        <li>✓ Trier massivement = économie directe au m³</li>
-      </ul>
-
-      <p><strong>Vous préparez votre rentrée à Annemasse, Genève ou alentour&nbsp;?</strong> Estimez votre déménagement en 30 secondes via notre <a href="/estimation">simulateur en ligne</a>, ou <a href="/contact">demandez un devis ferme</a>. Ludovic et son équipe ont déménagé des centaines d'étudiants, on connaît bien le rythme.</p>
-    `,
-    author: "Torres Transport",
-    date: "2026-04-15",
-    category: "Conseils Déménagement",
-    tags: ["étudiant", "rentrée", "annemasse", "genève", "budget"],
-    image: "/blog/header-demenagement-etudiant-annemasse-geneve.webp",
-    readTime: "7 min",
-    seo: {
-      metaTitle: "Déménagement étudiant Annemasse-Genève : guide budget et pratique",
-      metaDescription: "Comment déménager pour ses études à Annemasse, Genève ou ailleurs : tarifs étudiants, démarches admin, astuces budget. Guide complet Torres Transport.",
-      keywords: ["déménagement étudiant annemasse", "déménagement étudiant genève", "déménagement rentrée 2026", "tarif étudiant déménageur", "torres transport"],
-      canonicalUrl: "/blog/demenagement-etudiant-annemasse-geneve"
-    }
-  },
-  {
     id: "demenagement-bureaux-entreprise-annemasse",
     title: "Déménagement de bureaux à Annemasse : organiser sans interrompre l'activité",
     slug: "demenagement-bureaux-entreprise-annemasse",
@@ -1178,9 +808,6 @@ export const articles = [
 
       <h2>Cas particuliers fréquents à Annemasse</h2>
 
-      <h3>Déménagement Genève → Annemasse</h3>
-      <p>De nombreuses entreprises suisses installent leurs équipes annexes côté français pour des raisons fiscales ou d'attractivité. Nous gérons ce trajet régulièrement, avec les formalités douanières adaptées (matériel professionnel, éventuels équipements taxables au-delà des seuils).</p>
-
       <h3>Réorganisation interne (open space → bureaux fermés ou inverse)</h3>
       <p>Avec le retour progressif au présentiel post-COVID, beaucoup d'entreprises revoient leur agencement. Nous proposons des prestations partielles : ne déménager que certains pôles, refaire l'aménagement, sans tout bouger.</p>
 
@@ -1197,7 +824,7 @@ export const articles = [
         <li>✓ Tarif typique PME (20 postes) : 3 500 à 5 000&nbsp;€</li>
       </ul>
 
-      <p><strong>Vous préparez un déménagement de bureaux à Annemasse, Ville-la-Grand, Saint-Julien ou Genève&nbsp;?</strong> <a href="/contact">Contactez Ludovic directement</a> pour une visite gratuite des locaux et un devis ferme. Plus on anticipe (idéalement 4 à 8 semaines), plus l'opération est sereine.</p>
+      <p><strong>Vous préparez un déménagement de bureaux à Annemasse, Ville-la-Grand, Saint-Julien ou ailleurs en Haute-Savoie&nbsp;?</strong> <a href="/contact">Contactez Ludovic directement</a> pour une visite gratuite des locaux et un devis ferme. Plus on anticipe (idéalement 4 à 8 semaines), plus l'opération est sereine.</p>
     `,
     author: "Torres Transport",
     date: "2026-04-22",
@@ -1540,7 +1167,6 @@ export const articles = [
 
       <h3>Assurance habitation</h3>
       <p>Obligation légale : un logement non assuré n'est pas légalement habitable. À résilier ET à souscrire en parallèle. La date d'effet du nouveau contrat = jour d'entrée dans le nouveau logement.</p>
-      <p>Pour la Suisse vers la France ou inverse : revoir entièrement la couverture (la responsabilité civile française et suisse fonctionnent différemment).</p>
 
       <h2>1 semaine avant : finalisations</h2>
 
@@ -1595,16 +1221,6 @@ export const articles = [
         <li>Sécurité sociale étudiante</li>
         <li>Université / école : secrétariat</li>
       </ul>
-      <p>Voir notre <a href="/blog/demenagement-etudiant-annemasse-geneve">guide déménagement étudiant</a>.</p>
-
-      <h3>Frontaliers Suisse-France</h3>
-      <ul>
-        <li>Office cantonal de la population (côté suisse)</li>
-        <li>Mairie française si nouvelle commune</li>
-        <li>Caisse de pension suisse (LPP)</li>
-        <li>Assurance maladie : passage de la LAMal à la CMU si retour France</li>
-      </ul>
-      <p>Voir notre <a href="/blog/demenagement-suisse-vers-france">guide retour Suisse → France</a>.</p>
 
       <h3>Personnes âgées et PMR</h3>
       <ul>
@@ -1628,7 +1244,7 @@ export const articles = [
         <li>✓ Internet et énergie : 3-4 semaines de délai pour le transfert</li>
         <li>✓ Carte grise : 1 mois pour mettre à jour, sinon 135&nbsp;€ d'amende</li>
         <li>✓ Photos des compteurs et état des lieux : conservation 3 ans</li>
-        <li>✓ Cas particuliers : étudiants, frontaliers, séniors, animaux ont leur checklist propre</li>
+        <li>✓ Cas particuliers : étudiants, séniors, animaux ont leur checklist propre</li>
       </ul>
 
       <p><strong>On vous accompagne sur les démarches&nbsp;?</strong> Pendant qu'on s'occupe du déménagement physique, vous pouvez vous concentrer sur l'admin sereinement. <a href="/contact">Réservez votre déménagement</a> ou <a href="/estimation">estimez votre devis en ligne</a>.</p>
@@ -1688,7 +1304,6 @@ export function getRelatedArticles(currentArticle, limit = 3) {
 const CITY_TAG_MAP = {
   annemasse: { slug: 'annemasse', nom: 'Annemasse' },
   'ville-la-grand': { slug: 'ville-la-grand', nom: 'Ville-la-Grand' },
-  geneve: { slug: 'geneve', nom: 'Genève' },
   'saint-julien': { slug: 'saint-julien-en-genevois', nom: 'Saint-Julien-en-Genevois' },
   gaillard: { slug: 'gaillard', nom: 'Gaillard' },
   thonon: { slug: 'thonon-les-bains', nom: 'Thonon-les-Bains' },
@@ -1728,8 +1343,8 @@ export function getRelatedCities(article, limit = 3) {
   const fallback = [
     CITY_TAG_MAP.annemasse,
     CITY_TAG_MAP['ville-la-grand'],
-    CITY_TAG_MAP.geneve,
     CITY_TAG_MAP['saint-julien'],
+    CITY_TAG_MAP.gaillard,
   ];
   for (const c of fallback) {
     if (cities.length >= limit) break;

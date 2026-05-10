@@ -20,8 +20,8 @@ export const serviceFaqs = {
       reponse: "Le démontage/remontage est une option à environ +10 à 15% du tarif de base, selon le mobilier. Lit, armoire, dressing, cuisine équipée, bureau : on s'occupe de tout, avec l'outillage adapté.",
     },
     {
-      question: "Intervenez-vous pour des déménagements transfrontaliers vers la Suisse ?",
-      reponse: "Oui, c'est notre quotidien. Annemasse-Genève, Annemasse-Lausanne, Annecy-Genève. Nous gérons les formalités douanières (déclaration de transfert de domicile) et nous connaissons les contraintes des passages frontaliers.",
+      question: "Faites-vous des déménagements longue distance partout en France ?",
+      reponse: "Oui, c'est notre quotidien. Annemasse-Lyon (1h30), Annemasse-Paris (6h), Annemasse-Marseille (5h), Annemasse-Bordeaux (7h). Devis ferme sous 24h sans surcoût caché. Possibilité de groupage si plusieurs clients vont vers la même destination.",
     },
     {
       question: "Quelles assurances couvrent le déménagement ?",
