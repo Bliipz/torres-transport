@@ -29,9 +29,9 @@ const itemListSchema = {
 ---
 
 <BaseLayout
-  title="Zones d'intervention, Toute la Haute-Savoie | Torres Transport"
-  description="Torres Transport intervient dans toute la Haute-Savoie : Annemasse, Ville-la-Grand, Gaillard, Saint-Julien, Thonon, Évian, Annecy, Bonneville et Genève. Service de déménagement local et frontalier."
-  keywords="zones d'intervention déménageur, déménagement Haute-Savoie, communes desservies Annemasse, déménageur Annecy Thonon Évian Genève, transport meubles 74"
+  title="Zones d'intervention, Partout en France | Torres Transport"
+  description="Torres Transport intervient partout en France au départ d'Annemasse (74) : Paris, Lyon, Marseille, Bordeaux, Toulouse, longue distance et transfrontalier Suisse. Expertise locale en Haute-Savoie."
+  keywords="déménageur France entière, déménagement longue distance, déménageur Annemasse, déménagement Haute-Savoie, transport meubles 74, déménageur transfrontalier Suisse"
   ogImage="/services-banner.webp"
   structuredData={[breadcrumbSchema, itemListSchema]}
 >
@@ -41,25 +41,26 @@ const itemListSchema = {
       <nav class="breadcrumb" aria-label="Fil d'Ariane">
         <a href="/">Accueil</a><span>/</span><span>Zones d'intervention</span>
       </nav>
-      <span class="eyebrow gold">Couverture géographique</span>
-      <h1>Toute la Haute-Savoie<br /><em>et la Suisse romande.</em></h1>
+      <span class="eyebrow gold">Couverture nationale</span>
+      <h1>Partout en France,<br /><em>expertise locale en Haute-Savoie.</em></h1>
       <p class="lead">
-        Basée à Ville-la-Grand, notre équipe intervient quotidiennement dans le bassin
-        annemassien et au-delà. Du Genevois français aux rives du Léman, en passant par la
-        vallée de l'Arve.
+        Basée à Ville-la-Grand (74), notre équipe intervient sur l'ensemble du territoire
+        français, de Paris à Marseille. Notre expertise approfondie du bassin annemassien
+        et du transfrontalier Suisse ne nous limite pas&nbsp;: pour un déménagement longue
+        distance, demandez un devis comme pour un trajet local.
       </p>
       <div class="zones-stats">
         <div class="zone-stat">
-          <span class="stat-num">{cities.length}</span>
-          <span class="stat-label">villes desservies</span>
+          <span class="stat-num">FR</span>
+          <span class="stat-label">France entière</span>
         </div>
         <div class="zone-stat">
-          <span class="stat-num">200K+</span>
-          <span class="stat-label">habitants couverts</span>
+          <span class="stat-num">{cities.length}</span>
+          <span class="stat-label">villes en focus local</span>
         </div>
         <div class="zone-stat">
           <span class="stat-num">24h</span>
-          <span class="stat-label">délai d'intervention</span>
+          <span class="stat-label">délai de devis</span>
         </div>
       </div>
     </div>
@@ -69,15 +70,16 @@ const itemListSchema = {
   <section class="section map-section">
     <div class="container">
       <header class="section-header text-center">
-        <span class="eyebrow gold">Notre rayon</span>
-        <h2>Visualiser nos zones<br /><em>sur la carte.</em></h2>
+        <span class="eyebrow gold">Notre base</span>
+        <h2>Vue d'ensemble<br /><em>de notre zone d'expertise locale.</em></h2>
       </header>
       <div class="map-wrapper">
-        <div id="zones-map" aria-label="Carte des zones d'intervention Torres Transport"></div>
+        <div id="zones-map" aria-label="Carte des zones d'expertise locale Torres Transport"></div>
       </div>
       <p class="map-note">
         Notre base à <strong>Ville-la-Grand</strong> est indiquée par le marqueur doré.
-        Cliquez sur les marqueurs pour découvrir chaque ville.
+        Pour les missions longue distance partout en France, le départ se fait depuis ce
+        point.
       </p>
     </div>
   </section>
@@ -86,8 +88,13 @@ const itemListSchema = {
   <section class="section bg-cream cities-section">
     <div class="container">
       <header class="section-header">
-        <span class="eyebrow gold">Toutes les communes</span>
-        <h2>Neuf villes,<br /><em>une seule équipe.</em></h2>
+        <span class="eyebrow gold">Expertise approfondie</span>
+        <h2>Nos villes en focus,<br /><em>connaissance terrain garantie.</em></h2>
+        <p class="section-intro">
+          Pour ces communes du bassin annemassien et de Haute-Savoie, nous avons une
+          expérience quotidienne. Nous intervenons aussi <strong>partout en France</strong> et
+          en Suisse&nbsp;: nous nous déplaçons.
+        </p>
       </header>
 
       <div class="cities-grid">
@@ -120,15 +127,20 @@ const itemListSchema = {
     <div class="container">
       <div class="ailleurs-grid">
         <div class="ailleurs-text">
-          <span class="eyebrow">Au-delà de la liste</span>
-          <h2>Nous intervenons aussi<br /><em>partout en France et en Suisse.</em></h2>
+          <span class="eyebrow">Longue distance</span>
+          <h2>Aucune commune<br /><em>n'est trop loin pour nous.</em></h2>
           <p class="lead">
-            Notre zone principale couvre la Haute-Savoie et la Suisse romande frontalière.
-            Pour les missions plus lointaines, nous établissons un devis personnalisé.
+            Que vous déménagiez à Brest, Nice, Strasbourg, Bordeaux ou n'importe où en
+            France métropolitaine, nous nous déplaçons. Tarif au km au-delà de la zone
+            locale, devis ferme sous 24 h sans surcoût caché.
           </p>
-          <a href="/contact" class="btn btn-gold btn-large btn-with-arrow">Demander un devis</a>
+          <a href="/contact" class="btn btn-gold btn-large btn-with-arrow">Demander un devis longue distance</a>
         </div>
         <ul class="ailleurs-list">
+          <li>
+            <span class="ailleurs-icon">→</span>
+            <strong>France entière</strong>&nbsp;: Paris, Lyon, Marseille, Toulouse, Bordeaux, Lille, Nantes, Strasbourg, Montpellier, Nice…
+          </li>
           <li>
             <span class="ailleurs-icon">→</span>
             Toute la <strong>Haute-Savoie</strong>&nbsp;: Sallanches, Cluses, Megève, Chamonix, La Roche-sur-Foron…
@@ -139,11 +151,7 @@ const itemListSchema = {
           </li>
           <li>
             <span class="ailleurs-icon">→</span>
-            Toute la <strong>France</strong>&nbsp;: Paris, Lyon, Marseille, Bordeaux, Toulouse…
-          </li>
-          <li>
-            <span class="ailleurs-icon">→</span>
-            Pays voisins&nbsp;: <strong>Italie</strong>, <strong>Allemagne</strong>, <strong>Espagne</strong>
+            Pays voisins frontaliers&nbsp;: <strong>Italie</strong>, <strong>Allemagne</strong>, <strong>Espagne</strong>
           </li>
         </ul>
       </div>
@@ -155,7 +163,7 @@ const itemListSchema = {
     <div class="container">
       <header class="section-header text-center">
         <span class="eyebrow gold">Au-delà du déménagement</span>
-        <h2>Nos cinq services<br /><em>dans toutes ces villes.</em></h2>
+        <h2>Nos cinq services<br /><em>partout où vous êtes.</em></h2>
       </header>
 
       <div class="services-recap-grid">
@@ -300,6 +308,14 @@ const itemListSchema = {
 
   .zones-hero h1 em { font-style: italic; color: var(--gold-deep); }
   .zones-hero .lead { max-width: 720px; margin-bottom: 3rem; }
+
+  .section-intro {
+    margin-top: 1.25rem;
+    max-width: 720px;
+    color: var(--gray-700);
+    font-size: 1.05rem;
+    line-height: 1.65;
+  }
 
   .zones-stats {
     display: flex;

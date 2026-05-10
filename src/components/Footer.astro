@@ -14,12 +14,13 @@ const villesFooter = getAllCities();
           <img src="/logo-white.png" alt="Torres Transport" width="56" height="56" loading="lazy" />
           <div class="footer-name">
             <span class="display-name">Torres Transport</span>
-            <span class="display-tagline">Annemasse · Haute-Savoie</span>
+            <span class="display-tagline">Annemasse · France entière</span>
           </div>
         </div>
         <p class="footer-pitch">
           Déménagement, transport et montage de meubles depuis 2024.
-          Une équipe locale forte de 20 ans d'expérience à votre service.
+          Basés en Haute-Savoie, nous intervenons partout en France et en Suisse.
+          20 ans d'expérience à votre service.
         </p>
         <div class="footer-socials">
           <a
@@ -54,12 +55,12 @@ const villesFooter = getAllCities();
 
       <!-- COLONNE 3 : VILLES -->
       <div class="footer-col">
-        <span class="footer-label">Zones desservies</span>
+        <span class="footer-label">Expertise locale</span>
         <ul class="footer-list">
           {villesFooter.slice(0, 6).map((v) => (
             <li><a href={`/demenagement-${v.slug}`}>{v.nom}</a></li>
           ))}
-          <li><a href="/zones-intervention" class="footer-list-more">Toutes les zones →</a></li>
+          <li><a href="/zones-intervention" class="footer-list-more">France entière →</a></li>
         </ul>
       </div>
 

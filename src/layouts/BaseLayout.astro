@@ -5,7 +5,7 @@ import "../styles/global.css";
 // ==================== SEO PROPS ====================
 const SITE_URL = "https://torrestransport.fr";
 const DEFAULT_DESCRIPTION =
-  "Torres Transport, Déménagement, transport, montage de meubles, manutention et débarras à Annemasse, Ville-la-Grand et toute la Haute-Savoie. 20 ans d'expérience. Devis gratuit.";
+  "Torres Transport, déménagement et transport partout en France au départ d'Annemasse (74). Expertise locale Haute-Savoie + transfrontalier Suisse. 20 ans d'expérience. Devis gratuit.";
 const DEFAULT_OG_IMAGE = "/banner-demenagement.webp";
 
 const {
@@ -40,7 +40,7 @@ const localBusinessSchema = {
   legalName: "Torres Transport",
   alternateName: "Torres Transport Annemasse",
   description:
-    "Entreprise de déménagement, transport et montage de meubles à Annemasse, Ville-la-Grand et toute la Haute-Savoie. 20 ans d'expérience. Tarif unique 47,50 €/m³ tout compris.",
+    "Entreprise de déménagement, transport et montage de meubles partout en France au départ d'Annemasse (74). Expertise approfondie Haute-Savoie et transfrontalier Suisse. 20 ans d'expérience. Tarif unique 47,50 €/m³ tout compris.",
   url: SITE_URL,
   telephone: "+33659926814",
   email: "contact@torrestransport.fr",
@@ -69,6 +69,8 @@ const localBusinessSchema = {
   },
   geo: { "@type": "GeoCoordinates", latitude: 46.1965, longitude: 6.2542 },
   areaServed: [
+    { "@type": "Country", name: "France" },
+    { "@type": "Country", name: "Suisse" },
     { "@type": "City", name: "Annemasse" },
     { "@type": "City", name: "Ville-la-Grand" },
     { "@type": "City", name: "Gaillard" },
@@ -78,8 +80,12 @@ const localBusinessSchema = {
     { "@type": "City", name: "Évian-les-Bains" },
     { "@type": "City", name: "Annecy" },
     { "@type": "City", name: "Genève" },
+    { "@type": "City", name: "Lyon" },
+    { "@type": "City", name: "Paris" },
+    { "@type": "City", name: "Marseille" },
     { "@type": "AdministrativeArea", name: "Haute-Savoie" },
     { "@type": "AdministrativeArea", name: "Pays de Gex" },
+    { "@type": "AdministrativeArea", name: "Suisse romande" },
   ],
   openingHoursSpecification: [
     {
