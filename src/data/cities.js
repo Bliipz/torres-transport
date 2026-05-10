@@ -1059,6 +1059,296 @@ export const cities = {
       },
     ],
   },
+
+  // ------------------------------------------------------------------
+  // BONNE, bourg résidentiel actif (74380)
+  // ------------------------------------------------------------------
+  'bonne': {
+    slug: 'bonne',
+    nom: 'Bonne',
+    codePostal: '74380',
+    departement: 'Haute-Savoie',
+    geo: { lat: 46.184, lng: 6.350 },
+    distanceKm: 7,
+    population: '3 000 habitants',
+    bannier: '/banner-demenagement.webp',
+
+    titreH1: 'Déménagement à Bonne (74380), bourg de l\'Annemasse Agglo',
+    metaTitle: "Déménageur Bonne (74380) | Torres Transport Annemasse Agglo",
+    metaDescription:
+      "Déménageur à Bonne (74380), 3 000 habitants. Bourg actif de l'Annemasse Agglo. Centre, Loëx, Martignier. Base Ville-la-Grand à 7 km. Devis 24h, 20 ans d'expertise.",
+    keywords:
+      'déménageur Bonne, déménagement Bonne 74380, déménageur Loëx, déménagement Annemasse Agglo, déménageur 74380',
+
+    intro: `<strong>Bonne</strong> est ce <strong>bourg de 3 000 habitants</strong> à 7 km à l'est d'Annemasse, l'un des plus actifs de l'Annemasse Agglo. École, commerces, marché, vie associative dense&nbsp;: c'est la commune où s'installent les <strong>jeunes familles</strong> qui veulent un cadre village avec services, plutôt qu'un grand pôle urbain. Torres Transport intervient régulièrement à Bonne pour des déménagements pavillon-pavillon ou des arrivées en provenance d'Annemasse-centre.`,
+
+    pourquoiNous: `Bonne a une <strong>configuration mixte</strong> : un centre village historique avec quelques rues étroites côté église, et des extensions résidentielles plus récentes (Loëx, Martignier, La Côte) sur des voies larges adaptées aux camions. Notre équipe choisit le bon véhicule selon le quartier : 30 m³ possible en lotissement neuf, 12-15 m³ recommandé pour le centre. La déchetterie de Bonne, utile pour le débarras associé à un déménagement, est aussi un repère terrain qu'on connaît bien.`,
+
+    quartiers: [
+      'Centre village',
+      'Loëx',
+      'Martignier',
+      'La Côte',
+      'Les Esserts',
+    ],
+
+    tarifs: {
+      studio: 'À partir de 410 €',
+      f2f3: 'À partir de 830 €',
+      maison: 'À partir de 1 650 €',
+      pro: 'Sur devis personnalisé',
+    },
+
+    villesVoisines: [
+      { nom: 'Cranves-Sales', slug: 'cranves-sales' },
+      { nom: 'Vétraz-Monthoux', slug: 'vetraz-monthoux' },
+      { nom: 'Lucinges', slug: 'lucinges' },
+    ],
+
+    faq: [
+      {
+        question: 'Combien coûte un déménagement à Bonne ?',
+        reponse:
+          "Comptez à partir de 410 € pour un studio, 830 € pour un F2/F3, 1 650 € pour une maison. Tarif identique à Cranves-Sales vu la proximité.",
+      },
+      {
+        question: 'Pouvez-vous accéder au centre village étroit ?',
+        reponse:
+          "Oui, avec un camion de 12-15 m³ adapté aux rues du centre historique. Pour les volumes plus importants, on planifie le déménagement en 2 navettes ou avec relais sur le parking de la mairie.",
+      },
+      {
+        question: 'Faites-vous des déménagements depuis Bonne vers Annemasse ?',
+        reponse:
+          "Oui, c'est fréquent quand des familles s'agrandissent ou des seniors veulent se rapprocher des services médicaux d'Annemasse. Trajet 10-15 minutes, déménagement souvent en demi-journée.",
+      },
+      {
+        question: 'Intervenez-vous dans les lotissements neufs (Loëx, Martignier) ?',
+        reponse:
+          "Oui, ce sont nos chantiers les plus simples : voies larges, parkings privés, ascenseurs si immeuble, accès direct au logement. Aucune contrainte particulière.",
+      },
+      {
+        question: 'Pouvez-vous proposer le débarras associé au déménagement ?',
+        reponse:
+          "Oui, et nous travaillons régulièrement avec la déchetterie de Bonne pour les évacuations. Notre formule combinée (déménagement + débarras) permet d'économiser une intervention séparée.",
+      },
+    ],
+  },
+
+  // ------------------------------------------------------------------
+  // LUCINGES, village hauteur vue Mont-Blanc (74380)
+  // ------------------------------------------------------------------
+  'lucinges': {
+    slug: 'lucinges',
+    nom: 'Lucinges',
+    codePostal: '74380',
+    departement: 'Haute-Savoie',
+    geo: { lat: 46.211, lng: 6.352 },
+    distanceKm: 9,
+    population: '1 800 habitants',
+    bannier: '/banner-blog-hero.webp',
+
+    titreH1: 'Déménagement à Lucinges (74380), village hauteur avec vue Mont-Blanc',
+    metaTitle: "Déménageur Lucinges (74380) | Torres Transport",
+    metaDescription:
+      "Déménageur à Lucinges (74380), 1 800 habitants. Village hauteur avec vue Mont-Blanc et Léman. Pavillons, retraités. Base Ville-la-Grand à 9 km.",
+    keywords:
+      'déménageur Lucinges, déménagement Lucinges 74380, déménageur village Lucinges, déménagement résidentiel hauteur 74380',
+
+    intro: `<strong>Lucinges</strong> est ce <strong>village de 1 800 habitants</strong> perché à 700 m d'altitude, célèbre pour sa <strong>vue panoramique sur le Mont-Blanc et le lac Léman</strong>. C'est la commune des couples qui veulent du calme, de la nature, et un cadre exceptionnel à 15 minutes d'Annemasse. Beaucoup de retraités, beaucoup de résidences secondaires aussi. Torres Transport intervient à Lucinges pour des arrivées en provenance d'Annemasse, de Genève et plus largement de la Suisse romande.`,
+
+    pourquoiNous: `Lucinges a une <strong>topographie pentue</strong> qui impose une planification spécifique : les routes d'accès en lacets ne permettent pas tous les véhicules, et les hameaux étalés (Les Crues, Le Marais, hauteurs) sont parfois sur des chemins étroits. Pour les très gros volumes (maison familiale 30+ m³), nous arrivons souvent en plusieurs camions de 15 m³ plutôt qu'un seul 30 m³ qui aurait du mal à manœuvrer. Notre tarif <strong>sénior &minus;10%</strong> s'applique automatiquement, ce qui correspond à une grande part de notre clientèle locale (60+).`,
+
+    quartiers: [
+      'Le Bourg',
+      'Les Crues',
+      'Le Marais',
+      'Hauteurs (vue Mont-Blanc)',
+      'Sous-le-Mont',
+    ],
+
+    tarifs: {
+      studio: 'À partir de 430 €',
+      f2f3: 'À partir de 870 €',
+      maison: 'À partir de 1 700 €',
+      pro: 'Sur devis personnalisé',
+    },
+
+    villesVoisines: [
+      { nom: 'Bonne', slug: 'bonne' },
+      { nom: 'Cranves-Sales', slug: 'cranves-sales' },
+      { nom: 'Saint-Cergues', slug: 'saint-cergues' },
+    ],
+
+    faq: [
+      {
+        question: 'Combien coûte un déménagement à Lucinges ?',
+        reponse:
+          "Comptez à partir de 430 € pour un studio, 870 € pour un F2/F3, 1 700 € pour une maison. Surcoût lié à la distance (9 km) et à la pente d'accès.",
+      },
+      {
+        question: 'Pouvez-vous accéder aux hameaux étroits (Les Crues, Le Marais) ?',
+        reponse:
+          "Oui, avec des camions de 12-15 m³. Pour les hauteurs avec vue Mont-Blanc, l'accès est parfois sur des chemins privés. On vérifie la praticabilité avant d'envoyer un véhicule.",
+      },
+      {
+        question: 'Beaucoup de seniors à Lucinges : remise dédiée ?',
+        reponse:
+          "Oui, notre remise sénior/PMR de 10% s'applique automatiquement aux 60+ ans. Cumulable avec la réservation anticipée (-5%) et le gros volume (-5%).",
+      },
+      {
+        question: 'Faites-vous des déménagements Lucinges-Genève ?',
+        reponse:
+          "Oui, beaucoup de nos clients à Lucinges sont d'anciens travailleurs frontaliers retraités, ou des actifs Suisse qui s'installent au calme. Nous gérons les formalités douanières.",
+      },
+      {
+        question: 'Acceptez-vous les résidences secondaires (entrée meubles uniquement) ?',
+        reponse:
+          "Oui. Pour les résidences secondaires, nous proposons souvent un service réduit (transport + déchargement, sans débarras ni nettoyage). Tarif allégé.",
+      },
+    ],
+  },
+
+  // ------------------------------------------------------------------
+  // MACHILLY, petit village paisible (74140)
+  // ------------------------------------------------------------------
+  'machilly': {
+    slug: 'machilly',
+    nom: 'Machilly',
+    codePostal: '74140',
+    departement: 'Haute-Savoie',
+    geo: { lat: 46.243, lng: 6.350 },
+    distanceKm: 10,
+    population: '1 300 habitants',
+    bannier: '/banner-form-contact.webp',
+
+    titreH1: 'Déménagement à Machilly (74140), village paisible nord-est Annemasse',
+    metaTitle: "Déménageur Machilly (74140) | Torres Transport Haute-Savoie",
+    metaDescription:
+      "Déménageur à Machilly (74140), 1 300 habitants. Village paisible Annemasse Agglo, axe Évian. Le Bourg, Les Frasses. Base Ville-la-Grand à 10 km.",
+    keywords:
+      'déménageur Machilly, déménagement Machilly 74140, déménageur axe Évian Annemasse, village 74140',
+
+    intro: `<strong>Machilly</strong> est ce <strong>petit village de 1 300 habitants</strong> situé sur l'axe Annemasse-Évian, à 10 km de notre base. Faisant partie de l'Annemasse Agglo, c'est une commune calme appréciée pour sa proximité avec les commerces de Douvaine et l'accès rapide au lac Léman. Torres Transport intervient à Machilly pour des <strong>déménagements résidentiels</strong> et des transferts entre l'Annemasse Agglo et le Chablais.`,
+
+    pourquoiNous: `Machilly est <strong>tranquille logistiquement</strong> : peu de circulation, des rues larges, des pavillons individuels avec accès direct. Aucune contrainte de stationnement, aucune autorisation à demander. C'est l'inverse d'un déménagement Annemasse-centre&nbsp;: ici tout est plus simple, donc le devis est plus prévisible et le déménagement plus rapide. La proximité avec Douvaine (3 km) et le Bas-Chablais nous permet aussi de mutualiser certains trajets quand on intervient dans le secteur.`,
+
+    quartiers: [
+      'Le Bourg',
+      'Les Frasses',
+      'La Bouvarde',
+      'Sous-Machilly',
+    ],
+
+    tarifs: {
+      studio: 'À partir de 440 €',
+      f2f3: 'À partir de 880 €',
+      maison: 'À partir de 1 720 €',
+      pro: 'Sur devis personnalisé',
+    },
+
+    villesVoisines: [
+      { nom: 'Saint-Cergues', slug: 'saint-cergues' },
+      { nom: 'Thonon-les-Bains', slug: 'thonon-les-bains' },
+      { nom: 'Annemasse', slug: 'annemasse' },
+    ],
+
+    faq: [
+      {
+        question: 'Combien coûte un déménagement à Machilly ?',
+        reponse:
+          "Comptez à partir de 440 € pour un studio, 880 € pour un F2/F3, 1 720 € pour une maison. Tarif lié à la distance (10 km).",
+      },
+      {
+        question: 'Faites-vous le trajet Machilly-Thonon ou Machilly-Évian ?',
+        reponse:
+          "Oui, c'est un trajet régulier. La position de Machilly sur l'axe Annemasse-Évian permet une intervention rapide vers le Chablais (15-20 minutes vers Thonon).",
+      },
+      {
+        question: 'Quelles sont les contraintes d\'accès dans le village ?',
+        reponse:
+          "Aucune particulière. Machilly est un village paisible avec des rues larges et des pavillons accessibles. Pas d'autorisation municipale nécessaire.",
+      },
+      {
+        question: 'Pouvez-vous combiner Machilly et un autre déménagement à Douvaine ou Sciez ?',
+        reponse:
+          "Oui, le groupage est possible quand deux clients du secteur déménagent à des dates proches. Économie pouvant aller jusqu'à -10% sur chaque devis.",
+      },
+    ],
+  },
+
+  // ------------------------------------------------------------------
+  // SAINT-CERGUES, versant Voirons (74140)
+  // ------------------------------------------------------------------
+  'saint-cergues': {
+    slug: 'saint-cergues',
+    nom: 'Saint-Cergues',
+    codePostal: '74140',
+    departement: 'Haute-Savoie',
+    geo: { lat: 46.232, lng: 6.305 },
+    distanceKm: 7,
+    population: '3 000 habitants',
+    bannier: '/banner-transport.webp',
+
+    titreH1: 'Déménagement à Saint-Cergues (74140), versant des Voirons',
+    metaTitle: "Déménageur Saint-Cergues (74140) | Torres Transport",
+    metaDescription:
+      "Déménageur à Saint-Cergues (74140), 3 000 habitants sur le versant des Voirons. Vue lac Léman, station ski Voirons. Centre, Le Pralère, La Côte. Base Ville-la-Grand à 7 km.",
+    keywords:
+      'déménageur Saint-Cergues, déménagement Saint-Cergues 74140, déménageur Voirons, déménageur 74140',
+
+    intro: `<strong>Saint-Cergues</strong> est cette commune de <strong>3 000 habitants</strong> accrochée au <strong>versant des Voirons</strong>, célèbre pour sa <strong>petite station de ski</strong> familiale et sa vue dégagée sur le lac Léman. À 7 km de notre base, elle attire à la fois des résidents permanents (familles, retraités) et des résidences secondaires d'amateurs de montagne. Torres Transport intervient pour les déménagements arrivée/départ et pour quelques transferts saisonniers.`,
+
+    pourquoiNous: `Saint-Cergues a une <strong>configuration verticale</strong> : le centre du village est à 600 m, mais la commune monte jusqu'aux Voirons (1 480 m). Selon où on intervient, les contraintes diffèrent fortement&nbsp;: centre village = accès véhicule normal, hauteurs = chemins parfois pentus, virages serrés, neige possible en hiver. Notre équipe planifie en conséquence : véhicule 4x4 si nécessaire en hiver, créneaux matinaux pour éviter les redoux qui rendent la route glissante. Pour les arrivées de seniors qui choisissent ce cadre nature, notre tarif <strong>−10% sénior</strong> s'applique automatiquement.`,
+
+    quartiers: [
+      'Centre',
+      'Le Pralère',
+      'Les Voirons (hauteurs)',
+      'La Côte',
+      'Pas-de-Maule',
+    ],
+
+    tarifs: {
+      studio: 'À partir de 420 €',
+      f2f3: 'À partir de 850 €',
+      maison: 'À partir de 1 680 €',
+      pro: 'Sur devis personnalisé',
+    },
+
+    villesVoisines: [
+      { nom: 'Machilly', slug: 'machilly' },
+      { nom: 'Lucinges', slug: 'lucinges' },
+      { nom: 'Annemasse', slug: 'annemasse' },
+    ],
+
+    faq: [
+      {
+        question: 'Combien coûte un déménagement à Saint-Cergues ?',
+        reponse:
+          "Comptez à partir de 420 € pour un studio, 850 € pour un F2/F3, 1 680 € pour une maison. Tarif lié à la distance (7 km) et possible accès en pente.",
+      },
+      {
+        question: 'Pouvez-vous accéder aux hauteurs en hiver ?',
+        reponse:
+          "Oui, sous condition que la route soit déneigée et accessible. Nous évaluons selon météo : si neige fraîche, on reporte ou on intervient avec un véhicule 4x4. Sécurité avant tout.",
+      },
+      {
+        question: 'Y a-t-il des résidences secondaires à Saint-Cergues ?',
+        reponse:
+          "Oui, beaucoup, notamment liées à la station de ski des Voirons. Nous gérons aussi bien les arrivées meubles que les rangements saisonniers (avec garde-meuble si besoin).",
+      },
+      {
+        question: 'Faites-vous des déménagements pour les seniors qui s\'installent ?',
+        reponse:
+          "Très régulièrement. Saint-Cergues attire beaucoup de retraités. Notre tarif sénior/PMR -10% est automatique. Approche patiente, accompagnement humain.",
+      },
+      {
+        question: 'Quels délais pour intervenir à Saint-Cergues ?',
+        reponse:
+          "Sous 24-48 heures pour les urgences hors hiver. En hiver, nous prévoyons une marge de 24h supplémentaires pour adapter selon météo.",
+      },
+    ],
+  },
 };
 
 // Helper pour obtenir une ville par slug
