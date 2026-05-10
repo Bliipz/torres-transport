@@ -240,7 +240,7 @@ const services = [
                   <h4 class="address-h"><span data-addr-depart-label>Adresse de départ</span> <span class="required-mark" aria-hidden="true">*</span></h4>
                   <div class="address-fields">
                     <label class="form-input-label addr-rue">
-                      <span class="form-label">Rue et numéro</span>
+                      <span class="form-label">Adresse</span>
                       <input type="text" name="rue_depart" placeholder="Ex : 12 rue de la Gare" aria-required="true" autocomplete="address-line1" />
                     </label>
                     <label class="form-input-label addr-cp">
@@ -286,7 +286,7 @@ const services = [
                   <div class="address-fields">
                     <label class="form-input-label addr-rue">
                       <span class="form-label">Rue et numéro</span>
-                      <input type="text" name="rue_arrivee" placeholder="Ex : 5 avenue Verdun" aria-required="true" autocomplete="address-line1" />
+                      <input type="text" name="rue_arrivee" placeholder="Ex : 5 avenue de Verdun" aria-required="true" autocomplete="address-line1" />
                     </label>
                     <label class="form-input-label addr-cp">
                       <span class="form-label">Code postal</span>
@@ -1160,12 +1160,18 @@ const services = [
   }
   .address-fields {
     display: grid;
-    grid-template-columns: 1fr 140px 1fr;
+    grid-template-columns: minmax(0, 2fr) 110px minmax(0, 1.3fr);
     gap: 0.6rem;
     margin-bottom: 0.85rem;
+    align-items: end;
   }
-  .address-fields .form-input-label { margin: 0; }
-  .address-fields input { margin-bottom: 0; }
+  .address-fields .form-input-label { margin: 0; min-width: 0; }
+  .address-fields input { margin-bottom: 0; width: 100%; }
+  .address-fields .form-label {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
   @media (max-width: 600px) {
     .address-fields {
       grid-template-columns: 1fr;
