@@ -299,7 +299,7 @@ export const POST: APIRoute = async ({ request }) => {
               <strong>Pourquoi Torres Transport ?</strong><br>
               ✓ 20 ans d'expérience en Haute-Savoie<br>
               ✓ Équipe locale basée à Ville-la-Grand · pas de sous-traitance<br>
-              ✓ Devis transparent · pas d'acompte demandé<br>
+              ✓ Devis ferme et transparent · sans surprise<br>
               ✓ Tarif sénior/PMR · réservation anticipée
             </p>
 

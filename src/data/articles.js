@@ -126,7 +126,7 @@ export const articles = [
 
       <p>Et surtout, <strong>ne sous-estimez pas la durée</strong>&nbsp;: la majorité de nos clients qui prévoyaient 6 semaines de stockage finissent par y rester 2 à 4 mois. Une vente immobilière, des travaux, un emménagement&nbsp;: ça déborde toujours un peu. Mieux vaut prévoir une durée confortable et résilier en avance que d'avoir à prolonger en panique.</p>
 
-      <p><strong>Vous avez un projet de déménagement avec étape de stockage à Annemasse, Ville-la-Grand ou ailleurs en Haute-Savoie&nbsp;?</strong> <a href="/contact">Demandez un devis groupé gratuit</a>&nbsp;: on étudie votre situation, on vous propose la meilleure formule, et on s'occupe de tout de bout en bout. Sans acompte, sans surprise.</p>
+      <p><strong>Vous avez un projet de déménagement avec étape de stockage à Annemasse, Ville-la-Grand ou ailleurs en Haute-Savoie&nbsp;?</strong> <a href="/contact">Demandez un devis groupé gratuit</a>&nbsp;: on étudie votre situation, on vous propose la meilleure formule, et on s'occupe de tout de bout en bout. Devis ferme, sans surprise.</p>
     `,
     date: "2026-05-09",
     author: "Ludovic Torres",
@@ -352,7 +352,7 @@ export const articles = [
         <li>✓ <strong>Inclus&nbsp;:</strong> camion, équipe, protection, sanglage</li>
         <li>✓ <strong>Options modulables&nbsp;:</strong> démontage/remontage, débarras, transport simple</li>
         <li>✓ <strong>Avantages cumulables&nbsp;:</strong> séniors/PMR (−10&nbsp;%), réservation anticipée (−5&nbsp;%), gros volume (−5&nbsp;%)</li>
-        <li>✓ <strong>Pas d'acompte demandé&nbsp;:</strong> vous payez après la prestation</li>
+        <li>✓ <strong>Acompte raisonnable&nbsp;:</strong> bloque la date, solde après prestation</li>
         <li>✓ <strong>Devis ferme sous 24&nbsp;h&nbsp;:</strong> gratuit et sans engagement</li>
       </ul>
 

@@ -9,7 +9,7 @@ export const serviceFaqs = {
     },
     {
       question: "Faut-il payer un acompte à la réservation ?",
-      reponse: "Non, jamais. Vous payez uniquement après la livraison de vos biens, à la fin de la prestation. C'est notre façon d'assumer la qualité de notre travail.",
+      reponse: "Oui, un acompte est demandé à la réservation pour bloquer définitivement votre date. Cette pratique permet de garantir le créneau et d'éviter les désistements de dernière minute. Le solde est payé après la prestation. Montant précisé dans le devis.",
     },
     {
       question: "Combien de temps à l'avance faut-il réserver ?",

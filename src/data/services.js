@@ -8,7 +8,7 @@ export const servicesData = {
     intro: `
       <p>Le déménagement est notre cœur de métier depuis 20 ans. À Torres&nbsp;Transport, nous avons fait un choix simple : <strong>un tarif unique au m³</strong>, tout compris, plutôt qu'une facture qui gonfle au fil du devis. <strong>47,50&nbsp;€&nbsp;/&nbsp;m³</strong> couvre le camion, l'équipe, la protection du mobilier, les sangles, l'arrimage. Aucun supplément caché.</p>
       <p>Que ce soit un studio à Annemasse, un T4 familial à Ville-la-Grand, une maison à Thonon ou un transfert vers une autre région française, l'équipe est dimensionnée selon le volume et l'accessibilité (étages, monte-meuble si nécessaire, distances de portage). On vient en visite gratuite chez vous pour les volumes &gt;&nbsp;30&nbsp;m³, ou on échange par photos pour les studios et T2.</p>
-      <p>Notre approche : pas de sous-traitance, pas d'acompte, pas de pression. Vous payez après la prestation, à la livraison de vos biens. C'est notre façon d'assumer la qualité de ce qu'on fait.</p>
+      <p>Notre approche : pas de sous-traitance, pas de pression, devis ferme. Un acompte est demandé à la réservation pour bloquer votre date, le solde est réglé après la prestation à la livraison de vos biens.</p>
     `,
     details: [
       "Déménagement résidentiel et professionnel",
