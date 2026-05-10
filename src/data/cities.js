@@ -333,6 +333,9 @@ export const cities = {
 
     villesVoisines: [
       { nom: 'Évian-les-Bains', slug: 'evian-les-bains' },
+      { nom: 'Publier', slug: 'publier' },
+      { nom: 'Anthy-sur-Léman', slug: 'anthy-sur-leman' },
+      { nom: 'Sciez', slug: 'sciez' },
       { nom: 'Annemasse', slug: 'annemasse' },
     ],
 
@@ -402,7 +405,9 @@ export const cities = {
     },
 
     villesVoisines: [
+      { nom: 'Publier', slug: 'publier' },
       { nom: 'Thonon-les-Bains', slug: 'thonon-les-bains' },
+      { nom: 'Anthy-sur-Léman', slug: 'anthy-sur-leman' },
       { nom: 'Annemasse', slug: 'annemasse' },
     ],
 
@@ -1109,6 +1114,8 @@ export const cities = {
 
     villesVoisines: [
       { nom: 'Saint-Cergues', slug: 'saint-cergues' },
+      { nom: 'Bons-en-Chablais', slug: 'bons-en-chablais' },
+      { nom: 'Douvaine', slug: 'douvaine' },
       { nom: 'Thonon-les-Bains', slug: 'thonon-les-bains' },
       { nom: 'Annemasse', slug: 'annemasse' },
     ],
@@ -1207,6 +1214,395 @@ export const cities = {
         question: 'Quels délais pour intervenir à Saint-Cergues ?',
         reponse:
           "Sous 24-48 heures pour les urgences hors hiver. En hiver, nous prévoyons une marge de 24h supplémentaires pour adapter selon météo.",
+      },
+    ],
+  },
+
+  // ------------------------------------------------------------------
+  // BONS-EN-CHABLAIS, carrefour du Bas-Chablais (74890)
+  // ------------------------------------------------------------------
+  'bons-en-chablais': {
+    slug: 'bons-en-chablais',
+    nom: 'Bons-en-Chablais',
+    codePostal: '74890',
+    departement: 'Haute-Savoie',
+    geo: { lat: 46.265, lng: 6.367 },
+    distanceKm: 18,
+    population: '7 000 habitants',
+    bannier: '/banner-transport.webp',
+
+    titreH1: 'Déménagement à Bons-en-Chablais (74890), carrefour du Chablais',
+    metaTitle: "Déménageur Bons-en-Chablais (74890) | Torres Transport",
+    metaDescription:
+      "Déménageur à Bons-en-Chablais (74890). 7 000 habitants, carrefour Annemasse-Thonon. Service complet pour particuliers, 20 ans d'expérience, devis 24h.",
+    keywords:
+      'déménageur Bons-en-Chablais, déménagement Bons-en-Chablais 74890, déménageur Chablais, déménageur 74890',
+
+    intro: `<strong>Bons-en-Chablais</strong> est ce <strong>carrefour stratégique</strong> du Bas-Chablais, à mi-chemin entre Annemasse et Thonon-les-Bains. Avec ses <strong>7 000 habitants</strong> et son tissu résidentiel en pleine expansion (lotissements neufs, maisons individuelles, anciennes fermes rénovées), la commune attire des familles à la recherche d'un cadre village avec accès rapide aux axes routiers. Torres Transport intervient à Bons-en-Chablais pour <strong>déménagements résidentiels complets</strong>, depuis notre base de Ville-la-Grand à 18 km.`,
+
+    pourquoiNous: `Bons-en-Chablais a une <strong>configuration mixte</strong> qui demande une bonne connaissance terrain : le centre village avec ses rues parfois étroites autour de l'église et du Tonkin, les zones résidentielles récentes (Le Vernay, Chez Cudrey, Chez Brun) avec accès véhicule facile, et les hameaux isolés sur les hauteurs (Brécorens, Loisin, Cervens en limite). Notre équipe planifie chaque intervention selon la zone : véhicule adapté aux passages étroits du centre, créneaux matinaux pour éviter le trafic D903 vers Thonon. Le <strong>tarif sénior/PMR −10%</strong> s'applique automatiquement, et nous proposons le <strong>groupage particuliers</strong> avec d'autres déménagements du secteur pour réduire les coûts.`,
+
+    quartiers: [
+      'Centre village',
+      'Le Tonkin',
+      'Le Vernay',
+      'Chez Cudrey',
+      'Chez Brun',
+      'Brécorens',
+      'Brens',
+      'La Cave',
+    ],
+
+    tarifs: {
+      studio: 'À partir de 470 €',
+      f2f3: 'À partir de 940 €',
+      maison: 'À partir de 1 820 €',
+      pro: 'Sur devis personnalisé',
+    },
+
+    villesVoisines: [
+      { nom: 'Douvaine', slug: 'douvaine' },
+      { nom: 'Sciez', slug: 'sciez' },
+      { nom: 'Machilly', slug: 'machilly' },
+      { nom: 'Saint-Cergues', slug: 'saint-cergues' },
+      { nom: 'Annemasse', slug: 'annemasse' },
+    ],
+
+    faq: [
+      {
+        question: 'Combien coûte un déménagement à Bons-en-Chablais ?',
+        reponse:
+          "Comptez à partir de 470 € pour un studio, 940 € pour un F2/F3, 1 820 € pour une maison. Tarif lié à la distance (18 km depuis notre base de Ville-la-Grand). Devis ferme sous 24h après visite gratuite à domicile.",
+      },
+      {
+        question: 'Intervenez-vous dans les hameaux isolés (Brécorens, Brens, La Cave) ?',
+        reponse:
+          "Oui, toute la commune est couverte. Pour les hameaux avec accès étroit, nous pré-évaluons lors de la visite technique gratuite (chemin praticable, place de retournement camion). Aucun surcoût caché lié à l'accès.",
+      },
+      {
+        question: 'Faites-vous le trajet Bons-en-Chablais vers Thonon, Annemasse ou plus loin ?',
+        reponse:
+          "Oui, Bons-en-Chablais est central : Thonon est à 12 km, Annemasse à 18 km, Évian à 20 km. Tous ces trajets sont quotidiens pour nous. Pour des déménagements longue distance (Lyon, Paris, Marseille…), tarif au km transparent communiqué avec le devis.",
+      },
+      {
+        question: 'Quels délais pour intervenir à Bons-en-Chablais ?',
+        reponse:
+          "Sous 24-48 heures pour les urgences. Pour les déménagements planifiés, nous recommandons 2 à 4 semaines à l'avance, notamment entre mai et septembre où la demande Chablais est forte.",
+      },
+      {
+        question: 'Proposez-vous du groupage pour réduire le coût ?',
+        reponse:
+          "Oui, si un autre client du secteur Bas-Chablais (Douvaine, Sciez, Anthy) déménage à une date proche, nous proposons le groupage : économie pouvant atteindre −10% sur chaque devis. À demander lors du devis.",
+      },
+    ],
+  },
+
+  // ------------------------------------------------------------------
+  // DOUVAINE, chef-lieu du Bas-Chablais (74140)
+  // ------------------------------------------------------------------
+  'douvaine': {
+    slug: 'douvaine',
+    nom: 'Douvaine',
+    codePostal: '74140',
+    departement: 'Haute-Savoie',
+    geo: { lat: 46.305, lng: 6.305 },
+    distanceKm: 16,
+    population: '5 500 habitants',
+    bannier: '/banner-transport.webp',
+
+    titreH1: 'Déménagement à Douvaine (74140), chef-lieu du Bas-Chablais',
+    metaTitle: "Déménageur Douvaine (74140) | Torres Transport Bas-Chablais",
+    metaDescription:
+      "Déménageur à Douvaine (74140), chef-lieu du Bas-Chablais, 5 500 habitants. Service complet pour particuliers, équipe expérimentée, devis gratuit sous 24h.",
+    keywords:
+      'déménageur Douvaine, déménagement Douvaine 74140, déménageur Bas-Chablais, déménageur 74140',
+
+    intro: `<strong>Douvaine</strong> est le <strong>chef-lieu du Bas-Chablais</strong>, commune de <strong>5 500 habitants</strong> à 16 km de notre base de Ville-la-Grand. Avec sa <strong>croissance résidentielle continue</strong>, ses nombreux lotissements récents et son centre-ville commerçant rénové, Douvaine voit beaucoup de mouvements : jeunes familles qui s'installent, retraités qui rejoignent leurs enfants, agrandissements de famille qui demandent une maison plus grande. Torres Transport accompagne ces transitions avec une <strong>équipe basée à proximité</strong> qui connaît parfaitement la commune.`,
+
+    pourquoiNous: `Douvaine combine trois <strong>typologies d'accès</strong> bien distinctes : le <strong>centre-ville</strong> avec ses rues commerçantes (rue de Genève, rue du Mont-Blanc) et son stationnement souvent saturé, les <strong>zones pavillonnaires</strong> (Champs-Plottons, Le Crêt, Les Hutins) avec accès véhicule facile et garages, et les <strong>hameaux ruraux</strong> en périphérie. Notre équipe planifie chaque déménagement Douvaine selon la zone : si centre-ville, créneaux matinaux et demande d'autorisation municipale pour stationner le camion ; si pavillon, intervention standard. Visite technique gratuite à domicile systématique pour ajuster.`,
+
+    quartiers: [
+      'Centre-ville',
+      'Champs-Plottons',
+      'Le Crêt',
+      'Les Hutins',
+      'Bourg-Dessous',
+      'Aux Vignes',
+      'Verly',
+    ],
+
+    tarifs: {
+      studio: 'À partir de 460 €',
+      f2f3: 'À partir de 920 €',
+      maison: 'À partir de 1 780 €',
+      pro: 'Sur devis personnalisé',
+    },
+
+    villesVoisines: [
+      { nom: 'Bons-en-Chablais', slug: 'bons-en-chablais' },
+      { nom: 'Sciez', slug: 'sciez' },
+      { nom: 'Anthy-sur-Léman', slug: 'anthy-sur-leman' },
+      { nom: 'Machilly', slug: 'machilly' },
+      { nom: 'Annemasse', slug: 'annemasse' },
+    ],
+
+    faq: [
+      {
+        question: 'Combien coûte un déménagement à Douvaine ?',
+        reponse:
+          "Comptez à partir de 460 € pour un studio, 920 € pour un F2/F3, 1 780 € pour une maison. Tarif lié à la distance (16 km). Devis ferme sous 24h après visite technique gratuite chez vous.",
+      },
+      {
+        question: 'Le centre-ville de Douvaine est parfois saturé : comment gérez-vous le stationnement ?',
+        reponse:
+          "Pour les déménagements en centre-ville (rue de Genève, rue du Mont-Blanc, place de la Mairie), nous pouvons faire la demande d'autorisation auprès de la mairie pour bloquer un emplacement le jour J. Nos camions sont aussi dimensionnés pour les rues plus étroites. Nous privilégions les créneaux matinaux pour limiter la gêne au trafic.",
+      },
+      {
+        question: 'Faites-vous le trajet Douvaine vers Thonon ou Annemasse ?',
+        reponse:
+          "Oui, ce sont des trajets quotidiens pour nous. Douvaine est à 14 km de Thonon, 16 km d'Annemasse, parfaitement central dans nos tournées Chablais.",
+      },
+      {
+        question: 'Intervenez-vous dans les nouveaux lotissements de Douvaine ?',
+        reponse:
+          "Bien sûr — les zones récentes comme Champs-Plottons, Le Crêt, Les Hutins font partie de nos interventions habituelles. Accès véhicule en général facile, garages, parkings privatifs : conditions idéales pour un déménagement rapide.",
+      },
+      {
+        question: 'Y a-t-il des frais supplémentaires pour Douvaine ?',
+        reponse:
+          "Non, aucun frais caché. La distance est incluse dans le devis. Seuls les services additionnels (emballage complet, garde-meuble, démontage spécifique) sont chiffrés à part et toujours validés avec vous avant intervention.",
+      },
+    ],
+  },
+
+  // ------------------------------------------------------------------
+  // SCIEZ, port sur le Léman (74140)
+  // ------------------------------------------------------------------
+  'sciez': {
+    slug: 'sciez',
+    nom: 'Sciez',
+    codePostal: '74140',
+    departement: 'Haute-Savoie',
+    geo: { lat: 46.330, lng: 6.388 },
+    distanceKm: 22,
+    population: '6 000 habitants',
+    bannier: '/banner-transport.webp',
+
+    titreH1: 'Déménagement à Sciez (74140), commune lacustre du Chablais',
+    metaTitle: "Déménageur Sciez (74140) | Torres Transport Chablais",
+    metaDescription:
+      "Déménageur à Sciez (74140), 6 000 habitants au bord du Léman. Port, résidences principales et secondaires. Service complet pour particuliers, devis 24h.",
+    keywords:
+      'déménageur Sciez, déménagement Sciez 74140, déménageur Léman, déménageur Chablais 74140',
+
+    intro: `<strong>Sciez</strong> est cette <strong>commune lacustre</strong> du Chablais, <strong>6 000 habitants</strong> répartis entre le bourg ancien, le port de Sciez sur le Léman, et les hameaux résidentiels en arrière-plan. À 22 km de notre base, c'est une zone à la <strong>typologie variée</strong> : résidences principales de familles installées, résidences secondaires lacustres, propriétés au bord du lac avec accès parfois techniques. Torres Transport intervient pour tous types de déménagements résidentiels à Sciez et villages limitrophes.`,
+
+    pourquoiNous: `Sciez présente des <strong>défis d'accès spécifiques</strong> : les propriétés <strong>au bord du lac</strong> (avenue de la Plage, route du Port) ont parfois des accès en pente raide ou des chemins privés ; les <strong>résidences secondaires</strong> impliquent souvent des déménagements partiels ou des arrivées de meubles d'occasion. Notre équipe ajuste : véhicule adapté à la pente quand nécessaire, créneaux compatibles avec les propriétaires absents, coordination si remise des clés à un tiers. La <strong>visite technique gratuite</strong> est particulièrement utile à Sciez pour anticiper les contraintes du jour J.`,
+
+    quartiers: [
+      'Bourg de Sciez',
+      'Port de Sciez',
+      'Coudrée',
+      'Bonnatrait',
+      'Le Crozat',
+      'Filly',
+      'Chavannex',
+    ],
+
+    tarifs: {
+      studio: 'À partir de 490 €',
+      f2f3: 'À partir de 980 €',
+      maison: 'À partir de 1 900 €',
+      pro: 'Sur devis personnalisé',
+    },
+
+    villesVoisines: [
+      { nom: 'Anthy-sur-Léman', slug: 'anthy-sur-leman' },
+      { nom: 'Douvaine', slug: 'douvaine' },
+      { nom: 'Bons-en-Chablais', slug: 'bons-en-chablais' },
+      { nom: 'Thonon-les-Bains', slug: 'thonon-les-bains' },
+      { nom: 'Annemasse', slug: 'annemasse' },
+    ],
+
+    faq: [
+      {
+        question: 'Combien coûte un déménagement à Sciez ?',
+        reponse:
+          "Comptez à partir de 490 € pour un studio, 980 € pour un F2/F3, 1 900 € pour une maison. Tarif lié à la distance (22 km). Possibles ajustements selon contraintes d'accès si propriété en bord de lac avec pente.",
+      },
+      {
+        question: 'Pouvez-vous accéder aux propriétés du bord du lac à Sciez ?',
+        reponse:
+          "Oui, sous réserve de la praticabilité du chemin pour un camion 20 m³. La visite technique gratuite préalable permet d'évaluer : si trop étroit, nous utilisons un véhicule plus petit avec navette, ou prévoyons une portée à la main. Toujours transparent dans le devis.",
+      },
+      {
+        question: 'Gérez-vous les déménagements de résidences secondaires ?',
+        reponse:
+          "Très fréquemment à Sciez. Cela inclut les arrivées de meubles d'occasion, les rangements saisonniers vers un garde-meuble, ou les retraits complets après vente. Nous coordonnons avec un tiers si vous n'êtes pas sur place le jour J.",
+      },
+      {
+        question: 'Faites-vous le trajet Sciez vers Thonon, Évian ou Annemasse ?',
+        reponse:
+          "Oui, ces trajets sont quotidiens. Sciez est à 9 km de Thonon, 17 km d'Évian, 22 km d'Annemasse. Ces déménagements de proximité représentent une part importante de notre activité Chablais.",
+      },
+      {
+        question: 'Quelle saison privilégier pour déménager à Sciez ?',
+        reponse:
+          "Sciez étant lacustre, l'été est très demandé (juin-septembre), notamment pour les résidences secondaires. Pour plus de souplesse et tarifs négociables, le printemps (avril-mai) ou l'automne (octobre-novembre) sont idéaux.",
+      },
+    ],
+  },
+
+  // ------------------------------------------------------------------
+  // ANTHY-SUR-LÉMAN, village lacustre (74200)
+  // ------------------------------------------------------------------
+  'anthy-sur-leman': {
+    slug: 'anthy-sur-leman',
+    nom: 'Anthy-sur-Léman',
+    codePostal: '74200',
+    departement: 'Haute-Savoie',
+    geo: { lat: 46.367, lng: 6.435 },
+    distanceKm: 26,
+    population: '2 200 habitants',
+    bannier: '/banner-transport.webp',
+
+    titreH1: 'Déménagement à Anthy-sur-Léman (74200), village au bord du lac',
+    metaTitle: "Déménageur Anthy-sur-Léman (74200) | Torres Transport",
+    metaDescription:
+      "Déménageur à Anthy-sur-Léman (74200), 2 200 habitants au bord du Léman. Village lacustre calme, résidences principales et secondaires. Devis 24h.",
+    keywords:
+      'déménageur Anthy-sur-Léman, déménagement Anthy 74200, déménageur Léman, déménageur 74200',
+
+    intro: `<strong>Anthy-sur-Léman</strong> est ce <strong>petit village lacustre</strong> de <strong>2 200 habitants</strong>, niché entre Sciez et Thonon, au bord du lac Léman. Cadre paisible, vues sur le lac, résidences cossues et hameaux préservés caractérisent la commune. À 26 km de notre base, nous intervenons pour les déménagements arrivée/départ d'Anthy : familles s'installant pour le cadre nature, retraités cherchant le calme, ou mouvements liés aux résidences secondaires.`,
+
+    pourquoiNous: `Anthy a une <strong>population stable</strong> avec un attachement fort à la commune — les déménagements ici sont souvent des moments importants (installation définitive après une vie active, agrandissement familial, transmission d'une propriété de famille). Notre approche est <strong>patiente et humaine</strong> : la visite technique gratuite chez vous, prise de temps pour comprendre vos meubles de valeur (souvent ancien, parfois transmis), protections renforcées au transport. Nous gérons également les arrivées de meubles d'occasion (très fréquentes en zone lacustre) avec montage si besoin.`,
+
+    quartiers: [
+      'Centre village',
+      'Anthy plage',
+      'Sechex',
+      'Margencel limitrophe',
+      'Les Granges',
+      'Le Devin',
+    ],
+
+    tarifs: {
+      studio: 'À partir de 510 €',
+      f2f3: 'À partir de 1 020 €',
+      maison: 'À partir de 1 980 €',
+      pro: 'Sur devis personnalisé',
+    },
+
+    villesVoisines: [
+      { nom: 'Sciez', slug: 'sciez' },
+      { nom: 'Thonon-les-Bains', slug: 'thonon-les-bains' },
+      { nom: 'Publier', slug: 'publier' },
+      { nom: 'Douvaine', slug: 'douvaine' },
+      { nom: 'Annemasse', slug: 'annemasse' },
+    ],
+
+    faq: [
+      {
+        question: 'Combien coûte un déménagement à Anthy-sur-Léman ?',
+        reponse:
+          "Comptez à partir de 510 € pour un studio, 1 020 € pour un F2/F3, 1 980 € pour une maison. Tarif lié à la distance (26 km). Devis ferme sous 24h après visite gratuite.",
+      },
+      {
+        question: 'Gérez-vous les meubles anciens ou de valeur ?',
+        reponse:
+          "Oui, c'est une spécialité — beaucoup de déménagements à Anthy concernent des familles avec mobilier ancien ou de valeur. Protections renforcées (couvertures, sangles, caisses sur mesure pour œuvres d'art), prise de temps au chargement, assurance ad valorem possible sur demande.",
+      },
+      {
+        question: 'Faites-vous le trajet Anthy-Thonon ou Anthy-Évian ?',
+        reponse:
+          "Oui, Anthy est à 6 km de Thonon et 16 km d'Évian. Ces trajets sont fréquents, notamment pour les seniors qui rejoignent une résidence à Thonon ou les familles qui agrandissent leur logement.",
+      },
+      {
+        question: 'Proposez-vous le tarif sénior à Anthy-sur-Léman ?',
+        reponse:
+          "Oui, automatiquement : −10% pour les seniors (65 ans et +) et personnes à mobilité réduite. Approche patiente, accompagnement humain, aide au tri si besoin avant le jour J.",
+      },
+      {
+        question: 'Délais d\'intervention à Anthy ?',
+        reponse:
+          "Sous 24-48 heures pour les urgences. Pour les déménagements planifiés, 2 à 4 semaines à l'avance idéalement. L'été est très sollicité — anticiper si possible.",
+      },
+    ],
+  },
+
+  // ------------------------------------------------------------------
+  // PUBLIER, station thermale Amphion-Léman (74500)
+  // ------------------------------------------------------------------
+  'publier': {
+    slug: 'publier',
+    nom: 'Publier',
+    codePostal: '74500',
+    departement: 'Haute-Savoie',
+    geo: { lat: 46.397, lng: 6.535 },
+    distanceKm: 32,
+    population: '7 000 habitants',
+    bannier: '/banner-transport.webp',
+
+    titreH1: 'Déménagement à Publier-Amphion (74500), porte du Pays d\'Évian',
+    metaTitle: "Déménageur Publier - Amphion-les-Bains (74500) | Torres Transport",
+    metaDescription:
+      "Déménageur à Publier (74500), commune de 7 000 habitants intégrant Amphion-les-Bains. Porte du Pays d'Évian, devis 24h.",
+    keywords:
+      'déménageur Publier, déménagement Publier 74500, déménageur Amphion-les-Bains, déménageur Pays Évian',
+
+    intro: `<strong>Publier</strong> est cette commune de <strong>7 000 habitants</strong> du <strong>Pays d'Évian</strong>, intégrant la station thermale historique d'<strong>Amphion-les-Bains</strong>. Située entre Thonon et Évian, à 32 km de notre base, elle combine plusieurs réalités : résidences principales de familles installées, résidences secondaires de séjour thermal, et appartements en bord de lac. Torres Transport accompagne les déménagements résidentiels sur Publier avec la même rigueur qu'en proximité immédiate d'Annemasse.`,
+
+    pourquoiNous: `Publier-Amphion a une <strong>identité particulière</strong> liée à son passé thermal — beaucoup de bâti ancien (villas Belle Époque, immeubles classés près des sources), couplé à un développement résidentiel récent en hauteur. Pour les déménagements, cela signifie souvent : <strong>escaliers, portes anciennes plus étroites, mobilier de valeur</strong>. Notre équipe adapte : démontage soigneux, protection renforcée du bâti, équipe complète sur place pour ne jamais bricoler dans l'urgence. À 32 km, le tarif inclut la distance — pas de surcoût caché.`,
+
+    quartiers: [
+      'Publier centre',
+      'Amphion-les-Bains',
+      'Le Port d\'Amphion',
+      'Tully',
+      'Pernod',
+      'Marclaz',
+    ],
+
+    tarifs: {
+      studio: 'À partir de 540 €',
+      f2f3: 'À partir de 1 080 €',
+      maison: 'À partir de 2 100 €',
+      pro: 'Sur devis personnalisé',
+    },
+
+    villesVoisines: [
+      { nom: 'Évian-les-Bains', slug: 'evian-les-bains' },
+      { nom: 'Thonon-les-Bains', slug: 'thonon-les-bains' },
+      { nom: 'Anthy-sur-Léman', slug: 'anthy-sur-leman' },
+      { nom: 'Sciez', slug: 'sciez' },
+      { nom: 'Annemasse', slug: 'annemasse' },
+    ],
+
+    faq: [
+      {
+        question: 'Combien coûte un déménagement à Publier ou Amphion-les-Bains ?',
+        reponse:
+          "Comptez à partir de 540 € pour un studio, 1 080 € pour un F2/F3, 2 100 € pour une maison. Tarif lié à la distance (32 km). Devis ferme sous 24h, visite gratuite préalable.",
+      },
+      {
+        question: 'Gérez-vous le bâti ancien d\'Amphion-les-Bains (villas, escaliers étroits) ?',
+        reponse:
+          "Oui, régulièrement. Les villas Belle Époque et immeubles anciens d'Amphion ont souvent des passages étroits ou des paliers exigus : nous utilisons des techniques de portage adaptées (sangles dorsales, démontage poussé du mobilier), avec protection renforcée des huisseries et plafonds.",
+      },
+      {
+        question: 'Faites-vous le trajet Publier vers Évian ou Thonon ?',
+        reponse:
+          "Oui, Publier est entre les deux : 4 km d'Évian, 6 km de Thonon. Ces trajets très courts sont fréquents — notamment pour des seniors qui passent d'une maison à un appartement en centre Évian, ou des familles qui rejoignent Publier pour le calme.",
+      },
+      {
+        question: 'Le Pays d\'Évian est loin pour vous : y a-t-il un surcoût ?',
+        reponse:
+          "Non. Notre tarif intègre la distance dès le devis initial — pas de surcoût caché en cours d'intervention. À 32 km, c'est dans notre rayon habituel de Chablais. Nous sommes aussi capables d'aller bien plus loin pour les longues distances (Lyon, Paris…).",
+      },
+      {
+        question: 'Quelle est la meilleure saison pour déménager à Publier ?',
+        reponse:
+          "Le Pays d'Évian est très demandé en été (juin-septembre) pour les locations saisonnières et résidences secondaires. Pour plus de souplesse et tarifs négociables, privilégier le printemps (avril-mai) ou l'automne (octobre-novembre).",
       },
     ],
   },
