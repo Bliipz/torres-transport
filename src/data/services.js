@@ -11,7 +11,7 @@ export const servicesData = {
       <p>Notre approche : pas de sous-traitance, pas de pression, devis ferme. Un acompte est demandé à la réservation pour bloquer votre date, le solde est réglé après la prestation à la livraison de vos biens.</p>
     `,
     details: [
-      "Déménagement résidentiel et professionnel",
+      "Déménagement résidentiel pour particuliers",
       "Emballage et protection de vos biens",
       "Démontage et remontage de meubles",
       "Intervention dans toute la France",
@@ -63,7 +63,7 @@ export const servicesData = {
     description: "Transport de marchandises, meubles et objets volumineux partout en France.",
     intro: `
       <p>Le transport simple est notre formule pour les clients qui ont déjà tout préparé eux-mêmes, emballé, démonté, prêt à charger, et qui veulent juste un camion + une équipe de manutention pour le trajet. Tarif environ <strong>30&nbsp;%</strong> moins cher qu'un déménagement complet, idéal pour les budgets serrés ou les transferts simples.</p>
-      <p><strong>Cas typiques&nbsp;:</strong> achat d'un meuble volumineux (canapé, frigo américain, armoire) à transporter du magasin (Centrakor, La Foir'Fouille, Locabox) à votre domicile&nbsp;; livraison entre deux particuliers (LeBonCoin, Vinted Pro)&nbsp;; transport d'objets professionnels (matériel de chantier, marchandises pour entreprises)&nbsp;; rapatriement d'affaires depuis un garde-meubles ou un local pro.</p>
+      <p><strong>Cas typiques&nbsp;:</strong> achat d'un meuble volumineux (canapé, frigo américain, armoire) à transporter du magasin (Centrakor, La Foir'Fouille, Locabox) à votre domicile&nbsp;; livraison entre deux particuliers (LeBonCoin, Vinted)&nbsp;; rapatriement d'affaires depuis un garde-meubles vers votre logement.</p>
       <p>Nous gérons aussi les <strong>longues distances</strong> : transport Annemasse vers Lyon, Grenoble, Paris, Marseille, devis avec coût km au-delà de la zone locale. Possibilité de groupage si plusieurs clients vont vers la même destination (économie supplémentaire).</p>
     `,
     details: [
@@ -117,7 +117,7 @@ export const servicesData = {
     icone: "♻️",
     image: "/services/debarras.webp",
     banner: "/banner-transport.webp",
-    description: "Débarras de caves, greniers, garages, appartements et locaux professionnels.",
+    description: "Débarras de caves, greniers, garages, appartements et maisons.",
     intro: `
       <p>Le débarras n'est jamais "juste" du débarras. C'est souvent une <strong>période compliquée</strong> qui se cache derrière&nbsp;: une succession à gérer après le décès d'un proche, un parent qui entre en EHPAD, un divorce qui impose de vider rapidement, un déménagement où il faut se séparer de meubles devenus inutiles. Notre approche tient compte de cette dimension humaine, pas de jugement, pas de pression, juste un travail efficace et discret.</p>
       <p><strong>Trois types de débarras&nbsp;:</strong></p>
@@ -132,7 +132,7 @@ export const servicesData = {
     `,
     details: [
       "Débarras complet ou partiel",
-      "Caves, greniers, garages, appartements, maisons, locaux pro",
+      "Caves, greniers, garages, appartements, maisons",
       "Tri 4 catégories : don, vente, recyclage, jeter",
       "Partenariats associations (Emmaüs, Croix-Rouge)",
       "Filières DEEE et REP respectées",

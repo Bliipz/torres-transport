@@ -38,8 +38,8 @@ export const serviceFaqs = {
       reponse: "Oui, Annemasse vers Lyon, Grenoble, Paris, Marseille. Devis avec coût km au-delà de la zone locale. Possibilité de groupage si plusieurs clients vont vers la même destination.",
     },
     {
-      question: "Acceptez-vous les transports professionnels (B2B) ?",
-      reponse: "Bien sûr. Nous transportons mobilier de bureau, archives, marchandises, matériel d'exposition. Facturation entreprise avec TVA, devis sous 24h.",
+      question: "Pouvez-vous faire un transport en groupage avec d'autres clients ?",
+      reponse: "Oui, si plusieurs clients particuliers vont vers la même destination dans une fenêtre de temps proche, on peut grouper le transport pour réduire les coûts. Économie pouvant aller jusqu'à -15% sur chaque devis.",
     },
     {
       question: "Pouvez-vous transporter un seul gros objet (canapé, frigo) ?",

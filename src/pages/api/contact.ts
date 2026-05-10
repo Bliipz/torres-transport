@@ -53,8 +53,6 @@ function buildDetailsHtml(service: string, fd: FormData): string {
       if (get('demontage') === 'on') rows.push(['Démontage / remontage', 'Oui']);
       if (get('debarras_opt') === 'on') rows.push(['Débarras / déchetterie', 'Oui']);
       if (service === 'transport') {
-        const tc = get('type_client');
-        if (tc) rows.push(['Type de client', tc === 'entreprise' ? 'Entreprise' : 'Particulier']);
         const objs = get('objets_transport');
         if (objs) rows.push(['Objets à transporter', objs]);
       }
@@ -77,7 +75,7 @@ function buildDetailsHtml(service: string, fd: FormData): string {
       if (lieu) {
         const map: Record<string, string> = {
           cave: 'Cave / grenier', appartement: 'Appartement',
-          maison: 'Maison', local: 'Local pro',
+          maison: 'Maison', garage: 'Garage / dépendance',
         };
         rows.push(['Type de lieu', map[lieu] || lieu]);
       }

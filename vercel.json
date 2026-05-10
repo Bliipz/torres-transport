@@ -33,7 +33,9 @@
     { "source": "/blog/demenagement-suisse-vers-france", "destination": "/blog", "permanent": true },
     { "source": "/blog/demenagement-suisse-vers-france/", "destination": "/blog", "permanent": true },
     { "source": "/blog/demenagement-etudiant-annemasse-geneve", "destination": "/blog", "permanent": true },
-    { "source": "/blog/demenagement-etudiant-annemasse-geneve/", "destination": "/blog", "permanent": true }
+    { "source": "/blog/demenagement-etudiant-annemasse-geneve/", "destination": "/blog", "permanent": true },
+    { "source": "/blog/demenagement-bureaux-entreprise-annemasse", "destination": "/blog", "permanent": true },
+    { "source": "/blog/demenagement-bureaux-entreprise-annemasse/", "destination": "/blog", "permanent": true }
   ],
   "headers": [
     {

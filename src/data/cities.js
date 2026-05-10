@@ -19,11 +19,11 @@ export const cities = {
     titreH1: 'Déménagement à Annemasse, Service complet en Haute-Savoie',
     metaTitle: "Déménageur Annemasse (74) | Devis Gratuit Torres Transport",
     metaDescription:
-      "Déménageur professionnel à Annemasse (74100). Service complet de déménagement résidentiel et professionnel par une équipe expérimentée. Devis gratuit en 24h. 20 ans d'expertise locale.",
+      "Déménageur professionnel à Annemasse (74100). Service complet de déménagement résidentiel pour particuliers par une équipe expérimentée. Devis gratuit en 24h. 20 ans d'expertise locale.",
     keywords:
       'déménageur Annemasse, déménagement Annemasse, entreprise déménagement Annemasse 74, déménageur 74100, prix déménagement Annemasse',
 
-    intro: `Vous cherchez un <strong>déménageur professionnel à Annemasse</strong> ? Torres Transport vous accompagne dans tous vos projets de déménagement résidentiel et professionnel sur Annemasse et son bassin. Forte de <strong>20 ans d'expérience</strong> dans le transport et la logistique en Haute-Savoie, notre équipe maîtrise parfaitement les spécificités locales : circulation dense en centre-ville, zones piétonnes, accès aux résidences hautes du Brouaz ou du Perrier, contraintes de stationnement aux abords du marché du Salève.`,
+    intro: `Vous cherchez un <strong>déménageur professionnel à Annemasse</strong> ? Torres Transport vous accompagne dans tous vos projets de déménagement résidentiel pour particuliers sur Annemasse et son bassin. Forte de <strong>20 ans d'expérience</strong> dans le transport et la logistique en Haute-Savoie, notre équipe maîtrise parfaitement les spécificités locales : circulation dense en centre-ville, zones piétonnes, accès aux résidences hautes du Brouaz ou du Perrier, contraintes de stationnement aux abords du marché du Salève.`,
 
     pourquoiNous: `Annemasse est une <strong>ville dynamique</strong> de 36 000 habitants en pleine expansion, avec des spécificités logistiques que seul un déménageur local connaît vraiment. Les nombreuses résidences neuves du quartier Chablais-Parc ou de la Zone d'Activités Mont-Blanc imposent une organisation millimétrée. Notre équipe basée à <strong>Ville-la-Grand</strong>, à seulement 2 km du centre d'Annemasse, intervient sous 24h. Nous connaissons chaque rue, chaque accès difficile, chaque parking utilisable pour stationner un camion sans gêner.`,
 
@@ -174,7 +174,7 @@ export const cities = {
     keywords:
       'déménageur Saint-Julien-en-Genevois, déménagement Saint-Julien 74160, entreprise déménagement Saint-Julien, déménageur 74160',
 
-    intro: `<strong>Saint-Julien-en-Genevois</strong> est une ville en pleine mutation, à 18 km d'Annemasse. Vitam, ZAE des Vignes Rouges, centre historique : Torres Transport intervient régulièrement à Saint-Julien pour des déménagements résidentiels et professionnels, en interne ou vers Annemasse et la Haute-Savoie. Notre connaissance des contraintes locales (rues étroites du centre, accès des résidences récentes) fait la différence.`,
+    intro: `<strong>Saint-Julien-en-Genevois</strong> est une ville en pleine mutation, à 18 km d'Annemasse. Vitam, ZAE des Vignes Rouges, centre historique : Torres Transport intervient régulièrement à Saint-Julien pour des déménagements résidentiel pour particuliers, en interne ou vers Annemasse et la Haute-Savoie. Notre connaissance des contraintes locales (rues étroites du centre, accès des résidences récentes) fait la différence.`,
 
     pourquoiNous: `Saint-Julien a une <strong>configuration mixte</strong> : un centre historique avec rues étroites où on intervient avec des camions de 12-15 m³, et des extensions résidentielles plus récentes (ZAE, lotissements) sur des voies larges adaptées aux 30 m³. Notre équipe choisit le bon véhicule selon le quartier. Pour les pics estivaux (juin-septembre), nous recommandons une réservation 3-4 semaines à l'avance.`,
 
@@ -235,11 +235,11 @@ export const cities = {
     titreH1: 'Déménagement à Gaillard (74240), Service de proximité',
     metaTitle: 'Déménageur Gaillard (74) | Torres Transport',
     metaDescription:
-      "Déménageur professionnel à Gaillard (74240), à 4 km de notre base. Intervention rapide pour particuliers et professionnels. Devis gratuit, 20 ans d'expérience.",
+      "Déménageur à Gaillard (74240), à 4 km de notre base. Intervention rapide pour particuliers. Devis gratuit, 20 ans d'expérience.",
     keywords:
       'déménageur Gaillard, déménagement Gaillard 74240, entreprise déménagement Gaillard, déménageur 74240',
 
-    intro: `<strong>Gaillard</strong> est une commune dynamique de 12 000 habitants, située à seulement 4 km de notre base de Ville-la-Grand. Torres Transport intervient quotidiennement à Gaillard pour des déménagements résidentiels et professionnels, que ce soit dans le quartier de la Gare, les résidences neuves de Mon Idée ou le centre historique.`,
+    intro: `<strong>Gaillard</strong> est une commune dynamique de 12 000 habitants, située à seulement 4 km de notre base de Ville-la-Grand. Torres Transport intervient quotidiennement à Gaillard pour des déménagements résidentiel pour particuliers, que ce soit dans le quartier de la Gare, les résidences neuves de Mon Idée ou le centre historique.`,
 
     pourquoiNous: `Gaillard a une <strong>pression résidentielle</strong> forte (rotation des locataires, beaucoup de programmes neufs). Notre équipe basée à seulement 5 minutes de route connaît parfaitement les rues de Gaillard et les accès aux résidences récentes du Bois-des-Frères. La proximité immédiate avec notre base limite les frais de déplacement.`,
 
@@ -450,9 +450,9 @@ export const cities = {
     keywords:
       'déménageur Bonneville, déménagement Bonneville 74130, déménageur vallée Arve, transport meubles Bonneville, déménagement Cluses',
 
-    intro: `<strong>Bonneville</strong>, sous-préfecture de Haute-Savoie, est la porte d'entrée de la vallée de l'Arve. Cette ville de 12 500 habitants concentre une <strong>activité industrielle importante</strong> (décolletage, mécanique de précision) et une population résidentielle stable. Torres Transport intervient à Bonneville (25 km de notre base) pour les déménagements résidentiels et le transport pour les entreprises locales.`,
+    intro: `<strong>Bonneville</strong>, sous-préfecture de Haute-Savoie, est la porte d'entrée de la vallée de l'Arve. Cette ville de 12 500 habitants attire une population résidentielle stable. Torres Transport intervient à Bonneville (25 km de notre base) pour les déménagements de particuliers, du studio à la maison familiale.`,
 
-    pourquoiNous: `Bonneville et la vallée de l'Arve ont une <strong>logistique particulière</strong> : axes routiers chargés (A40), zones d'activités étendues (Pré Lacombe, Pernand), proximité immédiate avec les communes industrielles environnantes (Cluses, Marnaz, Scionzier). Nous savons composer avec les contraintes de circulation en heure de pointe et avons l'expérience du transport pour les industries locales (mobilier de bureau, équipements légers, archives).`,
+    pourquoiNous: `Bonneville et la vallée de l'Arve ont une <strong>logistique particulière</strong> : axes routiers chargés (A40), proximité immédiate avec les communes environnantes (Cluses, Marnaz, Scionzier). Nous savons composer avec les contraintes de circulation en heure de pointe pour livrer les déménagements particuliers dans les meilleurs délais.`,
 
     quartiers: [
       'Centre-ville',
@@ -483,9 +483,9 @@ export const cities = {
           "Pour un déménagement à Bonneville, comptez à partir de 430 € pour un studio, 870 € pour un F2/F3, et 1 700 € pour une maison. Tarif intégrant les 25 km de trajet depuis Ville-la-Grand.",
       },
       {
-        question: "Faites-vous des transferts d'entreprise dans la vallée de l'Arve ?",
+        question: "Quels sont les délais d'intervention sur Bonneville ?",
         reponse:
-          "Oui, nous accompagnons régulièrement les entreprises de Bonneville et alentours (Cluses, Marnaz, Scionzier) dans leurs transferts de bureaux ou d'ateliers légers. Mobilier de bureau, archives, équipements informatiques.",
+          "Sous 24-48h pour les urgences. Pour les déménagements planifiés, nous recommandons une réservation 2 à 4 semaines à l'avance, surtout en haute saison juin-septembre.",
       },
       {
         question: "Combien de temps pour un déménagement Bonneville-Annemasse ?",
@@ -500,7 +500,7 @@ export const cities = {
       {
         question: 'Service débarras à Bonneville ?',
         reponse:
-          "Oui, débarras de caves, greniers, appartements et locaux professionnels à Bonneville et alentours. Tri sélectif, recyclage et dons aux associations locales du Faucigny.",
+          "Oui, débarras de caves, greniers, garages, appartements et maisons à Bonneville et alentours. Tri sélectif, recyclage et dons aux associations locales du Faucigny.",
       },
     ],
   },
@@ -521,7 +521,7 @@ export const cities = {
     titreH1: 'Déménagement à Annecy, Préfecture de Haute-Savoie',
     metaTitle: 'Déménageur Annecy (74) | Torres Transport Haute-Savoie',
     metaDescription:
-      "Déménageur professionnel à Annecy (74000). Préfecture de Haute-Savoie, ville en pleine croissance. Service complet déménagement résidentiel et professionnel. Devis gratuit.",
+      "Déménageur professionnel à Annecy (74000). Préfecture de Haute-Savoie, ville en pleine croissance. Service complet déménagement résidentiel pour particuliers. Devis gratuit.",
     keywords:
       'déménageur Annecy, déménagement Annecy 74000, entreprise déménagement Annecy, déménageur Haute-Savoie, transport meubles Annecy',
 
@@ -667,18 +667,17 @@ export const cities = {
     titreH1: 'Déménagement à Vétraz-Monthoux (74100), commune voisine d\'Annemasse',
     metaTitle: "Déménageur Vétraz-Monthoux (74100) | Torres Transport",
     metaDescription:
-      "Déménageur à Vétraz-Monthoux (74100), 7 400 habitants, limitrophe d'Annemasse. ZAE du Mésa, Le Genevray, quartier Brénaz. Base Ville-la-Grand à 3 km. Devis 24h.",
+      "Déménageur à Vétraz-Monthoux (74100), 7 400 habitants, limitrophe d'Annemasse. Le Genevray, Brénaz, Jaillet. Base Ville-la-Grand à 3 km. Devis 24h.",
     keywords:
-      'déménageur Vétraz-Monthoux, déménagement Vétraz-Monthoux 74100, déménageur Le Genevray, ZAE Mésa Vétraz, déménagement entre Annemasse Vétraz',
+      'déménageur Vétraz-Monthoux, déménagement Vétraz-Monthoux 74100, déménageur Le Genevray, déménagement entre Annemasse Vétraz, déménageur 74100',
 
-    intro: `<strong>Vétraz-Monthoux</strong> est une commune résidentielle de <strong>7 400 habitants</strong> directement collée à l'est d'Annemasse, et l'une des destinations préférées des familles qui veulent quitter le centre dense d'Annemasse pour une zone pavillonnaire calme. Pour Torres Transport, c'est un <strong>territoire quasi quotidien</strong> : nos camions y passent toutes les semaines pour des déménagements résidentiels, et la ZAE du Mésa concentre quelques transferts d'entreprises.`,
+    intro: `<strong>Vétraz-Monthoux</strong> est une commune résidentielle de <strong>7 400 habitants</strong> directement collée à l'est d'Annemasse, et l'une des destinations préférées des familles qui veulent quitter le centre dense d'Annemasse pour une zone pavillonnaire calme. Pour Torres Transport, c'est un <strong>territoire quasi quotidien</strong> : nos camions y passent toutes les semaines pour des déménagements résidentiels.`,
 
-    pourquoiNous: `Vétraz-Monthoux a une particularité : <strong>une grande majorité de pavillons individuels</strong> (Le Genevray, Brénaz, Mésa, Jaillet, Romagny côté Annemasse), donc des accès véhicules plutôt simples, des distances de portage modérées, et peu de problématiques d'ascenseur ou d'étages élevés. C'est l'inverse exact d'Annemasse-centre. La ZAE du Mésa concentre quant à elle des entreprises (BTP, services, garages), où les transferts pro nécessitent une logistique différente : weekend ou nocturne pour ne pas perturber l'activité, manutention de matériel lourd, parfois passages de palettes.`,
+    pourquoiNous: `Vétraz-Monthoux a une particularité : <strong>une grande majorité de pavillons individuels</strong> (Le Genevray, Brénaz, Jaillet, Romagny côté Annemasse), donc des accès véhicules plutôt simples, des distances de portage modérées, et peu de problématiques d'ascenseur ou d'étages élevés. C'est l'inverse exact d'Annemasse-centre. Idéal pour les déménagements de familles qui s'agrandissent.`,
 
     quartiers: [
       'Le Genevray',
       'Brénaz',
-      'Mésa (ZAE)',
       'Jaillet',
       'Romagny (limitrophe Annemasse)',
       'Centre village',
@@ -707,11 +706,6 @@ export const cities = {
         question: 'Quelles sont les contraintes de stationnement ?',
         reponse:
           "Vétraz-Monthoux est très facile vs Annemasse-centre : la majorité des biens disposent de parkings privés ou de rues larges. Aucune autorisation mairie nécessaire dans 90% des cas.",
-      },
-      {
-        question: 'Pouvez-vous gérer un transfert d\'entreprise dans la ZAE du Mésa ?',
-        reponse:
-          "Oui, c'est l'un de nos secteurs sur Vétraz. Pour les transferts pro (BTP, garages, services), nous travaillons en weekend ou nocturne pour ne pas couper l'activité. Manutention matériel lourd et palettes incluses.",
       },
       {
         question: 'Faites-vous Annemasse-Vétraz régulièrement ?',
@@ -815,7 +809,7 @@ export const cities = {
     keywords:
       'déménageur Ambilly, déménagement Ambilly 74100, déménageur Eaux-Vives, déménagement immeuble Ambilly, déménageur 74100',
 
-    intro: `<strong>Ambilly</strong> est cette petite commune dense de <strong>7 000 habitants</strong> directement collée à Annemasse, à 2 km de notre base. Petit territoire mais forte densité urbaine, beaucoup d'immeubles collectifs et de jeunes actifs. Torres Transport y déménage très régulièrement des familles, des jeunes actifs et quelques transferts d'entreprises.`,
+    intro: `<strong>Ambilly</strong> est cette petite commune dense de <strong>7 000 habitants</strong> directement collée à Annemasse, à 2 km de notre base. Petit territoire mais forte densité urbaine, beaucoup d'immeubles collectifs et de jeunes actifs. Torres Transport y déménage très régulièrement des familles et des jeunes actifs.`,
 
     pourquoiNous: `Ambilly est <strong>très dense</strong> par rapport à sa taille : peu de pavillons, beaucoup d'immeubles collectifs, des quartiers historiques (Centre, Eaux-Vives) et des secteurs plus récents (Mélézins). Cette densité urbaine impose des contraintes&nbsp;: rues étroites en centre, parkings limités, ascenseurs parfois petits. Notre équipe connaît ces particularités et planifie en conséquence : créneaux matinaux pour les rues piétonnes, demande d'autorisation municipale pour le stationnement temporaire si nécessaire.`,
 

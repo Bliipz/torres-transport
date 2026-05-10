@@ -19,8 +19,7 @@ export const ASCENSEUR_LABELS: Record<string, string> = {
 export const TYPE_LIEU_LABELS: Record<string, string> = {
   appartement: 'Appartement',
   maison: 'Maison',
-  local: 'Local commercial',
-  bureau: 'Bureau',
+  studio: 'Studio',
 };
 
 // Services qui exigent une adresse de départ valide
