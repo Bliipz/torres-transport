@@ -6,49 +6,55 @@
   "user_ratings_total": 48,
   "url": "https://www.google.com/maps?cid=12998640478300080962",
   "write_review_url": "https://www.google.com/maps?cid=12998640478300080962&action=writereview",
-  "fetched_at": "2026-05-10T16:00:00Z",
+  "fetched_at": "2026-05-10T20:30:00Z",
   "reviews": [
     {
-      "author_name": "Anne D.",
+      "author_name": "FMR",
       "rating": 5,
-      "text": "M. Torres est un bon professionnel, rapide, efficace et de bon conseil. J'ai apprécié sa collaboration. Manutention soignée, équipe à l'écoute. Je recommande sans hésiter.",
-      "relative_time_description": "il y a 4 mois",
-      "profile_photo_url": null
+      "text": "Notre club de pétanque a fait appel à cette société de transport et de déménagement pour le débarras d'encombrants, et nous sommes pleinement satisfaits. Le travail a été réalisé avec sérieux et soin, dans le respect total des lieux. L'équipe est ponctuelle, efficace et professionnelle, avec un grand respect du devis annoncé. Une prestation de qualité du début à la fin. Notre club est ravi et recommande vivement cette entreprise !",
+      "relative_time_description": "il y a 1 mois",
+      "profile_photo_url": null,
+      "is_local_guide": true
     },
     {
-      "author_name": "Christophe L.",
+      "author_name": "Maryline D'Anna",
       "rating": 5,
-      "text": "Des professionnels sérieux, efficaces et à l'écoute. Je recommande vivement Torres Transport. Déménagement fait dans les temps, mobilier protégé, équipe sympa. Tout simplement parfait.",
-      "relative_time_description": "il y a 2 mois",
-      "profile_photo_url": null
+      "text": "Nous remercions M. Torres pour son sérieux lors de notre récent déménagement. Prestation rapide et soignée avec un bon rapport qualité prix. Nous recommandons !!",
+      "relative_time_description": "il y a 1 mois",
+      "profile_photo_url": null,
+      "is_local_guide": false
     },
     {
-      "author_name": "Marie B.",
+      "author_name": "Benoit Garrigues",
       "rating": 5,
-      "text": "Travail sérieux, réactif suite à mes demandes et devis raisonnables. Très satisfaite, à bientôt pour mon prochain projet.",
+      "text": "Torres transport s'est occupé du déménagement de notre maison vers un appartement. Démontage des meubles, remontage, cartons et plus. Et tout ça dans la bonne humeur, je ne peux que recommander cette entreprise et je repasserai sans hésiter par eux si c'était à refaire. Merci :-)",
       "relative_time_description": "il y a 3 mois",
-      "profile_photo_url": null
+      "profile_photo_url": null,
+      "is_local_guide": true
     },
     {
-      "author_name": "Romain T.",
+      "author_name": "fanette gerard",
       "rating": 5,
-      "text": "Réactivité, soin des affaires, prix compétitif et connaissance du métier. Tout faire rentrer dans le camion : un art. Bravo à toute l'équipe et merci pour ce déménagement sans accroc.",
-      "relative_time_description": "il y a 8 mois",
-      "profile_photo_url": null
-    },
-    {
-      "author_name": "Sophie M.",
-      "rating": 5,
-      "text": "Déménagement transfrontalier Annemasse-Genève parfaitement géré. Formalités douanières prises en charge, aucun stress côté frontière. Équipe compétente et tarif honnête.",
+      "text": "Un grand merci pour la rapidité de réponse et la disponibilité pour chercher à trouver une solution rapide et adaptée à notre besoin de transport de meubles. C'est tellement précieux d'avoir un interlocuteur à l'écoute, qui s'est chargé de toutes les démarches pour nous et qui nous a fourni une prestation sans aucune fausse note. Rapidité, efficacité, rigueur, nous ne pouvons que recommander !",
       "relative_time_description": "il y a 5 mois",
-      "profile_photo_url": null
+      "profile_photo_url": null,
+      "is_local_guide": false
     },
     {
-      "author_name": "Jean-Marc P.",
+      "author_name": "julien",
       "rating": 5,
-      "text": "Déménagement de mon père en EHPAD géré avec une humanité rare. Patient, à l'écoute, respectueux. Tarif sénior appliqué automatiquement. Merci à Ludovic et son équipe.",
+      "text": "J'ai été ravi de la prestation pour mon déménagement. Prix, prestation, disponibilité, amabilité, c'était top ! Je recommande.",
       "relative_time_description": "il y a 6 mois",
-      "profile_photo_url": null
+      "profile_photo_url": null,
+      "is_local_guide": true
+    },
+    {
+      "author_name": "Kristin UV",
+      "rating": 5,
+      "text": "J'ai eu la chance d'être mise en contact avec Torres Transport pour un déménagement qui s'est déroulé de manière très professionnelle, avec une grande attention à mes meubles. L'équipe de Torres Transport était autant sympathique que consciencieuse. Je recommande chaleureusement !",
+      "relative_time_description": "il y a 8 mois",
+      "profile_photo_url": null,
+      "is_local_guide": true
     }
   ]
 }
