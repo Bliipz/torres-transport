@@ -172,6 +172,34 @@ const allSchemas = [serviceSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema]
     </div>
   </section>
 
+  <!-- ==================== VISITE TECHNIQUE ==================== -->
+  <section class="section bg-black visite-section">
+    <div class="container container-narrow">
+      <header class="section-header section-header-light text-center">
+        <span class="eyebrow">Notre méthode</span>
+        <h2 style="color: var(--white);">Une visite gratuite<br /><em style="color: var(--gold);">avant tout devis.</em></h2>
+        <p class="lead" style="color: rgba(255,255,255,0.75); max-width: 720px; margin: 1.5rem auto 0;">
+          Aucun devis sérieux ne se fait par téléphone ou par formulaire seul.
+          Avant de chiffrer votre projet, <strong style="color: var(--white);">Ludovic se déplace chez vous</strong>,
+          fait le tour du logement, vérifie les accès, écoute vos besoins. C'est gratuit,
+          sans engagement, et c'est ce qui permet d'établir un devis juste et précis.
+        </p>
+      </header>
+
+      <ul class="visite-list">
+        <li><strong>Tour complet du logement</strong> — pour estimer le volume au m³ près</li>
+        <li><strong>Vérification des accès</strong> — escaliers, ascenseur, stationnement, monte-meuble si besoin</li>
+        <li><strong>Identification des contraintes</strong> — objets fragiles, animaux, enfants, date imposée</li>
+        <li><strong>Discussion sur vos besoins</strong> — emballage, démontage, options sur mesure</li>
+        <li><strong>Mise en confiance</strong> — vous parlez directement à celui qui sera là le jour J</li>
+      </ul>
+
+      <div style="text-align: center; margin-top: 2.5rem;">
+        <a href="/contact" class="btn btn-gold btn-large btn-with-arrow">Planifier ma visite gratuite</a>
+      </div>
+    </div>
+  </section>
+
   <section class="section partners-section">
     <div class="container">
       <div class="partners-header">
@@ -491,6 +519,36 @@ const allSchemas = [serviceSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema]
   .faq-item[open] .faq-icon::after { transform: translateY(-50%) rotate(0deg); }
   .faq-answer { padding: 0 1.6rem 1.4rem; color: var(--gray-800); line-height: 1.7; }
   .faq-answer p { margin: 0; font-size: 0.98rem; }
+
+  /* VISITE TECHNIQUE */
+  .visite-section { padding: clamp(4rem, 7vw, 6rem) 0; }
+  .visite-list {
+    list-style: none;
+    padding: 0;
+    margin: 3rem auto 0;
+    max-width: 720px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .visite-list li {
+    color: rgba(255, 255, 255, 0.88);
+    font-size: 1rem;
+    line-height: 1.7;
+    padding: 1rem 1.25rem 1rem 2.5rem;
+    background: rgba(255, 255, 255, 0.04);
+    border-left: 3px solid var(--gold);
+    position: relative;
+  }
+  .visite-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    color: var(--gold);
+    font-weight: 700;
+  }
+  .visite-list strong { color: var(--white); font-weight: 600; }
 
   @media (max-width: 800px) {
     .intro-grid, .details-grid { grid-template-columns: 1fr; }
