@@ -711,15 +711,24 @@ const allSchemas = [serviceSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema]
   }
 
   /* ==================== RESPONSIVE ==================== */
+  @media (max-width: 1024px) {
+    .service-cities {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .service-cities li:nth-child(3n) { border-right: 1px solid var(--border); }
+    .service-cities li:nth-child(2n) { border-right: none; }
+  }
   @media (max-width: 800px) {
     .details-grid {
       grid-template-columns: 1fr;
     }
+  }
+  @media (max-width: 640px) {
     .service-cities {
       grid-template-columns: 1fr;
     }
-    .service-cities li {
-      border-right: none;
-    }
+    .service-cities li,
+    .service-cities li:nth-child(3n),
+    .service-cities li:nth-child(2n) { border-right: none; }
   }
 </style>

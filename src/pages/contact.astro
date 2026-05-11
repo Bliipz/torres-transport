@@ -305,7 +305,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     padding: clamp(5rem, 10vw, 8rem) 0 clamp(3rem, 5vw, 4rem);
     border-bottom: 1px solid var(--border);
     margin-top: -76px;
-    padding-top: 9rem;
+    padding-top: clamp(6rem, 12vw, 9rem);
   }
 
   .breadcrumb {
@@ -635,9 +635,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     .why-grid { grid-template-columns: 1fr 1fr; }
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 768px) {
     .form-row { grid-template-columns: 1fr; }
     .form-group-half { max-width: 100%; }
+  }
+
+  @media (max-width: 600px) {
     .why-grid { grid-template-columns: 1fr; }
   }
 </style>

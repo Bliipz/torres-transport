@@ -867,13 +867,19 @@ const breadcrumbSchema = {
     .pourquoi-grid { grid-template-columns: 1fr; gap: 2.5rem; }
     .tarifs-grid { grid-template-columns: 1fr 1fr; }
     .services-locale-grid { grid-template-columns: 1fr; }
+    .hero-meta-item { min-width: 0; flex: 1 1 140px; padding: 1rem 1.25rem 1rem 0; }
     .hero-meta-item:not(:last-child) { border-right: none; padding-right: 0; margin-right: 0; }
     .ville-articles-grid { grid-template-columns: 1fr; }
+    .faq-item summary { gap: 1rem; padding: 1.25rem 1rem; }
+    .faq-item[open] summary { padding: 1.25rem 1rem; }
+    .faq-answer { padding: 0 1rem 1.25rem; }
+    .faq-item[open] .faq-answer { padding: 0 1rem 1.25rem; }
   }
 
   @media (max-width: 600px) {
     .tarifs-grid { grid-template-columns: 1fr; }
     .quartiers-grid { grid-template-columns: 1fr; }
     .voisines-grid { grid-template-columns: 1fr; }
+    .hero-meta { gap: 0.5rem 1.5rem; }
   }
 </style>

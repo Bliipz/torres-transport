@@ -237,7 +237,7 @@ const stats = [
     padding: clamp(5rem, 10vw, 8rem) 0 clamp(3rem, 5vw, 4rem);
     border-bottom: 1px solid var(--border);
     margin-top: -76px;
-    padding-top: 9rem;
+    padding-top: clamp(6rem, 12vw, 9rem);
   }
   .breadcrumb {
     font-size: 0.78rem;
@@ -486,6 +486,6 @@ const stats = [
     .stats-grid { grid-template-columns: repeat(2, 1fr); }
     .disclaimer-card { grid-template-columns: 1fr; gap: 1.5rem; }
     .t-meta { grid-template-columns: 40px 1fr; }
-    .t-service { grid-column: 1 / -1; align-self: start; justify-self: start; }
+    .t-service { grid-column: 1 / -1; align-self: start; justify-self: start; margin-top: 0.5rem; }
   }
 </style>

@@ -409,7 +409,8 @@ const allSchemas = [serviceSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema]
   .partner-logo:hover img { filter: grayscale(0%); opacity: 1; }
 
   @media (max-width: 600px) {
-    .partner-logo img { min-width: 560px; }
+    .partner-logo { overflow-x: hidden; }
+    .partner-logo img { min-width: 0; width: 100%; }
   }
 
   /* ==================== ZONES MAILLAGE ==================== */
@@ -447,9 +448,16 @@ const allSchemas = [serviceSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema]
   .city-cp { font-size: 0.78rem; color: var(--gray-500); letter-spacing: 0.05em; }
   .service-zones-footer { margin-top: 2.5rem; text-align: center; }
 
-  @media (max-width: 800px) {
+  @media (max-width: 1024px) {
+    .service-cities { grid-template-columns: repeat(2, 1fr); }
+    .service-cities li:nth-child(3n) { border-right: 1px solid var(--border); }
+    .service-cities li:nth-child(2n) { border-right: none; }
+  }
+  @media (max-width: 640px) {
     .service-cities { grid-template-columns: 1fr; }
-    .service-cities li { border-right: none; }
+    .service-cities li,
+    .service-cities li:nth-child(3n),
+    .service-cities li:nth-child(2n) { border-right: none; }
   }
 
   .cta-final { text-align: center; }
@@ -559,8 +567,15 @@ const allSchemas = [serviceSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema]
   }
   .visite-list strong { color: var(--white); font-weight: 600; }
 
+  @media (max-width: 1024px) {
+    .details-grid { grid-template-columns: 1fr; }
+  }
   @media (max-width: 800px) {
-    .intro-grid, .details-grid { grid-template-columns: 1fr; }
+    .intro-grid { grid-template-columns: 1fr; }
     .intro-stats { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 640px) {
+    .visite-list li { padding: 0.85rem 1rem 0.85rem 2rem; font-size: 0.95rem; }
+    .visite-list li::before { left: 0.65rem; top: 0.85rem; }
   }
 </style>

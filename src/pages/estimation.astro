@@ -798,7 +798,7 @@ const services = [
     padding: clamp(5rem, 10vw, 8rem) 0 clamp(3rem, 5vw, 4rem);
     border-bottom: 1px solid var(--border);
     margin-top: -76px;
-    padding-top: 9rem;
+    padding-top: clamp(6rem, 12vw, 9rem);
   }
   .breadcrumb {
     font-size: 0.78rem;
@@ -1161,11 +1161,19 @@ const services = [
     overflow: hidden;
     text-overflow: ellipsis;
   }
+  @media (max-width: 800px) {
+    .address-fields {
+      grid-template-columns: 1fr 100px;
+      gap: 0.5rem;
+    }
+    .address-fields > :nth-child(1) { grid-column: 1 / -1; }
+  }
   @media (max-width: 600px) {
     .address-fields {
       grid-template-columns: 1fr;
       gap: 0.5rem;
     }
+    .address-fields > :nth-child(1) { grid-column: auto; }
   }
   input.is-invalid {
     border-color: #c92a2a !important;
@@ -1430,17 +1438,21 @@ const services = [
   .info-card p { font-size: 0.92rem; line-height: 1.7; color: var(--gray-700); }
 
   /* RESPONSIVE */
-  @media (max-width: 960px) {
+  @media (max-width: 1024px) {
     .estim-grid { grid-template-columns: 1fr; gap: 2rem; }
     .estim-result { position: static; order: -1; }
     .info-grid { grid-template-columns: 1fr; gap: 2rem; }
+  }
+  @media (max-width: 600px) {
     .service-picker { grid-template-columns: 1fr; }
   }
 
-  @media (max-width: 600px) {
-    .volume-presets { grid-template-columns: repeat(3, 1fr); }
+  @media (max-width: 768px) {
     .volume-control { flex-direction: column; align-items: stretch; gap: 1rem; }
     .volume-value { justify-content: center; }
+  }
+  @media (max-width: 600px) {
+    .volume-presets { grid-template-columns: repeat(3, 1fr); }
     .price-value { font-size: 2.6rem; }
     .form-row { flex-direction: column; }
   }
