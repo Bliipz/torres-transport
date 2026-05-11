@@ -1365,7 +1365,7 @@ export const cities = {
       {
         question: 'Intervenez-vous dans les nouveaux lotissements de Douvaine ?',
         reponse:
-          "Bien sûr — les zones récentes comme Champs-Plottons, Le Crêt, Les Hutins font partie de nos interventions habituelles. Accès véhicule en général facile, garages, parkings privatifs : conditions idéales pour un déménagement rapide.",
+          "Bien sûr, les zones récentes comme Champs-Plottons, Le Crêt, Les Hutins font partie de nos interventions habituelles. Accès véhicule en général facile, garages, parkings privatifs : conditions idéales pour un déménagement rapide.",
       },
       {
         question: 'Y a-t-il des frais supplémentaires pour Douvaine ?',
@@ -1475,7 +1475,7 @@ export const cities = {
 
     intro: `<strong>Anthy-sur-Léman</strong> est ce <strong>petit village lacustre</strong> de <strong>2 200 habitants</strong>, niché entre Sciez et Thonon, au bord du lac Léman. Cadre paisible, vues sur le lac, résidences cossues et hameaux préservés caractérisent la commune. À 26 km de notre base, nous intervenons pour les déménagements arrivée/départ d'Anthy : familles s'installant pour le cadre nature, retraités cherchant le calme, ou mouvements liés aux résidences secondaires.`,
 
-    pourquoiNous: `Anthy a une <strong>population stable</strong> avec un attachement fort à la commune — les déménagements ici sont souvent des moments importants (installation définitive après une vie active, agrandissement familial, transmission d'une propriété de famille). Notre approche est <strong>patiente et humaine</strong> : la visite technique gratuite chez vous, prise de temps pour comprendre vos meubles de valeur (souvent ancien, parfois transmis), protections renforcées au transport. Nous gérons également les arrivées de meubles d'occasion (très fréquentes en zone lacustre) avec montage si besoin.`,
+    pourquoiNous: `Anthy a une <strong>population stable</strong> avec un attachement fort à la commune, les déménagements ici sont souvent des moments importants (installation définitive après une vie active, agrandissement familial, transmission d'une propriété de famille). Notre approche est <strong>patiente et humaine</strong> : la visite technique gratuite chez vous, prise de temps pour comprendre vos meubles de valeur (souvent ancien, parfois transmis), protections renforcées au transport. Nous gérons également les arrivées de meubles d'occasion (très fréquentes en zone lacustre) avec montage si besoin.`,
 
     quartiers: [
       'Centre village',
@@ -1510,7 +1510,7 @@ export const cities = {
       {
         question: 'Gérez-vous les meubles anciens ou de valeur ?',
         reponse:
-          "Oui, c'est une spécialité — beaucoup de déménagements à Anthy concernent des familles avec mobilier ancien ou de valeur. Protections renforcées (couvertures, sangles, caisses sur mesure pour œuvres d'art), prise de temps au chargement, assurance ad valorem possible sur demande.",
+          "Oui, c'est une spécialité, beaucoup de déménagements à Anthy concernent des familles avec mobilier ancien ou de valeur. Protections renforcées (couvertures, sangles, caisses sur mesure pour œuvres d'art), prise de temps au chargement, assurance ad valorem possible sur demande.",
       },
       {
         question: 'Faites-vous le trajet Anthy-Thonon ou Anthy-Évian ?',
@@ -1525,7 +1525,7 @@ export const cities = {
       {
         question: 'Délais d\'intervention à Anthy ?',
         reponse:
-          "Sous 24-48 heures pour les urgences. Pour les déménagements planifiés, 2 à 4 semaines à l'avance idéalement. L'été est très sollicité — anticiper si possible.",
+          "Sous 24-48 heures pour les urgences. Pour les déménagements planifiés, 2 à 4 semaines à l'avance idéalement. L'été est très sollicité, anticiper si possible.",
       },
     ],
   },
@@ -1552,7 +1552,7 @@ export const cities = {
 
     intro: `<strong>Publier</strong> est cette commune de <strong>7 000 habitants</strong> du <strong>Pays d'Évian</strong>, intégrant la station thermale historique d'<strong>Amphion-les-Bains</strong>. Située entre Thonon et Évian, à 32 km de notre base, elle combine plusieurs réalités : résidences principales de familles installées, résidences secondaires de séjour thermal, et appartements en bord de lac. Torres Transport accompagne les déménagements résidentiels sur Publier avec la même rigueur qu'en proximité immédiate d'Annemasse.`,
 
-    pourquoiNous: `Publier-Amphion a une <strong>identité particulière</strong> liée à son passé thermal — beaucoup de bâti ancien (villas Belle Époque, immeubles classés près des sources), couplé à un développement résidentiel récent en hauteur. Pour les déménagements, cela signifie souvent : <strong>escaliers, portes anciennes plus étroites, mobilier de valeur</strong>. Notre équipe adapte : démontage soigneux, protection renforcée du bâti, équipe complète sur place pour ne jamais bricoler dans l'urgence. À 32 km, le tarif inclut la distance — pas de surcoût caché.`,
+    pourquoiNous: `Publier-Amphion a une <strong>identité particulière</strong> liée à son passé thermal, beaucoup de bâti ancien (villas Belle Époque, immeubles classés près des sources), couplé à un développement résidentiel récent en hauteur. Pour les déménagements, cela signifie souvent : <strong>escaliers, portes anciennes plus étroites, mobilier de valeur</strong>. Notre équipe adapte : démontage soigneux, protection renforcée du bâti, équipe complète sur place pour ne jamais bricoler dans l'urgence. À 32 km, le tarif inclut la distance, pas de surcoût caché.`,
 
     quartiers: [
       'Publier centre',
@@ -1592,12 +1592,12 @@ export const cities = {
       {
         question: 'Faites-vous le trajet Publier vers Évian ou Thonon ?',
         reponse:
-          "Oui, Publier est entre les deux : 4 km d'Évian, 6 km de Thonon. Ces trajets très courts sont fréquents — notamment pour des seniors qui passent d'une maison à un appartement en centre Évian, ou des familles qui rejoignent Publier pour le calme.",
+          "Oui, Publier est entre les deux : 4 km d'Évian, 6 km de Thonon. Ces trajets très courts sont fréquents, notamment pour des seniors qui passent d'une maison à un appartement en centre Évian, ou des familles qui rejoignent Publier pour le calme.",
       },
       {
         question: 'Le Pays d\'Évian est loin pour vous : y a-t-il un surcoût ?',
         reponse:
-          "Non. Notre tarif intègre la distance dès le devis initial — pas de surcoût caché en cours d'intervention. À 32 km, c'est dans notre rayon habituel de Chablais. Nous sommes aussi capables d'aller bien plus loin pour les longues distances (Lyon, Paris…).",
+          "Non. Notre tarif intègre la distance dès le devis initial, pas de surcoût caché en cours d'intervention. À 32 km, c'est dans notre rayon habituel de Chablais. Nous sommes aussi capables d'aller bien plus loin pour les longues distances (Lyon, Paris…).",
       },
       {
         question: 'Quelle est la meilleure saison pour déménager à Publier ?',

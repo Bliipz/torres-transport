@@ -119,7 +119,7 @@ export const serviceFaqs = {
     },
     {
       question: "Mes biens sont-ils assurés dans votre garde-meuble ?",
-      reponse: "Oui, notre assurance responsabilité civile professionnelle (contrat n° 149 572 243) couvre les dommages causés par notre fait. Pour une couverture étendue (vol, incendie, dégât des eaux), nous recommandons d'étendre votre assurance habitation au stockage temporaire — démarche simple chez votre assureur.",
+      reponse: "Oui, notre assurance responsabilité civile professionnelle (contrat n° 149 572 243) couvre les dommages causés par notre fait. Pour une couverture étendue (vol, incendie, dégât des eaux), nous recommandons d'étendre votre assurance habitation au stockage temporaire, démarche simple chez votre assureur.",
     },
     {
       question: "Pour combien de temps minimum / maximum peut-on louer ?",

@@ -83,7 +83,7 @@ function buildDetailsHtml(service: string, fd: FormData): string {
     }
   }
 
-  // Adresses (commun) — reconstituées depuis les 3 champs séparés
+  // Adresses (commun), reconstituées depuis les 3 champs séparés
   const addrDepart = buildAddress(get('rue_depart'), get('cp_depart'), get('ville_depart'));
   if (addrDepart) {
     const typeLabel = TYPE_LIEU_LABELS[get('type_depart')] || '';
