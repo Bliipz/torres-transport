@@ -77,6 +77,29 @@ const inclus = [
   "Premier mois offert si combiné avec déménagement",
 ];
 
+const partenaires = [
+  {
+    nom: "Locabox",
+    role: "Self-stockage Annemasse",
+    desc: "Pour les besoins de stockage longue durée ou les volumes qui dépassent notre capacité, nous collaborons avec Locabox, opérateur reconnu sur Annemasse. Vous bénéficiez de notre coordination logistique et d'un réseau étendu.",
+  },
+  {
+    nom: "Resa Box 74",
+    role: "Box de stockage Haute-Savoie",
+    desc: "Partenaire local de référence pour le self-stockage sur le bassin annemassien. Solution complémentaire pour les box spécifiques (extérieur véhicules, grands volumes >40 m³).",
+  },
+  {
+    nom: "Centrakor",
+    role: "Fournitures de protection",
+    desc: "Pour les cartons renforcés, papier bulle, housses matelas et matériel de calage, nous travaillons avec le réseau Centrakor d'Annemasse. Approvisionnement rapide et tarifs négociés.",
+  },
+  {
+    nom: "La Foir'Fouille",
+    role: "Emballages et accessoires",
+    desc: "Cartons standards, sangles, plastiques de protection : notre partenaire pour les fournitures d'appoint à proximité immédiate de notre base de Ville-la-Grand.",
+  },
+];
+
 const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
@@ -270,6 +293,50 @@ const allSchemas = [serviceSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema]
           <li>{i}</li>
         ))}
       </ul>
+    </div>
+  </section>
+
+  <!-- ==================== PARTENAIRES ==================== -->
+  <section class="section partners-section">
+    <div class="container">
+      <header class="section-header">
+        <span class="eyebrow gold">Notre écosystème</span>
+        <h2>Nos partenaires locaux,<br /><em>un réseau au service du stockage.</em></h2>
+        <p class="section-intro">
+          Le garde-meuble s'inscrit dans un écosystème. Pour offrir le meilleur service à
+          Annemasse et en Haute-Savoie, nous collaborons avec des acteurs locaux reconnus,
+          chacun expert dans son domaine.
+        </p>
+      </header>
+
+      <div class="partners-banner">
+        <img
+          src="/partners/partenaires.webp"
+          alt="Partenaires Torres Transport : Locabox, Resa Box 74, Centrakor, La Foir'Fouille"
+          width="1888"
+          height="342"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+
+      <div class="partners-detail-grid">
+        {partenaires.map((p) => (
+          <article class="partner-detail">
+            <header class="partner-detail-head">
+              <h3>{p.nom}</h3>
+              <span class="partner-role">{p.role}</span>
+            </header>
+            <p>{p.desc}</p>
+          </article>
+        ))}
+      </div>
+
+      <p class="partners-note">
+        Tous nos partenaires sont implantés sur le bassin annemassien ou en Haute-Savoie.
+        Nous priorisons le tissu économique local : circuit court, réactivité, soutien
+        au commerce de proximité.
+      </p>
     </div>
   </section>
 
@@ -596,5 +663,78 @@ const allSchemas = [serviceSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema]
     gap: 1rem;
     justify-content: center;
     flex-wrap: wrap;
+  }
+
+  /* ==================== PARTENAIRES ==================== */
+  .partners-section { background: var(--off-white); }
+
+  .partners-banner {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto 3rem;
+    max-width: 900px;
+  }
+  .partners-banner img {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    filter: grayscale(100%);
+    opacity: 0.55;
+    transition: all 0.3s var(--ease-smooth);
+  }
+  .partners-banner:hover img { filter: grayscale(0%); opacity: 1; }
+
+  .partners-detail-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--border-strong);
+    border-left: 1px solid var(--border-strong);
+    margin-bottom: 2.5rem;
+  }
+  .partner-detail {
+    padding: 2rem;
+    border-right: 1px solid var(--border-strong);
+    border-bottom: 1px solid var(--border-strong);
+    background: var(--white);
+  }
+  .partner-detail-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+  }
+  .partner-detail h3 {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    margin: 0;
+    color: var(--black);
+  }
+  .partner-role {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--gold-deep);
+    font-weight: 600;
+  }
+  .partner-detail p {
+    color: var(--gray-700, #404040);
+    font-size: 0.95rem;
+    line-height: 1.65;
+    margin: 0;
+  }
+  .partners-note {
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--gray-600);
+    font-style: italic;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 768px) {
+    .partners-detail-grid { grid-template-columns: 1fr; }
+    .partner-detail-head { flex-direction: column; align-items: flex-start; gap: 0.25rem; }
   }
 </style>
