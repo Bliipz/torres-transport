@@ -666,13 +666,17 @@ const allSchemas = [serviceSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema]
   }
 
   /* ==================== PARTENAIRES ==================== */
-  .partners-section { background: var(--off-white); }
+  .partners-section {
+    background: var(--off-white);
+    padding: clamp(5rem, 8vw, 7rem) 0;
+  }
 
   .partners-banner {
     display: flex;
     justify-content: center;
-    margin: 0 auto 3rem;
-    max-width: 900px;
+    margin: 1rem auto 5rem;
+    max-width: 1200px;
+    padding: 0 1rem;
   }
   .partners-banner img {
     max-width: 100%;
@@ -690,7 +694,8 @@ const allSchemas = [serviceSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema]
     gap: 0;
     border-top: 1px solid var(--border-strong);
     border-left: 1px solid var(--border-strong);
-    margin-bottom: 2.5rem;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
   }
   .partner-detail {
     padding: 2rem;
