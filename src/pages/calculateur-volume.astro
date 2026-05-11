@@ -1,0 +1,973 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const SITE_URL = 'https://torrestransport.fr';
+const pageURL = `${SITE_URL}/calculateur-volume`;
+
+// Pièces et items du calculateur, avec m³ moyens par catégorie
+const pieces = [
+  {
+    id: 'salon',
+    nom: 'Salon / Séjour',
+    items: [
+      { id: 'canape-2p', label: 'Canapé 2 places', m3: 1.2 },
+      { id: 'canape-3p', label: 'Canapé 3 places', m3: 1.8 },
+      { id: 'canape-angle', label: "Canapé d'angle", m3: 2.5 },
+      { id: 'fauteuil', label: 'Fauteuil', m3: 0.7 },
+      { id: 'table-basse', label: 'Table basse', m3: 0.4 },
+      { id: 'meuble-tv', label: 'Meuble TV', m3: 0.6 },
+      { id: 'bibliotheque', label: 'Bibliothèque', m3: 1.2 },
+      { id: 'tv-grand-ecran', label: 'TV grand écran (>55")', m3: 0.3 },
+      { id: 'tapis', label: 'Tapis roulé', m3: 0.2 },
+    ],
+  },
+  {
+    id: 'cuisine',
+    nom: 'Cuisine',
+    items: [
+      { id: 'frigo', label: 'Réfrigérateur', m3: 0.8 },
+      { id: 'congelateur', label: 'Congélateur', m3: 0.7 },
+      { id: 'lave-vaisselle', label: 'Lave-vaisselle', m3: 0.4 },
+      { id: 'four', label: 'Four', m3: 0.3 },
+      { id: 'micro-ondes', label: 'Micro-ondes', m3: 0.1 },
+      { id: 'table-cuisine', label: 'Table de cuisine', m3: 0.6 },
+      { id: 'chaise', label: 'Chaise (par unité)', m3: 0.15 },
+      { id: 'meuble-cuisine', label: 'Meuble haut/bas autonome', m3: 0.5 },
+      { id: 'petit-electromenager', label: 'Petit électroménager (lot)', m3: 0.3 },
+    ],
+  },
+  {
+    id: 'chambre',
+    nom: 'Chambre',
+    items: [
+      { id: 'lit-1p', label: 'Lit 1 place + matelas', m3: 1.5 },
+      { id: 'lit-2p', label: 'Lit 2 places + matelas', m3: 2.3 },
+      { id: 'sommier', label: 'Sommier', m3: 0.7 },
+      { id: 'armoire-2p', label: 'Armoire 2 portes', m3: 1.5 },
+      { id: 'armoire-3p', label: 'Armoire 3 portes', m3: 2.2 },
+      { id: 'commode', label: 'Commode', m3: 0.6 },
+      { id: 'table-chevet', label: 'Table de chevet', m3: 0.15 },
+      { id: 'bureau-chambre', label: 'Bureau', m3: 0.8 },
+      { id: 'penderie', label: 'Penderie autonome', m3: 1.0 },
+    ],
+  },
+  {
+    id: 'salle-bain',
+    nom: 'Salle de bain',
+    items: [
+      { id: 'lave-linge', label: 'Lave-linge', m3: 0.45 },
+      { id: 'seche-linge', label: 'Sèche-linge', m3: 0.45 },
+      { id: 'meuble-vasque', label: 'Meuble vasque', m3: 0.5 },
+      { id: 'colonne-rangement', label: 'Colonne de rangement', m3: 0.4 },
+      { id: 'panier-linge', label: 'Panier à linge', m3: 0.1 },
+    ],
+  },
+  {
+    id: 'bureau',
+    nom: 'Bureau',
+    items: [
+      { id: 'bureau', label: 'Bureau standard', m3: 0.7 },
+      { id: 'chaise-bureau', label: 'Chaise de bureau', m3: 0.3 },
+      { id: 'caisson', label: 'Caisson', m3: 0.3 },
+      { id: 'etagere', label: 'Étagère', m3: 0.5 },
+      { id: 'ecran-pc', label: 'Écran PC', m3: 0.1 },
+      { id: 'unite-centrale', label: 'Unité centrale', m3: 0.15 },
+    ],
+  },
+  {
+    id: 'exterieur',
+    nom: 'Extérieur / Cave / Garage',
+    items: [
+      { id: 'velo', label: 'Vélo', m3: 0.6 },
+      { id: 'velo-electrique', label: 'Vélo électrique', m3: 0.8 },
+      { id: 'salon-jardin', label: 'Salon de jardin (lot)', m3: 1.8 },
+      { id: 'barbecue', label: 'Barbecue', m3: 0.5 },
+      { id: 'tondeuse', label: 'Tondeuse', m3: 0.4 },
+      { id: 'outillage', label: 'Caisses outillage (lot)', m3: 0.6 },
+      { id: 'echelle', label: 'Échelle', m3: 0.3 },
+      { id: 'piano-droit', label: 'Piano droit', m3: 1.5 },
+    ],
+  },
+  {
+    id: 'cartons',
+    nom: 'Cartons',
+    items: [
+      { id: 'carton-standard', label: 'Carton standard (par unité)', m3: 0.06 },
+      { id: 'carton-livre', label: 'Carton livres/lourd (par unité)', m3: 0.05 },
+      { id: 'carton-penderie', label: 'Carton penderie (par unité)', m3: 0.25 },
+      { id: 'carton-vaisselle', label: 'Carton vaisselle (par unité)', m3: 0.07 },
+    ],
+  },
+];
+
+// Tableau de conversion type de logement
+const correspondances = [
+  { type: 'Studio', surface: '< 30 m²', volume: '12 à 18 m³', prix: '570 à 855 €' },
+  { type: 'T2', surface: '30 à 50 m²', volume: '20 à 30 m³', prix: '950 à 1 425 €' },
+  { type: 'T3', surface: '50 à 75 m²', volume: '30 à 45 m³', prix: '1 425 à 2 140 €' },
+  { type: 'T4', surface: '75 à 100 m²', volume: '45 à 60 m³', prix: '2 140 à 2 850 €' },
+  { type: 'Maison F5+', surface: '> 100 m²', volume: '60 à 100 m³', prix: '2 850 à 4 750 €' },
+];
+
+const faqs = [
+  {
+    q: "Comment calculer précisément le volume de mon déménagement ?",
+    r: `Le calcul du volume en m³ se fait en additionnant les volumes individuels de vos meubles et cartons. La règle simple : <strong>1 m³ = environ 4 cartons standards</strong>. Pour les meubles, multipliez longueur × largeur × hauteur. Notre calculateur le fait automatiquement avec des moyennes vérifiées par 20 ans d'expérience. Pour une <strong>estimation finale précise</strong>, nous proposons une visite technique gratuite à domicile.`,
+  },
+  {
+    q: "Pourquoi 47,50 €/m³ chez Torres Transport ?",
+    r: `Notre tarif unique de <strong>47,50&nbsp;€/m³</strong> inclut tout : camion adapté, équipe (2 à 4 personnes selon volume), protections (couvertures, sangles, film bulle), manutention, et trajet aller-retour depuis Ville-la-Grand. Pas de surcoût caché pour étages, distance dans Annemasse, ou créneaux week-end (sauf cas particuliers signalés au devis).`,
+  },
+  {
+    q: "Mon volume calculé est-il fiable ?",
+    r: `Notre calculateur donne une <strong>estimation indicative à ±10-15%</strong>. Il se base sur des volumes moyens du marché. Les écarts viennent de meubles personnalisés, gros électroménager spécifique, ou objets atypiques (piano, baby-foot, équipement sportif). Pour passer en mode <strong>devis ferme</strong>, prévoyez une visite gratuite chez vous — c'est rapide (30 min) et nous repartons avec le devis précis.`,
+  },
+  {
+    q: "Quel volume pour un studio, T2, T3, T4, maison ?",
+    r: `En moyenne : <strong>Studio = 12-18 m³</strong> (1 personne, peu de meubles), <strong>T2 = 20-30 m³</strong> (couple), <strong>T3 = 30-45 m³</strong> (couple + 1 enfant ou meublé), <strong>T4 = 45-60 m³</strong> (famille), <strong>Maison F5+ = 60-100 m³</strong>. Ces valeurs varient selon le mobilier (massif/léger), le nombre d'années dans le logement (plus on reste, plus on accumule), et la présence d'extérieur (cave, garage, grenier).`,
+  },
+  {
+    q: "Le calcul inclut-il les cartons ?",
+    r: `Oui — nos catégories du calculateur incluent une section "Cartons" pour ajouter le nombre exact de cartons que vous aurez. Si vous ne savez pas encore, comptez <strong>environ 1 m³ pour 4 cartons standards</strong>, ou <strong>10 m³ par tranche de 40 cartons</strong>. Astuce : à l'achat ou en récup, prévoyez 30% de plus que prévu — on en a toujours plus que prévu.`,
+  },
+  {
+    q: "Et les objets atypiques (piano, coffre-fort, oeuvre d'art) ?",
+    r: `Pour le <strong>piano droit</strong> (1,5 m³), <strong>coffre-fort</strong>, <strong>œuvre d'art encadrée</strong>, ou tout objet de plus de 80 kg, ajoutez-les au calculateur dans la catégorie "Extérieur / Cave / Garage" puis <strong>mentionnez-le dans votre demande de devis</strong>. Ces objets nécessitent souvent un matériel spécifique (diable spécialisé, sangle large, harnais) qui ne génère pas de surcoût mais doit être anticipé.`,
+  },
+];
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Accueil', item: SITE_URL },
+    { '@type': 'ListItem', position: 2, name: 'Calculateur volume', item: pageURL },
+  ],
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.r.replace(/<[^>]+>/g, '') },
+  })),
+};
+
+const howToSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: 'Calculer le volume de son déménagement en m³',
+  description: "Méthode simple pour estimer le volume total d'un déménagement en mètres cubes, pièce par pièce.",
+  totalTime: 'PT10M',
+  step: [
+    { '@type': 'HowToStep', position: 1, name: 'Lister les meubles par pièce', text: 'Faites le tour de chaque pièce et notez les meubles principaux : lits, armoires, canapés, électroménager.' },
+    { '@type': 'HowToStep', position: 2, name: 'Estimer le volume de chaque meuble', text: 'Multipliez longueur × largeur × hauteur en mètres. Notre calculateur propose des valeurs moyennes par type de meuble.' },
+    { '@type': 'HowToStep', position: 3, name: 'Compter les cartons', text: '1 m³ = environ 4 cartons standards. Estimez généreusement, on accumule toujours plus que prévu.' },
+    { '@type': 'HowToStep', position: 4, name: 'Additionner le total', text: 'Le calculateur affiche le volume total et l\'estimation tarifaire à 47,50 €/m³.' },
+    { '@type': 'HowToStep', position: 5, name: 'Demander une visite gratuite', text: 'Pour un devis ferme sans surprise, planifiez une visite technique gratuite à domicile (30 minutes).' },
+  ],
+};
+---
+
+<BaseLayout
+  title="Calculateur de volume déménagement gratuit | Annemasse Haute-Savoie - Torres Transport"
+  description="Calculateur de volume m³ gratuit pour votre déménagement. Estimez précisément le volume de votre logement (studio, T2, T3, T4, maison) et obtenez une fourchette tarifaire immédiate. 47,50 €/m³ tout compris."
+  keywords="calculateur volume déménagement, calcul m³ déménagement, estimation volume logement, calcul cubage déménagement Annemasse, simulateur volume déménagement gratuit"
+  canonical={pageURL}
+  ogImage="/banner-demenagement.webp"
+  structuredData={[breadcrumbSchema, faqSchema, howToSchema]}
+>
+  <!-- ==================== HERO ==================== -->
+  <section class="calc-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Fil d'Ariane">
+        <a href="/">Accueil</a><span>/</span>
+        <span>Calculateur volume</span>
+      </nav>
+      <span class="eyebrow gold">Outil gratuit · sans inscription</span>
+      <h1>Calculateur de volume<br /><em>en m³, pièce par pièce.</em></h1>
+      <p class="lead">
+        Combien de mètres cubes pour votre déménagement&nbsp;? Cochez vos meubles, le total se calcule
+        automatiquement. Estimation tarifaire instantanée à <strong>47,50&nbsp;€/m³</strong> tout compris.
+        Aucune donnée personnelle demandée.
+      </p>
+    </div>
+  </section>
+
+  <!-- ==================== CALCULATEUR ==================== -->
+  <section class="calc-section">
+    <div class="container">
+      <div class="calc-layout">
+        <!-- COLONNE PIÈCES -->
+        <div class="calc-pieces" id="calcPieces">
+          {pieces.map((piece) => (
+            <article class="piece-card">
+              <header class="piece-head">
+                <h2>{piece.nom}</h2>
+                <span class="piece-count" data-piece={piece.id}>0&nbsp;m³</span>
+              </header>
+              <ul class="item-list">
+                {piece.items.map((item) => (
+                  <li class="item-row" data-m3={item.m3}>
+                    <span class="item-label">{item.label}</span>
+                    <div class="item-controls">
+                      <button type="button" class="qty-btn" data-action="decrement" aria-label={`Retirer ${item.label}`}>−</button>
+                      <span class="item-qty" data-qty="0">0</span>
+                      <button type="button" class="qty-btn" data-action="increment" aria-label={`Ajouter ${item.label}`}>+</button>
+                      <span class="item-m3">{item.m3}&nbsp;m³</span>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+
+        <!-- COLONNE RÉSULTAT (sticky) -->
+        <aside class="calc-result">
+          <div class="result-inner">
+            <span class="eyebrow gold">Votre volume estimé</span>
+            <div class="result-volume">
+              <span id="totalVolume">0</span><span class="result-unit">m³</span>
+            </div>
+            <div class="result-divider"></div>
+            <div class="result-pricing">
+              <span class="result-pricing-label">Estimation tarifaire</span>
+              <div class="result-pricing-value">
+                <span id="totalPriceMin">0</span> – <span id="totalPriceMax">0</span>&nbsp;€
+              </div>
+              <span class="result-pricing-base">Base 47,50&nbsp;€/m³ tout compris</span>
+            </div>
+
+            <div class="result-actions">
+              <a href="/contact" class="btn btn-gold btn-with-arrow" id="ctaDevis">
+                Recevoir un devis ferme
+              </a>
+              <a href="tel:+33659926814" class="btn btn-ghost-dark">
+                Ou 06 59 92 68 14
+              </a>
+            </div>
+
+            <button type="button" class="btn-reset" id="resetCalc">↻ Tout réinitialiser</button>
+
+            <p class="result-note">
+              <strong>Cette estimation est indicative.</strong> Pour un devis ferme, prévoyez une
+              visite technique gratuite à domicile (30 min).
+            </p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== EXPLICATION SYSTÈME M³ ==================== -->
+  <section class="section bg-cream">
+    <div class="container container-narrow">
+      <header class="section-header">
+        <span class="eyebrow gold">Le système m³</span>
+        <h2>Pourquoi calculer<br /><em>en mètres cubes&nbsp;?</em></h2>
+      </header>
+      <div class="explainer-grid">
+        <div class="explainer-card">
+          <span class="explainer-num">01</span>
+          <h3>Standard du métier</h3>
+          <p>
+            Le m³ (mètre cube) est l'<strong>unité officielle</strong> du déménagement en France.
+            Tous les professionnels — Torres Transport, Demeco, Allo Voisins, comme les grands
+            groupes — calculent en m³. Cela permet de comparer les devis sur la même base.
+          </p>
+        </div>
+        <div class="explainer-card">
+          <span class="explainer-num">02</span>
+          <h3>Tarif transparent</h3>
+          <p>
+            En tarification au m³, vous savez exactement ce que vous payez. Notre tarif unique de
+            <strong>47,50&nbsp;€/m³</strong> inclut camion, équipe, protections, manutention et
+            trajet. Pas de "frais de dossier", pas de "supplément escaliers" ajoutés en cours.
+          </p>
+        </div>
+        <div class="explainer-card">
+          <span class="explainer-num">03</span>
+          <h3>Optimisation camion</h3>
+          <p>
+            Connaître votre volume nous permet de choisir le <strong>camion adapté</strong>
+            (20, 30 ou 50 m³) et de planifier le bon nombre de déménageurs. Un volume précis
+            = un déménagement plus rapide et moins cher pour vous.
+          </p>
+        </div>
+        <div class="explainer-card">
+          <span class="explainer-num">04</span>
+          <h3>Repère simple</h3>
+          <p>
+            Astuce : <strong>1 m³ ≈ 4 cartons standards</strong> ou <strong>1 m³ ≈ 1 fauteuil</strong>
+            ou <strong>1 m³ ≈ 1 commode + 1 chevet</strong>. Avec ces repères, vous pouvez
+            estimer rapidement même sans calculateur.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TABLEAU CORRESPONDANCES ==================== -->
+  <section class="section">
+    <div class="container container-narrow">
+      <header class="section-header">
+        <span class="eyebrow gold">Correspondances logement</span>
+        <h2>Volumes moyens<br /><em>par type de logement.</em></h2>
+        <p class="section-intro">
+          Ces fourchettes sont des moyennes observées sur 20 ans d'interventions à Annemasse
+          et en Haute-Savoie. Votre volume réel peut varier selon la quantité de mobilier
+          et d'objets accumulés.
+        </p>
+      </header>
+
+      <div class="correspondences-table">
+        <div class="ct-head">
+          <span>Type</span>
+          <span>Surface</span>
+          <span>Volume moyen</span>
+          <span>Prix estimé</span>
+        </div>
+        {correspondances.map((c) => (
+          <div class="ct-row">
+            <span class="ct-type">{c.type}</span>
+            <span>{c.surface}</span>
+            <span><strong>{c.volume}</strong></span>
+            <span class="ct-price">{c.prix}</span>
+          </div>
+        ))}
+      </div>
+
+      <p class="correspondences-note">
+        ⚠️ <strong>Prix indicatifs.</strong> Le tarif définitif tient compte de la distance,
+        des accès (étages, ascenseur, stationnement) et des prestations annexes
+        (emballage, démontage, garde-meuble).
+      </p>
+    </div>
+  </section>
+
+  <!-- ==================== MÉTHODOLOGIE ==================== -->
+  <section class="section bg-cream">
+    <div class="container container-narrow">
+      <header class="section-header">
+        <span class="eyebrow gold">5 étapes</span>
+        <h2>Méthode pour<br /><em>un calcul précis.</em></h2>
+      </header>
+
+      <ol class="method-list">
+        <li>
+          <span class="method-num">01</span>
+          <div>
+            <h3>Lister pièce par pièce</h3>
+            <p>Faites le tour du logement et notez tous les meubles principaux par pièce. Ne sautez ni la cave, ni le grenier, ni le garage — c'est souvent là que se cachent les volumes oubliés.</p>
+          </div>
+        </li>
+        <li>
+          <span class="method-num">02</span>
+          <div>
+            <h3>Compter les cartons</h3>
+            <p>Estimez le nombre de cartons standards (60 × 40 × 40 cm). Notre repère : <strong>1 m³ ≈ 4 cartons</strong>. Pour la vaisselle, livres, vêtements, prévoyez généreusement.</p>
+          </div>
+        </li>
+        <li>
+          <span class="method-num">03</span>
+          <div>
+            <h3>Identifier les objets atypiques</h3>
+            <p>Piano, coffre-fort, baby-foot, équipement sportif (vélo électrique, kayak), œuvres d'art : ces objets méritent une mention spécifique car ils nécessitent un matériel adapté.</p>
+          </div>
+        </li>
+        <li>
+          <span class="method-num">04</span>
+          <div>
+            <h3>Ajouter 10% de marge</h3>
+            <p>On accumule toujours plus que prévu. Ajoutez 10% au volume calculé pour absorber les oublis (vaisselle, vêtements de saison, objets de décoration).</p>
+          </div>
+        </li>
+        <li>
+          <span class="method-num">05</span>
+          <div>
+            <h3>Demander une visite gratuite</h3>
+            <p>Pour passer de l'estimation au <strong>devis ferme</strong>, planifiez une visite technique gratuite chez vous. 30 minutes suffisent à Ludovic pour ajuster au m³ près.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ==================== FAQ ==================== -->
+  <section class="section">
+    <div class="container container-narrow">
+      <header class="section-header text-center">
+        <span class="eyebrow gold">Questions fréquentes</span>
+        <h2>Tout savoir<br /><em>sur le calcul de volume.</em></h2>
+      </header>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary>{f.q}</summary>
+            <p set:html={f.r}></p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CTA FINAL ==================== -->
+  <section class="section bg-black cta-final">
+    <div class="container container-narrow text-center">
+      <span class="eyebrow">Devis ferme et personnalisé</span>
+      <h2>Volume estimé&nbsp;?<br /><em>Passons au devis ferme.</em></h2>
+      <p class="lead">
+        Visite technique gratuite à domicile sous 24-48 h. Devis transparent, sans
+        engagement. <strong>0&nbsp;€ d'avance</strong>, première facturation à la fin de la prestation.
+      </p>
+      <div class="cta-buttons">
+        <a href="/contact" class="btn btn-gold btn-large btn-with-arrow">Demander un devis ferme</a>
+        <a href="tel:+33659926814" class="btn btn-ghost btn-large">06 59 92 68 14</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script is:inline>
+  (function () {
+    const PRIX_M3 = 47.50;
+    const root = document.getElementById('calcPieces');
+    if (!root) return;
+
+    function formatNumber(n) {
+      return new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 0 }).format(Math.round(n));
+    }
+
+    function updateTotal() {
+      let totalM3 = 0;
+      const pieceTotals = {};
+
+      root.querySelectorAll('.item-row').forEach((row) => {
+        const m3 = parseFloat(row.dataset.m3 || '0');
+        const qtyEl = row.querySelector('.item-qty');
+        const qty = parseInt(qtyEl.dataset.qty || '0', 10);
+        const subtotal = m3 * qty;
+        totalM3 += subtotal;
+
+        const pieceCard = row.closest('.piece-card');
+        const pieceId = pieceCard.querySelector('.piece-count').dataset.piece;
+        pieceTotals[pieceId] = (pieceTotals[pieceId] || 0) + subtotal;
+      });
+
+      // Totaux par pièce
+      root.querySelectorAll('.piece-count').forEach((el) => {
+        const id = el.dataset.piece;
+        const v = pieceTotals[id] || 0;
+        el.textContent = v.toFixed(1).replace('.', ',') + ' m³';
+        el.classList.toggle('is-positive', v > 0);
+      });
+
+      // Total global
+      const totalEl = document.getElementById('totalVolume');
+      const priceMinEl = document.getElementById('totalPriceMin');
+      const priceMaxEl = document.getElementById('totalPriceMax');
+      if (totalEl) {
+        totalEl.textContent = totalM3.toFixed(1).replace('.', ',');
+      }
+      const basePrice = totalM3 * PRIX_M3;
+      // ±5% pour la fourchette
+      if (priceMinEl) priceMinEl.textContent = formatNumber(basePrice * 0.95);
+      if (priceMaxEl) priceMaxEl.textContent = formatNumber(basePrice * 1.05);
+
+      // Mémoriser dans localStorage (sans données perso)
+      try {
+        const state = {};
+        root.querySelectorAll('.item-row').forEach((row, idx) => {
+          const qty = parseInt(row.querySelector('.item-qty').dataset.qty || '0', 10);
+          if (qty > 0) state[idx] = qty;
+        });
+        localStorage.setItem('calc-volume-state', JSON.stringify(state));
+        localStorage.setItem('calc-volume-total', totalM3.toFixed(1));
+      } catch (_) { /* ignore */ }
+    }
+
+    function restoreFromStorage() {
+      try {
+        const raw = localStorage.getItem('calc-volume-state');
+        if (!raw) return;
+        const state = JSON.parse(raw);
+        root.querySelectorAll('.item-row').forEach((row, idx) => {
+          const saved = state[idx];
+          if (saved && saved > 0) {
+            row.querySelector('.item-qty').dataset.qty = saved;
+            row.querySelector('.item-qty').textContent = saved;
+            row.classList.add('has-qty');
+          }
+        });
+      } catch (_) { /* ignore */ }
+    }
+
+    root.addEventListener('click', (e) => {
+      const btn = e.target.closest('.qty-btn');
+      if (!btn) return;
+      const row = btn.closest('.item-row');
+      const qtyEl = row.querySelector('.item-qty');
+      let qty = parseInt(qtyEl.dataset.qty || '0', 10);
+
+      if (btn.dataset.action === 'increment') qty++;
+      else if (btn.dataset.action === 'decrement') qty = Math.max(0, qty - 1);
+
+      qtyEl.dataset.qty = qty;
+      qtyEl.textContent = qty;
+      row.classList.toggle('has-qty', qty > 0);
+
+      updateTotal();
+    });
+
+    document.getElementById('resetCalc')?.addEventListener('click', () => {
+      root.querySelectorAll('.item-qty').forEach((el) => {
+        el.dataset.qty = '0';
+        el.textContent = '0';
+        el.closest('.item-row').classList.remove('has-qty');
+      });
+      updateTotal();
+      try { localStorage.removeItem('calc-volume-state'); } catch (_) {}
+    });
+
+    // Si l'utilisateur clique sur le CTA, ajouter le volume en query string
+    document.getElementById('ctaDevis')?.addEventListener('click', (e) => {
+      const total = document.getElementById('totalVolume')?.textContent || '0';
+      if (parseFloat(total.replace(',', '.')) > 0) {
+        e.preventDefault();
+        window.location.href = `/contact?volume=${encodeURIComponent(total)}`;
+      }
+    });
+
+    restoreFromStorage();
+    updateTotal();
+  })();
+</script>
+
+<style>
+  /* ==================== HERO ==================== */
+  .calc-hero {
+    background: var(--off-white);
+    padding: clamp(4rem, 8vw, 7rem) 0 clamp(2rem, 4vw, 3rem);
+    border-bottom: 1px solid var(--border);
+    margin-top: -76px;
+    padding-top: clamp(6rem, 12vw, 9rem);
+  }
+  .breadcrumb {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--gray-500);
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  .breadcrumb a { color: var(--gray-700, #404040); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--black); }
+  .breadcrumb > span:not(:last-child) { opacity: 0.4; }
+  .calc-hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4.25rem);
+    margin: 0.75rem 0 1.5rem;
+    max-width: 920px;
+    line-height: 1.05;
+  }
+  .calc-hero h1 em { font-style: italic; color: var(--gold-deep); }
+  .calc-hero .lead { max-width: 720px; }
+
+  /* ==================== CALCULATEUR ==================== */
+  .calc-section {
+    padding: clamp(2.5rem, 5vw, 4rem) 0 clamp(4rem, 7vw, 6rem);
+    background: var(--white);
+  }
+  .calc-layout {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  /* PIÈCE CARD */
+  .calc-pieces { display: flex; flex-direction: column; gap: 1.25rem; }
+  .piece-card {
+    border: 1px solid var(--border-strong);
+    background: var(--white);
+  }
+  .piece-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--off-white);
+  }
+  .piece-head h2 {
+    font-size: 1.15rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--black);
+    margin: 0;
+  }
+  .piece-count {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gray-500);
+    transition: color 0.2s;
+  }
+  .piece-count.is-positive {
+    color: var(--gold-deep);
+    font-weight: 600;
+  }
+
+  .item-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .item-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.85rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    gap: 1rem;
+    transition: background 0.2s;
+  }
+  .item-row:last-child { border-bottom: none; }
+  .item-row.has-qty { background: rgba(245, 222, 126, 0.06); }
+  .item-label {
+    font-size: 0.92rem;
+    color: var(--gray-800);
+    flex: 1;
+    min-width: 0;
+  }
+  .item-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
+  .qty-btn {
+    width: 28px;
+    height: 28px;
+    border: 1px solid var(--border-strong);
+    background: var(--white);
+    color: var(--black);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+    line-height: 1;
+    padding: 0;
+  }
+  .qty-btn:hover { background: var(--black); color: var(--white); }
+  .item-qty {
+    min-width: 24px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--black);
+  }
+  .item-m3 {
+    font-size: 0.78rem;
+    color: var(--gray-500);
+    min-width: 56px;
+    text-align: right;
+    font-family: var(--font-mono, monospace);
+  }
+
+  /* RÉSULTAT (sticky) */
+  .calc-result {
+    position: sticky;
+    top: 100px;
+  }
+  .result-inner {
+    background: var(--black);
+    color: var(--white);
+    padding: 2rem 1.75rem;
+  }
+  .calc-result .eyebrow {
+    color: var(--gold);
+    font-size: 0.7rem;
+  }
+  .result-volume {
+    margin-top: 1rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+  }
+  .result-volume #totalVolume {
+    font-family: var(--font-display);
+    font-size: 3.5rem;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--white);
+  }
+  .result-unit {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--gold);
+  }
+  .result-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.15);
+    margin: 1.5rem 0;
+  }
+  .result-pricing-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: rgba(255, 255, 255, 0.55);
+  }
+  .result-pricing-value {
+    font-family: var(--font-display);
+    font-size: 1.65rem;
+    font-weight: 600;
+    color: var(--white);
+    margin: 0.4rem 0;
+  }
+  .result-pricing-base {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.55);
+  }
+  .result-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin: 1.75rem 0 1rem;
+  }
+  .btn-ghost-dark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.85rem 1.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: var(--white);
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  .btn-ghost-dark:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+  .btn-reset {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.82rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    text-align: center;
+    transition: color 0.2s;
+  }
+  .btn-reset:hover { color: var(--gold); }
+  .result-note {
+    margin-top: 1rem;
+    font-size: 0.78rem;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.62);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding-top: 1rem;
+  }
+  .result-note strong { color: var(--white); }
+
+  /* ==================== EXPLAINER ==================== */
+  .explainer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-top: 1px solid var(--border-strong);
+    border-left: 1px solid var(--border-strong);
+    margin-top: 2rem;
+  }
+  .explainer-card {
+    padding: 2rem;
+    border-right: 1px solid var(--border-strong);
+    border-bottom: 1px solid var(--border-strong);
+    background: var(--white);
+  }
+  .explainer-num {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--gold-deep);
+    font-weight: 500;
+  }
+  .explainer-card h3 {
+    font-size: 1.2rem;
+    margin: 0.85rem 0;
+    color: var(--black);
+  }
+  .explainer-card p {
+    color: var(--gray-700);
+    line-height: 1.65;
+    font-size: 0.95rem;
+    margin: 0;
+  }
+
+  /* ==================== CORRESPONDANCES TABLE ==================== */
+  .correspondences-table {
+    border-top: 1px solid var(--border-strong);
+    margin-top: 2.5rem;
+  }
+  .ct-head, .ct-row {
+    display: grid;
+    grid-template-columns: 1.2fr 1.4fr 1.4fr 1.4fr;
+    gap: 1rem;
+    padding: 1.1rem 0.5rem;
+    border-bottom: 1px solid var(--border);
+    align-items: center;
+  }
+  .ct-head {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--gray-500);
+    font-weight: 600;
+    background: var(--off-white);
+  }
+  .ct-type {
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--black);
+  }
+  .ct-price {
+    font-weight: 600;
+    color: var(--gold-deep);
+  }
+  .correspondences-note {
+    margin-top: 2rem;
+    font-size: 0.88rem;
+    color: var(--gray-600);
+    background: var(--off-white);
+    padding: 1rem 1.25rem;
+    border-left: 3px solid var(--gold-deep);
+  }
+
+  /* ==================== MÉTHODE LIST ==================== */
+  .method-list {
+    list-style: none;
+    padding: 0;
+    margin: 2.5rem 0 0;
+    counter-reset: method;
+    border-top: 1px solid var(--border-strong);
+  }
+  .method-list li {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.75rem 0;
+    border-bottom: 1px solid var(--border);
+    align-items: flex-start;
+  }
+  .method-num {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--gold-deep);
+    flex-shrink: 0;
+    line-height: 1;
+    padding-top: 0.25rem;
+  }
+  .method-list h3 {
+    font-size: 1.2rem;
+    margin: 0 0 0.5rem;
+    color: var(--black);
+  }
+  .method-list p {
+    color: var(--gray-700);
+    line-height: 1.65;
+    font-size: 0.95rem;
+    margin: 0;
+    max-width: 720px;
+  }
+
+  /* ==================== FAQ ==================== */
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--border-strong);
+    margin-top: 2.5rem;
+  }
+  .faq-item {
+    border-bottom: 1px solid var(--border-strong);
+    background: transparent;
+    transition: background 0.3s var(--ease-smooth);
+  }
+  .faq-item[open] { background: var(--off-white); }
+  .faq-item summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 1.5rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    font-family: var(--font-display);
+    font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+    font-weight: 500;
+    color: var(--black);
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: '+';
+    color: var(--gold-deep);
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    transition: transform 0.25s;
+  }
+  .faq-item[open] summary::after { content: '−'; }
+  .faq-item p {
+    padding: 0 1rem 1.5rem;
+    color: var(--gray-700);
+    line-height: 1.7;
+    margin: 0;
+  }
+  .faq-item strong { color: var(--black); }
+
+  /* ==================== CTA FINAL ==================== */
+  .cta-final { text-align: center; }
+  .cta-final h2 em { color: var(--gold); font-style: italic; }
+  .cta-final .lead {
+    color: rgba(255, 255, 255, 0.75);
+    max-width: 580px;
+    margin: 1.5rem auto 2.5rem;
+  }
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* ==================== RESPONSIVE ==================== */
+  @media (max-width: 1024px) {
+    .calc-layout { grid-template-columns: 1fr; gap: 2rem; }
+    .calc-result { position: static; order: -1; }
+  }
+
+  @media (max-width: 768px) {
+    .explainer-grid { grid-template-columns: 1fr; }
+    .ct-head, .ct-row {
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+      font-size: 0.88rem;
+    }
+    .ct-head span:nth-child(2),
+    .ct-row span:nth-child(2) { display: none; }
+  }
+
+  @media (max-width: 600px) {
+    .piece-head { padding: 1rem 1.1rem; }
+    .item-row { padding: 0.7rem 1.1rem; gap: 0.5rem; }
+    .item-m3 { display: none; }
+    .item-label { font-size: 0.88rem; }
+    .result-volume #totalVolume { font-size: 2.8rem; }
+    .result-inner { padding: 1.5rem 1.25rem; }
+  }
+</style>

@@ -1,0 +1,712 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import reviewsData from '../data/google-reviews.json';
+
+const SITE_URL = 'https://torrestransport.fr';
+const pageURL = `${SITE_URL}/avis-clients`;
+const { reviews, rating, user_ratings_total, url: mapsUrl, write_review_url } = reviewsData;
+
+function truncate(text, max = 400) {
+  if (!text) return '';
+  if (text.length <= max) return text;
+  const cut = text.slice(0, max);
+  const lastSpace = cut.lastIndexOf(' ');
+  return cut.slice(0, lastSpace > 0 ? lastSpace : max).trim() + '…';
+}
+
+function stars(n) {
+  return Array.from({ length: 5 }, (_, i) => i < Math.round(n));
+}
+
+// Statistiques calculées dynamiquement depuis le JSON réel
+const stats = [
+  { num: rating.toFixed(1).replace('.', ','), label: 'Note moyenne Google', icon: '★' },
+  { num: user_ratings_total.toString(), label: 'Avis vérifiés', icon: '✓' },
+  { num: '100%', label: 'Avis 5 étoiles', icon: '⭐' },
+  { num: '20+', label: "Années d'expérience", icon: '🎯' },
+];
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Accueil', item: SITE_URL },
+    { '@type': 'ListItem', position: 2, name: 'Avis clients', item: pageURL },
+  ],
+};
+
+// Schema AggregateRating riche (apparaît dans les SERPs avec étoiles)
+const aggregateRatingSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': `${SITE_URL}/#business`,
+  name: 'Torres Transport',
+  url: SITE_URL,
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: rating.toFixed(1),
+    bestRating: '5',
+    worstRating: '1',
+    ratingCount: user_ratings_total,
+    reviewCount: user_ratings_total,
+  },
+  review: reviews.map((r) => ({
+    '@type': 'Review',
+    reviewRating: {
+      '@type': 'Rating',
+      ratingValue: r.rating.toString(),
+      bestRating: '5',
+      worstRating: '1',
+    },
+    author: { '@type': 'Person', name: r.author_name },
+    reviewBody: r.text,
+  })),
+};
+
+const faqs = [
+  {
+    q: "Comment laisser un avis sur Torres Transport ?",
+    r: `Rendez-vous sur notre <a href="${write_review_url}" target="_blank" rel="noopener">fiche Google Business</a> et cliquez sur "Donner un avis". Vous pouvez aussi nous écrire un avis vérifié à <a href="mailto:contact@torrestransport.fr">contact@torrestransport.fr</a> que nous publierons (avec votre accord) sur la page Témoignages.`,
+  },
+  {
+    q: "Pourquoi tous vos avis sont 5 étoiles ?",
+    r: `Nous avons aujourd'hui <strong>${user_ratings_total} avis Google avec une note moyenne de ${rating.toFixed(1)}/5</strong>. Cette note s'explique simplement : nous limitons notre activité à <strong>un seul chantier par jour</strong> pour garantir l'attention nécessaire à chaque client. Pas de sous-traitance, pas de course au volume. Quand un déménagement se passe bien, le client le dit. Quand il y a un problème (rare), nous résolvons immédiatement.`,
+  },
+  {
+    q: "Les avis Google sont-ils vérifiés ?",
+    r: `Oui — Google vérifie l'identité des auteurs d'avis via leur compte Google. Les avis sont publics, consultables sur notre <a href="${mapsUrl}" target="_blank" rel="noopener">fiche Google Maps</a>. Nous ne pouvons pas modifier ni supprimer un avis — c'est la garantie d'authenticité du système Google.`,
+  },
+  {
+    q: "Un mauvais avis serait-il caché ?",
+    r: `Non — les avis Google sont publics et immuables. Si nous avions des avis négatifs, ils seraient visibles. À ce jour (mai 2026), 100% de nos avis sont 5 étoiles, mais cela peut évoluer. Si jamais nous recevons un avis critique, nous y répondons publiquement et corrigeons la situation.`,
+  },
+  {
+    q: "Combien de temps gardez-vous les avis ?",
+    r: `Les avis sont conservés <strong>indéfiniment</strong> sur Google — vous pouvez consulter tous les retours clients depuis nos débuts en 2024. Aucun avis n'est masqué, archivé ou retiré.`,
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.r.replace(/<[^>]+>/g, '') },
+  })),
+};
+---
+
+<BaseLayout
+  title={`Avis clients Torres Transport · ${user_ratings_total} avis ${rating}/5 sur Google | Annemasse`}
+  description={`Découvrez les ${user_ratings_total} avis Google vérifiés des clients de Torres Transport, déménageur à Annemasse. Note ${rating}/5. Témoignages réels sur déménagement, transport, manutention en Haute-Savoie.`}
+  keywords={`avis Torres Transport, avis déménageur Annemasse, avis Google déménagement Haute-Savoie, notation déménageur 74, témoignages déménagement Annemasse`}
+  canonical={pageURL}
+  ogImage="/banner-demenagement.webp"
+  structuredData={[breadcrumbSchema, aggregateRatingSchema, faqSchema]}
+>
+  <!-- ==================== HERO ==================== -->
+  <section class="avis-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Fil d'Ariane">
+        <a href="/">Accueil</a><span>/</span>
+        <span>Avis clients</span>
+      </nav>
+      <span class="eyebrow gold">Avis vérifiés Google · mai 2026</span>
+      <h1>
+        {user_ratings_total} avis Google,<br />
+        <em>note moyenne {rating.toFixed(1).replace('.', ',')} / 5.</em>
+      </h1>
+      <p class="lead">
+        Une réputation construite chantier après chantier. <strong>100% d'avis 5 étoiles</strong>
+        depuis nos débuts en 2024 — résultat d'une politique simple : un seul déménagement par jour,
+        pas de sous-traitance, suivi par Ludovic Torres en personne.
+      </p>
+
+      <div class="hero-stats">
+        {stats.map((s) => (
+          <div class="hero-stat">
+            <span class="hero-stat-icon">{s.icon}</span>
+            <div>
+              <span class="hero-stat-num">{s.num}</span>
+              <span class="hero-stat-label">{s.label}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="hero-actions">
+        <a href={mapsUrl} target="_blank" rel="noopener noreferrer" class="btn btn-gold btn-large btn-with-arrow">
+          Voir tous les avis sur Google
+        </a>
+        <a href={write_review_url} target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-large">
+          Laisser un avis
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== AVIS GRID ==================== -->
+  <section class="section avis-section">
+    <div class="container">
+      <header class="section-header">
+        <span class="eyebrow gold">Quelques avis</span>
+        <h2>Ce qu'ils en disent,<br /><em>dans leurs mots.</em></h2>
+        <p class="section-intro">
+          Une sélection des avis les plus récents publiés sur notre fiche Google Business.
+          Tous les avis sont consultables publiquement.
+        </p>
+      </header>
+
+      <div class="avis-grid">
+        {reviews.map((r) => (
+          <article class="avis-card">
+            <header class="avis-card-head">
+              <div class="avis-stars" aria-label={`${r.rating} sur 5`}>
+                {stars(r.rating).map((filled) => (
+                  <svg viewBox="0 0 24 24" class={filled ? 'is-filled' : ''} aria-hidden="true">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                ))}
+              </div>
+              {r.is_local_guide && (
+                <span class="local-guide-badge" title="Local Guide Google">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                  Local Guide
+                </span>
+              )}
+            </header>
+
+            <p class="avis-text">"{r.text}"</p>
+
+            <footer class="avis-author">
+              <div class="avis-author-meta">
+                <span class="avis-author-name">{r.author_name}</span>
+                <span class="avis-author-date">{r.relative_time_description}</span>
+              </div>
+              <svg class="avis-google" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+              </svg>
+            </footer>
+          </article>
+        ))}
+      </div>
+
+      <div class="avis-footer-cta">
+        <p>
+          Voir les <strong>{user_ratings_total} avis</strong> détaillés sur Google :
+        </p>
+        <a href={mapsUrl} target="_blank" rel="noopener noreferrer" class="avis-link">
+          Consulter tous les avis Google
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== POURQUOI 5 ÉTOILES ==================== -->
+  <section class="section bg-cream">
+    <div class="container container-narrow">
+      <header class="section-header">
+        <span class="eyebrow gold">Notre méthode</span>
+        <h2>Pourquoi nos clients<br /><em>nous notent 5 sur 5.</em></h2>
+      </header>
+
+      <div class="raison-grid">
+        <article class="raison-card">
+          <span class="raison-num">01</span>
+          <h3>Un seul chantier par jour</h3>
+          <p>
+            Contrairement aux grands groupes qui enchaînent plusieurs déménagements par équipe,
+            <strong>nous limitons volontairement à un chantier quotidien</strong>. Vos meubles ont
+            toute notre attention, du chargement au déchargement. Pas de précipitation, pas de
+            "fin de tournée" bâclée.
+          </p>
+        </article>
+
+        <article class="raison-card">
+          <span class="raison-num">02</span>
+          <h3>Pas de sous-traitance</h3>
+          <p>
+            L'équipe que vous rencontrez à la visite technique est celle qui réalise votre
+            déménagement. Pas de transmission de dossier, pas d'intérimaires de dernière minute.
+            <strong>Ludovic Torres en personne supervise chaque intervention.</strong>
+          </p>
+        </article>
+
+        <article class="raison-card">
+          <span class="raison-num">03</span>
+          <h3>Visite technique gratuite</h3>
+          <p>
+            Avant chaque devis, Ludovic se déplace gratuitement chez vous pour évaluer le volume,
+            vérifier les accès, discuter de vos besoins. Cette étape évite les <strong>mauvaises
+            surprises le jour J</strong> — c'est la garantie d'un devis tenu et d'une intervention
+            fluide.
+          </p>
+        </article>
+
+        <article class="raison-card">
+          <span class="raison-num">04</span>
+          <h3>Tarif transparent</h3>
+          <p>
+            <strong>47,50&nbsp;€&nbsp;/&nbsp;m³ tout compris.</strong> Pas de frais cachés, pas
+            de supplément escaliers ou stationnement ajouté en cours. Le devis annoncé est le
+            montant facturé, point.
+          </p>
+        </article>
+
+        <article class="raison-card">
+          <span class="raison-num">05</span>
+          <h3>Suivi humain</h3>
+          <p>
+            Un seul interlocuteur du devis à la fin de la prestation. Numéro mobile direct, réponse
+            sous 24 h. Si quelque chose nécessite un ajustement, nous trouvons la solution ensemble
+            — pas de service client anonyme.
+          </p>
+        </article>
+
+        <article class="raison-card">
+          <span class="raison-num">06</span>
+          <h3>20 ans d'expérience</h3>
+          <p>
+            Avant de créer Torres Transport en 2024, Ludovic a passé 20 ans dans le transport et
+            la logistique en Haute-Savoie. Cette expertise se ressent à chaque détail :
+            <strong>protection des meubles, technique de portage, gestion des accès difficiles.</strong>
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== COMMENT LAISSER UN AVIS ==================== -->
+  <section class="section">
+    <div class="container container-narrow">
+      <div class="howto-card">
+        <div class="howto-content">
+          <span class="eyebrow gold">Vous êtes client ?</span>
+          <h2>Laissez votre avis,<br /><em>partagez votre expérience.</em></h2>
+          <p>
+            Votre retour est précieux — il aide les futurs clients à choisir en confiance,
+            et nous permet de continuer à progresser. <strong>5 minutes suffisent</strong>
+            pour rédiger un avis Google.
+          </p>
+
+          <ol class="howto-steps">
+            <li><strong>Cliquez</strong> sur le bouton "Laisser un avis" ci-dessous</li>
+            <li><strong>Connectez-vous</strong> à votre compte Google (1 clic)</li>
+            <li><strong>Notez</strong> votre expérience de 1 à 5 étoiles</li>
+            <li><strong>Décrivez</strong> brièvement la prestation (facultatif mais apprécié)</li>
+            <li><strong>Publiez</strong> — votre avis sera visible sous quelques minutes</li>
+          </ol>
+
+          <div class="howto-actions">
+            <a href={write_review_url} target="_blank" rel="noopener noreferrer" class="btn btn-gold btn-large btn-with-arrow">
+              Laisser un avis Google
+            </a>
+            <a href="mailto:contact@torrestransport.fr?subject=Avis%20client" class="btn btn-ghost btn-large">
+              Ou nous écrire par email
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FAQ ==================== -->
+  <section class="section bg-cream">
+    <div class="container container-narrow">
+      <header class="section-header text-center">
+        <span class="eyebrow gold">Questions fréquentes</span>
+        <h2>Tout savoir<br /><em>sur nos avis clients.</em></h2>
+      </header>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary>{f.q}</summary>
+            <p set:html={f.r}></p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CTA FINAL ==================== -->
+  <section class="section bg-black cta-final">
+    <div class="container container-narrow text-center">
+      <span class="eyebrow">Prêt à rejoindre nos {user_ratings_total} clients satisfaits&nbsp;?</span>
+      <h2>Votre déménagement,<br /><em>en toute sérénité.</em></h2>
+      <p class="lead">
+        Visite technique gratuite, devis ferme sous 24 h. Pas d'engagement.
+      </p>
+      <div class="cta-buttons">
+        <a href="/contact" class="btn btn-gold btn-large btn-with-arrow">Demander un devis</a>
+        <a href="tel:+33659926814" class="btn btn-ghost btn-large">06 59 92 68 14</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* ==================== HERO ==================== */
+  .avis-hero {
+    background: var(--off-white);
+    padding: clamp(4rem, 8vw, 7rem) 0 clamp(3rem, 5vw, 4rem);
+    border-bottom: 1px solid var(--border);
+    margin-top: -76px;
+    padding-top: clamp(6rem, 12vw, 9rem);
+  }
+  .breadcrumb {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--gray-500);
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  .breadcrumb a { color: var(--gray-700, #404040); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--black); }
+  .breadcrumb > span:not(:last-child) { opacity: 0.4; }
+
+  .avis-hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4.25rem);
+    margin: 0.75rem 0 1.5rem;
+    max-width: 920px;
+    line-height: 1.05;
+  }
+  .avis-hero h1 em { font-style: italic; color: var(--gold-deep); }
+  .avis-hero .lead { max-width: 720px; margin-bottom: 2.5rem; }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--border-strong);
+    margin: 2rem 0;
+  }
+  .hero-stat {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 1.5rem 1rem;
+    border-right: 1px solid var(--border);
+  }
+  .hero-stat:last-child { border-right: none; }
+  .hero-stat-icon {
+    font-size: 1.5rem;
+    color: var(--gold-deep);
+  }
+  .hero-stat > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+  .hero-stat-num {
+    font-family: var(--font-display);
+    font-size: 1.65rem;
+    font-weight: 600;
+    color: var(--black);
+    line-height: 1;
+  }
+  .hero-stat-label {
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--gray-500);
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+  }
+
+  /* ==================== AVIS GRID ==================== */
+  .avis-section { background: var(--white); }
+  .section-intro {
+    margin-top: 1.25rem;
+    max-width: 720px;
+    color: var(--gray-700);
+    font-size: 1.05rem;
+    line-height: 1.65;
+  }
+
+  .avis-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .avis-card {
+    background: var(--off-white);
+    border: 1px solid var(--border);
+    padding: 1.75rem 1.65rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    transition: all 0.25s var(--ease-smooth);
+  }
+  .avis-card:hover {
+    background: var(--white);
+    border-color: var(--gold-deep);
+    transform: translateY(-3px);
+  }
+
+  .avis-card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  .avis-stars {
+    display: flex;
+    gap: 2px;
+  }
+  .avis-stars svg {
+    width: 18px;
+    height: 18px;
+    fill: var(--gray-300);
+  }
+  .avis-stars svg.is-filled {
+    fill: var(--gold-deep);
+  }
+
+  .local-guide-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--gold-deep);
+    font-weight: 600;
+    background: rgba(212, 165, 38, 0.1);
+    padding: 0.25rem 0.55rem;
+    border-radius: 2px;
+  }
+
+  .avis-text {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--gray-800);
+    flex: 1;
+    margin: 0;
+    font-style: italic;
+  }
+
+  .avis-author {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1.1rem;
+    border-top: 1px solid var(--border);
+  }
+  .avis-author-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    min-width: 0;
+  }
+  .avis-author-name {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--black);
+  }
+  .avis-author-date {
+    font-size: 0.78rem;
+    color: var(--gray-500);
+  }
+  .avis-google {
+    flex-shrink: 0;
+  }
+
+  .avis-footer-cta {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .avis-footer-cta p {
+    margin-bottom: 1rem;
+    color: var(--gray-700);
+  }
+  .avis-footer-cta strong { color: var(--black); }
+  .avis-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--black);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 2px solid var(--gold-deep);
+    padding-bottom: 0.25rem;
+    transition: color 0.2s;
+  }
+  .avis-link:hover { color: var(--gold-deep); }
+
+  /* ==================== RAISONS GRID ==================== */
+  .raison-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-top: 1px solid var(--border-strong);
+    border-left: 1px solid var(--border-strong);
+    margin-top: 2.5rem;
+  }
+  .raison-card {
+    padding: 2rem;
+    border-right: 1px solid var(--border-strong);
+    border-bottom: 1px solid var(--border-strong);
+    background: var(--white);
+  }
+  .raison-num {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--gold-deep);
+    font-weight: 500;
+  }
+  .raison-card h3 {
+    font-size: 1.3rem;
+    margin: 0.85rem 0;
+    color: var(--black);
+  }
+  .raison-card p {
+    color: var(--gray-700);
+    line-height: 1.7;
+    font-size: 0.95rem;
+    margin: 0;
+  }
+  .raison-card strong { color: var(--black); }
+
+  /* ==================== HOWTO ==================== */
+  .howto-card {
+    background: var(--black);
+    color: var(--white);
+    padding: clamp(2.5rem, 5vw, 4rem);
+    margin: 1.5rem 0;
+  }
+  .howto-card .eyebrow { color: var(--gold); }
+  .howto-card h2 { color: var(--white); margin: 1rem 0 1.5rem; }
+  .howto-card h2 em { color: var(--gold); font-style: italic; }
+  .howto-card p {
+    color: rgba(255, 255, 255, 0.78);
+    max-width: 620px;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+  .howto-card p strong { color: var(--white); }
+  .howto-steps {
+    list-style: none;
+    counter-reset: howto;
+    padding: 0;
+    margin: 0 0 2rem;
+  }
+  .howto-steps li {
+    counter-increment: howto;
+    padding: 0.85rem 0 0.85rem 3rem;
+    color: rgba(255, 255, 255, 0.85);
+    position: relative;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    line-height: 1.6;
+  }
+  .howto-steps li:last-child { border-bottom: none; }
+  .howto-steps li::before {
+    content: counter(howto, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 0.85rem;
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .howto-steps li strong { color: var(--white); }
+  .howto-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  /* ==================== FAQ ==================== */
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--border-strong);
+    margin-top: 2.5rem;
+    background: var(--white);
+  }
+  .faq-item {
+    border-bottom: 1px solid var(--border-strong);
+    background: transparent;
+    transition: background 0.3s var(--ease-smooth);
+  }
+  .faq-item[open] { background: var(--off-white); }
+  .faq-item summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 1.5rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    font-family: var(--font-display);
+    font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+    font-weight: 500;
+    color: var(--black);
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: '+';
+    color: var(--gold-deep);
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    transition: transform 0.25s;
+  }
+  .faq-item[open] summary::after { content: '−'; }
+  .faq-item p {
+    padding: 0 1rem 1.5rem;
+    color: var(--gray-700);
+    line-height: 1.7;
+    margin: 0;
+  }
+  .faq-item strong { color: var(--black); }
+  .faq-item a { color: var(--gold-deep); text-decoration: underline; }
+
+  /* ==================== CTA FINAL ==================== */
+  .cta-final { text-align: center; }
+  .cta-final h2 em { color: var(--gold); font-style: italic; }
+  .cta-final .lead {
+    color: rgba(255, 255, 255, 0.75);
+    max-width: 580px;
+    margin: 1.5rem auto 2.5rem;
+  }
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* ==================== RESPONSIVE ==================== */
+  @media (max-width: 968px) {
+    .hero-stats { grid-template-columns: repeat(2, 1fr); border-left: 1px solid var(--border); }
+    .hero-stat:nth-child(2) { border-right: none; }
+    .hero-stat { border-bottom: 1px solid var(--border); }
+    .hero-stat:nth-last-child(-n+2) { border-bottom: none; }
+  }
+  @media (max-width: 768px) {
+    .raison-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .hero-stats { grid-template-columns: 1fr; }
+    .hero-stat { border-right: none; }
+    .avis-card { padding: 1.4rem 1.25rem; }
+  }
+</style>
