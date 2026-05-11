@@ -11,7 +11,7 @@ const faqs = (serviceFaqs as Record<string, Array<{ question: string; reponse: s
 const relatedArticles = getArticlesForService('demenagement', 3);
 
 const partenaires = [
-  { nom: "Partenaires Torres Transport", logo: "/partners/partenaires.webp", w: 1983, h: 793 },
+  { nom: "Partenaires Torres Transport", logo: "/partners/partenaires.webp", w: 1888, h: 342 },
 ];
 
 const inclus = [
@@ -393,9 +393,15 @@ const allSchemas = [serviceSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema]
     display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
     gap: clamp(2rem, 5vw, 4rem);
   }
+  .partner-logo {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    justify-content: center;
+  }
   .partner-logo img {
-    max-width: 100%; width: auto; height: auto; max-height: 140px; object-fit: contain;
-    filter: grayscale(100%); opacity: 0.6;
+    max-width: 100%; width: 100%; height: auto; object-fit: contain;
+    filter: grayscale(100%); opacity: 0.55;
     transition: all 0.3s var(--ease-smooth);
   }
   .partner-logo:hover img { filter: grayscale(0%); opacity: 1; }
