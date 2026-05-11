@@ -554,9 +554,12 @@ const extraSchemas = structuredData
         padding-top: 76px;
       }
 
-      /* Bloque tout scroll/swipe horizontal au niveau global (mobile) */
+      /* Bloque tout scroll/swipe horizontal au niveau global (mobile).
+         overflow-x: clip au lieu de hidden : ne casse pas position: sticky.
+         Fallback overflow-x: hidden pour les navigateurs anciens. */
       html, body {
         overflow-x: hidden;
+        overflow-x: clip;
         max-width: 100vw;
       }
       body { position: relative; }
