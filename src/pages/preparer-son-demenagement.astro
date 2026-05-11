@@ -1,0 +1,849 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const SITE_URL = 'https://torrestransport.fr';
+const pageURL = `${SITE_URL}/preparer-son-demenagement`;
+
+const timeline = [
+  {
+    semaine: 'J-8 semaines',
+    titre: 'Phase planification',
+    description: "C'est le moment de cadrer le projet, choisir le déménageur et bloquer la date. Plus vous vous y prenez tôt, plus vous avez de marge sur les tarifs et les créneaux.",
+    actions: [
+      "Demander 2-3 devis (visite technique gratuite pour Torres Transport)",
+      "Comparer les prestations : emballage, démontage, assurance",
+      "Réserver le déménageur et verser l'acompte pour bloquer la date",
+      "Si location : préavis de 3 mois (1 mois en zone tendue comme Annemasse)",
+      "Si propriétaire vendeur : signer le compromis et le calendrier de signature",
+    ],
+  },
+  {
+    semaine: 'J-4 semaines',
+    titre: 'Phase tri et démarches',
+    description: "Le tri est l'étape qui fait économiser le plus de temps et d'argent. Plus vous éliminez, moins vous payez en m³.",
+    actions: [
+      "Trier pièce par pièce : garder / donner / vendre / jeter",
+      "Vide-grenier ou Vinted/Leboncoin pour les objets en bon état",
+      "Réserver un débarras (Torres Transport propose ce service)",
+      "Commencer les démarches administratives (cf. section dédiée)",
+      "Notifier l'école, la crèche, le médecin traitant du changement",
+    ],
+  },
+  {
+    semaine: 'J-2 semaines',
+    titre: 'Phase emballage',
+    description: "L'emballage des objets non essentiels peut commencer 2 semaines avant. Les pièces de vie attendent le dernier moment.",
+    actions: [
+      "Récupérer / acheter les cartons (1 m³ ≈ 4 cartons standards)",
+      "Emballer en commençant par la cave, le grenier, les livres, les vêtements hors saison",
+      "Étiqueter chaque carton : pièce de destination + contenu sommaire + fragile?",
+      "Photographier les meubles avant démontage (montage IKEA, câbles TV, etc.)",
+      "Demander l'autorisation de stationnement à la mairie (15 jours avant minimum)",
+    ],
+  },
+  {
+    semaine: 'J-1 semaine',
+    titre: 'Phase finalisation',
+    description: "On boucle les derniers détails et on prépare la transition. C'est aussi le moment de confirmer les détails avec le déménageur.",
+    actions: [
+      "Confirmer l'heure d'arrivée du déménageur (sms ou appel la veille)",
+      "Préparer un 'carton essentiels J+1' : trousse toilette, médicaments, chargeurs, café",
+      "Vider et dégivrer le congélateur (2-3 jours avant)",
+      "Faire les pleins (lave-linge, lave-vaisselle vidés et débranchés)",
+      "Préparer les enveloppes : clés ancien logement, clés nouveau, état des lieux",
+    ],
+  },
+  {
+    semaine: 'Le jour J',
+    titre: 'Le déménagement',
+    description: "C'est le jour. Si tout a été préparé, c'est juste l'exécution. Notre équipe sait quoi faire, votre rôle est de superviser et d'indiquer les destinations.",
+    actions: [
+      "Accueil de l'équipe à l'heure convenue (généralement 8h)",
+      "Visite rapide ensemble : ordre de chargement, pièces fragiles, accès",
+      "Vous restez sur place pendant le chargement (1-3 heures selon volume)",
+      "Trajet avec ou sans escorte selon vos préférences",
+      "Déchargement : vous indiquez les pièces pour chaque carton",
+      "Remontage des meubles principaux (si option choisie)",
+      "État des lieux du transport, signature du bordereau",
+    ],
+  },
+  {
+    semaine: 'J+1 à J+30',
+    titre: 'Phase installation',
+    description: "L'emménagement réel se fait sur plusieurs semaines. Pas de précipitation, allez à votre rythme.",
+    actions: [
+      "Activer les abonnements (électricité, gaz, internet, eau)",
+      "Inscrire les enfants à la nouvelle école si pas fait avant",
+      "Faire suivre le courrier (service La Poste, 6 mois minimum)",
+      "Mettre à jour la carte grise (sous 1 mois) et l'assurance auto",
+      "Déclarer le changement d'adresse aux impôts (en ligne)",
+      "Découvrir le quartier : commerces, médecin, école",
+    ],
+  },
+];
+
+const demarches = [
+  {
+    titre: 'Administratif',
+    items: [
+      'CAF (allocations) : déclaration en ligne',
+      'Impôts : changement d\'adresse en ligne',
+      "Sécurité sociale : via votre compte Ameli",
+      "Pôle Emploi / France Travail si concerné",
+      "Carte grise : sous 1 mois (gratuit en ligne)",
+      "Permis de conduire : pas besoin (sauf si changement de département)",
+    ],
+  },
+  {
+    titre: 'Logement',
+    items: [
+      "Électricité (EDF, Engie, autres fournisseurs) : 15 jours avant",
+      "Gaz (GRDF / fournisseur) : 15 jours avant",
+      "Eau : ouverture du compteur à la mairie de la nouvelle commune",
+      "Internet / TV : 10 jours avant pour éviter la coupure",
+      "Assurance habitation : indispensable AVANT l'emménagement",
+      "Préavis de l'ancien logement (1 ou 3 mois selon zone)",
+    ],
+  },
+  {
+    titre: 'Famille / personnel',
+    items: [
+      "École : inscription ou demande de dérogation (mairie)",
+      "Crèche / nounou : recherche au moins 2 mois avant",
+      "Médecin traitant : déclaration auprès de la CPAM",
+      "Banque : changement d'adresse en ligne",
+      "Mutuelle, assurances diverses",
+      "Réexpédition du courrier (La Poste, 6 mois ou 12 mois)",
+    ],
+  },
+  {
+    titre: 'Véhicule',
+    items: [
+      "Carte grise : changement d'adresse sous 1 mois (ANTS en ligne)",
+      "Assurance auto : prévenir l'assureur (le tarif peut bouger)",
+      "Zone de stationnement résidentiel si centre-ville",
+      "Si déménagement hors département : étiquette nouveau département",
+    ],
+  },
+];
+
+const conseilsEmballage = [
+  {
+    num: '01',
+    titre: 'Les cartons',
+    desc: "Préférez les cartons neufs pour les objets lourds (livres, vaisselle), les cartons réutilisés pour les vêtements. Pour Annemasse, Centrakor ou La Foir'Fouille en vendent à prix corrects. Comptez environ <strong>4 cartons standards par m³ de meubles</strong>, plus 10-15 cartons supplémentaires pour les petits objets, vaisselle, livres.",
+  },
+  {
+    num: '02',
+    titre: 'L\'étiquetage',
+    desc: "Sur chaque carton, écrivez au gros marqueur : <strong>pièce de destination</strong> (cuisine, chambre 2, salon...) + <strong>contenu sommaire</strong> (vaisselle, livres, déco) + <strong>FRAGILE</strong> si nécessaire. Cela divise par 2 le temps de déchargement.",
+  },
+  {
+    num: '03',
+    titre: 'Protéger la vaisselle',
+    desc: "Emballez chaque assiette dans du papier journal ou du papier bulle, puis empilez-les <strong>verticalement</strong> dans le carton (pas à plat), avec calage entre chaque pile. Verres : papier bulle + carton compartimenté si possible.",
+  },
+  {
+    num: '04',
+    titre: 'Les meubles fragiles',
+    desc: "Démontez systématiquement les meubles avec verre (vitrines, étagères en verre), les miroirs (housse + carton plat). Les tableaux et œuvres d'art : papier bulle + carton sur mesure, ou caisses en carton plates spécialisées.",
+  },
+  {
+    num: '05',
+    titre: 'Les vêtements',
+    desc: "Deux options : <strong>cartons penderie</strong> (cintres directement, idéal pour costumes/manteaux) ou <strong>cartons standards</strong> pour le reste. Astuce : utilisez vos valises pour les chaussures et vêtements lourds, ça fait gagner des cartons.",
+  },
+  {
+    num: '06',
+    titre: 'Le carton J+1',
+    desc: "Prévoyez UN carton clairement identifié 'À OUVRIR EN PREMIER' avec : <strong>trousse toilette</strong>, <strong>médicaments</strong>, <strong>papier toilette</strong>, <strong>chargeurs</strong>, <strong>café/thé</strong>, <strong>1 ou 2 tasses</strong>, <strong>quelques couverts</strong>, <strong>une serviette</strong>. Le lendemain, vous serez fatigué, vous nous remercierez.",
+  },
+];
+
+const erreurs = [
+  {
+    erreur: "Choisir le moins cher sans visite technique",
+    explication: "Un devis téléphonique sans visite sous-estime presque toujours le volume. Résultat : surcoût le jour J ou prestation bâclée. Préférez un déménageur qui se déplace gratuitement.",
+  },
+  {
+    erreur: "Sous-estimer le tri",
+    explication: "On accumule en moyenne 10-15% d'objets inutiles par an dans un logement. Un bon tri avant déménagement peut réduire votre volume de 20-30%, donc votre facture d'autant.",
+  },
+  {
+    erreur: "Réserver à la dernière minute",
+    explication: "En haute saison (juin-septembre), les bons déménageurs sont pleins 4-6 semaines à l'avance. À la dernière minute, vous payez plus cher ET vous tombez sur des prestataires moins sérieux.",
+  },
+  {
+    erreur: "Oublier l'autorisation de stationnement",
+    explication: "Annemasse centre-ville, gare, certaines rues d'Étrembières ou Gaillard : sans autorisation, le camion ne peut pas stationner correctement. Délai : 15 jours minimum avant la date.",
+  },
+  {
+    erreur: "Mal étiqueter les cartons",
+    explication: "Un carton sans étiquette = un carton qui finit n'importe où. Vous passerez les jours suivants à chercher la cafetière dans 'cartons divers'. L'étiquetage prend 5 secondes par carton.",
+  },
+  {
+    erreur: "Vouloir tout faire seul",
+    explication: "Le 'déménagement entre amis' est rarement une bonne idée pour un volume > 20 m³. Risque de casse, blessure (mal de dos), perte de temps. Un professionnel coûte 800-1500€ et économise une semaine de stress.",
+  },
+];
+
+const faqs = [
+  {
+    q: "Combien de temps faut-il pour préparer un déménagement ?",
+    r: `Idéalement <strong>8 semaines</strong> pour un déménagement standard (T2/T3), <strong>3 mois</strong> pour une maison ou un déménagement complexe (longue distance, regroupement de logements). Si vous avez moins de temps : 2-3 semaines minimum, en concentrant l'effort sur le tri + l'emballage + la réservation du déménageur.`,
+  },
+  {
+    q: "Quand commencer à faire les cartons ?",
+    r: `2 semaines avant pour les objets non essentiels (livres, vaisselle de réception, vêtements hors saison, déco). 3-4 jours avant pour les vêtements courants, vaisselle quotidienne. Le jour J : juste les ultimes affaires de toilette et de literie. Si vous emballez trop tard, vous serez débordé. Si vous emballez trop tôt, vous chercherez vos affaires.`,
+  },
+  {
+    q: "Combien de cartons faut-il prévoir ?",
+    r: `Repère simple : <strong>10 cartons par tranche de 10 m²</strong> habitable. Soit pour un T2 de 50 m² : ~50 cartons. Pour un T3 de 70 m² : ~70 cartons. Mais ça dépend énormément du nombre d'années dans le logement et du style de vie. Notre <a href="/calculateur-volume">calculateur de volume</a> intègre les cartons dans le calcul global m³.`,
+  },
+  {
+    q: "Comment trier efficacement avant un déménagement ?",
+    r: `Méthode 4 piles : <strong>garder</strong>, <strong>donner</strong>, <strong>vendre</strong>, <strong>jeter</strong>. Règle simple : si vous ne l'avez pas utilisé depuis 12 mois et que ça n'a pas de valeur sentimentale, ça part. Le tri se fait pièce par pièce, en 1-2 sessions de 2-3 heures (pas plus, sinon on se décourage). Vinted/Leboncoin pour vendre, Emmaüs/Le Relais pour donner, déchetterie pour jeter.`,
+  },
+  {
+    q: "Faut-il démonter ses meubles avant l'arrivée du déménageur ?",
+    r: `Non, sauf si vous voulez économiser sur la prestation. La plupart des déménageurs (Torres Transport inclus) proposent le démontage/remontage en option. Si vous démontez vous-même : photographiez chaque étape, mettez les vis dans des sachets numérotés et étiquetés, et gardez le tout dans un carton dédié 'visserie' que vous transportez à part.`,
+  },
+  {
+    q: "Que faire des animaux le jour du déménagement ?",
+    r: `Confiez-les à un proche pour la journée, ou enfermez-les dans une pièce vide avec gamelle d'eau, litière, panier. Le bruit et l'agitation peuvent les stresser. Pour les chats : transport en cage rigide vers le nouveau logement, et adaptation progressive (1 pièce d'abord, puis le reste).`,
+  },
+  {
+    q: "Comment gérer le déménagement avec des enfants ?",
+    r: `Pour les jeunes enfants (0-6 ans) : confiez-les à un proche le jour J, ils gênent et se mettent en danger. Pour les plus grands : impliquez-les dans le tri de leurs affaires et l'emballage de leur chambre. Le jour J, ils peuvent porter quelques cartons légers (sentiment d'utilité). Préparez leur chambre EN PREMIER au nouveau logement pour leur donner un repère sécurisant.`,
+  },
+  {
+    q: "Quel est le coût total à prévoir pour un déménagement ?",
+    r: `Coût du déménageur : <strong>47,50&nbsp;€/m³</strong> chez Torres Transport (T2 ≈ 1 200&nbsp;€, T3 ≈ 1 800&nbsp;€). À ajouter : cartons (50-100&nbsp;€), tri/débarras (variable), changement de serrure si nécessaire (100-300&nbsp;€), nettoyage de fin de bail (200-400&nbsp;€), nouveaux abonnements (variables). Budget total typique pour un T3 : <strong>2 000 à 3 000 €</strong>.`,
+  },
+];
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Accueil', item: SITE_URL },
+    { '@type': 'ListItem', position: 2, name: 'Préparer son déménagement', item: pageURL },
+  ],
+};
+
+const howToSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: 'Préparer son déménagement étape par étape',
+  description: "Guide complet pour préparer un déménagement réussi, de J-8 semaines à l'installation finale.",
+  totalTime: 'P8W',
+  step: timeline.map((t, i) => ({
+    '@type': 'HowToStep',
+    position: i + 1,
+    name: t.titre,
+    text: t.description,
+  })),
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.r.replace(/<[^>]+>/g, '') },
+  })),
+};
+---
+
+<BaseLayout
+  title="Préparer son déménagement, guide complet 2026 | Torres Transport Annemasse"
+  description="Guide pratique pour préparer son déménagement : checklist 8 semaines, démarches administratives, conseils d'emballage, erreurs à éviter. 20 ans d'expérience à Annemasse et en Haute-Savoie."
+  keywords="préparer son déménagement, checklist déménagement, comment déménager, guide déménagement Annemasse, démarches administratives déménagement, étapes déménagement, emballage cartons déménagement"
+  canonical={pageURL}
+  ogImage="/banner-demenagement.webp"
+  structuredData={[breadcrumbSchema, howToSchema, faqSchema]}
+>
+  <!-- ==================== HERO ==================== -->
+  <section class="prep-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Fil d'Ariane">
+        <a href="/">Accueil</a><span>/</span>
+        <span>Préparer son déménagement</span>
+      </nav>
+      <span class="eyebrow gold">Guide complet 2026</span>
+      <h1>Préparer son déménagement,<br /><em>sans rien oublier.</em></h1>
+      <p class="lead">
+        Un déménagement bien préparé, c'est <strong>50% du stress en moins</strong> et <strong>jusqu'à 30% d'économies</strong> sur la prestation. Ce guide compile 20 ans
+        d'expérience terrain de Torres Transport à Annemasse et en Haute-Savoie : <strong>chronologie sur 8 semaines</strong>, démarches administratives, conseils d'emballage,
+        erreurs à éviter.
+      </p>
+      <div class="hero-actions">
+        <a href="#timeline" class="btn btn-gold btn-large btn-with-arrow">Commencer le guide</a>
+        <a href="/contact" class="btn btn-ghost btn-large">Demander un devis</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TIMELINE ==================== -->
+  <section class="section" id="timeline">
+    <div class="container container-narrow">
+      <header class="section-header">
+        <span class="eyebrow gold">Chronologie sur 8 semaines</span>
+        <h2>Quoi faire,<br /><em>et quand le faire.</em></h2>
+        <p class="section-intro">
+          Un déménagement réussi commence 8 semaines avant la date. Voici la chronologie phase par phase,
+          utilisée par notre équipe pour conseiller nos clients à Annemasse, Ville-la-Grand, Gaillard et toute la Haute-Savoie.
+        </p>
+      </header>
+
+      <ol class="timeline-list">
+        {timeline.map((phase, idx) => (
+          <li class="timeline-item">
+            <div class="timeline-marker">
+              <span class="timeline-num">{String(idx + 1).padStart(2, '0')}</span>
+              <span class="timeline-semaine">{phase.semaine}</span>
+            </div>
+            <div class="timeline-content">
+              <h3>{phase.titre}</h3>
+              <p class="timeline-desc">{phase.description}</p>
+              <ul class="timeline-actions">
+                {phase.actions.map((a) => <li>{a}</li>)}
+              </ul>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- ==================== DÉMARCHES ADMINISTRATIVES ==================== -->
+  <section class="section bg-cream">
+    <div class="container container-narrow">
+      <header class="section-header">
+        <span class="eyebrow gold">Démarches administratives</span>
+        <h2>Tout ce qu'il faut<br /><em>déclarer ou résilier.</em></h2>
+        <p class="section-intro">
+          La paperasse est la partie la moins amusante d'un déménagement, mais elle est cruciale. Une démarche oubliée peut entraîner
+          une coupure (eau, électricité), des frais en double, ou des retards de remboursement (sécurité sociale, CAF).
+        </p>
+      </header>
+
+      <div class="demarches-grid">
+        {demarches.map((d) => (
+          <article class="demarche-card">
+            <h3>{d.titre}</h3>
+            <ul class="demarche-list">
+              {d.items.map((i) => <li>{i}</li>)}
+            </ul>
+          </article>
+        ))}
+      </div>
+
+      <div class="demarches-note">
+        <strong>Astuce :</strong> Le service <a href="https://www.service-public.fr/particuliers/vosdroits/R11193" target="_blank" rel="noopener noreferrer">service-public.fr/changement-adresse</a> permet de notifier <strong>en une seule fois</strong> plusieurs administrations (CAF, impôts, sécurité sociale, Pôle Emploi). Comptez 10 minutes pour tout faire, à compléter avec les démarches privées (banque, assurances, abonnements).
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== EMBALLAGE ==================== -->
+  <section class="section">
+    <div class="container container-narrow">
+      <header class="section-header">
+        <span class="eyebrow gold">Méthode d'emballage</span>
+        <h2>Bien emballer,<br /><em>ne rien casser.</em></h2>
+        <p class="section-intro">
+          L'emballage représente environ 30% du temps total d'un déménagement. Une bonne méthode permet de réduire ce temps
+          de moitié et d'éviter quasiment toute casse. Nos conseils issus de 20 ans de pratique.
+        </p>
+      </header>
+
+      <div class="emballage-grid">
+        {conseilsEmballage.map((c) => (
+          <article class="emballage-card">
+            <span class="emballage-num">{c.num}</span>
+            <h3>{c.titre}</h3>
+            <p set:html={c.desc}></p>
+          </article>
+        ))}
+      </div>
+
+      <div class="emballage-cta">
+        <p>
+          Pas envie de gérer l'emballage&nbsp;? <strong>Torres Transport peut s'en charger</strong> en option. Cartons fournis, équipe spécialisée, gain de temps massif.
+        </p>
+        <a href="/contact" class="btn btn-gold btn-with-arrow">Demander un devis avec emballage</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ERREURS À ÉVITER ==================== -->
+  <section class="section bg-black erreurs-section">
+    <div class="container container-narrow">
+      <header class="section-header section-header-light">
+        <span class="eyebrow gold">Les 6 erreurs classiques</span>
+        <h2 style="color: var(--white);">À éviter<br /><em style="color: var(--gold);">à tout prix.</em></h2>
+        <p class="section-intro" style="color: rgba(255,255,255,0.75);">
+          Ces erreurs reviennent dans 80% des déménagements ratés. Vous prévenir, c'est vous faire gagner du temps, de l'argent, et beaucoup de stress.
+        </p>
+      </header>
+
+      <ul class="erreurs-list">
+        {erreurs.map((e, idx) => (
+          <li class="erreur-item">
+            <span class="erreur-num">{String(idx + 1).padStart(2, '0')}</span>
+            <div>
+              <h3>{e.erreur}</h3>
+              <p>{e.explication}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ==================== OUTILS ==================== -->
+  <section class="section bg-cream">
+    <div class="container container-narrow">
+      <header class="section-header">
+        <span class="eyebrow gold">Nos outils gratuits</span>
+        <h2>Pour aller<br /><em>plus loin.</em></h2>
+      </header>
+
+      <div class="outils-grid">
+        <a href="/calculateur-volume" class="outil-card">
+          <span class="outil-icon">📦</span>
+          <h3>Calculateur de volume</h3>
+          <p>Estimez précisément vos m³ pièce par pièce. Tarif indicatif instantané à 47,50 €/m³.</p>
+          <span class="outil-cta">Calculer mon volume →</span>
+        </a>
+
+        <a href="/estimation" class="outil-card">
+          <span class="outil-icon">📋</span>
+          <h3>Devis en ligne</h3>
+          <p>Remplissez quelques infos en 2 minutes. Devis ferme sous 24h après visite technique gratuite.</p>
+          <span class="outil-cta">Demander un devis →</span>
+        </a>
+
+        <a href="/faq" class="outil-card">
+          <span class="outil-icon">❓</span>
+          <h3>FAQ complète</h3>
+          <p>50+ questions répondues : tarifs, délais, assurance, zones, situations particulières.</p>
+          <span class="outil-cta">Consulter la FAQ →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FAQ ==================== -->
+  <section class="section">
+    <div class="container container-narrow">
+      <header class="section-header text-center">
+        <span class="eyebrow gold">Questions fréquentes</span>
+        <h2>Tout savoir<br /><em>sur la préparation.</em></h2>
+      </header>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary>{f.q}</summary>
+            <p set:html={f.r}></p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CTA FINAL ==================== -->
+  <section class="section bg-black cta-final">
+    <div class="container container-narrow text-center">
+      <span class="eyebrow">Prêt à passer à l'action&nbsp;?</span>
+      <h2>Demandez votre devis,<br /><em>visite gratuite sous 24 h.</em></h2>
+      <p class="lead">
+        Une équipe locale, 20 ans d'expérience, 48 avis Google 5,0/5. Devis ferme, sans engagement.
+      </p>
+      <div class="cta-buttons">
+        <a href="/contact" class="btn btn-gold btn-large btn-with-arrow">Demander un devis</a>
+        <a href="tel:+33659926814" class="btn btn-ghost btn-large">06 59 92 68 14</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* ==================== HERO ==================== */
+  .prep-hero {
+    background: var(--off-white);
+    padding: clamp(4rem, 8vw, 7rem) 0 clamp(3rem, 5vw, 4rem);
+    border-bottom: 1px solid var(--border);
+    margin-top: -76px;
+    padding-top: clamp(6rem, 12vw, 9rem);
+  }
+  .breadcrumb {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--gray-500);
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  .breadcrumb a { color: var(--gray-700, #404040); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--black); }
+  .breadcrumb > span:not(:last-child) { opacity: 0.4; }
+
+  .prep-hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4.25rem);
+    margin: 0.75rem 0 1.5rem;
+    max-width: 920px;
+    line-height: 1.05;
+  }
+  .prep-hero h1 em { font-style: italic; color: var(--gold-deep); }
+  .prep-hero .lead {
+    max-width: 760px;
+    margin-bottom: 2.5rem;
+    color: var(--gray-800);
+  }
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  /* ==================== TIMELINE ==================== */
+  .section-intro {
+    margin-top: 1.25rem;
+    max-width: 720px;
+    color: var(--gray-700);
+    font-size: 1.05rem;
+    line-height: 1.65;
+  }
+
+  .timeline-list {
+    list-style: none;
+    padding: 0;
+    margin: 3rem 0 0;
+    counter-reset: timeline;
+    border-top: 1px solid var(--border-strong);
+  }
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 2rem;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .timeline-marker {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    position: sticky;
+    top: 100px;
+    align-self: start;
+  }
+  .timeline-num {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--gold-deep);
+    line-height: 1;
+  }
+  .timeline-semaine {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--gray-600);
+    font-weight: 600;
+  }
+  .timeline-content h3 {
+    font-size: 1.5rem;
+    margin: 0 0 0.85rem;
+    color: var(--black);
+  }
+  .timeline-desc {
+    color: var(--gray-700);
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+  .timeline-actions {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .timeline-actions li {
+    padding: 0.5rem 0 0.5rem 1.5rem;
+    color: var(--gray-700);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    position: relative;
+    border-bottom: 1px solid var(--border);
+  }
+  .timeline-actions li:last-child { border-bottom: none; }
+  .timeline-actions li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    color: var(--gold-deep);
+    font-weight: 700;
+  }
+
+  /* ==================== DÉMARCHES ==================== */
+  .demarches-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--border-strong);
+    border-left: 1px solid var(--border-strong);
+    margin-top: 2.5rem;
+  }
+  .demarche-card {
+    padding: 2rem;
+    border-right: 1px solid var(--border-strong);
+    border-bottom: 1px solid var(--border-strong);
+    background: var(--white);
+  }
+  .demarche-card h3 {
+    font-size: 1.3rem;
+    margin: 0 0 1.25rem;
+    color: var(--black);
+  }
+  .demarche-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .demarche-list li {
+    padding: 0.55rem 0 0.55rem 1.5rem;
+    color: var(--gray-700);
+    font-size: 0.93rem;
+    line-height: 1.55;
+    position: relative;
+    border-bottom: 1px solid var(--border);
+  }
+  .demarche-list li:last-child { border-bottom: none; }
+  .demarche-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    top: 0.55rem;
+    color: var(--gold-deep);
+    font-weight: 700;
+  }
+  .demarches-note {
+    margin-top: 2.5rem;
+    padding: 1.5rem;
+    background: var(--white);
+    border-left: 3px solid var(--gold-deep);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--gray-700);
+  }
+  .demarches-note a { color: var(--gold-deep); text-decoration: underline; }
+
+  /* ==================== EMBALLAGE ==================== */
+  .emballage-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--border-strong);
+    border-left: 1px solid var(--border-strong);
+    margin-top: 2.5rem;
+  }
+  .emballage-card {
+    padding: 2rem;
+    border-right: 1px solid var(--border-strong);
+    border-bottom: 1px solid var(--border-strong);
+    background: var(--white);
+  }
+  .emballage-num {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--gold-deep);
+    font-weight: 500;
+  }
+  .emballage-card h3 {
+    font-size: 1.25rem;
+    margin: 0.85rem 0;
+    color: var(--black);
+  }
+  .emballage-card p {
+    color: var(--gray-700);
+    line-height: 1.7;
+    font-size: 0.95rem;
+    margin: 0;
+  }
+  .emballage-card strong { color: var(--black); }
+  .emballage-cta {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: var(--cream);
+    text-align: center;
+  }
+  .emballage-cta p {
+    margin-bottom: 1.5rem;
+    color: var(--gray-800);
+    font-size: 1.05rem;
+  }
+
+  /* ==================== ERREURS ==================== */
+  .erreurs-section { color: var(--white); }
+  .erreurs-section .eyebrow { color: var(--gold); }
+  .erreurs-list {
+    list-style: none;
+    padding: 0;
+    margin: 3rem 0 0;
+    border-top: 1px solid rgba(255,255,255,0.15);
+  }
+  .erreur-item {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    align-items: flex-start;
+  }
+  .erreur-num {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--gold);
+    flex-shrink: 0;
+    line-height: 1;
+    padding-top: 0.25rem;
+  }
+  .erreur-item h3 {
+    font-size: 1.25rem;
+    margin: 0 0 0.5rem;
+    color: var(--white);
+  }
+  .erreur-item p {
+    color: rgba(255,255,255,0.78);
+    line-height: 1.7;
+    font-size: 0.95rem;
+    margin: 0;
+  }
+
+  /* ==================== OUTILS ==================== */
+  .outils-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--border-strong);
+    border-left: 1px solid var(--border-strong);
+    margin-top: 2.5rem;
+  }
+  .outil-card {
+    padding: 2.25rem 2rem;
+    border-right: 1px solid var(--border-strong);
+    border-bottom: 1px solid var(--border-strong);
+    background: var(--white);
+    text-decoration: none;
+    color: var(--black);
+    transition: all 0.25s var(--ease-smooth);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .outil-card:hover {
+    background: var(--off-white);
+    transform: translateY(-3px);
+  }
+  .outil-icon {
+    font-size: 1.75rem;
+    line-height: 1;
+  }
+  .outil-card h3 {
+    font-size: 1.25rem;
+    margin: 0;
+  }
+  .outil-card p {
+    color: var(--gray-700);
+    line-height: 1.6;
+    font-size: 0.95rem;
+    flex: 1;
+    margin: 0;
+  }
+  .outil-cta {
+    color: var(--gold-deep);
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: padding-left 0.25s;
+  }
+  .outil-card:hover .outil-cta { padding-left: 0.4rem; }
+
+  /* ==================== FAQ ==================== */
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--border-strong);
+    margin-top: 2.5rem;
+  }
+  .faq-item {
+    border-bottom: 1px solid var(--border-strong);
+    background: transparent;
+    transition: background 0.3s var(--ease-smooth);
+  }
+  .faq-item[open] { background: var(--off-white); }
+  .faq-item summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 1.5rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    font-family: var(--font-display);
+    font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+    font-weight: 500;
+    color: var(--black);
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: '+';
+    color: var(--gold-deep);
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    transition: transform 0.25s;
+  }
+  .faq-item[open] summary::after { content: '−'; }
+  .faq-item p {
+    padding: 0 1rem 1.5rem;
+    color: var(--gray-700);
+    line-height: 1.7;
+    margin: 0;
+  }
+  .faq-item strong { color: var(--black); }
+  .faq-item a { color: var(--gold-deep); text-decoration: underline; }
+
+  /* ==================== CTA FINAL ==================== */
+  .cta-final { text-align: center; }
+  .cta-final h2 em { color: var(--gold); font-style: italic; }
+  .cta-final .lead {
+    color: rgba(255, 255, 255, 0.75);
+    max-width: 580px;
+    margin: 1.5rem auto 2.5rem;
+  }
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* ==================== RESPONSIVE ==================== */
+  @media (max-width: 1024px) {
+    .timeline-item { grid-template-columns: 140px 1fr; gap: 1.5rem; }
+    .outils-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 768px) {
+    .timeline-item { grid-template-columns: 1fr; gap: 1rem; }
+    .timeline-marker { position: static; flex-direction: row; align-items: baseline; gap: 1rem; }
+    .demarches-grid { grid-template-columns: 1fr; }
+    .emballage-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .outils-grid { grid-template-columns: 1fr; }
+    .erreur-item { gap: 1rem; }
+    .erreur-num { font-size: 1.25rem; }
+  }
+</style>
