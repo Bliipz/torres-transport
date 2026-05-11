@@ -554,6 +554,13 @@ const extraSchemas = structuredData
         padding-top: 76px;
       }
 
+      /* Bloque tout scroll/swipe horizontal au niveau global (mobile) */
+      html, body {
+        overflow-x: hidden;
+        max-width: 100vw;
+      }
+      body { position: relative; }
+
       /* Skip-link a11y (WCAG 2.4.1), visible au focus clavier uniquement */
       .skip-link {
         position: absolute;

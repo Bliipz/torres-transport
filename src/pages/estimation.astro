@@ -1049,6 +1049,8 @@ const services = [
   .estim-form select,
   .estim-form textarea {
     width: 100%;
+    min-width: 0;
+    max-width: 100%;
     padding: 0.85rem 1rem;
     border: 1px solid var(--border-strong);
     background: var(--white);
@@ -1056,6 +1058,13 @@ const services = [
     font-size: 0.95rem;
     color: var(--gray-900);
     transition: border-color 0.2s, background 0.2s;
+  }
+
+  /* iOS Safari : neutralise le min-width intrinsèque du date input */
+  .estim-form input[type="date"] {
+    -webkit-appearance: none;
+    appearance: none;
+    display: block;
   }
   .estim-form input:focus,
   .estim-form select:focus,
