@@ -737,4 +737,11 @@ const allSchemas = [serviceSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema]
     .partners-detail-grid { grid-template-columns: 1fr; }
     .partner-detail-head { flex-direction: column; align-items: flex-start; gap: 0.25rem; }
   }
+
+  @media (max-width: 600px) {
+    .partners-banner { display: none; }
+    .partner-detail { padding: 1.5rem; }
+    .partner-detail h3 { font-size: 1.2rem; }
+    .partners-note { font-size: 0.85rem; padding: 0 1rem; }
+  }
 </style>

@@ -398,6 +398,8 @@ const allSchemas = [serviceSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema]
     max-width: 900px;
     display: flex;
     justify-content: center;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
   .partner-logo img {
     max-width: 100%; width: 100%; height: auto; object-fit: contain;
@@ -405,6 +407,10 @@ const allSchemas = [serviceSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema]
     transition: all 0.3s var(--ease-smooth);
   }
   .partner-logo:hover img { filter: grayscale(0%); opacity: 1; }
+
+  @media (max-width: 600px) {
+    .partner-logo img { min-width: 560px; }
+  }
 
   /* ==================== ZONES MAILLAGE ==================== */
   .service-zones { background: var(--white); border-top: 1px solid var(--border); }
