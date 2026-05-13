@@ -521,7 +521,7 @@ export const cities = {
     geo: { lat: 45.900, lng: 6.129 },
     distanceKm: 45,
     population: '130 000 habitants',
-    bannier: '/banner-form-contact.webp',
+    bannier: '/banner-annecy.webp',
 
     titreH1: 'Déménagement à Annecy (74000) · Préfecture de Haute-Savoie',
     metaTitle: 'Déménageur Annecy · Tarif 47,50 €/m³ tout compris | Torres Transport',
