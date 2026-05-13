@@ -116,8 +116,14 @@ const serviceSchema = {
     { '@type': 'City', name: 'Annemasse' },
     { '@type': 'City', name: 'Ville-la-Grand' },
     { '@type': 'City', name: 'Gaillard' },
+    { '@type': 'City', name: 'Étrembières' },
+    { '@type': 'City', name: 'Vétraz-Monthoux' },
     { '@type': 'City', name: 'Saint-Julien-en-Genevois' },
     { '@type': 'City', name: 'Bonneville' },
+    { '@type': 'City', name: 'Thonon-les-Bains' },
+    { '@type': 'City', name: 'Évian-les-Bains' },
+    { '@type': 'City', name: 'Douvaine' },
+    { '@type': 'City', name: 'Sciez' },
     { '@type': 'AdministrativeArea', name: 'Haute-Savoie' },
   ],
   url: pageURL,
@@ -208,17 +214,47 @@ const allSchemas = [serviceSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema]
         <span>Garde-meuble</span>
       </nav>
       <span class="eyebrow gold">Spécialité dédiée</span>
-      <h1>Garde-meuble Annemasse,<br /><em>vos affaires en sécurité.</em></h1>
+      <h1>Garde-meuble &amp; box de stockage<br /><em>à Annemasse et en Haute-Savoie.</em></h1>
       <p class="lead">
-        Vente avant achat, mutation pro, séparation, travaux&nbsp;:
-        il y a des moments où il faut un toit pour ses meubles avant le suivant.
-        Nos box nominatifs de <strong>5 à 30+ m³</strong> à partir de
-        <strong>35&nbsp;€/mois</strong> répondent à cette transition, sans
-        engagement, et combinables avec notre service de déménagement.
+        <strong>Location de box de stockage</strong> et garde-meuble à Annemasse pour particuliers.
+        Vente avant achat, mutation pro, séparation, travaux : il y a des moments où il faut un toit pour ses meubles
+        avant le suivant. Nos box nominatifs de <strong>5 à 30+ m³</strong> à partir de
+        <strong>35&nbsp;€/mois</strong>, sans engagement, combinables avec notre service de déménagement.
       </p>
       <div class="hero-actions">
         <a href="/contact" class="btn btn-gold btn-large btn-with-arrow">Réserver un box</a>
         <a href="tel:+33659926814" class="btn btn-ghost btn-large">06 59 92 68 14</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== INTRO SEO ==================== -->
+  <section class="section intro-seo">
+    <div class="container container-narrow">
+      <div class="intro-seo-content">
+        <h2>Votre <em>garde-meuble en Haute-Savoie</em>, pensé pour les transitions de vie.</h2>
+        <p>
+          Vous cherchez un <strong>garde-meuble à Annemasse</strong> ou un <strong>box de stockage en Haute-Savoie</strong> ?
+          Torres Transport propose une solution complète&nbsp;: stockage de meubles, location de box individuels nominatifs,
+          accès libre 6 jours sur 7, sans engagement de durée. Notre offre s'adresse aux <strong>particuliers du bassin annemassien</strong>
+          (Annemasse, Ville-la-Grand, Gaillard, Étrembières, Vétraz-Monthoux, Saint-Julien-en-Genevois) et plus largement de toute la <strong>Haute-Savoie (74)</strong>
+          jusqu'au Chablais (Thonon, Évian, Douvaine, Sciez).
+        </p>
+        <p>
+          Notre solution de <strong>self-stockage à Annemasse</strong> est idéale pour&nbsp;:
+        </p>
+        <ul class="intro-seo-list">
+          <li><strong>Stockage entre deux logements</strong>&nbsp;: vente avant achat, déménagement temporaire, séparation</li>
+          <li><strong>Stockage pendant travaux</strong>&nbsp;: rénovation, agrandissement, mise aux normes</li>
+          <li><strong>Stockage saisonnier</strong>&nbsp;: équipement ski, mobilier extérieur, archives</li>
+          <li><strong>Stockage post-déménagement</strong>&nbsp;: nouveau logement plus petit, succession à traiter</li>
+          <li><strong>Stockage longue durée</strong>&nbsp;: expatriation, mutation longue, résidence secondaire</li>
+        </ul>
+        <p>
+          Contrairement à un garde-meuble traditionnel, nos box sont <strong>individuels et nominatifs</strong> :
+          vos affaires ne se mélangent jamais à celles d'autres clients. Vous avez votre clé, vous accédez librement
+          du lundi au samedi de 8h à 19h, et vous récupérez ou déposez sans rendez-vous préalable.
+        </p>
       </div>
     </div>
   </section>
@@ -742,6 +778,51 @@ const allSchemas = [serviceSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema]
   @media (max-width: 768px) {
     .partners-detail-grid { grid-template-columns: 1fr; }
     .partner-detail-head { flex-direction: column; align-items: flex-start; gap: 0.25rem; }
+  }
+
+  /* ==================== INTRO SEO ==================== */
+  .intro-seo {
+    background: var(--white);
+    padding: clamp(3rem, 6vw, 4.5rem) 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .intro-seo-content h2 {
+    font-size: clamp(1.65rem, 3vw, 2.2rem);
+    margin-bottom: 1.5rem;
+    color: var(--black);
+    line-height: 1.2;
+  }
+  .intro-seo-content h2 em {
+    font-style: italic;
+    color: var(--gold-deep);
+  }
+  .intro-seo-content p {
+    color: var(--gray-700);
+    line-height: 1.75;
+    font-size: 1rem;
+    margin-bottom: 1.25rem;
+  }
+  .intro-seo-content strong { color: var(--black); }
+  .intro-seo-list {
+    list-style: none;
+    padding: 0;
+    margin: 1.25rem 0 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .intro-seo-list li {
+    padding: 0.85rem 0 0.85rem 1.75rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--gray-700);
+    line-height: 1.6;
+    position: relative;
+  }
+  .intro-seo-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    top: 0.85rem;
+    color: var(--gold-deep);
+    font-weight: 700;
   }
 
   @media (max-width: 600px) {

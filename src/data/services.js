@@ -27,10 +27,13 @@ export const servicesData = {
 
   "montage-meubles": {
     titre: "Service Montage de Meubles",
+    seoTitle: "Montage meubles IKEA Annemasse · Conforama, BUT, sur-mesure | Torres Transport",
+    seoDescription: "Montage de meubles IKEA à Annemasse et en Haute-Savoie : Pax, Brimnes, Hemnes, cuisines, dressings. Aussi Conforama, BUT, Maison du Monde. Outillage pro, devis gratuit. Intervention sous 48h.",
+    seoKeywords: "montage meubles IKEA Annemasse, montage IKEA Annemasse, monteur meubles Annemasse, montage Pax Annemasse, montage Conforama Annemasse, montage BUT Annemasse, montage cuisine équipée Annemasse, monteur IKEA Haute-Savoie",
     icone: "🔧",
     image: "/services/montage-de-meuble.webp",
     banner: "/banner-montage-meubles.webp",
-    description: "Montage professionnel de tous types de meubles : IKEA, Conforama, BUT, etc.",
+    description: "Montage professionnel de meubles IKEA, Conforama, BUT et sur-mesure à Annemasse et en Haute-Savoie.",
     intro: `
       <p>Le montage de meubles paraît simple sur le papier, sauf quand on se retrouve à 22h, dimanche soir, devant une armoire IKEA Pax avec 3 étagères en trop, 2 vis manquantes et un tournevis qui glisse. C'est exactement à ce moment-là qu'on intervient. Notre équipe monte chaque jour des meubles de toutes marques (IKEA, Conforama, BUT, La Foir'Fouille, Maison du Monde, Centrakor, mobilier sur-mesure) à Annemasse et toute la Haute-Savoie.</p>
       <p><strong>Ce qu'on monte concrètement&nbsp;:</strong> armoires et dressings (Pax, Brimnes, Hemnes), lits avec rangements, canapés convertibles, cuisines équipées (élément par élément), bureaux, étagères murales, supports TV, meubles de salle de bain, mobilier d'extérieur, jouets pour enfants. Notre outillage couvre tout&nbsp;: visseuses sans fil, tournevis dynamométriques, niveau laser, perceuse pour fixations murales, scies pour ajustements rares.</p>
@@ -114,15 +117,18 @@ export const servicesData = {
 
   "debarras": {
     titre: "Service Débarras",
+    seoTitle: "Débarras appartement Annemasse · Caves, greniers, maisons | Torres Transport",
+    seoDescription: "Débarras d'appartement à Annemasse et en Haute-Savoie : caves, greniers, garages, maisons. Tri sur place, partenariats associations, écologique (60-75% don/recyclage). Intervention sous 24-48h.",
+    seoKeywords: "débarras appartement Annemasse, débarras Annemasse, débarras cave Annemasse, débarras grenier Annemasse, débarras maison Annemasse, débarras Haute-Savoie, débarras succession",
     icone: "♻️",
     image: "/services/debarras.webp",
     banner: "/banner-transport.webp",
-    description: "Débarras de caves, greniers, garages, appartements et maisons.",
+    description: "Débarras d'appartement, maison, cave, grenier et garage à Annemasse et en Haute-Savoie.",
     intro: `
-      <p>Le débarras n'est jamais "juste" du débarras. C'est souvent une <strong>période compliquée</strong> qui se cache derrière&nbsp;: une succession à gérer après le décès d'un proche, un parent qui entre en EHPAD, un divorce qui impose de vider rapidement, un déménagement où il faut se séparer de meubles devenus inutiles. Notre approche tient compte de cette dimension humaine, pas de jugement, pas de pression, juste un travail efficace et discret.</p>
+      <p>Le <strong>débarras d'appartement à Annemasse</strong> (ou de maison, cave, grenier, garage) n'est jamais "juste" du débarras. C'est souvent une <strong>période compliquée</strong> qui se cache derrière&nbsp;: une succession à gérer après le décès d'un proche, un parent qui entre en EHPAD, un divorce qui impose de vider rapidement, un déménagement où il faut se séparer de meubles devenus inutiles. Notre approche tient compte de cette dimension humaine, pas de jugement, pas de pression, juste un travail efficace et discret.</p>
       <p><strong>Trois types de débarras&nbsp;:</strong></p>
       <ol>
-        <li><strong>Débarras complet</strong> (le plus courant), un appartement, une maison, un local entier à vider intégralement. Tri sur place, évacuation, nettoyage final si demandé.</li>
+        <li><strong>Débarras d'appartement complet</strong> à Annemasse, Ville-la-Grand, Gaillard, Étrembières (le plus courant) — un T1 à un T5, vidé intégralement. Tri sur place, évacuation, nettoyage final si demandé. Intervention sous 24-48&nbsp;h pour les urgences locatives.</li>
         <li><strong>Débarras partiel</strong>, vous gardez certains meubles (ceux qui partent avec vous, ou ceux à conserver), nous évacuons le reste. Idéal après une succession où certains meubles restent dans la famille.</li>
         <li><strong>Débarras de caves, greniers, garages</strong>, souvent des lieux remplis depuis 20 ou 30 ans, avec un mélange d'objets de valeur, d'archives et de bricolages oubliés.</li>
       </ol>

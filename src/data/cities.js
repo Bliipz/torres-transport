@@ -523,16 +523,16 @@ export const cities = {
     population: '130 000 habitants',
     bannier: '/banner-form-contact.webp',
 
-    titreH1: 'Déménagement à Annecy, Préfecture de Haute-Savoie',
-    metaTitle: 'Déménageur Annecy (74) | Torres Transport Haute-Savoie',
+    titreH1: 'Déménagement à Annecy (74000) · Préfecture de Haute-Savoie',
+    metaTitle: 'Déménageur Annecy · Tarif 47,50 €/m³ tout compris | Torres Transport',
     metaDescription:
-      "Déménageur professionnel à Annecy (74000). Préfecture de Haute-Savoie, ville en pleine croissance. Service complet déménagement résidentiel pour particuliers. Devis gratuit.",
+      "Déménagement à Annecy (74000) par Torres Transport, déménageur professionnel Haute-Savoie. Tarif transparent 47,50 €/m³, équipe locale, devis gratuit 24h. Annecy-le-Vieux, Cran-Gevrier, Seynod inclus.",
     keywords:
-      'déménageur Annecy, déménagement Annecy 74000, entreprise déménagement Annecy, déménageur Haute-Savoie, transport meubles Annecy',
+      'déménagement Annecy, déménageur Annecy, déménagement Annecy 74000, entreprise déménagement Annecy, déménagement Annecy-le-Vieux, déménageur Cran-Gevrier, déménagement pas cher Annecy, transport meubles Annecy',
 
-    intro: `<strong>Annecy</strong>, préfecture de Haute-Savoie et "Venise des Alpes", concentre 130 000 habitants et est l'un des bassins économiques les plus dynamiques de France. Torres Transport intervient à Annecy (45 km de notre base) pour répondre à la <strong>forte demande de déménagements</strong> liée à la pression démographique et économique. Nous accompagnons aussi bien les déménagements vers les nouveaux quartiers (Annecy-le-Vieux, Cran-Gevrier) que les transferts entre Annecy et le bassin annemassien.`,
+    intro: `Vous cherchez un <strong>déménageur à Annecy</strong> ? <strong>Torres Transport</strong> propose un service complet de <strong>déménagement à Annecy (74000)</strong> : la préfecture de Haute-Savoie, "Venise des Alpes", concentre 130 000 habitants et est l'un des bassins économiques les plus dynamiques de France. Nous intervenons à Annecy (à 45 km de notre base de Ville-la-Grand) pour répondre à la <strong>forte demande de déménagements résidentiels</strong> liée à la pression démographique et économique. Nous accompagnons aussi bien les déménagements vers les nouveaux quartiers (Annecy-le-Vieux, Cran-Gevrier, Meythet, Pringy, Seynod) que les transferts entre Annecy et le bassin annemassien. <strong>Tarif transparent 47,50 €/m³ tout compris</strong>, devis ferme sous 24 h.`,
 
-    pourquoiNous: `Annecy a vu son urbanisation exploser ces dernières années avec la fusion des communes (Annecy-le-Vieux, Cran-Gevrier, Meythet, Pringy, Seynod). Cette <strong>"nouvelle Annecy" de 130 000 habitants</strong> a des besoins de déménagement constants : étudiants, jeunes actifs, familles. Notre maîtrise de l'ensemble du département de la Haute-Savoie nous permet de gérer aussi bien les déménagements internes à Annecy que les transferts vers Lyon, Chambéry ou plus loin en France.`,
+    pourquoiNous: `Annecy a vu son urbanisation exploser depuis la fusion des communes en 2017 (Annecy-le-Vieux, Cran-Gevrier, Meythet, Pringy, Seynod). Cette <strong>"nouvelle Annecy" de 130 000 habitants</strong> a des besoins de déménagement constants : étudiants à la rentrée, jeunes actifs en mobilité, familles qui s'agrandissent. Choisir un <strong>déménageur Annecy local et indépendant</strong> comme Torres Transport, c'est s'assurer un déménagement sans sous-traitance, avec une équipe qui connaît les contraintes de la ville : rues piétonnes de la vieille ville, parkings éloignés près du lac, contraintes des bâtisses anciennes du centre historique. Notre maîtrise de l'ensemble du département Haute-Savoie nous permet de gérer aussi bien les déménagements internes à Annecy que les transferts vers Lyon, Chambéry ou plus loin en France.`,
 
     quartiers: [
       'Vieille Ville',

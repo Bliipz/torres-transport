@@ -22,8 +22,9 @@ const { service } = Astro.props;
 const { slug } = Astro.params;
 const pageURL = `${SITE_URL}/services/${slug}`;
 
-const seoTitle = `${service.titre} à Annemasse & Haute-Savoie | Torres Transport`;
-const seoDescription = `${service.description} Intervention à Annemasse, Ville-la-Grand, Saint-Julien et toute la Haute-Savoie. Devis gratuit. 20 ans d'expérience.`;
+const seoTitle = (service as any).seoTitle || `${service.titre} à Annemasse & Haute-Savoie | Torres Transport`;
+const seoDescription = (service as any).seoDescription || `${service.description} Intervention à Annemasse, Ville-la-Grand, Saint-Julien et toute la Haute-Savoie. Devis gratuit. 20 ans d'expérience.`;
+const seoKeywords = (service as any).seoKeywords || '';
 
 // Tarif au m³ uniquement pertinent pour le service Déménagement
 const isDemenagement = slug === 'demenagement';
@@ -110,6 +111,7 @@ const allSchemas = [serviceSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema]
 <BaseLayout
   title={seoTitle}
   description={seoDescription}
+  keywords={seoKeywords}
   ogImage={service.banner || service.image}
   structuredData={allSchemas}
 >
