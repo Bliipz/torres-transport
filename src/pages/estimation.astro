@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { pieces } from '../data/volume-items.js';
 
 const PRIX_M3 = 47.50;
 
@@ -86,25 +87,79 @@ const services = [
                   <span class="legend-text">Volume estimé</span>
                 </legend>
 
-                <div class="volume-control">
-                  <input type="range" id="volume" name="volume_m3" min="5" max="100" step="1" value="25" aria-label="Volume en m³" />
-                  <div class="volume-value">
-                    <output id="volumeValue">25</output>
-                    <span>m³</span>
+                <!-- ONGLETS : rapide vs détaillé -->
+                <div class="volume-tabs" role="tablist" aria-label="Méthode de calcul du volume">
+                  <button type="button" class="volume-tab is-active" role="tab" data-tab="rapide" aria-selected="true">
+                    <span class="tab-label">Volume rapide</span>
+                    <span class="tab-desc">Slider + types de logement</span>
+                  </button>
+                  <button type="button" class="volume-tab" role="tab" data-tab="detaille" aria-selected="false">
+                    <span class="tab-label">Calcul détaillé</span>
+                    <span class="tab-desc">Pièce par pièce, plus précis</span>
+                  </button>
+                </div>
+
+                <!-- ONGLET 1 : RAPIDE -->
+                <div class="volume-pane is-active" data-pane="rapide" role="tabpanel">
+                  <div class="volume-control">
+                    <input type="range" id="volume" name="volume_m3" min="5" max="100" step="1" value="25" aria-label="Volume en m³" />
+                    <div class="volume-value">
+                      <output id="volumeValue">25</output>
+                      <span>m³</span>
+                    </div>
+                  </div>
+
+                  <div class="volume-presets" role="group" aria-label="Estimation rapide par type de logement">
+                    <button type="button" class="preset" data-vol="15">Studio<span>~15&nbsp;m³</span></button>
+                    <button type="button" class="preset" data-vol="25">T2<span>~25&nbsp;m³</span></button>
+                    <button type="button" class="preset" data-vol="35">T3<span>~35&nbsp;m³</span></button>
+                    <button type="button" class="preset" data-vol="50">T4<span>~50&nbsp;m³</span></button>
+                    <button type="button" class="preset" data-vol="70">Maison<span>~70&nbsp;m³</span></button>
+                  </div>
+
+                  <p class="hint">
+                    Pas sûr&nbsp;? Comptez environ <strong>1&nbsp;m³ pour 4&nbsp;cartons</strong> et 5&nbsp;m³ par pièce moyenne. Passez à l'onglet "Calcul détaillé" pour plus de précision.
+                  </p>
+                </div>
+
+                <!-- ONGLET 2 : DÉTAILLÉ -->
+                <div class="volume-pane" data-pane="detaille" role="tabpanel" hidden>
+                  <p class="detail-intro">
+                    Cochez les meubles et cartons que vous emportez. Le total se met à jour automatiquement et alimente votre estimation.
+                  </p>
+
+                  <div class="detail-pieces" id="detailPieces">
+                    {pieces.map((piece) => (
+                      <details class="detail-piece" data-piece={piece.id}>
+                        <summary>
+                          <span class="detail-piece-name">{piece.nom}</span>
+                          <span class="detail-piece-count" data-piece-count={piece.id}>0&nbsp;m³</span>
+                        </summary>
+                        <ul class="detail-items">
+                          {piece.items.map((item) => (
+                            <li class="detail-item" data-m3={item.m3}>
+                              <span class="item-label">{item.label}</span>
+                              <div class="item-controls">
+                                <button type="button" class="qty-btn" data-action="decrement" aria-label={`Retirer ${item.label}`}>−</button>
+                                <span class="item-qty" data-qty="0">0</span>
+                                <button type="button" class="qty-btn" data-action="increment" aria-label={`Ajouter ${item.label}`}>+</button>
+                                <span class="item-m3">{item.m3}&nbsp;m³</span>
+                              </div>
+                            </li>
+                          ))}
+                        </ul>
+                      </details>
+                    ))}
+                  </div>
+
+                  <div class="detail-total">
+                    <div>
+                      <span class="detail-total-label">Volume total détaillé</span>
+                      <span class="detail-total-value"><span id="detailTotal">0</span>&nbsp;m³</span>
+                    </div>
+                    <button type="button" class="btn-detail-reset" id="detailReset">↻ Réinitialiser</button>
                   </div>
                 </div>
-
-                <div class="volume-presets" role="group" aria-label="Estimation rapide par type de logement">
-                  <button type="button" class="preset" data-vol="15">Studio<span>~15&nbsp;m³</span></button>
-                  <button type="button" class="preset" data-vol="25">T2<span>~25&nbsp;m³</span></button>
-                  <button type="button" class="preset" data-vol="35">T3<span>~35&nbsp;m³</span></button>
-                  <button type="button" class="preset" data-vol="50">T4<span>~50&nbsp;m³</span></button>
-                  <button type="button" class="preset" data-vol="70">Maison<span>~70&nbsp;m³</span></button>
-                </div>
-
-                <p class="hint">
-                  Pas sûr&nbsp;? Comptez environ <strong>1&nbsp;m³ pour 4&nbsp;cartons</strong> et 5&nbsp;m³ par pièce moyenne.
-                </p>
               </fieldset>
 
               <fieldset class="estim-field" data-service-section="demenagement">
@@ -791,6 +846,104 @@ const services = [
 
     applyServiceVisibility();
 
+    // -------- Onglets Volume rapide / détaillé --------
+    const volumeTabs = form.querySelectorAll('.volume-tab');
+    const volumePanes = form.querySelectorAll('.volume-pane');
+
+    volumeTabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const target = tab.dataset.tab;
+        volumeTabs.forEach((t) => {
+          const isActive = t.dataset.tab === target;
+          t.classList.toggle('is-active', isActive);
+          t.setAttribute('aria-selected', String(isActive));
+        });
+        volumePanes.forEach((p) => {
+          const isActive = p.dataset.pane === target;
+          p.classList.toggle('is-active', isActive);
+          if (isActive) {
+            p.removeAttribute('hidden');
+          } else {
+            p.setAttribute('hidden', '');
+          }
+        });
+      });
+    });
+
+    // -------- Calculateur détaillé (onglet 2) --------
+    const detailRoot = document.getElementById('detailPieces');
+    const detailTotalEl = document.getElementById('detailTotal');
+    const detailResetBtn = document.getElementById('detailReset');
+
+    function updateDetailTotal() {
+      if (!detailRoot) return;
+      let total = 0;
+      const pieceTotals = {};
+
+      detailRoot.querySelectorAll('.detail-item').forEach((row) => {
+        const m3 = parseFloat(row.dataset.m3 || '0');
+        const qtyEl = row.querySelector('.item-qty');
+        const qty = parseInt(qtyEl.dataset.qty || '0', 10);
+        const subtotal = m3 * qty;
+        total += subtotal;
+
+        const pieceEl = row.closest('.detail-piece');
+        const pieceId = pieceEl?.dataset.piece;
+        if (pieceId) pieceTotals[pieceId] = (pieceTotals[pieceId] || 0) + subtotal;
+      });
+
+      // Total par pièce affiché dans le summary
+      detailRoot.querySelectorAll('[data-piece-count]').forEach((el) => {
+        const id = el.dataset.pieceCount;
+        const v = pieceTotals[id] || 0;
+        el.textContent = v.toFixed(1).replace('.', ',') + ' m³';
+        el.classList.toggle('is-positive', v > 0);
+      });
+
+      // Total détaillé affiché
+      if (detailTotalEl) detailTotalEl.textContent = total.toFixed(1).replace('.', ',');
+
+      // Synchronisation avec le slider du formulaire
+      // Volume reporté arrondi à l'entier, clamp 5-100 (limites du slider)
+      const rounded = Math.max(5, Math.min(100, Math.round(total)));
+      if (volume && total > 0) {
+        volume.value = String(rounded);
+        if (volumeValue) volumeValue.textContent = String(rounded);
+        // Désactive les presets puisque l'utilisateur a un calcul perso
+        presets.forEach((p) => p.classList.remove('is-active'));
+        // Recalcule le prix indicatif
+        computePrice();
+      }
+    }
+
+    if (detailRoot) {
+      detailRoot.addEventListener('click', (e) => {
+        const btn = e.target.closest('.qty-btn');
+        if (!btn) return;
+        e.preventDefault();
+        const row = btn.closest('.detail-item');
+        const qtyEl = row.querySelector('.item-qty');
+        let qty = parseInt(qtyEl.dataset.qty || '0', 10);
+        if (btn.dataset.action === 'increment') qty++;
+        else if (btn.dataset.action === 'decrement') qty = Math.max(0, qty - 1);
+        qtyEl.dataset.qty = qty;
+        qtyEl.textContent = qty;
+        row.classList.toggle('has-qty', qty > 0);
+        updateDetailTotal();
+      });
+    }
+
+    if (detailResetBtn) {
+      detailResetBtn.addEventListener('click', () => {
+        detailRoot?.querySelectorAll('.item-qty').forEach((el) => {
+          el.dataset.qty = '0';
+          el.textContent = '0';
+          el.closest('.detail-item').classList.remove('has-qty');
+        });
+        updateDetailTotal();
+      });
+    }
+
     // Timestamp pour le rate-limit time-based (anti-bot)
     const loadedAtInput = document.getElementById('form_loaded_at');
     if (loadedAtInput) loadedAtInput.value = String(Date.now());
@@ -1470,5 +1623,209 @@ const services = [
     .volume-presets { grid-template-columns: repeat(3, 1fr); }
     .price-value { font-size: 2.6rem; }
     .form-row { flex-direction: column; }
+  }
+
+  /* ==================== ONGLETS VOLUME (rapide / détaillé) ==================== */
+  .volume-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid var(--border-strong);
+    margin-bottom: 1.5rem;
+  }
+  .volume-tab {
+    padding: 0.85rem 1rem;
+    background: var(--white);
+    border: none;
+    border-right: 1px solid var(--border-strong);
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.15s var(--ease-smooth);
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .volume-tab:last-child { border-right: none; }
+  .volume-tab .tab-label {
+    font-weight: 600;
+    font-size: 0.92rem;
+    color: var(--gray-700);
+  }
+  .volume-tab .tab-desc {
+    font-size: 0.75rem;
+    color: var(--gray-500);
+  }
+  .volume-tab.is-active {
+    background: var(--black);
+  }
+  .volume-tab.is-active .tab-label { color: var(--white); }
+  .volume-tab.is-active .tab-desc { color: rgba(255,255,255,0.65); }
+  .volume-tab:hover:not(.is-active) {
+    background: var(--off-white);
+  }
+
+  .volume-pane[hidden] { display: none; }
+  .volume-pane.is-active { display: block; }
+
+  .detail-intro {
+    font-size: 0.92rem;
+    color: var(--gray-700);
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+  }
+
+  .detail-pieces {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .detail-piece {
+    border: 1px solid var(--border-strong);
+    background: var(--white);
+  }
+  .detail-piece > summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 0.85rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    background: var(--off-white);
+    transition: background 0.15s;
+  }
+  .detail-piece > summary::-webkit-details-marker { display: none; }
+  .detail-piece > summary::after {
+    content: '+';
+    font-size: 1.2rem;
+    color: var(--gray-500);
+    flex-shrink: 0;
+    transition: transform 0.2s;
+  }
+  .detail-piece[open] > summary::after { content: '−'; }
+  .detail-piece > summary:hover { background: var(--white); }
+  .detail-piece-name {
+    font-family: var(--font-display);
+    font-weight: 500;
+    color: var(--black);
+    font-size: 0.98rem;
+    flex: 1;
+  }
+  .detail-piece-count {
+    font-size: 0.78rem;
+    color: var(--gray-500);
+    font-family: var(--font-mono, monospace);
+  }
+  .detail-piece-count.is-positive {
+    color: var(--gold-deep);
+    font-weight: 600;
+  }
+
+  .detail-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.65rem 1rem;
+    border-top: 1px solid var(--border);
+    gap: 1rem;
+    transition: background 0.15s;
+  }
+  .detail-item.has-qty { background: rgba(245, 222, 126, 0.08); }
+  .detail-item .item-label {
+    font-size: 0.88rem;
+    color: var(--gray-800);
+    flex: 1;
+    min-width: 0;
+  }
+  .detail-item .item-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-shrink: 0;
+  }
+  .detail-item .qty-btn {
+    width: 26px;
+    height: 26px;
+    border: 1px solid var(--border-strong);
+    background: var(--white);
+    color: var(--black);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    transition: all 0.15s;
+  }
+  .detail-item .qty-btn:hover { background: var(--black); color: var(--white); }
+  .detail-item .item-qty {
+    min-width: 22px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--black);
+  }
+  .detail-item .item-m3 {
+    font-size: 0.74rem;
+    color: var(--gray-500);
+    min-width: 50px;
+    text-align: right;
+    font-family: var(--font-mono, monospace);
+  }
+
+  .detail-total {
+    margin-top: 1.5rem;
+    padding: 1rem 1.25rem;
+    background: var(--black);
+    color: var(--white);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+  .detail-total > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+  .detail-total-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.6);
+  }
+  .detail-total-value {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--gold);
+  }
+  .btn-detail-reset {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.3);
+    color: rgba(255,255,255,0.7);
+    padding: 0.5rem 0.85rem;
+    cursor: pointer;
+    font-size: 0.82rem;
+    transition: all 0.15s;
+  }
+  .btn-detail-reset:hover {
+    background: rgba(255,255,255,0.1);
+    color: var(--white);
+    border-color: var(--gold);
+  }
+
+  @media (max-width: 600px) {
+    .volume-tab .tab-label { font-size: 0.85rem; }
+    .volume-tab .tab-desc { display: none; }
+    .detail-item { padding: 0.55rem 0.85rem; }
+    .detail-item .item-label { font-size: 0.85rem; }
+    .detail-item .item-m3 { display: none; }
+    .detail-total { flex-direction: column; align-items: stretch; gap: 0.75rem; }
+    .btn-detail-reset { text-align: center; }
   }
 </style>
