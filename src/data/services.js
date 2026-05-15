@@ -122,7 +122,7 @@ export const servicesData = {
     seoKeywords: "débarras appartement Annemasse, débarras Annemasse, débarras cave Annemasse, débarras grenier Annemasse, débarras maison Annemasse, débarras Haute-Savoie, débarras succession",
     icone: "♻️",
     image: "/services/debarras.webp",
-    banner: "/banner-transport.webp",
+    banner: "/banner-debarras.webp",
     description: "Débarras d'appartement, maison, cave, grenier et garage à Annemasse et en Haute-Savoie.",
     intro: `
       <p>Le <strong>débarras d'appartement à Annemasse</strong> (ou de maison, cave, grenier, garage) n'est jamais "juste" du débarras. C'est souvent une <strong>période compliquée</strong> qui se cache derrière&nbsp;: une succession à gérer après le décès d'un proche, un parent qui entre en EHPAD, un divorce qui impose de vider rapidement, un déménagement où il faut se séparer de meubles devenus inutiles. Notre approche tient compte de cette dimension humaine, pas de jugement, pas de pression, juste un travail efficace et discret.</p>
