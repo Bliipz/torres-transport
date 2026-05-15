@@ -87,79 +87,26 @@ const services = [
                   <span class="legend-text">Volume estimé</span>
                 </legend>
 
-                <!-- ONGLETS : rapide vs détaillé -->
-                <div class="volume-tabs" role="tablist" aria-label="Méthode de calcul du volume">
-                  <button type="button" class="volume-tab is-active" role="tab" data-tab="rapide" aria-selected="true">
-                    <span class="tab-label">Volume rapide</span>
-                    <span class="tab-desc">Slider + types de logement</span>
-                  </button>
-                  <button type="button" class="volume-tab" role="tab" data-tab="detaille" aria-selected="false">
-                    <span class="tab-label">Calcul détaillé</span>
-                    <span class="tab-desc">Pièce par pièce, plus précis</span>
-                  </button>
-                </div>
-
-                <!-- ONGLET 1 : RAPIDE -->
-                <div class="volume-pane is-active" data-pane="rapide" role="tabpanel">
-                  <div class="volume-control">
-                    <input type="range" id="volume" name="volume_m3" min="5" max="100" step="1" value="25" aria-label="Volume en m³" />
-                    <div class="volume-value">
-                      <output id="volumeValue">25</output>
-                      <span>m³</span>
-                    </div>
-                  </div>
-
-                  <div class="volume-presets" role="group" aria-label="Estimation rapide par type de logement">
-                    <button type="button" class="preset" data-vol="15">Studio<span>~15&nbsp;m³</span></button>
-                    <button type="button" class="preset" data-vol="25">T2<span>~25&nbsp;m³</span></button>
-                    <button type="button" class="preset" data-vol="35">T3<span>~35&nbsp;m³</span></button>
-                    <button type="button" class="preset" data-vol="50">T4<span>~50&nbsp;m³</span></button>
-                    <button type="button" class="preset" data-vol="70">Maison<span>~70&nbsp;m³</span></button>
-                  </div>
-
-                  <p class="hint">
-                    Pas sûr&nbsp;? Comptez environ <strong>1&nbsp;m³ pour 4&nbsp;cartons</strong> et 5&nbsp;m³ par pièce moyenne. Passez à l'onglet "Calcul détaillé" pour plus de précision.
-                  </p>
-                </div>
-
-                <!-- ONGLET 2 : DÉTAILLÉ -->
-                <div class="volume-pane" data-pane="detaille" role="tabpanel" hidden>
-                  <p class="detail-intro">
-                    Cochez les meubles et cartons que vous emportez. Le total se met à jour automatiquement et alimente votre estimation.
-                  </p>
-
-                  <div class="detail-pieces" id="detailPieces">
-                    {pieces.map((piece) => (
-                      <details class="detail-piece" data-piece={piece.id}>
-                        <summary>
-                          <span class="detail-piece-name">{piece.nom}</span>
-                          <span class="detail-piece-count" data-piece-count={piece.id}>0&nbsp;m³</span>
-                        </summary>
-                        <ul class="detail-items">
-                          {piece.items.map((item) => (
-                            <li class="detail-item" data-m3={item.m3}>
-                              <span class="item-label">{item.label}</span>
-                              <div class="item-controls">
-                                <button type="button" class="qty-btn" data-action="decrement" aria-label={`Retirer ${item.label}`}>−</button>
-                                <span class="item-qty" data-qty="0">0</span>
-                                <button type="button" class="qty-btn" data-action="increment" aria-label={`Ajouter ${item.label}`}>+</button>
-                                <span class="item-m3">{item.m3}&nbsp;m³</span>
-                              </div>
-                            </li>
-                          ))}
-                        </ul>
-                      </details>
-                    ))}
-                  </div>
-
-                  <div class="detail-total">
-                    <div>
-                      <span class="detail-total-label">Volume total détaillé</span>
-                      <span class="detail-total-value"><span id="detailTotal">0</span>&nbsp;m³</span>
-                    </div>
-                    <button type="button" class="btn-detail-reset" id="detailReset">↻ Réinitialiser</button>
+                <div class="volume-control">
+                  <input type="range" id="volume" name="volume_m3" min="5" max="100" step="1" value="25" aria-label="Volume en m³" />
+                  <div class="volume-value">
+                    <output id="volumeValue">25</output>
+                    <span>m³</span>
                   </div>
                 </div>
+
+                <div class="volume-presets" role="group" aria-label="Estimation rapide par type de logement">
+                  <button type="button" class="preset" data-vol="15">Studio<span>~15&nbsp;m³</span></button>
+                  <button type="button" class="preset" data-vol="25">T2<span>~25&nbsp;m³</span></button>
+                  <button type="button" class="preset" data-vol="35">T3<span>~35&nbsp;m³</span></button>
+                  <button type="button" class="preset" data-vol="50">T4<span>~50&nbsp;m³</span></button>
+                  <button type="button" class="preset" data-vol="70">Maison<span>~70&nbsp;m³</span></button>
+                </div>
+
+                <p class="hint">
+                  Pas sûr&nbsp;? Comptez environ <strong>1&nbsp;m³ pour 4&nbsp;cartons</strong> et 5&nbsp;m³ par pièce moyenne.
+                  Ou utilisez notre <a href="#calculateur-detaille" class="hint-link">calculateur détaillé ci-dessous</a> pour un calcul pièce par pièce.
+                </p>
               </fieldset>
 
               <fieldset class="estim-field" data-service-section="demenagement">
@@ -515,6 +462,77 @@ const services = [
     </div>
   </section>
 
+  <!-- ==================== CALCULATEUR DÉTAILLÉ ==================== -->
+  <section class="calc-detail-section" id="calculateur-detaille">
+    <div class="container">
+      <header class="calc-detail-header">
+        <span class="eyebrow gold">Calculateur de volume détaillé</span>
+        <h2>Pas sûr de votre volume&nbsp;? <em>Calculez-le pièce par pièce.</em></h2>
+        <p class="calc-detail-intro">
+          Cochez les meubles et cartons que vous emportez. Le total se calcule automatiquement
+          et s'incrémente dans l'estimateur ci-dessus. Méthode plus précise que le slider, idéale
+          si vous voulez un devis fin.
+        </p>
+      </header>
+
+      <div class="calc-detail-layout">
+        <!-- COLONNE PIÈCES -->
+        <div class="calc-detail-pieces" id="calcDetailPieces">
+          {pieces.map((piece) => (
+            <article class="calc-piece-card">
+              <header class="calc-piece-head">
+                <h3>{piece.nom}</h3>
+                <span class="calc-piece-count" data-piece-count={piece.id}>0&nbsp;m³</span>
+              </header>
+              <ul class="calc-item-list">
+                {piece.items.map((item) => (
+                  <li class="calc-item-row" data-m3={item.m3}>
+                    <span class="calc-item-label">{item.label}</span>
+                    <div class="calc-item-controls">
+                      <button type="button" class="calc-qty-btn" data-action="decrement" aria-label={`Retirer ${item.label}`}>−</button>
+                      <span class="calc-item-qty" data-qty="0">0</span>
+                      <button type="button" class="calc-qty-btn" data-action="increment" aria-label={`Ajouter ${item.label}`}>+</button>
+                      <span class="calc-item-m3">{item.m3}&nbsp;m³</span>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+
+        <!-- COLONNE RÉSULTAT (sticky desktop) -->
+        <aside class="calc-detail-result">
+          <div class="calc-result-inner">
+            <span class="eyebrow gold">Votre volume estimé</span>
+            <div class="calc-result-volume">
+              <span id="calcDetailTotal">0</span><span class="calc-result-unit">m³</span>
+            </div>
+            <div class="calc-result-divider"></div>
+            <div class="calc-result-pricing">
+              <span class="calc-result-pricing-label">Estimation tarifaire</span>
+              <div class="calc-result-pricing-value">
+                <span id="calcDetailPriceMin">0</span> – <span id="calcDetailPriceMax">0</span>&nbsp;€
+              </div>
+              <span class="calc-result-pricing-base">Base 47,50&nbsp;€/m³ tout compris</span>
+            </div>
+
+            <div class="calc-result-sync">
+              ✓ Volume automatiquement reporté dans l'estimateur ci-dessus
+            </div>
+
+            <button type="button" class="btn-calc-reset" id="calcDetailReset">↻ Tout réinitialiser</button>
+
+            <p class="calc-result-note">
+              <strong>Estimation indicative.</strong> Pour un devis ferme, une
+              visite technique gratuite est offerte (30 min).
+            </p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
   <!-- INFOS BAS -->
   <section class="estim-info">
     <div class="container container-narrow">
@@ -846,101 +864,89 @@ const services = [
 
     applyServiceVisibility();
 
-    // -------- Onglets Volume rapide / détaillé --------
-    const volumeTabs = form.querySelectorAll('.volume-tab');
-    const volumePanes = form.querySelectorAll('.volume-pane');
+    // -------- Calculateur détaillé (section sous le formulaire) --------
+    const PRIX_M3_DETAIL = 47.50;
+    const calcRoot = document.getElementById('calcDetailPieces');
+    const calcTotalEl = document.getElementById('calcDetailTotal');
+    const calcPriceMinEl = document.getElementById('calcDetailPriceMin');
+    const calcPriceMaxEl = document.getElementById('calcDetailPriceMax');
+    const calcResetBtn = document.getElementById('calcDetailReset');
 
-    volumeTabs.forEach((tab) => {
-      tab.addEventListener('click', () => {
-        const target = tab.dataset.tab;
-        volumeTabs.forEach((t) => {
-          const isActive = t.dataset.tab === target;
-          t.classList.toggle('is-active', isActive);
-          t.setAttribute('aria-selected', String(isActive));
-        });
-        volumePanes.forEach((p) => {
-          const isActive = p.dataset.pane === target;
-          p.classList.toggle('is-active', isActive);
-          if (isActive) {
-            p.removeAttribute('hidden');
-          } else {
-            p.setAttribute('hidden', '');
-          }
-        });
-      });
-    });
+    function formatNum(n) {
+      return new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 0 }).format(Math.round(n));
+    }
 
-    // -------- Calculateur détaillé (onglet 2) --------
-    const detailRoot = document.getElementById('detailPieces');
-    const detailTotalEl = document.getElementById('detailTotal');
-    const detailResetBtn = document.getElementById('detailReset');
-
-    function updateDetailTotal() {
-      if (!detailRoot) return;
+    function updateCalcDetail() {
+      if (!calcRoot) return;
       let total = 0;
       const pieceTotals = {};
 
-      detailRoot.querySelectorAll('.detail-item').forEach((row) => {
+      calcRoot.querySelectorAll('.calc-item-row').forEach((row) => {
         const m3 = parseFloat(row.dataset.m3 || '0');
-        const qtyEl = row.querySelector('.item-qty');
+        const qtyEl = row.querySelector('.calc-item-qty');
         const qty = parseInt(qtyEl.dataset.qty || '0', 10);
         const subtotal = m3 * qty;
         total += subtotal;
 
-        const pieceEl = row.closest('.detail-piece');
-        const pieceId = pieceEl?.dataset.piece;
-        if (pieceId) pieceTotals[pieceId] = (pieceTotals[pieceId] || 0) + subtotal;
+        const pieceEl = row.closest('.calc-piece-card');
+        const counter = pieceEl?.querySelector('[data-piece-count]');
+        if (counter) {
+          const id = counter.dataset.pieceCount;
+          pieceTotals[id] = (pieceTotals[id] || 0) + subtotal;
+        }
       });
 
-      // Total par pièce affiché dans le summary
-      detailRoot.querySelectorAll('[data-piece-count]').forEach((el) => {
+      // Total par pièce
+      calcRoot.querySelectorAll('[data-piece-count]').forEach((el) => {
         const id = el.dataset.pieceCount;
         const v = pieceTotals[id] || 0;
         el.textContent = v.toFixed(1).replace('.', ',') + ' m³';
         el.classList.toggle('is-positive', v > 0);
       });
 
-      // Total détaillé affiché
-      if (detailTotalEl) detailTotalEl.textContent = total.toFixed(1).replace('.', ',');
+      // Total global du calculateur
+      if (calcTotalEl) calcTotalEl.textContent = total.toFixed(1).replace('.', ',');
 
-      // Synchronisation avec le slider du formulaire
-      // Volume reporté arrondi à l'entier, clamp 5-100 (limites du slider)
+      // Fourchette de prix (±5%)
+      const basePrice = total * PRIX_M3_DETAIL;
+      if (calcPriceMinEl) calcPriceMinEl.textContent = formatNum(basePrice * 0.95);
+      if (calcPriceMaxEl) calcPriceMaxEl.textContent = formatNum(basePrice * 1.05);
+
+      // Synchronisation avec le slider du formulaire (en haut)
       const rounded = Math.max(5, Math.min(100, Math.round(total)));
       if (volume && total > 0) {
         volume.value = String(rounded);
         if (volumeValue) volumeValue.textContent = String(rounded);
-        // Désactive les presets puisque l'utilisateur a un calcul perso
         presets.forEach((p) => p.classList.remove('is-active'));
-        // Recalcule le prix indicatif
         computePrice();
       }
     }
 
-    if (detailRoot) {
-      detailRoot.addEventListener('click', (e) => {
-        const btn = e.target.closest('.qty-btn');
+    if (calcRoot) {
+      calcRoot.addEventListener('click', (e) => {
+        const btn = e.target.closest('.calc-qty-btn');
         if (!btn) return;
         e.preventDefault();
-        const row = btn.closest('.detail-item');
-        const qtyEl = row.querySelector('.item-qty');
+        const row = btn.closest('.calc-item-row');
+        const qtyEl = row.querySelector('.calc-item-qty');
         let qty = parseInt(qtyEl.dataset.qty || '0', 10);
         if (btn.dataset.action === 'increment') qty++;
         else if (btn.dataset.action === 'decrement') qty = Math.max(0, qty - 1);
         qtyEl.dataset.qty = qty;
         qtyEl.textContent = qty;
         row.classList.toggle('has-qty', qty > 0);
-        updateDetailTotal();
+        updateCalcDetail();
       });
     }
 
-    if (detailResetBtn) {
-      detailResetBtn.addEventListener('click', () => {
-        detailRoot?.querySelectorAll('.item-qty').forEach((el) => {
+    if (calcResetBtn) {
+      calcResetBtn.addEventListener('click', () => {
+        calcRoot?.querySelectorAll('.calc-item-qty').forEach((el) => {
           el.dataset.qty = '0';
           el.textContent = '0';
-          el.closest('.detail-item').classList.remove('has-qty');
+          el.closest('.calc-item-row').classList.remove('has-qty');
         });
-        updateDetailTotal();
+        updateCalcDetail();
       });
     }
 
@@ -1625,207 +1631,245 @@ const services = [
     .form-row { flex-direction: column; }
   }
 
-  /* ==================== ONGLETS VOLUME (rapide / détaillé) ==================== */
-  .volume-tabs {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-    border: 1px solid var(--border-strong);
-    margin-bottom: 1.5rem;
-  }
-  .volume-tab {
-    padding: 0.85rem 1rem;
-    background: var(--white);
-    border: none;
-    border-right: 1px solid var(--border-strong);
-    cursor: pointer;
-    text-align: left;
-    transition: all 0.15s var(--ease-smooth);
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-  }
-  .volume-tab:last-child { border-right: none; }
-  .volume-tab .tab-label {
+  .hint-link {
+    color: var(--black);
     font-weight: 600;
-    font-size: 0.92rem;
-    color: var(--gray-700);
+    text-decoration: underline;
+    text-decoration-color: var(--gold-deep);
+    text-underline-offset: 3px;
   }
-  .volume-tab .tab-desc {
-    font-size: 0.75rem;
-    color: var(--gray-500);
-  }
-  .volume-tab.is-active {
-    background: var(--black);
-  }
-  .volume-tab.is-active .tab-label { color: var(--white); }
-  .volume-tab.is-active .tab-desc { color: rgba(255,255,255,0.65); }
-  .volume-tab:hover:not(.is-active) {
+  .hint-link:hover { color: var(--gold-deep); }
+
+  /* ==================== CALCULATEUR DÉTAILLÉ (section sous le form) ==================== */
+  .calc-detail-section {
     background: var(--off-white);
+    padding: clamp(3rem, 6vw, 5rem) 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
   }
-
-  .volume-pane[hidden] { display: none; }
-  .volume-pane.is-active { display: block; }
-
-  .detail-intro {
-    font-size: 0.92rem;
+  .calc-detail-header {
+    margin-bottom: 3rem;
+    max-width: 720px;
+  }
+  .calc-detail-header h2 {
+    font-size: clamp(1.85rem, 3.5vw, 2.5rem);
+    margin: 0.75rem 0 1rem;
+    color: var(--black);
+    line-height: 1.15;
+  }
+  .calc-detail-header h2 em {
+    font-style: italic;
+    color: var(--gold-deep);
+  }
+  .calc-detail-intro {
     color: var(--gray-700);
-    line-height: 1.6;
-    margin-bottom: 1.25rem;
+    line-height: 1.65;
+    font-size: 1.02rem;
   }
 
-  .detail-pieces {
+  .calc-detail-layout {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  /* PIÈCE CARDS */
+  .calc-detail-pieces {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 1.25rem;
   }
-  .detail-piece {
+  .calc-piece-card {
     border: 1px solid var(--border-strong);
     background: var(--white);
   }
-  .detail-piece > summary {
-    list-style: none;
-    cursor: pointer;
-    padding: 0.85rem 1rem;
+  .calc-piece-head {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
+    align-items: baseline;
+    padding: 1.1rem 1.5rem;
+    border-bottom: 1px solid var(--border);
     background: var(--off-white);
-    transition: background 0.15s;
   }
-  .detail-piece > summary::-webkit-details-marker { display: none; }
-  .detail-piece > summary::after {
-    content: '+';
-    font-size: 1.2rem;
-    color: var(--gray-500);
-    flex-shrink: 0;
-    transition: transform 0.2s;
-  }
-  .detail-piece[open] > summary::after { content: '−'; }
-  .detail-piece > summary:hover { background: var(--white); }
-  .detail-piece-name {
+  .calc-piece-head h3 {
+    font-size: 1.05rem;
     font-family: var(--font-display);
-    font-weight: 500;
+    font-weight: 600;
     color: var(--black);
-    font-size: 0.98rem;
-    flex: 1;
+    margin: 0;
   }
-  .detail-piece-count {
+  .calc-piece-count {
     font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
     color: var(--gray-500);
+    transition: color 0.2s;
     font-family: var(--font-mono, monospace);
   }
-  .detail-piece-count.is-positive {
+  .calc-piece-count.is-positive {
     color: var(--gold-deep);
     font-weight: 600;
   }
 
-  .detail-items {
+  .calc-item-list {
     list-style: none;
     padding: 0;
     margin: 0;
   }
-  .detail-item {
+  .calc-item-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.65rem 1rem;
-    border-top: 1px solid var(--border);
+    padding: 0.75rem 1.5rem;
+    border-bottom: 1px solid var(--border);
     gap: 1rem;
-    transition: background 0.15s;
+    transition: background 0.2s;
   }
-  .detail-item.has-qty { background: rgba(245, 222, 126, 0.08); }
-  .detail-item .item-label {
-    font-size: 0.88rem;
+  .calc-item-row:last-child { border-bottom: none; }
+  .calc-item-row.has-qty { background: rgba(245, 222, 126, 0.08); }
+  .calc-item-label {
+    font-size: 0.92rem;
     color: var(--gray-800);
     flex: 1;
     min-width: 0;
   }
-  .detail-item .item-controls {
+  .calc-item-controls {
     display: flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.5rem;
     flex-shrink: 0;
   }
-  .detail-item .qty-btn {
-    width: 26px;
-    height: 26px;
+  .calc-qty-btn {
+    width: 28px;
+    height: 28px;
     border: 1px solid var(--border-strong);
     background: var(--white);
     color: var(--black);
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
+    transition: all 0.15s;
     line-height: 1;
     padding: 0;
-    transition: all 0.15s;
   }
-  .detail-item .qty-btn:hover { background: var(--black); color: var(--white); }
-  .detail-item .item-qty {
-    min-width: 22px;
+  .calc-qty-btn:hover { background: var(--black); color: var(--white); }
+  .calc-item-qty {
+    min-width: 24px;
     text-align: center;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     color: var(--black);
   }
-  .detail-item .item-m3 {
-    font-size: 0.74rem;
+  .calc-item-m3 {
+    font-size: 0.76rem;
     color: var(--gray-500);
-    min-width: 50px;
+    min-width: 56px;
     text-align: right;
     font-family: var(--font-mono, monospace);
   }
 
-  .detail-total {
-    margin-top: 1.5rem;
-    padding: 1rem 1.25rem;
+  /* RÉSULTAT (sticky) */
+  .calc-detail-result {
+    position: sticky;
+    top: 100px;
+  }
+  .calc-result-inner {
     background: var(--black);
     color: var(--white);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
+    padding: 2rem 1.75rem;
   }
-  .detail-total > div {
-    display: flex;
-    flex-direction: column;
-    gap: 0.15rem;
+  .calc-result-inner .eyebrow {
+    color: var(--gold);
+    font-size: 0.7rem;
   }
-  .detail-total-label {
+  .calc-result-volume {
+    margin-top: 1rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+  }
+  .calc-result-volume #calcDetailTotal {
+    font-family: var(--font-display);
+    font-size: 3.5rem;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--white);
+  }
+  .calc-result-unit {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--gold);
+  }
+  .calc-result-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.15);
+    margin: 1.5rem 0;
+  }
+  .calc-result-pricing-label {
     font-size: 0.72rem;
     text-transform: uppercase;
     letter-spacing: 0.12em;
-    color: rgba(255,255,255,0.6);
+    color: rgba(255, 255, 255, 0.55);
   }
-  .detail-total-value {
+  .calc-result-pricing-value {
     font-family: var(--font-display);
-    font-size: 1.5rem;
+    font-size: 1.65rem;
     font-weight: 600;
-    color: var(--gold);
+    color: var(--white);
+    margin: 0.4rem 0;
   }
-  .btn-detail-reset {
-    background: transparent;
-    border: 1px solid rgba(255,255,255,0.3);
-    color: rgba(255,255,255,0.7);
-    padding: 0.5rem 0.85rem;
-    cursor: pointer;
+  .calc-result-pricing-base {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.55);
+  }
+  .calc-result-sync {
+    margin-top: 1.5rem;
+    padding: 0.75rem 1rem;
+    background: rgba(245, 222, 126, 0.1);
+    border-left: 3px solid var(--gold);
     font-size: 0.82rem;
-    transition: all 0.15s;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.5;
   }
-  .btn-detail-reset:hover {
-    background: rgba(255,255,255,0.1);
+  .btn-calc-reset {
+    width: 100%;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+    cursor: pointer;
+    padding: 0.7rem;
+    margin-top: 1.25rem;
+    text-align: center;
+    transition: all 0.2s;
+  }
+  .btn-calc-reset:hover {
+    background: rgba(255, 255, 255, 0.08);
     color: var(--white);
     border-color: var(--gold);
   }
+  .calc-result-note {
+    margin-top: 1.25rem;
+    font-size: 0.78rem;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.62);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding-top: 1rem;
+  }
+  .calc-result-note strong { color: var(--white); }
 
+  /* ==================== RESPONSIVE CALC DÉTAILLÉ ==================== */
+  @media (max-width: 1024px) {
+    .calc-detail-layout { grid-template-columns: 1fr; gap: 2rem; }
+    .calc-detail-result { position: static; order: -1; }
+  }
   @media (max-width: 600px) {
-    .volume-tab .tab-label { font-size: 0.85rem; }
-    .volume-tab .tab-desc { display: none; }
-    .detail-item { padding: 0.55rem 0.85rem; }
-    .detail-item .item-label { font-size: 0.85rem; }
-    .detail-item .item-m3 { display: none; }
-    .detail-total { flex-direction: column; align-items: stretch; gap: 0.75rem; }
-    .btn-detail-reset { text-align: center; }
+    .calc-piece-head { padding: 0.9rem 1.1rem; }
+    .calc-item-row { padding: 0.65rem 1.1rem; gap: 0.5rem; }
+    .calc-item-m3 { display: none; }
+    .calc-item-label { font-size: 0.88rem; }
+    .calc-result-volume #calcDetailTotal { font-size: 2.8rem; }
+    .calc-result-inner { padding: 1.5rem 1.25rem; }
   }
 </style>
