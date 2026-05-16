@@ -59,14 +59,14 @@ const villesFooter = getAllCities();
       </div>
 
       <!-- COLONNE 3 : VILLES -->
-      <div class="footer-col">
+      <div class="footer-col footer-col-cities">
         <span class="footer-label">Expertise locale</span>
-        <ul class="footer-list">
-          {villesFooter.slice(0, 6).map((v) => (
+        <ul class="footer-list footer-list-cities">
+          {villesFooter.map((v) => (
             <li><a href={`/demenagement-${v.slug}`}>{v.nom}</a></li>
           ))}
-          <li><a href="/zones-intervention" class="footer-list-more">France entière →</a></li>
         </ul>
+        <a href="/zones-intervention" class="footer-list-more">France entière →</a>
       </div>
 
       <!-- COLONNE 4 : CONTACT -->
@@ -237,6 +237,27 @@ const villesFooter = getAllCities();
     color: var(--gold) !important;
     font-weight: 500;
     margin-top: 0.4rem;
+    font-size: 0.85rem;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  /* Villes : grille 2 colonnes compactes pour caser les 22 communes sans plomber le footer */
+  .footer-list-cities {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.55rem 1rem;
+    margin-bottom: 0.9rem;
+  }
+
+  .footer-list-cities a {
+    font-size: 0.83rem;
+  }
+
+  @media (max-width: 600px) {
+    .footer-list-cities {
+      grid-template-columns: 1fr 1fr;
+    }
   }
 
   /* ==================== CONTACT LIST ==================== */

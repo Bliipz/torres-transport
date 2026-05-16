@@ -3,6 +3,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import GoogleReviews from "../components/GoogleReviews.astro";
 import { COMPANY } from "../data/company";
 import { makeFAQPage } from "../lib/schemas";
+import { getAllCities } from "../data/cities.js";
+
+const allCities = getAllCities();
 
 // Services proposés
 const services = [
@@ -263,16 +266,14 @@ const homeFaqSchema = makeFAQPage(homeFaqs);
           <a href="/zones-intervention" class="btn btn-primary btn-with-arrow">Voir les zones</a>
         </div>
         <ul class="zones-list">
-          <li><span>Annemasse</span><span>74100</span></li>
-          <li><span>Ville-la-Grand</span><span>74100</span></li>
-          <li><span>Étrembières</span><span>74100</span></li>
-          <li><span>Vétraz-Monthoux</span><span>74100</span></li>
-          <li><span>Gaillard</span><span>74240</span></li>
-          <li><span>Saint-Julien-en-Genevois</span><span>74160</span></li>
-          <li><span>Thonon-les-Bains</span><span>74200</span></li>
-          <li><span>Évian-les-Bains</span><span>74500</span></li>
-          <li><span>Annecy</span><span>74000</span></li>
-          <li><span>Bonneville</span><span>74130</span></li>
+          {allCities.map((city) => (
+            <li>
+              <a href={`/demenagement-${city.slug}`}>
+                <span>{city.nom}</span>
+                <span>{city.codePostal}</span>
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
     </div>
@@ -788,10 +789,6 @@ const homeFaqSchema = makeFAQPage(homeFaqs);
   }
 
   .zones-list li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.1rem 1.5rem;
     border-bottom: 1px solid var(--border);
     border-right: 1px solid var(--border);
   }
@@ -800,12 +797,26 @@ const homeFaqSchema = makeFAQPage(homeFaqs);
     border-right: none;
   }
 
-  .zones-list li span:first-child {
+  .zones-list li a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.1rem 1.5rem;
+    text-decoration: none;
+    transition: background 0.2s var(--ease-subtle), padding-left 0.25s var(--ease-smooth);
+  }
+
+  .zones-list li a:hover {
+    background: var(--off-white);
+    padding-left: 1.75rem;
+  }
+
+  .zones-list li a span:first-child {
     font-weight: 500;
     color: var(--black);
   }
 
-  .zones-list li span:last-child {
+  .zones-list li a span:last-child {
     font-size: 0.78rem;
     color: var(--gray-500);
     font-family: var(--font-mono, monospace);
