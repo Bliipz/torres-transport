@@ -28,7 +28,24 @@ const fullTitle = pageTitle?.includes("Torres Transport")
   ? pageTitle
   : `${pageTitle}, Torres Transport`;
 
-const canonicalURL = canonical || new URL(Astro.url.pathname, SITE_URL).href;
+// Normalisation trailing slash : on garantit la cohérence avec le sitemap
+// (qui produit toutes les URLs avec / final). Sans ça, Google voit deux versions
+// (page = /foo, sitemap = /foo/) et marque l'une d'elles comme "balise canonique différente".
+function ensureTrailingSlash(url: string): string {
+  try {
+    const u = new URL(url);
+    if (u.pathname === "/" || u.pathname.endsWith("/")) return u.href;
+    // ne pas ajouter de slash à une URL qui pointe vers un fichier (ex: /favicon.ico)
+    if (/\.[a-z0-9]+$/i.test(u.pathname)) return u.href;
+    u.pathname = `${u.pathname}/`;
+    return u.href;
+  } catch {
+    return url;
+  }
+}
+
+const rawCanonical = canonical || new URL(Astro.url.pathname, SITE_URL).href;
+const canonicalURL = ensureTrailingSlash(rawCanonical);
 const ogImageURL = ogImage?.startsWith("http")
   ? ogImage
   : new URL(ogImage, SITE_URL).href;
