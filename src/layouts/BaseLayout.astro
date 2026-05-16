@@ -1,5 +1,6 @@
 ---
 import Footer from "../components/Footer.astro";
+import reviewsData from "../data/google-reviews.json";
 import "../styles/global.css";
 
 // ==================== SEO PROPS ====================
@@ -100,6 +101,28 @@ const localBusinessSchema = {
       closes: "19:00",
     },
   ],
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: reviewsData.rating.toFixed(1),
+    bestRating: "5",
+    worstRating: "1",
+    ratingCount: reviewsData.user_ratings_total,
+    reviewCount: reviewsData.user_ratings_total,
+  },
+  review: reviewsData.reviews.slice(0, 5).map((r) => ({
+    "@type": "Review",
+    reviewRating: {
+      "@type": "Rating",
+      ratingValue: r.rating.toString(),
+      bestRating: "5",
+      worstRating: "1",
+    },
+    author: { "@type": "Person", name: r.author_name },
+    reviewBody: r.text,
+    datePublished: r.time
+      ? new Date(r.time * 1000).toISOString().slice(0, 10)
+      : undefined,
+  })),
   sameAs: [
     "https://www.facebook.com/profile.php?id=61555592171592",
   ],

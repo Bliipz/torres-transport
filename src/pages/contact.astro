@@ -1,12 +1,39 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const SITE_URL = 'https://torrestransport.fr';
+const pageURL = `${SITE_URL}/contact`;
+
+const contactPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  '@id': `${pageURL}#contactpage`,
+  url: pageURL,
+  name: 'Contact Torres Transport',
+  description:
+    "Page de contact de Torres Transport, déménageur à Annemasse et en Haute-Savoie. Devis gratuit, équipe locale, réponse sous 24 heures.",
+  inLanguage: 'fr-FR',
+  isPartOf: { '@id': `${SITE_URL}/#website` },
+  mainEntity: { '@id': `${SITE_URL}/#business` },
+  primaryImageOfPage: { '@type': 'ImageObject', url: `${SITE_URL}/banner-form-contact.webp` },
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Accueil', item: SITE_URL },
+    { '@type': 'ListItem', position: 2, name: 'Contact', item: pageURL },
+  ],
+};
 ---
 
 <BaseLayout
-  title="Contact &amp; Devis Gratuit | Torres Transport Annemasse"
-  description="Contactez Torres Transport pour votre devis gratuit en 24h. Téléphone : 06 59 92 68 14. Déménagement, transport et montage de meubles à Annemasse, Ville-la-Grand et toute la Haute-Savoie."
+  title="Contact &amp; Devis Gratuit · Torres Transport Annemasse"
+  description="Contact Torres Transport, déménageur Annemasse · 06 59 92 68 14, devis gratuit 24h, équipe locale Haute-Savoie, 48 avis Google 5/5."
   keywords="contact Torres Transport, devis déménagement Annemasse, devis gratuit déménageur, contact transport meubles Haute-Savoie"
   ogImage="/banner-form-contact.webp"
+  structuredData={[contactPageSchema, breadcrumbSchema]}
 >
   <!-- ==================== HERO MINIMAL ==================== -->
   <section class="contact-hero">
