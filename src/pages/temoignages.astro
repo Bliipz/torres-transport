@@ -340,14 +340,19 @@ const stats = [
 
   .t-meta {
     display: grid;
-    grid-template-columns: 44px 1fr auto;
+    grid-template-columns: 44px 1fr;
+    grid-template-areas:
+      "avatar info"
+      "service service";
     align-items: center;
-    gap: 0.85rem;
+    column-gap: 0.85rem;
+    row-gap: 0.85rem;
     padding-top: 1.1rem;
     border-top: 1px solid var(--border);
   }
 
   .t-avatar {
+    grid-area: avatar;
     width: 44px;
     height: 44px;
     background: var(--black);
@@ -362,6 +367,7 @@ const stats = [
   }
 
   .t-info {
+    grid-area: info;
     display: flex;
     flex-direction: column;
     gap: 0.15rem;
@@ -380,6 +386,8 @@ const stats = [
   }
 
   .t-service {
+    grid-area: service;
+    justify-self: start;
     font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 0.12em;
@@ -387,7 +395,10 @@ const stats = [
     border: 1px solid var(--gold-deep);
     padding: 0.35rem 0.65rem;
     font-weight: 600;
-    white-space: nowrap;
+    line-height: 1.4;
+    /* on autorise le wrap si le libellé est très long (ex: "Annemasse → Lyon") */
+    white-space: normal;
+    max-width: 100%;
   }
 
   /* DISCLAIMER */
@@ -486,6 +497,5 @@ const stats = [
     .stats-grid { grid-template-columns: repeat(2, 1fr); }
     .disclaimer-card { grid-template-columns: 1fr; gap: 1.5rem; }
     .t-meta { grid-template-columns: 40px 1fr; }
-    .t-service { grid-column: 1 / -1; align-self: start; justify-self: start; margin-top: 0.5rem; }
   }
 </style>
