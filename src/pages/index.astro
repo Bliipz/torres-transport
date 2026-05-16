@@ -113,6 +113,54 @@ const homeFaqSchema = makeFAQPage(homeFaqs);
     </div>
   </section>
 
+  <!-- ==================== BANDEAU SIMULATEUR DEVIS ==================== -->
+  <section class="estimateur-banner" aria-labelledby="estimateur-title">
+    <div class="container">
+      <div class="estimateur-grid">
+        <div class="estimateur-text">
+          <span class="eyebrow gold-on-dark">Estimateur en ligne</span>
+          <h2 id="estimateur-title">
+            Calculez votre devis<br />
+            <em>en quelques clics.</em>
+          </h2>
+          <p class="lead">
+            Volume, adresses, options&nbsp;: notre simulateur vous donne une estimation
+            indicative immédiate, basée sur notre tarif unique <strong>{COMPANY.pricing.perCubicMeterDisplay} tout compris</strong>.
+            Devis ferme envoyé sous 24&nbsp;h après visite technique.
+          </p>
+          <ul class="estimateur-checks">
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              Tarif transparent · pas de surprise
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              Sans engagement · sans inscription
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              Réponse de Ludovic sous 24&nbsp;h
+            </li>
+          </ul>
+        </div>
+        <div class="estimateur-cta">
+          <a href="/estimation" class="btn btn-gold btn-large btn-with-arrow">
+            Estimer mon déménagement
+          </a>
+          <a href="/calculateur-volume" class="estimateur-secondary">
+            Ou calculer mon volume d'abord →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ==================== INTRO ÉDITORIAL ==================== -->
   <section class="section intro-section">
     <div class="container">
@@ -474,6 +522,116 @@ const homeFaqSchema = makeFAQPage(homeFaqs);
     50% { transform: scaleY(1); transform-origin: top; }
     51% { transform-origin: bottom; }
     100% { transform: scaleY(0); transform-origin: bottom; }
+  }
+
+  /* ==================== BANDEAU ESTIMATEUR ==================== */
+  .estimateur-banner {
+    background: var(--black);
+    color: var(--white);
+    padding: clamp(3rem, 6vw, 5rem) 0;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Liseré doré en haut, pour marquer la transition depuis le hero */
+  .estimateur-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .estimateur-grid {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+
+  .gold-on-dark {
+    color: var(--gold);
+  }
+
+  .estimateur-text h2 {
+    font-size: clamp(1.85rem, 3.5vw, 2.6rem);
+    color: var(--white);
+    margin: 0.6rem 0 1.2rem;
+    line-height: 1.1;
+  }
+  .estimateur-text h2 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .estimateur-text .lead {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.78);
+    max-width: 620px;
+    margin-bottom: 1.5rem;
+  }
+  .estimateur-text .lead strong {
+    color: var(--white);
+    font-weight: 600;
+  }
+
+  .estimateur-checks {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem 2rem;
+  }
+  .estimateur-checks li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-size: 0.88rem;
+    color: rgba(255, 255, 255, 0.85);
+  }
+  .estimateur-checks svg {
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .estimateur-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    min-width: 280px;
+  }
+
+  .estimateur-cta .btn-large {
+    padding: 1.1rem 1.8rem;
+    font-size: 1rem;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .estimateur-secondary {
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 0.82rem;
+    text-decoration: none;
+    text-align: center;
+    transition: color 0.2s var(--ease-subtle);
+  }
+  .estimateur-secondary:hover {
+    color: var(--gold);
+  }
+
+  @media (max-width: 900px) {
+    .estimateur-grid {
+      grid-template-columns: 1fr;
+    }
+    .estimateur-cta {
+      min-width: 0;
+    }
   }
 
   /* ==================== INTRO ==================== */
