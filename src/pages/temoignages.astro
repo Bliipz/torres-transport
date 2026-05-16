@@ -1,130 +1,73 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import reviewsData from '../data/google-reviews.json';
+import { COMPANY } from '../data/company';
+import { SITE_URL, makeBreadcrumb } from '../lib/schemas';
 
-const SITE_URL = 'https://torrestransport.fr';
+const pageURL = `${SITE_URL}/temoignages`;
+const { reviews, rating, user_ratings_total, url: mapsUrl } = reviewsData;
 
-const temoignages = [
-  {
-    nom: "Christophe L.",
-    initiale: "CL",
-    ville: "Annemasse",
-    date: "Mars 2026",
-    service: "Déménagement T3",
-    quote: "Équipe ponctuelle, soigneuse et efficace. Tout a été emballé proprement et rien n'a bougé pendant le transport. Ludovic a même pris le temps d'expliquer comment il allait s'y prendre pour passer le canapé d'angle dans la cage d'escalier. Service au top.",
-  },
-  {
-    nom: "Marie B.",
-    initiale: "MB",
-    ville: "Ville-la-Grand",
-    date: "Février 2026",
-    service: "Déménagement T2 + débarras",
-    quote: "On a fait appel à Torres Transport pour notre changement d'appartement, et en plus pour évacuer le mobilier de la cave qu'on ne voulait plus. Tout en une journée. Super pratique, et le tarif tout compris est resté ce qui était annoncé. Pas de mauvaise surprise.",
-  },
-  {
-    nom: "Anne D.",
-    initiale: "AD",
-    ville: "Saint-Julien-en-Genevois",
-    date: "Janvier 2026",
-    service: "Déménagement T3",
-    quote: "Déménagement de notre maison vers un appartement à Saint-Julien. Démontage des meubles, remontage, cartons fournis. Équipe sérieuse et dans la bonne humeur. Devis tenu, aucune surprise. Je recommande sans hésiter.",
-  },
-  {
-    nom: "Romain T.",
-    initiale: "RT",
-    ville: "Gaillard",
-    date: "Décembre 2025",
-    service: "Transport meubles + montage",
-    quote: "Achat de mobilier chez Centrakor à transporter et monter à mon nouvel appartement. Trois meubles complexes (bureau, dressing, lit avec rangements) montés impeccablement en une demi-journée. Outillage propre, finitions vérifiées. Je recommande sans hésiter.",
-  },
-  {
-    nom: "Patricia S.",
-    initiale: "PS",
-    ville: "Annemasse",
-    date: "Novembre 2025",
-    service: "Déménagement sénior",
-    quote: "Ma maman entrait en EHPAD après 40 ans dans la même maison. C'était un moment douloureux pour la famille. Ludovic et son équipe ont été d'une délicatesse rare : ils ont reconstitué la chambre à l'identique, posé les photos sur la commode comme avant. Maman s'est sentie chez elle dès le premier soir.",
-  },
-  {
-    nom: "Sébastien M.",
-    initiale: "SM",
-    ville: "Thonon-les-Bains",
-    date: "Octobre 2025",
-    service: "Déménagement maison 80 m³",
-    quote: "Gros chantier : maison de 5 pièces avec cave, garage et grenier. L'équipe est arrivée à 8h pile, a chargé en 4 heures, déchargé à Annemasse l'après-midi. Aucune casse, aucun retard. Le devis annoncé était le devis final. Du bon vieux travail bien fait.",
-  },
-  {
-    nom: "Élodie R.",
-    initiale: "ER",
-    ville: "Évian-les-Bains",
-    date: "Septembre 2025",
-    service: "Transport piano droit",
-    quote: "J'avais peur pour mon piano droit (héritage familial, valeur sentimentale énorme). Ludovic m'a expliqué la technique de manutention dès l'appel, et au moment du transport j'ai vu qu'il maîtrisait parfaitement. Sangles, diable spécialisé, deux personnes coordonnées. Arrivé sans une rayure.",
-  },
-  {
-    nom: "Jean-Pierre V.",
-    initiale: "JV",
-    ville: "Annemasse",
-    date: "Septembre 2025",
-    service: "Déménagement PMR",
-    quote: "Suite à un accident, j'ai dû déménager dans un appartement adapté. Tarif sénior/PMR appliqué directement, équipe à l'écoute, et installation du lit médical et du fauteuil ergonomique en priorité dès l'arrivée. Ils ont compris l'enjeu sans qu'on ait à expliquer.",
-  },
-  {
-    nom: "Laure C.",
-    initiale: "LC",
-    ville: "Lyon",
-    date: "Août 2025",
-    service: "Déménagement longue distance Annemasse → Lyon",
-    quote: "Mutation professionnelle d'Annemasse vers Lyon. Torres Transport a géré tout le trajet : démontage, transport, remontage. Une seule équipe, un seul interlocuteur du début à la fin. Énorme gain de simplicité.",
-  },
-  {
-    nom: "Maxime D.",
-    initiale: "MD",
-    ville: "Annecy",
-    date: "Juillet 2025",
-    service: "Transport simple",
-    quote: "Il fallait transporter 8 m³ d'affaires personnelles depuis Annecy vers Annemasse. Formule 'transport simple' parfaite : devis clair, équipe ponctuelle, et un coup de main au chargement quand ils ont vu que j'étais débordé. Très satisfait.",
-  },
-  {
-    nom: "Sophie & Marc B.",
-    initiale: "SB",
-    ville: "Bonneville",
-    date: "Juin 2025",
-    service: "Déménagement T4",
-    quote: "Déménagement maîtrisé du début à la fin. Cartons fournis, équipe sérieuse, démontage et remontage du mobilier impeccables. État des lieux passé sans aucune retenue, on recommande sans hésiter.",
-  },
-  {
-    nom: "Camille F.",
-    initiale: "CF",
-    ville: "Annemasse",
-    date: "Mai 2025",
-    service: "Déménagement studio + débarras",
-    quote: "Première fois que je faisais appel à un déménageur (avant je faisais avec des amis). Honnêtement, vu l'écart entre la fatigue d'un déménagement seul et la fluidité de ce qu'a fait l'équipe, je ne reviendrai jamais en arrière. Tarif raisonnable pour un studio, tout fait en 4h.",
-  },
-];
+// Sélection : avis avec un texte assez long pour être un vrai témoignage (≥100 car),
+// triés par longueur descendante (les plus riches d'abord), max 12 pour garder une
+// page éditoriale et pas une simple liste.
+const temoignages = reviews
+  .filter((r) => r.text && r.text.length >= 100)
+  .sort((a, b) => b.text.length - a.text.length)
+  .slice(0, 12)
+  .map((r) => {
+    const parts = r.author_name.trim().split(/\s+/);
+    const initiale = (parts[0]?.[0] || '') + (parts[1]?.[0] || parts[0]?.[1] || '');
+    return {
+      nom: r.author_name,
+      initiale: initiale.toUpperCase(),
+      date: r.relative_time_description,
+      quote: r.text,
+      isLocalGuide: r.is_local_guide,
+    };
+  });
 
-const breadcrumbSchema = {
+const breadcrumbSchema = makeBreadcrumb([
+  { name: 'Accueil', item: '/' },
+  { name: 'Témoignages', item: '/temoignages' },
+]);
+
+// Schema Review riche pour le SEO (étoiles dans les SERPs)
+const reviewsSchema = {
   '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Accueil', item: SITE_URL },
-    { '@type': 'ListItem', position: 2, name: 'Témoignages', item: `${SITE_URL}/temoignages` },
-  ],
+  '@type': 'LocalBusiness',
+  '@id': `${SITE_URL}/#business`,
+  name: COMPANY.name,
+  url: SITE_URL,
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: rating.toFixed(1),
+    bestRating: '5',
+    worstRating: '1',
+    ratingCount: user_ratings_total,
+    reviewCount: user_ratings_total,
+  },
+  review: temoignages.map((t) => ({
+    '@type': 'Review',
+    reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5', worstRating: '1' },
+    author: { '@type': 'Person', name: t.nom },
+    reviewBody: t.quote,
+  })),
 };
 
 const stats = [
-  { num: "300+", label: "Déménagements réalisés" },
-  { num: "20", label: "Années d'expérience" },
-  { num: "100%", label: "Sans sous-traitance" },
-  { num: "5,0/5", label: "Sur 48 avis Google" },
+  { num: rating.toFixed(1).replace('.', ','), label: 'Note moyenne Google' },
+  { num: user_ratings_total.toString(), label: 'Avis vérifiés' },
+  { num: '100%', label: 'Avis 5 étoiles' },
+  { num: `${COMPANY.stats.yearsOfExperience}+`, label: "Années d'expérience" },
 ];
 ---
 
 <BaseLayout
-  titre="Témoignages clients, Torres Transport"
-  description="Découvrez les retours de nos clients à Annemasse, Thonon, Annecy et partout en France. Déménagements résidentiels, séniors, transports de meubles : 20 ans de confiance."
-  keywords="avis Torres Transport, témoignages déménageur Annemasse, retours clients déménagement Haute-Savoie"
-  canonical={`${SITE_URL}/temoignages`}
-  structuredData={[breadcrumbSchema]}
+  title="Témoignages clients · 48 avis Google 5/5 · Torres Transport"
+  description={`Témoignages vérifiés Google : ${user_ratings_total} avis 5/5 pour Torres Transport, déménageur Annemasse. Retours de clients réels sur déménagement, transport et débarras.`}
+  keywords="avis Torres Transport, témoignages déménageur Annemasse, avis Google déménagement Haute-Savoie, retours clients vérifiés"
+  canonical={pageURL}
+  structuredData={[breadcrumbSchema, reviewsSchema]}
 >
   <!-- HERO -->
   <section class="t-hero">
@@ -132,12 +75,13 @@ const stats = [
       <nav class="breadcrumb" aria-label="Fil d'Ariane">
         <a href="/">Accueil</a><span>/</span><span>Témoignages</span>
       </nav>
-      <span class="eyebrow gold">Avis &amp; retours</span>
+      <span class="eyebrow gold">Avis vérifiés Google</span>
       <h1>Ce que nos clients<br /><em>nous disent.</em></h1>
       <p class="lead">
-        Pas de slogans creux ni de cinq étoiles inventées. Juste les retours
-        de personnes qu'on a accompagnées dans leur déménagement, leur transport,
-        ou leur prestation. Triés par date.
+        Pas de slogans creux ni de cinq étoiles inventées. Ces témoignages
+        sont issus de notre fiche Google Business&nbsp;: <strong>{user_ratings_total} avis vérifiés,
+        note moyenne {rating.toFixed(1).replace('.', ',')}/5</strong>. Une sélection des retours
+        les plus complets de clients réels.
       </p>
     </div>
   </section>
@@ -173,10 +117,12 @@ const stats = [
             <footer class="t-meta">
               <div class="t-avatar">{t.initiale}</div>
               <div class="t-info">
-                <span class="t-nom">{t.nom}</span>
-                <span class="t-where">{t.ville} · {t.date}</span>
+                <span class="t-nom">
+                  {t.nom}
+                  {t.isLocalGuide && <span class="t-badge" title="Google Local Guide">Local Guide</span>}
+                </span>
+                <span class="t-where">Avis Google · {t.date}</span>
               </div>
-              <span class="t-service">{t.service}</span>
             </footer>
           </article>
         ))}
@@ -190,21 +136,21 @@ const stats = [
       <div class="disclaimer-card">
         <div>
           <span class="eyebrow gold">Transparence</span>
-          <h3>Tous ces retours sont issus de chantiers réels.</h3>
+          <h3>Avis 100% vérifiés Google.</h3>
           <p>
-            Les prénoms et initiales sont préservés (RGPD), les noms de villes
-            et services correspondent à des prestations effectivement réalisées.
-            Pour des avis vérifiés tiers, consultez notre fiche Google Business
-            (en cours de réactivation).
+            Chacun de ces témoignages provient directement de notre fiche Google
+            Business, écrit par un client réel après sa prestation. Aucun avis
+            fabriqué, aucun retouche. Pour voir l'intégralité des {user_ratings_total} avis
+            (et laisser le vôtre), rendez-vous sur Google.
           </p>
         </div>
         <a
-          href="https://www.google.com/search?q=Torres+Transport+Annemasse+Avis"
+          href={mapsUrl}
           target="_blank"
           rel="noopener noreferrer"
           class="btn btn-secondary"
         >
-          Voir sur Google
+          Voir les {user_ratings_total} avis sur Google
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
         </a>
       </div>
@@ -341,18 +287,13 @@ const stats = [
   .t-meta {
     display: grid;
     grid-template-columns: 44px 1fr;
-    grid-template-areas:
-      "avatar info"
-      "service service";
     align-items: center;
-    column-gap: 0.85rem;
-    row-gap: 0.85rem;
+    gap: 0.85rem;
     padding-top: 1.1rem;
     border-top: 1px solid var(--border);
   }
 
   .t-avatar {
-    grid-area: avatar;
     width: 44px;
     height: 44px;
     background: var(--black);
@@ -367,7 +308,6 @@ const stats = [
   }
 
   .t-info {
-    grid-area: info;
     display: flex;
     flex-direction: column;
     gap: 0.15rem;
@@ -377,6 +317,10 @@ const stats = [
     font-weight: 600;
     color: var(--black);
     font-size: 0.92rem;
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
   }
   .t-where {
     font-size: 0.76rem;
@@ -385,20 +329,15 @@ const stats = [
     letter-spacing: 0.08em;
   }
 
-  .t-service {
-    grid-area: service;
-    justify-self: start;
-    font-size: 0.7rem;
+  .t-badge {
+    font-size: 0.62rem;
     text-transform: uppercase;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.08em;
     color: var(--gold-deep);
     border: 1px solid var(--gold-deep);
-    padding: 0.35rem 0.65rem;
+    padding: 0.18rem 0.4rem;
     font-weight: 600;
-    line-height: 1.4;
-    /* on autorise le wrap si le libellé est très long (ex: "Annemasse → Lyon") */
-    white-space: normal;
-    max-width: 100%;
+    white-space: nowrap;
   }
 
   /* DISCLAIMER */
