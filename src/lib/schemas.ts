@@ -84,6 +84,39 @@ export function makeContactPage(input: ContactPageInput) {
   return schema;
 }
 
+// ==================== ABOUT PAGE ====================
+
+export interface AboutPageInput {
+  pageUrl: string;
+  name?: string;
+  description?: string;
+  primaryImage?: string;
+}
+
+export function makeAboutPage(input: AboutPageInput) {
+  const schema: Record<string, unknown> = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "@id": `${input.pageUrl}#aboutpage`,
+    url: input.pageUrl,
+    name: input.name || `À propos de ${COMPANY.name}`,
+    inLanguage: "fr-FR",
+    isPartOf: { "@id": WEBSITE_ID },
+    mainEntity: { "@id": BUSINESS_ID },
+    about: { "@id": BUSINESS_ID },
+  };
+  if (input.description) schema.description = input.description;
+  if (input.primaryImage) {
+    schema.primaryImageOfPage = {
+      "@type": "ImageObject",
+      url: input.primaryImage.startsWith("http")
+        ? input.primaryImage
+        : `${SITE_URL}${input.primaryImage}`,
+    };
+  }
+  return schema;
+}
+
 // ==================== SERVICE ====================
 
 export interface ServiceInput {

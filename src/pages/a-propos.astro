@@ -1,20 +1,30 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { COMPANY } from '../data/company';
-import { makeBreadcrumb } from '../lib/schemas';
+import { SITE_URL, makeBreadcrumb, makeAboutPage } from '../lib/schemas';
+
+const pageURL = `${SITE_URL}/a-propos`;
 
 const breadcrumbSchema = makeBreadcrumb([
   { name: "Accueil", item: "/" },
   { name: "À propos", item: "/a-propos" },
 ]);
 
+const aboutPageSchema = makeAboutPage({
+  pageUrl: pageURL,
+  description: `Histoire de ${COMPANY.name}, déménageur à ${COMPANY.address.locality} et ${COMPANY.address.region}. Ludovic Torres, fondateur, raconte ${COMPANY.stats.yearsOfExperience} ans dans le transport et son approche du métier : tarif transparent ${COMPANY.pricing.perCubicMeterDisplay}, équipe locale, pas de sous-traitance.`,
+  primaryImage: '/Ludovic.webp',
+});
+
 const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
+  "@id": `${pageURL}#ludovic-torres`,
   name: "Ludovic Torres",
   jobTitle: "Fondateur, Torres Transport",
-  worksFor: { "@type": "Organization", name: "Torres Transport" },
-  image: "https://torrestransport.fr/Ludovic.webp",
+  description: `Fondateur de ${COMPANY.name}, ${COMPANY.stats.yearsOfExperience} ans d'expérience dans le transport et le déménagement en ${COMPANY.address.region}.`,
+  worksFor: { "@id": `${SITE_URL}/#business` },
+  image: `${SITE_URL}/Ludovic.webp`,
   telephone: COMPANY.phone.e164,
   email: COMPANY.email.contact,
   address: {
@@ -66,12 +76,12 @@ const engagements = [
 ---
 
 <BaseLayout
-  titre="À propos de Torres Transport"
-  description="Découvrez Torres Transport, l'histoire de Ludovic et notre approche du déménagement à Annemasse. 20 ans d'expérience, contact direct, tarif transparent."
-  keywords="Torres Transport, Ludovic Torres, déménageur Annemasse, qui sommes-nous, à propos déménagement Haute-Savoie"
+  title="À propos · Ludovic Torres, déménageur Annemasse 74"
+  description="Ludovic Torres, fondateur de Torres Transport à Ville-la-Grand · 20 ans dans le déménagement, équipe locale, tarif unique 47,50 €/m³, pas de sous-traitance."
+  keywords="Ludovic Torres, fondateur Torres Transport, déménageur Annemasse, qui sommes-nous, histoire entreprise déménagement Haute-Savoie, déménageur Ville-la-Grand"
   canonical="https://torrestransport.fr/a-propos"
   ogImage="/Ludovic.webp"
-  structuredData={[breadcrumbSchema, personSchema]}
+  structuredData={[aboutPageSchema, breadcrumbSchema, personSchema]}
 >
   <!-- HERO -->
   <section class="about-hero">
