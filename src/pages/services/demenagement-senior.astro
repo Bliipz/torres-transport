@@ -2,6 +2,8 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { serviceFaqs } from "../../data/service-faqs.js";
 import { articles } from "../../data/articles.js";
+import { COMPANY } from "../../data/company";
+import { makeBreadcrumb, makeFAQPage } from "../../lib/schemas";
 
 const SITE_URL = 'https://torrestransport.fr';
 const pageURL = `${SITE_URL}/services/demenagement-senior`;
@@ -75,32 +77,20 @@ const serviceSchema = {
   image: `${SITE_URL}/banner-demenagement.webp`,
   offers: {
     '@type': 'Offer',
-    description: "Tarif unique 47,50 €/m³ avec remise sénior/PMR automatique de 10%.",
-    priceCurrency: 'EUR',
+    description: `Tarif unique ${COMPANY.pricing.perCubicMeterDisplay} avec remise sénior/PMR automatique de 10%.`,
+    priceCurrency: COMPANY.pricing.currency,
     availability: 'https://schema.org/InStock',
     seller: { '@type': 'MovingCompany', '@id': `${SITE_URL}/#business` },
   },
 };
 
-const breadcrumbSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Accueil', item: SITE_URL },
-    { '@type': 'ListItem', position: 2, name: 'Services', item: `${SITE_URL}/services` },
-    { '@type': 'ListItem', position: 3, name: 'Déménagement senior', item: pageURL },
-  ],
-};
+const breadcrumbSchema = makeBreadcrumb([
+  { name: 'Accueil', item: '/' },
+  { name: 'Services', item: '/services' },
+  { name: 'Déménagement senior', item: pageURL },
+]);
 
-const faqSchema = faqs.length > 0 ? {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faqs.map((f) => ({
-    '@type': 'Question',
-    name: f.question,
-    acceptedAnswer: { '@type': 'Answer', text: f.reponse },
-  })),
-} : null;
+const faqSchema = faqs.length > 0 ? makeFAQPage(faqs) : null;
 
 const allSchemas = [serviceSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema] : [])];
 ---
@@ -132,7 +122,7 @@ const allSchemas = [serviceSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema]
       </p>
       <div class="hero-actions">
         <a href="/contact" class="btn btn-gold btn-large btn-with-arrow">Demander un devis senior</a>
-        <a href="tel:+33659926814" class="btn btn-ghost btn-large">06 59 92 68 14</a>
+        <a href={COMPANY.phone.tel} class="btn btn-ghost btn-large">{COMPANY.phone.display}</a>
       </div>
     </div>
   </section>
@@ -244,7 +234,7 @@ const allSchemas = [serviceSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema]
       </p>
       <div class="cta-buttons">
         <a href="/contact" class="btn btn-gold btn-large btn-with-arrow">Demander un devis</a>
-        <a href="tel:+33659926814" class="btn btn-ghost btn-large">06 59 92 68 14</a>
+        <a href={COMPANY.phone.tel} class="btn btn-ghost btn-large">{COMPANY.phone.display}</a>
       </div>
     </div>
   </section>

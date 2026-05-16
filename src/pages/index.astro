@@ -1,6 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import GoogleReviews from "../components/GoogleReviews.astro";
+import { COMPANY } from "../data/company";
+import { makeFAQPage } from "../lib/schemas";
 
 // Services proposés
 const services = [
@@ -47,15 +49,7 @@ const homeFaqs = [
   },
 ];
 
-const homeFaqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: homeFaqs.map((item) => ({
-    "@type": "Question",
-    name: item.question,
-    acceptedAnswer: { "@type": "Answer", text: item.reponse },
-  })),
-};
+const homeFaqSchema = makeFAQPage(homeFaqs);
 ---
 
 <BaseLayout
@@ -90,7 +84,7 @@ const homeFaqSchema = {
 
       <div class="hero-actions">
         <a href="/contact" class="btn btn-gold btn-large btn-with-arrow">Demander un devis</a>
-        <a href="tel:+33659926814" class="btn btn-ghost btn-large">06 59 92 68 14</a>
+        <a href={COMPANY.phone.tel} class="btn btn-ghost btn-large">{COMPANY.phone.display}</a>
       </div>
 
       <div class="hero-footer">
@@ -324,7 +318,7 @@ const homeFaqSchema = {
       </p>
       <div class="cta-buttons">
         <a href="/contact" class="btn btn-gold btn-large btn-with-arrow">Demander un devis</a>
-        <a href="tel:+33659926814" class="btn btn-ghost btn-large">06 59 92 68 14</a>
+        <a href={COMPANY.phone.tel} class="btn btn-ghost btn-large">{COMPANY.phone.display}</a>
       </div>
     </div>
   </section>

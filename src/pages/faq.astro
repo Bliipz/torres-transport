@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { COMPANY } from '../data/company';
+import { makeBreadcrumb, makeFAQPage } from '../lib/schemas';
 
 const SITE_URL = 'https://torrestransport.fr';
 
@@ -137,24 +139,17 @@ const categories = [
 
 // Schema FAQPage agrégeant TOUTES les questions
 const allQuestions = categories.flatMap((c) => c.questions);
-const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: allQuestions.map((item) => ({
-    '@type': 'Question',
-    name: item.q,
-    acceptedAnswer: { '@type': 'Answer', text: item.r.replace(/<[^>]+>/g, '') },
-  })),
-};
+const faqSchema = makeFAQPage(
+  allQuestions.map((item) => ({
+    question: item.q,
+    reponse: item.r.replace(/<[^>]+>/g, ''),
+  }))
+);
 
-const breadcrumbSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Accueil', item: SITE_URL },
-    { '@type': 'ListItem', position: 2, name: 'FAQ', item: `${SITE_URL}/faq` },
-  ],
-};
+const breadcrumbSchema = makeBreadcrumb([
+  { name: 'Accueil', item: '/' },
+  { name: 'FAQ', item: '/faq' },
+]);
 ---
 
 <BaseLayout
@@ -237,7 +232,7 @@ const breadcrumbSchema = {
         </p>
         <div class="cta-buttons">
           <a href="/contact" class="btn btn-primary">Poser ma question</a>
-          <a href="tel:+33659926814" class="btn btn-ghost">06 59 92 68 14</a>
+          <a href={COMPANY.phone.tel} class="btn btn-ghost">{COMPANY.phone.display}</a>
         </div>
       </div>
     </div>

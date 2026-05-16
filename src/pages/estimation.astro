@@ -1,17 +1,15 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { pieces } from '../data/volume-items.js';
+import { COMPANY } from '../data/company';
+import { makeBreadcrumb } from '../lib/schemas';
 
-const PRIX_M3 = 47.50;
+const PRIX_M3 = COMPANY.pricing.perCubicMeter;
 
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Accueil", item: "https://torrestransport.fr/" },
-    { "@type": "ListItem", position: 2, name: "Estimation & devis", item: "https://torrestransport.fr/estimation" },
-  ],
-};
+const breadcrumbSchema = makeBreadcrumb([
+  { name: "Accueil", item: "/" },
+  { name: "Estimation & devis", item: "/estimation" },
+]);
 
 // Liste des services disponibles
 const services = [
@@ -451,9 +449,9 @@ const services = [
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
               </button>
 
-              <a href="tel:+33659926814" class="btn-phone">
+              <a href={COMPANY.phone.tel} class="btn-phone">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13 1.05.37 2.07.7 3.05a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.98.33 2 .57 3.05.7a2 2 0 0 1 1.72 2.04z"/></svg>
-                Ou 06 59 92 68 14
+                Ou {COMPANY.phone.display}
               </a>
             </div>
           </aside>

@@ -3,6 +3,8 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getAllCities } from "../../data/cities.js";
 import { serviceFaqs } from "../../data/service-faqs.js";
 import { getArticlesForService } from "../../data/articles.js";
+import { COMPANY } from "../../data/company";
+import { makeBreadcrumb, makeFAQPage } from "../../lib/schemas";
 
 const SITE_URL = 'https://torrestransport.fr';
 const pageURL = `${SITE_URL}/services/demenagement`;
@@ -54,12 +56,12 @@ const serviceSchema = {
   image: `${SITE_URL}/banner-demenagement.webp`,
   offers: {
     '@type': 'Offer',
-    price: '47.50',
-    priceCurrency: 'EUR',
+    price: COMPANY.pricing.perCubicMeter.toFixed(2),
+    priceCurrency: COMPANY.pricing.currency,
     priceSpecification: {
       '@type': 'UnitPriceSpecification',
-      price: '47.50',
-      priceCurrency: 'EUR',
+      price: COMPANY.pricing.perCubicMeter.toFixed(2),
+      priceCurrency: COMPANY.pricing.currency,
       unitText: 'm³',
       referenceQuantity: { '@type': 'QuantitativeValue', value: '1', unitText: 'm³' },
     },
@@ -70,25 +72,13 @@ const serviceSchema = {
   },
 };
 
-const breadcrumbSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Accueil', item: SITE_URL },
-    { '@type': 'ListItem', position: 2, name: 'Services', item: `${SITE_URL}/services` },
-    { '@type': 'ListItem', position: 3, name: 'Déménagement', item: pageURL },
-  ],
-};
+const breadcrumbSchema = makeBreadcrumb([
+  { name: 'Accueil', item: '/' },
+  { name: 'Services', item: '/services' },
+  { name: 'Déménagement', item: pageURL },
+]);
 
-const faqSchema = faqs.length > 0 ? {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faqs.map((f) => ({
-    '@type': 'Question',
-    name: f.question,
-    acceptedAnswer: { '@type': 'Answer', text: f.reponse },
-  })),
-} : null;
+const faqSchema = faqs.length > 0 ? makeFAQPage(faqs) : null;
 
 const allSchemas = [serviceSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema] : [])];
 ---
@@ -115,7 +105,7 @@ const allSchemas = [serviceSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema]
       </p>
       <div class="hero-actions">
         <a href="/estimation?service=demenagement" class="btn btn-gold btn-large btn-with-arrow">Devis gratuit en 24h</a>
-        <a href="tel:+33659926814" class="btn btn-ghost btn-large">06 59 92 68 14</a>
+        <a href={COMPANY.phone.tel} class="btn btn-ghost btn-large">{COMPANY.phone.display}</a>
       </div>
     </div>
   </section>
@@ -583,7 +573,7 @@ const allSchemas = [serviceSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema]
       <p class="lead">Sans engagement, devis ferme. Une équipe locale qui vous rappelle dans la journée.</p>
       <div class="cta-buttons">
         <a href="/estimation?service=demenagement" class="btn btn-gold btn-large btn-with-arrow">Demander un devis</a>
-        <a href="tel:+33659926814" class="btn btn-ghost btn-large">06 59 92 68 14</a>
+        <a href={COMPANY.phone.tel} class="btn btn-ghost btn-large">{COMPANY.phone.display}</a>
       </div>
     </div>
   </section>

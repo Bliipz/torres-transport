@@ -1,14 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { COMPANY } from '../data/company';
+import { makeBreadcrumb } from '../lib/schemas';
 
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Accueil", item: "https://torrestransport.fr/" },
-    { "@type": "ListItem", position: 2, name: "À propos", item: "https://torrestransport.fr/a-propos" },
-  ],
-};
+const breadcrumbSchema = makeBreadcrumb([
+  { name: "Accueil", item: "/" },
+  { name: "À propos", item: "/a-propos" },
+]);
 
 const personSchema = {
   "@context": "https://schema.org",
@@ -17,14 +15,14 @@ const personSchema = {
   jobTitle: "Fondateur, Torres Transport",
   worksFor: { "@type": "Organization", name: "Torres Transport" },
   image: "https://torrestransport.fr/Ludovic.webp",
-  telephone: "+33659926814",
-  email: "contact@torrestransport.fr",
+  telephone: COMPANY.phone.e164,
+  email: COMPANY.email.contact,
   address: {
     "@type": "PostalAddress",
-    addressLocality: "Ville-la-Grand",
-    postalCode: "74100",
-    addressRegion: "Haute-Savoie",
-    addressCountry: "FR",
+    addressLocality: COMPANY.address.locality,
+    postalCode: COMPANY.address.postalCode,
+    addressRegion: COMPANY.address.region,
+    addressCountry: COMPANY.address.country,
   },
 };
 
@@ -308,7 +306,7 @@ const engagements = [
         </p>
         <div class="cta-buttons">
           <a href="/contact" class="btn btn-primary">Demander un devis</a>
-          <a href="tel:+33659926814" class="btn btn-ghost">06 59 92 68 14</a>
+          <a href={COMPANY.phone.tel} class="btn btn-ghost">{COMPANY.phone.display}</a>
         </div>
       </div>
     </div>

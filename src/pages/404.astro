@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { COMPANY } from '../data/company';
 
 const suggestions = [
   { titre: "Accueil", desc: "Retour au point de départ.", href: "/", num: "01" },
@@ -58,7 +59,7 @@ const suggestions = [
         <p>Devis gratuit, réponse sous 24 h. Ou appel direct dans la journée.</p>
         <div class="cta-buttons">
           <a href="/contact" class="btn btn-primary">Demander un devis</a>
-          <a href="tel:+33659926814" class="btn btn-ghost">06 59 92 68 14</a>
+          <a href={COMPANY.phone.tel} class="btn btn-ghost">{COMPANY.phone.display}</a>
         </div>
       </div>
     </div>
