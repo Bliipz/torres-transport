@@ -1,31 +1,20 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE_URL, makeContactPage, makeBreadcrumb } from '../lib/schemas';
 
-const SITE_URL = 'https://torrestransport.fr';
 const pageURL = `${SITE_URL}/contact`;
 
-const contactPageSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'ContactPage',
-  '@id': `${pageURL}#contactpage`,
-  url: pageURL,
-  name: 'Contact Torres Transport',
+const contactPageSchema = makeContactPage({
+  pageUrl: pageURL,
   description:
     "Page de contact de Torres Transport, déménageur à Annemasse et en Haute-Savoie. Devis gratuit, équipe locale, réponse sous 24 heures.",
-  inLanguage: 'fr-FR',
-  isPartOf: { '@id': `${SITE_URL}/#website` },
-  mainEntity: { '@id': `${SITE_URL}/#business` },
-  primaryImageOfPage: { '@type': 'ImageObject', url: `${SITE_URL}/banner-form-contact.webp` },
-};
+  primaryImage: '/banner-form-contact.webp',
+});
 
-const breadcrumbSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Accueil', item: SITE_URL },
-    { '@type': 'ListItem', position: 2, name: 'Contact', item: pageURL },
-  ],
-};
+const breadcrumbSchema = makeBreadcrumb([
+  { name: 'Accueil', item: SITE_URL },
+  { name: 'Contact', item: pageURL },
+]);
 ---
 
 <BaseLayout

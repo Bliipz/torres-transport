@@ -14,6 +14,7 @@ import {
   SERVICES_NEED_ARRIVEE,
 } from '../../lib/labels';
 import { buildAddress } from '../../lib/address';
+import { COMPANY } from '../../data/company';
 
 export const prerender = false;
 
@@ -29,12 +30,58 @@ function escapeHtml(str: string): string {
 }
 
 function isValidEmail(email: string): boolean {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  if (email.length > 254) return false;
+  return /^[a-zA-Z0-9._%+-]{1,64}@[a-zA-Z0-9.-]{1,253}\.[a-zA-Z]{2,}$/.test(email);
 }
 
 function isValidPhone(phone: string): boolean {
   const cleaned = phone.replace(/[\s.\-]/g, '');
   return /^(\+33|0)[1-9]\d{8}$/.test(cleaned);
+}
+
+// ============== ANTI-ABUSE : ORIGIN CHECK + RATE LIMITING ==============
+// Origines autorisées pour les POST. Bloque les CSRF depuis sites tiers.
+const ALLOWED_ORIGINS = [
+  'https://torrestransport.fr',
+  'https://www.torrestransport.fr',
+];
+// On accepte aussi les déploiements Vercel de preview pour pouvoir tester avant prod.
+function isOriginAllowed(origin: string | null, referer: string | null): boolean {
+  const isDev = import.meta.env.DEV;
+  if (isDev) return true;
+  const candidates = [origin, referer].filter(Boolean) as string[];
+  if (candidates.length === 0) return false;
+  return candidates.some((c) =>
+    ALLOWED_ORIGINS.some((allowed) => c.startsWith(allowed)) ||
+    /^https:\/\/[a-z0-9-]+\.vercel\.app\//.test(c)
+  );
+}
+
+// Rate limit IP en mémoire : 5 envois max / heure / IP.
+// Suffisant pour un site marketing ; pour une protection distribuée, passer à Vercel KV.
+const RATE_LIMIT_MAX = 5;
+const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000; // 1h
+const rateLimitStore = new Map<string, { count: number; resetAt: number }>();
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now();
+  const entry = rateLimitStore.get(ip);
+  if (!entry || entry.resetAt < now) {
+    rateLimitStore.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
+    return true;
+  }
+  if (entry.count >= RATE_LIMIT_MAX) return false;
+  entry.count += 1;
+  return true;
+}
+
+function getClientIp(request: Request): string {
+  return (
+    request.headers.get('x-forwarded-for')?.split(',')[0].trim() ||
+    request.headers.get('x-real-ip') ||
+    request.headers.get('cf-connecting-ip') ||
+    'unknown'
+  );
 }
 
 // Construit la section "détails de la prestation" selon le service
@@ -48,7 +95,7 @@ function buildDetailsHtml(service: string, fd: FormData): string {
     case 'transport': {
       const vol = get('volume_m3');
       if (vol) rows.push(['Volume estimé', `${vol} m³`]);
-      const tarifM3 = service === 'transport' ? '~30,90 €/m³ (transport simple)' : '47,50 €/m³';
+      const tarifM3 = service === 'transport' ? `~${COMPANY.pricing.transportPerCubicMeterDisplay} (transport simple)` : COMPANY.pricing.perCubicMeterDisplay;
       rows.push(['Tarif de référence', tarifM3]);
       if (get('demontage') === 'on') rows.push(['Démontage / remontage', 'Oui']);
       if (get('debarras_opt') === 'on') rows.push(['Débarras / déchetterie', 'Oui']);
@@ -137,6 +184,22 @@ export const POST: APIRoute = async ({ request }) => {
   const headers = { 'Content-Type': 'application/json' };
 
   try {
+    // 🛡️ CSRF : refuser les POST qui ne viennent pas de notre domaine
+    const origin = request.headers.get('origin');
+    const referer = request.headers.get('referer');
+    if (!isOriginAllowed(origin, referer)) {
+      return new Response(
+        JSON.stringify({ ok: false, errors: ['Origine non autorisée'] }),
+        { status: 403, headers }
+      );
+    }
+
+    // 🚦 Rate limit IP : 5 envois max / heure (silencieux pour pas signaler aux bots)
+    const ip = getClientIp(request);
+    if (!checkRateLimit(ip)) {
+      return new Response(JSON.stringify({ ok: true }), { status: 200, headers });
+    }
+
     const formData = await request.formData();
 
     // 🍯 Honeypot anti-spam (champ invisible que les bots remplissent)
@@ -193,8 +256,8 @@ export const POST: APIRoute = async ({ request }) => {
 
     // ==================== ENVOI EMAIL ====================
     const apiKey = import.meta.env.RESEND_API_KEY;
-    const fromEmail = import.meta.env.RESEND_FROM_EMAIL || 'devis@torrestransport.fr';
-    const toEmail = import.meta.env.CONTACT_TO_EMAIL || 'contact@torrestransport.fr';
+    const fromEmail = import.meta.env.RESEND_FROM_EMAIL || COMPANY.email.devis;
+    const toEmail = import.meta.env.CONTACT_TO_EMAIL || COMPANY.email.contact;
 
     if (!apiKey) {
       console.error('RESEND_API_KEY manquante');
@@ -258,7 +321,7 @@ export const POST: APIRoute = async ({ request }) => {
     if (error) {
       console.error('Erreur Resend:', error);
       return new Response(
-        JSON.stringify({ ok: false, errors: ["Erreur lors de l'envoi. Merci de réessayer ou de nous appeler au 06 59 92 68 14."] }),
+        JSON.stringify({ ok: false, errors: [`Erreur lors de l'envoi. Merci de réessayer ou de nous appeler au ${COMPANY.phone.display}.`] }),
         { status: 500, headers }
       );
     }
@@ -284,8 +347,8 @@ export const POST: APIRoute = async ({ request }) => {
             <div style="background: #fdf9e7; border-left: 4px solid #f5de7e; padding: 16px 20px; margin: 24px 0;">
               <p style="margin: 0; font-size: 14px; line-height: 1.6;">
                 <strong>📞 Une urgence ?</strong> Appelez Ludovic au
-                <a href="tel:+33659926814" style="color: #1a1a1a;">06 59 92 68 14</a>
-                (Lundi-Samedi, 8h-19h).
+                <a href="${COMPANY.phone.tel}" style="color: #1a1a1a;">${COMPANY.phone.display}</a>
+                (${COMPANY.hours.display}).
               </p>
             </div>
 
@@ -294,17 +357,17 @@ export const POST: APIRoute = async ({ request }) => {
             <hr style="margin: 28px 0; border: none; border-top: 1px solid #e2e8f0;" />
 
             <p style="font-size: 13px; color: #666; line-height: 1.6;">
-              <strong>Pourquoi Torres Transport ?</strong><br>
-              ✓ 20 ans d'expérience en Haute-Savoie<br>
-              ✓ Équipe locale basée à Ville-la-Grand · pas de sous-traitance<br>
+              <strong>Pourquoi ${COMPANY.name} ?</strong><br>
+              ✓ ${COMPANY.stats.yearsOfExperience} ans d'expérience en ${COMPANY.address.region}<br>
+              ✓ Équipe locale basée à ${COMPANY.address.locality} · pas de sous-traitance<br>
               ✓ Devis ferme et transparent · sans surprise<br>
               ✓ Tarif sénior/PMR · réservation anticipée
             </p>
 
             <hr style="margin: 24px 0 16px; border: none; border-top: 1px solid #e2e8f0;" />
             <p style="font-size: 11px; color: #aaa; text-align: center; margin: 0;">
-              <strong>Torres Transport</strong> · 8 rue Fernand David, 74100 Ville-la-Grand · SIRET 528 686 330 00051<br>
-              <a href="https://torrestransport.fr/mentions-legales" style="color: #aaa;">Mentions légales</a>
+              <strong>${COMPANY.name}</strong> · ${COMPANY.address.full} · SIRET ${COMPANY.legal.siret}<br>
+              <a href="${COMPANY.url}/mentions-legales" style="color: #aaa;">Mentions légales</a>
             </p>
           </div>
         </body>

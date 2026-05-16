@@ -1,5 +1,6 @@
 ---
 import { getAllCities } from '../data/cities.js';
+import { COMPANY } from '../data/company';
 const annee = new Date().getFullYear();
 const villesFooter = getAllCities();
 ---
@@ -24,7 +25,7 @@ const villesFooter = getAllCities();
         </p>
         <div class="footer-socials">
           <a
-            href="https://www.facebook.com/profile.php?id=61555592171592"
+            href={COMPANY.social.facebook}
             target="_blank"
             rel="noopener noreferrer"
             class="social-link"
@@ -74,19 +75,19 @@ const villesFooter = getAllCities();
         <ul class="footer-contact-list">
           <li>
             <span class="footer-contact-label">Adresse</span>
-            <span>8 rue Fernand David<br />74100 Ville-la-Grand · Haute-Savoie</span>
+            <span>{COMPANY.address.street}<br />{COMPANY.address.postalCode} {COMPANY.address.locality} · {COMPANY.address.region}</span>
           </li>
           <li>
             <span class="footer-contact-label">Téléphone</span>
-            <a href="tel:+33659926814" class="footer-strong">06 59 92 68 14</a>
+            <a href={COMPANY.phone.tel} class="footer-strong">{COMPANY.phone.display}</a>
           </li>
           <li>
             <span class="footer-contact-label">Email</span>
-            <a href="mailto:contact@torrestransport.fr">contact@torrestransport.fr</a>
+            <a href={`mailto:${COMPANY.email.contact}`}>{COMPANY.email.contact}</a>
           </li>
           <li>
             <span class="footer-contact-label">Horaires</span>
-            <span>Lundi au Samedi · 8h–19h</span>
+            <span>Lundi au Samedi · 8h-19h</span>
           </li>
         </ul>
       </div>
