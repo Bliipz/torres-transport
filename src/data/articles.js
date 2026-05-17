@@ -93,6 +93,11 @@ export const articles = [
 
       <p><strong>Notre reco terrain&nbsp;:</strong> pour 1 à 3 mois sans besoin d'accès, le garde-meuble traditionnel est plus simple et plus sûr. Pour 6+ mois ou si vous voulez piocher dedans régulièrement, le self-stockage devient cohérent.</p>
 
+      <div class="cta-inline" style="background: #fdf9e7; padding: 1.5rem; margin: 2rem 0; border-left: 4px solid #f5de7e;">
+        <p style="margin: 0 0 0.8rem;"><strong>💡 Besoin d'une estimation pour votre projet ?</strong></p>
+        <p style="margin: 0;">Notre simulateur en ligne vous donne un tarif indicatif en quelques clics, sans engagement. <a href="/estimation"><strong>Calculer mon devis →</strong></a></p>
+      </div>
+
       <h2>Ce qu'on fait chez Torres Transport pour ces situations</h2>
 
       <p>Quand un client nous appelle pour un déménagement avec étape de stockage, on traite le tout <strong>en une seule prestation</strong>&nbsp;:</p>
@@ -142,7 +147,7 @@ export const articles = [
   },
   {
     id: "conseils-demenagement-reussi",
-    title: "Déménagement Réussi à Annemasse : Guide Complet 2025",
+    title: "Déménagement Réussi à Annemasse : Guide Complet 2026",
     slug: "conseils-demenagement-reussi",
     excerpt: "Découvrez notre guide expert pour réussir votre déménagement à Annemasse. 20 ans d'expérience Torres Transport condensés en conseils pratiques et actionables.",
     content: `
@@ -252,9 +257,9 @@ export const articles = [
     image: "/blog/header-conseils-demenagement-reussi.webp",
     readTime: "6 min",
     seo: {
-      metaTitle: "Déménagement Annemasse : Guide Complet 2025 | Torres Transport",
+      metaTitle: "Déménagement Annemasse : Guide Complet 2026 | Torres Transport",
       metaDescription: "Guide expert pour réussir votre déménagement à Annemasse. Conseils, techniques et astuces de Torres Transport, 20 ans d'expérience en Haute-Savoie.",
-      keywords: ["déménagement annemasse", "déménageur haute-savoie", "conseils déménagement", "torres transport", "guide déménagement 2024"],
+      keywords: ["déménagement annemasse", "déménageur haute-savoie", "conseils déménagement", "torres transport", "guide déménagement 2026"],
       canonicalUrl: "/blog/conseils-demenagement-reussi"
     }
   },
@@ -726,7 +731,7 @@ export const articles = [
     readTime: "6 min",
     seo: {
       metaTitle: "Déménagement sénior à Annemasse : checklist humaine | Torres Transport",
-      metaDescription: "Déménager une personne âgée à Annemasse : préparation, jour J, EHPAD, sortie d'hôpital. Approche humaine et tarif préférentiel sénior chez Torres Transport.",
+      metaDescription: "Déménager une personne âgée à Annemasse : préparation, jour J, EHPAD, sortie d'hôpital. Approche humaine et tarif préférentiel sénior Torres Transport.",
       keywords: ["déménagement sénior annemasse", "déménagement EHPAD haute-savoie", "déménagement personne âgée", "déménagement PMR", "torres transport"],
       canonicalUrl: "/blog/demenagement-senior-annemasse"
     }
