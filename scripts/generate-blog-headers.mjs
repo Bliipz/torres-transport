@@ -10,7 +10,7 @@
 import satori from 'satori';
 import { html } from 'satori-html';
 import sharp from 'sharp';
-import { readFileSync, mkdirSync } from 'fs';
+import { readFileSync, mkdirSync, existsSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
@@ -108,6 +108,15 @@ function template({ number, title, category }) {
 }
 
 async function generateOne(article, idx) {
+  const outPath = join(OUTPUT_DIR, `header-${article.slug}.webp`);
+
+  // Skip si l'image existe déjà, sauf si --force passé en argument
+  // Utile pour la GitHub Action qui ne doit générer QUE les nouvelles images
+  const force = process.argv.includes('--force');
+  if (!force && existsSync(outPath)) {
+    return { path: outPath, skipped: true };
+  }
+
   const number = String(idx + 1).padStart(2, '0');
   const markup = template({
     number,
@@ -121,12 +130,11 @@ async function generateOne(article, idx) {
 
   const svg = await satori(markup, { width: 1200, height: 630, fonts });
 
-  const outPath = join(OUTPUT_DIR, `header-${article.slug}.webp`);
   await sharp(Buffer.from(svg))
     .webp({ quality: 88, effort: 6 })
     .toFile(outPath);
 
-  return outPath;
+  return { path: outPath, skipped: false };
 }
 
 async function run() {
@@ -134,17 +142,26 @@ async function run() {
   const { articles } = await import(`file://${join(ROOT, 'src', 'data', 'articles.js')}`);
   console.log(`📰 ${articles.length} articles à traiter\n`);
 
+  let generated = 0;
+  let skipped = 0;
   for (let i = 0; i < articles.length; i++) {
     const a = articles[i];
     try {
-      const out = await generateOne(a, i);
-      console.log(`✓ ${out.split(/[\\/]/).pop()}`);
+      const { path: outPath, skipped: wasSkipped } = await generateOne(a, i);
+      const filename = outPath.split(/[\\/]/).pop();
+      if (wasSkipped) {
+        console.log(`⊝ ${filename} (existant, --force pour régénérer)`);
+        skipped++;
+      } else {
+        console.log(`✓ ${filename}`);
+        generated++;
+      }
     } catch (e) {
       console.error(`✗ ${a.slug} : ${e.message}`);
     }
   }
 
-  console.log('\nDone.\n');
+  console.log(`\nDone. ${generated} générée(s), ${skipped} existante(s) conservée(s).\n`);
 }
 
 run().catch((e) => { console.error(e); process.exit(1); });

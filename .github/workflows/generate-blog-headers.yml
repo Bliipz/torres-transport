@@ -1,0 +1,51 @@
+name: Auto-generate blog header images
+
+# Se déclenche sur les PR auto-article (branche auto/article-*)
+# Quand un nouvel article est ajouté à src/data/articles.js,
+# génère son image header WebP et la commit dans la PR.
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - 'src/data/articles.js'
+
+jobs:
+  generate-headers:
+    # Limite aux PRs venant des branches auto-article pour éviter de tourner sur les PRs humaines
+    if: startsWith(github.head_ref, 'auto/article-')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate missing header images
+        run: node scripts/generate-blog-headers.mjs
+
+      - name: Commit image if created
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [[ -n "$(git status --porcelain public/blog/)" ]]; then
+            git add public/blog/
+            git commit -m "Auto: génère l'image header du nouvel article"
+            git push
+            echo "✅ Image header générée et commitée"
+          else
+            echo "⊝ Aucune nouvelle image à générer (toutes déjà présentes)"
+          fi
