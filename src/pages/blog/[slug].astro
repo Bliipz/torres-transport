@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getRelatedArticles, getRelatedCities, getRelatedServices } from '../../data/articles.js';
 import { COMPANY } from '../../data/company';
-import { makeBreadcrumb } from '../../lib/schemas';
+import { makeBreadcrumb, makeFAQPage } from '../../lib/schemas';
 
 const SITE_URL = 'https://torrestransport.fr';
 
@@ -48,6 +48,8 @@ const breadcrumbSchema = makeBreadcrumb([
   { name: article.title, item: articleURL },
 ]);
 
+const faqSchema = article.faq && article.faq.length > 0 ? makeFAQPage(article.faq) : null;
+
 const formatDate = (date: string) =>
   new Date(date).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' });
 ---
@@ -59,7 +61,7 @@ const formatDate = (date: string) =>
   canonical={articleURL}
   ogImage={article.image}
   ogType="article"
-  structuredData={[articleSchema, breadcrumbSchema]}
+  structuredData={[articleSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema] : [])]}
 >
   <!-- ==================== HERO ARTICLE ==================== -->
   <article class="article-page">

@@ -125,6 +125,36 @@ export const articles = [
         <li><strong>"Puis-je visiter le local avant signature&nbsp;?"</strong> Si refus, fuyez. Un prestataire sérieux est fier de montrer ses installations.</li>
       </ol>
 
+      <h2>Questions fréquentes</h2>
+      <details>
+        <summary><strong>Combien coûte un garde-meuble à Annemasse&nbsp;?</strong></summary>
+        <p>En Haute-Savoie, comptez entre 8 et 12&nbsp;€&nbsp;/&nbsp;m³&nbsp;/&nbsp;mois pour un garde-meuble traditionnel climatisé. Concrètement&nbsp;: 90-130&nbsp;€&nbsp;/&nbsp;mois pour un studio (10-12&nbsp;m³), 130-180&nbsp;€ pour un T2 (15-20&nbsp;m³), 180-250&nbsp;€ pour un T3 (25-30&nbsp;m³). Les boxes self-stockage sont 20 à 30&nbsp;% moins chers, mais vous chargez/déchargez vous-même.</p>
+      </details>
+      <details>
+        <summary><strong>Quelle est la durée minimum de location d'un garde-meuble&nbsp;?</strong></summary>
+        <p>La majorité des prestataires (dont notre réseau partenaire) appliquent un engagement minimum d'<strong>1 mois</strong>. Au-delà, la facturation se fait au prorata du nombre de jours réels. Pour une durée très courte (moins de 2 semaines), demandez plutôt un stockage temporaire chez votre déménageur, souvent inclus dans la prestation principale ou facturé à un tarif symbolique.</p>
+      </details>
+      <details>
+        <summary><strong>Garde-meuble traditionnel ou self-stockage&nbsp;: lequel choisir&nbsp;?</strong></summary>
+        <p>Pour <strong>1 à 3 mois sans besoin d'accès</strong> à vos affaires&nbsp;: garde-meuble traditionnel (plus simple, vos meubles sont chargés/déchargés par des pros, inventaire fourni, local climatisé). Pour <strong>6+ mois ou si vous voulez piocher régulièrement</strong>&nbsp;: self-stockage (accès libre 7j/7, moins cher mais vous gérez la manutention). Le piège du self-stockage&nbsp;: pas d'inventaire, donc difficile de prouver une disparition.</p>
+      </details>
+      <details>
+        <summary><strong>Mes meubles risquent-ils d'être abîmés en garde-meuble&nbsp;?</strong></summary>
+        <p>Le principal ennemi est l'humidité, pas le temps. En Haute-Savoie, l'humidité d'arrière-saison peut abîmer bois, livres et électronique en quelques mois si le local n'est pas climatisé. Exigez un local <strong>chauffé, ventilé et étanche</strong>. Notre réseau partenaire utilise des locaux à hygrométrie contrôlée. Demandez aussi à visiter le local avant signature&nbsp;: un prestataire sérieux n'a rien à cacher.</p>
+      </details>
+      <details>
+        <summary><strong>L'assurance est-elle incluse dans le prix&nbsp;?</strong></summary>
+        <p>Pas toujours. Beaucoup de prestataires facturent l'assurance en supplément (15 à 25&nbsp;€&nbsp;/&nbsp;mois), parfois sans le préciser au devis. Vérifiez systématiquement&nbsp;: assurance incluse ou en option, montant exact, plafond de garantie. Chez Torres&nbsp;Transport, on demande toujours un devis clair avec assurance détaillée, et on peut faire jouer notre RC pro pendant le transport aller-retour.</p>
+      </details>
+      <details>
+        <summary><strong>Combien de temps à l'avance réserver un garde-meuble&nbsp;?</strong></summary>
+        <p>Idéalement <strong>3 à 4 semaines</strong> avant la date d'entrée. En haute saison (juin-septembre), comptez 6 à 8 semaines pour avoir le choix sur les volumes et les emplacements. Pour un devis groupé déménagement + stockage (5 à 10&nbsp;% de remise), signalez-le au moment du premier devis, pas après. Une demande de dernière minute coûte toujours plus cher.</p>
+      </details>
+      <details>
+        <summary><strong>Puis-je récupérer mes affaires à tout moment&nbsp;?</strong></summary>
+        <p>Cela dépend du type de stockage. <strong>Self-stockage</strong>&nbsp;: accès libre 7j/7, souvent 24h/24 avec badge. <strong>Garde-meuble traditionnel</strong>&nbsp;: accès sur rendez-vous, avec 24 à 48&nbsp;h de préavis (le temps qu'on remette votre conteneur ou palette accessible). Pour les durées longues, prévoyez à l'avance les visites nécessaires pour éviter les frais d'accès répétés.</p>
+      </details>
+
       <h2>Conclusion&nbsp;: anticipez et groupez</h2>
 
       <p>Si vous savez à l'avance qu'il y aura un trou entre vos deux logements, parlez-en à votre déménageur <strong>au moment du devis initial</strong>, pas après coup. Vous obtiendrez un tarif groupé bien plus avantageux qu'en cherchant un garde-meuble en urgence à 2 semaines du départ.</p>
@@ -133,6 +163,15 @@ export const articles = [
 
       <p><strong>Vous avez un projet de déménagement avec étape de stockage à Annemasse, Ville-la-Grand ou ailleurs en Haute-Savoie&nbsp;?</strong> <a href="/contact">Demandez un devis groupé gratuit</a>&nbsp;: on étudie votre situation, on vous propose la meilleure formule, et on s'occupe de tout de bout en bout. Devis ferme, sans surprise.</p>
     `,
+    faq: [
+      { question: "Combien coûte un garde-meuble à Annemasse ?", reponse: "En Haute-Savoie, comptez entre 8 et 12 €/m³/mois pour un garde-meuble traditionnel climatisé. Concrètement : 90-130 €/mois pour un studio (10-12 m³), 130-180 € pour un T2 (15-20 m³), 180-250 € pour un T3 (25-30 m³). Les boxes self-stockage sont 20 à 30 % moins chers, mais vous chargez/déchargez vous-même." },
+      { question: "Quelle est la durée minimum de location d'un garde-meuble ?", reponse: "La majorité des prestataires (dont notre réseau partenaire) appliquent un engagement minimum d'1 mois. Au-delà, la facturation se fait au prorata du nombre de jours réels. Pour une durée très courte (moins de 2 semaines), demandez plutôt un stockage temporaire chez votre déménageur, souvent inclus dans la prestation principale ou facturé à un tarif symbolique." },
+      { question: "Garde-meuble traditionnel ou self-stockage : lequel choisir ?", reponse: "Pour 1 à 3 mois sans besoin d'accès à vos affaires : garde-meuble traditionnel (plus simple, vos meubles sont chargés/déchargés par des pros, inventaire fourni, local climatisé). Pour 6+ mois ou si vous voulez piocher régulièrement : self-stockage (accès libre 7j/7, moins cher mais vous gérez la manutention). Le piège du self-stockage : pas d'inventaire, donc difficile de prouver une disparition." },
+      { question: "Mes meubles risquent-ils d'être abîmés en garde-meuble ?", reponse: "Le principal ennemi est l'humidité, pas le temps. En Haute-Savoie, l'humidité d'arrière-saison peut abîmer bois, livres et électronique en quelques mois si le local n'est pas climatisé. Exigez un local chauffé, ventilé et étanche. Notre réseau partenaire utilise des locaux à hygrométrie contrôlée. Demandez aussi à visiter le local avant signature : un prestataire sérieux n'a rien à cacher." },
+      { question: "L'assurance est-elle incluse dans le prix ?", reponse: "Pas toujours. Beaucoup de prestataires facturent l'assurance en supplément (15 à 25 €/mois), parfois sans le préciser au devis. Vérifiez systématiquement : assurance incluse ou en option, montant exact, plafond de garantie. Chez Torres Transport, on demande toujours un devis clair avec assurance détaillée, et on peut faire jouer notre RC pro pendant le transport aller-retour." },
+      { question: "Combien de temps à l'avance réserver un garde-meuble ?", reponse: "Idéalement 3 à 4 semaines avant la date d'entrée. En haute saison (juin-septembre), comptez 6 à 8 semaines pour avoir le choix sur les volumes et les emplacements. Pour un devis groupé déménagement + stockage (5 à 10 % de remise), signalez-le au moment du premier devis, pas après. Une demande de dernière minute coûte toujours plus cher." },
+      { question: "Puis-je récupérer mes affaires à tout moment ?", reponse: "Cela dépend du type de stockage. Self-stockage : accès libre 7j/7, souvent 24h/24 avec badge. Garde-meuble traditionnel : accès sur rendez-vous, avec 24 à 48 h de préavis (le temps qu'on remette votre conteneur ou palette accessible). Pour les durées longues, prévoyez à l'avance les visites nécessaires pour éviter les frais d'accès répétés." }
+    ],
     date: "2026-05-09",
     author: "Ludovic Torres",
     tags: ["garde-meuble", "stockage", "annemasse", "transition", "haute-savoie"],
@@ -329,11 +368,11 @@ export const articles = [
       <p>Les trois avantages se cumulent. Un sénior qui réserve 6 semaines à l'avance pour un T4 de 50&nbsp;m³ obtient ainsi <strong>−20&nbsp;%</strong> sur sa facture.</p>
 
       <blockquote>
-      <p><strong>⚠️ Ce qui peut faire varier le devis ferme&nbsp;:</strong> l'accessibilité (étage sans ascenseur, distance de portage entre la porte et le camion, monte-meuble nécessaire), le stationnement réglementé en centre-ville, la distance entre les deux adresses au-delà de la zone locale.</p>
+      <p><strong>⚠️ Ce qui peut faire varier le devis ferme&nbsp;:</strong> l'accessibilité (étage sans ascenseur, distance de portage entre la porte et le camion, monte-meuble nécessaire), le stationnement réglementé en centre-ville (pour les démarches de demande d'autorisation, voir le portail de la <a href="https://www.annemasse.fr/" rel="noopener nofollow" target="_blank">mairie d'Annemasse</a>), la distance entre les deux adresses au-delà de la zone locale.</p>
       </blockquote>
 
       <h2>Comment estimer votre volume sans erreur</h2>
-      <p>L'estimation du volume est l'erreur la plus fréquente, sous-évaluer mène à un camion trop petit et un second voyage à payer. Trois méthodes complémentaires&nbsp;:</p>
+      <p>L'estimation du volume est l'erreur la plus fréquente, sous-évaluer mène à un camion trop petit et un second voyage à payer. Pour calculer votre volume précis, voir notre <a href="/blog/estimer-volume-demenagement-m3/">calculateur m³ →</a> ou utilisez notre <a href="/calculateur-volume/">outil interactif</a>. En résumé, trois méthodes complémentaires&nbsp;:</p>
 
       <h3>1. Le calcul rapide par pièce</h3>
       <ul>
@@ -361,11 +400,50 @@ export const articles = [
         <li>✓ <strong>Devis ferme sous 24&nbsp;h&nbsp;:</strong> gratuit et sans engagement</li>
       </ul>
 
+      <h2>Questions fréquentes</h2>
+      <details>
+        <summary><strong>Combien coûte un déménagement à Annemasse en 2026&nbsp;?</strong></summary>
+        <p>Chez Torres&nbsp;Transport, le tarif de référence est de <strong>47,50&nbsp;€&nbsp;/&nbsp;m³</strong> tout compris (camion, équipe, protection, sanglage). Comptez environ 712&nbsp;€ pour un studio (15&nbsp;m³), 1&nbsp;187&nbsp;€ pour un T2 (25&nbsp;m³) et 2&nbsp;375&nbsp;€ pour un T4 (50&nbsp;m³). Les options (démontage, débarras, monte-meuble) et les remises clients (sénior, anticipée, gros volume) ajustent ensuite la facture.</p>
+      </details>
+      <details>
+        <summary><strong>Quel est le tarif moyen au m³ pour un déménagement en 2026&nbsp;?</strong></summary>
+        <p>Le tarif moyen au m³ pour un déménagement local en Haute-Savoie se situe entre 45 et 65&nbsp;€&nbsp;/&nbsp;m³ selon le prestataire. Torres&nbsp;Transport applique un prix fixe de 47,50&nbsp;€&nbsp;/&nbsp;m³ tout compris, sans suppléments cachés. Méfiez-vous des devis affichés à 25-35&nbsp;€&nbsp;/&nbsp;m³&nbsp;: ils excluent souvent la main-d'œuvre, la protection ou le sanglage, qui sont ensuite facturés en plus.</p>
+      </details>
+      <details>
+        <summary><strong>Comment estimer le volume de mon déménagement&nbsp;?</strong></summary>
+        <p>Comptez en moyenne 5&nbsp;m³ par pièce&nbsp;: salon 6-10&nbsp;m³, chambre adulte 5-8&nbsp;m³, cuisine 4-7&nbsp;m³, salle de bain 1-2&nbsp;m³. La règle pratique pour les cartons&nbsp;: 1&nbsp;m³ = 4&nbsp;cartons standards. Pour un calcul précis, utilisez notre <a href="/estimation">simulateur en ligne</a> ou notre <a href="/blog/estimer-volume-demenagement-m3/">guide volume m³</a>. Au-delà de 30&nbsp;m³, demandez une visite gratuite à domicile pour fiabiliser l'estimation.</p>
+      </details>
+      <details>
+        <summary><strong>Y a-t-il un acompte à payer&nbsp;?</strong></summary>
+        <p>Oui, un acompte raisonnable (généralement 20 à 30&nbsp;% du devis) est demandé à la signature pour bloquer la date dans notre planning. Le solde est réglé après la prestation, une fois que tout est livré et installé chez vous. Pas de paiement complet d'avance&nbsp;: vous payez le service rendu.</p>
+      </details>
+      <details>
+        <summary><strong>Le tarif sénior est-il automatique&nbsp;?</strong></summary>
+        <p>Oui&nbsp;: la remise sénior/PMR de 10&nbsp;% s'applique automatiquement dès que vous nous signalez la situation au moment du devis. Aucun justificatif compliqué demandé&nbsp;: si le déménagement concerne une personne âgée, en perte d'autonomie ou à mobilité réduite, la remise est appliquée. Elle se cumule avec la remise réservation anticipée (−5&nbsp;%), ce qui amène souvent à −15&nbsp;% sur la facture finale.</p>
+      </details>
+      <details>
+        <summary><strong>Combien coûte un déménagement Annemasse-Lyon&nbsp;?</strong></summary>
+        <p>Pour un trajet longue distance type Annemasse-Lyon (≈ 150&nbsp;km), un supplément kilométrique s'ajoute au tarif au m³. Comptez environ +250 à +400&nbsp;€ par rapport à un déménagement local équivalent. Un T2 (25&nbsp;m³) Annemasse-Lyon revient ainsi à environ 1&nbsp;500 à 1&nbsp;600&nbsp;€ tout compris. <a href="/contact">Demandez un devis ferme</a> selon votre adresse exacte.</p>
+      </details>
+      <details>
+        <summary><strong>Le devis est-il vraiment gratuit&nbsp;?</strong></summary>
+        <p>Oui, sans aucun engagement&nbsp;: visite à domicile gratuite, devis ferme sous 24&nbsp;h, et vous restez libre d'accepter ou non. Aucun frais de dossier, aucune retenue. Nos devis sont valables 30 jours et restent fermes au m³ annoncé&nbsp;: si le volume réel diffère le jour J, on facture le volume réellement transporté, pas un forfait gonflé.</p>
+      </details>
+
       <h2>Conclusion</h2>
       <p>Le prix d'un déménagement à Annemasse n'a pas à être un casse-tête. En partant d'un tarif unique au m³ et en ajoutant uniquement les options dont vous avez besoin, on obtient un budget clair, vérifiable et juste. C'est la philosophie de Torres&nbsp;Transport depuis la création de l'activité, pas de marketing, juste un travail bien fait au prix annoncé.</p>
 
       <p><strong>Pour estimer votre déménagement en 30&nbsp;secondes</strong>, utilisez notre <a href="/estimation">simulateur en ligne</a>. Pour un devis ferme et personnalisé sous 24&nbsp;h, <a href="/contact">contactez-nous directement</a> ou appelez Ludovic au <a href="tel:+33659926814">06 59 92 68 14</a>.</p>
     `,
+    faq: [
+      { question: "Combien coûte un déménagement à Annemasse en 2026 ?", reponse: "Chez Torres Transport, le tarif de référence est de 47,50 €/m³ tout compris (camion, équipe, protection, sanglage). Comptez environ 712 € pour un studio (15 m³), 1 187 € pour un T2 (25 m³) et 2 375 € pour un T4 (50 m³). Les options (démontage, débarras, monte-meuble) et les remises clients (sénior, anticipée, gros volume) ajustent ensuite la facture." },
+      { question: "Quel est le tarif moyen au m³ pour un déménagement en 2026 ?", reponse: "Le tarif moyen au m³ pour un déménagement local en Haute-Savoie se situe entre 45 et 65 €/m³ selon le prestataire. Torres Transport applique un prix fixe de 47,50 €/m³ tout compris, sans suppléments cachés. Méfiez-vous des devis affichés à 25-35 €/m³ : ils excluent souvent la main-d'œuvre, la protection ou le sanglage, qui sont ensuite facturés en plus." },
+      { question: "Comment estimer le volume de mon déménagement ?", reponse: "Comptez en moyenne 5 m³ par pièce : salon 6-10 m³, chambre adulte 5-8 m³, cuisine 4-7 m³, salle de bain 1-2 m³. La règle pratique pour les cartons : 1 m³ = 4 cartons standards. Pour un calcul précis, utilisez notre simulateur en ligne ou notre guide volume m³. Au-delà de 30 m³, demandez une visite gratuite à domicile pour fiabiliser l'estimation." },
+      { question: "Y a-t-il un acompte à payer ?", reponse: "Oui, un acompte raisonnable (généralement 20 à 30 % du devis) est demandé à la signature pour bloquer la date dans notre planning. Le solde est réglé après la prestation, une fois que tout est livré et installé chez vous. Pas de paiement complet d'avance : vous payez le service rendu." },
+      { question: "Le tarif sénior est-il automatique ?", reponse: "Oui : la remise sénior/PMR de 10 % s'applique automatiquement dès que vous nous signalez la situation au moment du devis. Aucun justificatif compliqué demandé : si le déménagement concerne une personne âgée, en perte d'autonomie ou à mobilité réduite, la remise est appliquée. Elle se cumule avec la remise réservation anticipée (−5 %), ce qui amène souvent à −15 % sur la facture finale." },
+      { question: "Combien coûte un déménagement Annemasse-Lyon ?", reponse: "Pour un trajet longue distance type Annemasse-Lyon (≈ 150 km), un supplément kilométrique s'ajoute au tarif au m³. Comptez environ +250 à +400 € par rapport à un déménagement local équivalent. Un T2 (25 m³) Annemasse-Lyon revient ainsi à environ 1 500 à 1 600 € tout compris. Demandez un devis ferme selon votre adresse exacte." },
+      { question: "Le devis est-il vraiment gratuit ?", reponse: "Oui, sans aucun engagement : visite à domicile gratuite, devis ferme sous 24 h, et vous restez libre d'accepter ou non. Aucun frais de dossier, aucune retenue. Nos devis sont valables 30 jours et restent fermes au m³ annoncé : si le volume réel diffère le jour J, on facture le volume réellement transporté, pas un forfait gonflé." }
+    ],
     author: "Torres Transport",
     date: "2026-01-15",
     category: "Guides Pratiques",
@@ -381,16 +459,20 @@ export const articles = [
   },
   {
     id: "estimer-volume-demenagement-m3",
-    title: "Estimer le volume de son déménagement en m³ : la méthode simple",
+    title: "Calculer le volume m³ de son déménagement : la méthode pratique",
     slug: "estimer-volume-demenagement-m3",
-    excerpt: "Sous-évaluer le volume, c'est risquer un second voyage. Voici la méthode utilisée par les pros pour estimer correctement vos m³ avant le devis.",
+    excerpt: "Sous-évaluer le volume, c'est risquer un second voyage. Voici la méthode pratique utilisée par les pros pour calculer correctement vos m³ avant le devis.",
     content: `
-      <p>Le volume en m³ détermine le coût et la logistique de votre déménagement. Sous-évaluer, c'est risquer un camion trop petit, un second voyage, et une facture qui dérape. Surévaluer, c'est payer pour de l'air. Voici la méthode que nos déménageurs utilisent depuis 20 ans.</p>
+      <p>Le volume en m³ détermine la logistique de votre déménagement&nbsp;: taille du camion, équipe nécessaire, durée de chargement. Mal mesurer, c'est risquer un camion trop petit, un second voyage, et une journée qui dérape. Voici la méthode pratique que nos déménageurs utilisent depuis 20 ans pour calculer le volume <strong>juste</strong>, sans le surévaluer ni le sous-évaluer.</p>
 
-      <h2>Pourquoi le volume est plus important que vous ne pensez</h2>
-      <p>Chez Torres&nbsp;Transport, le tarif est unique&nbsp;: <strong>47,50&nbsp;€&nbsp;/&nbsp;m³</strong> tout compris. Conséquence&nbsp;: chaque m³ compte. 5&nbsp;m³ d'écart entre l'estimation et la réalité, c'est environ 240&nbsp;€ de facture imprévue ou, pire, un voyage retour le lendemain qui décale toute votre installation.</p>
+      <blockquote>
+      <p><strong>💡 Cet article porte sur la méthode de calcul.</strong> Pour connaître les tarifs et fourchettes de prix selon votre volume, consultez notre <a href="/blog/cout-demenagement-annemasse/">guide des prix déménagement Annemasse →</a>.</p>
+      </blockquote>
 
-      <p>Une bonne estimation, c'est aussi&nbsp;: choisir le bon véhicule, prévoir la bonne équipe, et obtenir un devis qui ne bouge pas le jour J.</p>
+      <h2>Pourquoi mesurer juste son volume change tout</h2>
+      <p>Une bonne estimation, c'est&nbsp;: choisir le bon véhicule, prévoir la bonne équipe, obtenir un devis qui ne bouge pas le jour J, et éviter les surprises (camion trop petit, second voyage, équipe sous-dimensionnée). Sur 10 dossiers, on voit 7 estimations initiales décalées de 20 à 40&nbsp;% par rapport au volume réel mesuré en visite. Cet article vous donne la méthode pour faire partie des 30&nbsp;% qui tombent juste.</p>
+
+      <p>Au-delà de la précision logistique, mesurer juste est aussi la condition d'un devis ferme et juste. Pour la grille tarifaire complète selon votre volume, voir notre <a href="/blog/cout-demenagement-annemasse/">guide tarifs déménagement Annemasse</a>.</p>
 
       <h2>La méthode pièce par pièce (la plus fiable)</h2>
       <p>On additionne le volume estimé pour chaque pièce, en partant d'une moyenne réaliste. Les chiffres ci-dessous sont issus de nos centaines de chantiers locaux à Annemasse, Ville-la-Grand et Saint-Julien-en-Genevois.</p>
@@ -424,19 +506,90 @@ export const articles = [
         <li><strong>L'électroménager double&nbsp;:</strong> beaucoup de foyers ont un congélateur cave en plus</li>
       </ul>
 
-      <h2>Comparer son estimation avec un type de logement standard</h2>
-      <p>En partant de moyennes terrain, voici les volumes typiques par taille de logement&nbsp;:</p>
+      <h2>Volume par type de logement&nbsp;: la grille de référence</h2>
+      <p>En partant de moyennes terrain issues de nos chantiers en Haute-Savoie, voici les volumes typiques par taille de logement, avec le détail du contenu&nbsp;:</p>
 
-      <ul>
-        <li><strong>Studio meublé minimaliste&nbsp;:</strong> 10 à 15&nbsp;m³</li>
-        <li><strong>Studio classique&nbsp;:</strong> 15 à 20&nbsp;m³</li>
-        <li><strong>T2&nbsp;:</strong> 20 à 30&nbsp;m³</li>
-        <li><strong>T3&nbsp;:</strong> 30 à 45&nbsp;m³</li>
-        <li><strong>T4&nbsp;:</strong> 45 à 60&nbsp;m³</li>
-        <li><strong>Maison 5 pièces ou plus&nbsp;:</strong> 60 à 90&nbsp;m³ (souvent +cave/garage)</li>
-      </ul>
+      <table style="width: 100%; border-collapse: collapse; margin: 1.5rem 0;">
+        <thead>
+          <tr style="background: #f5f5f0; border-bottom: 2px solid #c9a861;">
+            <th style="text-align: left; padding: 0.75rem;">Logement</th>
+            <th style="text-align: left; padding: 0.75rem;">Volume moyen</th>
+            <th style="text-align: left; padding: 0.75rem;">Cartons estimés</th>
+            <th style="text-align: left; padding: 0.75rem;">Cas typique</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom: 1px solid #e5e5e0;">
+            <td style="padding: 0.75rem;"><strong>Studio minimaliste</strong></td>
+            <td style="padding: 0.75rem;">10-15&nbsp;m³</td>
+            <td style="padding: 0.75rem;">30-50</td>
+            <td style="padding: 0.75rem;">Étudiant, jeune actif</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #e5e5e0;">
+            <td style="padding: 0.75rem;"><strong>Studio classique</strong></td>
+            <td style="padding: 0.75rem;">15-20&nbsp;m³</td>
+            <td style="padding: 0.75rem;">50-70</td>
+            <td style="padding: 0.75rem;">Célibataire installé</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #e5e5e0;">
+            <td style="padding: 0.75rem;"><strong>T2</strong></td>
+            <td style="padding: 0.75rem;">20-30&nbsp;m³</td>
+            <td style="padding: 0.75rem;">70-100</td>
+            <td style="padding: 0.75rem;">Couple sans enfant</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #e5e5e0;">
+            <td style="padding: 0.75rem;"><strong>T3</strong></td>
+            <td style="padding: 0.75rem;">30-45&nbsp;m³</td>
+            <td style="padding: 0.75rem;">100-140</td>
+            <td style="padding: 0.75rem;">Couple + 1 enfant</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #e5e5e0;">
+            <td style="padding: 0.75rem;"><strong>T4</strong></td>
+            <td style="padding: 0.75rem;">45-60&nbsp;m³</td>
+            <td style="padding: 0.75rem;">140-180</td>
+            <td style="padding: 0.75rem;">Famille 2-3 enfants</td>
+          </tr>
+          <tr>
+            <td style="padding: 0.75rem;"><strong>Maison 5p+</strong></td>
+            <td style="padding: 0.75rem;">60-90&nbsp;m³</td>
+            <td style="padding: 0.75rem;">180-250</td>
+            <td style="padding: 0.75rem;">Famille installée + garage/cave</td>
+          </tr>
+        </tbody>
+      </table>
 
       <p>Si votre estimation pièce par pièce s'écarte fortement de cette grille, c'est qu'il vous manque (ou qu'il y a) quelque chose. À vérifier avant de finaliser le devis.</p>
+
+      <h2>Les 4 erreurs d'estimation les plus fréquentes</h2>
+      <p>Sur les chantiers, on voit revenir les mêmes erreurs depuis 20 ans. Repérez-les pour ne pas tomber dedans&nbsp;:</p>
+
+      <h3>1. Oublier les "zones invisibles"</h3>
+      <p>Cave, garage, grenier, balcon, abri de jardin&nbsp;: ces espaces stockent souvent 5 à 15&nbsp;m³ qui n'apparaissent dans aucune liste mentale. Le piège classique&nbsp;: vous estimez votre T3 à 30&nbsp;m³ "à vue", on arrive le jour J et la cave contient 12&nbsp;m³ supplémentaires de cartons, vélos et matériel de ski. Faites systématiquement le tour <strong>physique</strong> de chaque espace de stockage avant d'estimer.</p>
+
+      <h3>2. Sous-estimer le volume des cartons "à faire"</h3>
+      <p>Quand on regarde les placards fermés, on imagine 20 cartons. À l'ouverture, on en remplit 50. Vêtements, linge de maison, papiers, jeux d'enfants, déco saisonnière&nbsp;: tout ça occupe 2 à 3 fois plus d'espace qu'on ne le pense. La méthode fiable&nbsp;: comptez le nombre de placards, multipliez par 4-5 cartons par placard, c'est rarement loin de la vérité.</p>
+
+      <h3>3. Confondre m² et m³</h3>
+      <p>Un T3 de 65&nbsp;m² ne fait pas 65&nbsp;m³ de meubles. Le volume utile (hauteur sous plafond × surface meublée) génère <strong>environ 0,5 à 0,7&nbsp;m³ de mobilier par m² habitable</strong>. C'est la règle empirique la plus simple si vous n'avez ni le temps ni l'envie de faire le détail pièce par pièce.</p>
+
+      <h3>4. Surévaluer dans le doute</h3>
+      <p>Le réflexe de "prendre une marge" pousse certains clients à annoncer 50&nbsp;m³ pour un T3 réel de 35. Conséquence&nbsp;: camion trop grand, équipe surdimensionnée, facture artificiellement gonflée. Mon retour terrain&nbsp;: visez juste, et signalez les "monstres volumiques" (canapé d'angle, frigo US, bibliothèque massive) en amont. C'est le bon compromis.</p>
+
+      <h2>Cas pratique chiffré&nbsp;: un T3 à Annemasse</h2>
+      <p>Pour rendre tout ça concret, voici un dossier réel anonymisé. Un couple, T3 de 68&nbsp;m² à Annemasse, déménagement vers Ville-la-Grand en avril 2026. Volume estimé en visite&nbsp;:</p>
+
+      <ul>
+        <li>Salon&nbsp;: canapé 3 places + table basse + meuble TV + bibliothèque = <strong>8&nbsp;m³</strong></li>
+        <li>Chambre adulte&nbsp;: lit 160 + matelas + armoire 2&nbsp;m + commode + chevets = <strong>7&nbsp;m³</strong></li>
+        <li>Chambre enfant&nbsp;: lit 90 + bureau + commode + jouets = <strong>4&nbsp;m³</strong></li>
+        <li>Cuisine&nbsp;: électroménager (frigo, lave-linge, four) + meubles non intégrés + vaisselle = <strong>5&nbsp;m³</strong></li>
+        <li>Salle de bain + WC&nbsp;: machine à laver + petits meubles + linge = <strong>2&nbsp;m³</strong></li>
+        <li>Cave&nbsp;: cartons archives, ski, vélos, outils = <strong>2&nbsp;m³</strong></li>
+      </ul>
+
+      <p><strong>Volume total mesuré&nbsp;: 28&nbsp;m³.</strong> Conforme à la grille T3 (30-45&nbsp;m³, ici dans la fourchette basse car cave réduite). L'estimation initiale du client par téléphone était de 35&nbsp;m³&nbsp;: l'écart de 7&nbsp;m³ représente une différence significative sur le devis final. Pour la traduction chiffrée en euros, voir la grille tarifaire de notre <a href="/blog/cout-demenagement-annemasse/">article prix déménagement Annemasse</a>.</p>
+
+      <p>Ce cas illustre l'intérêt d'une visite gratuite à domicile&nbsp;: les estimations "au doigt mouillé" par téléphone sont presque toujours décalées de 5 à 10&nbsp;m³, dans un sens ou dans l'autre. Pour les volumes &gt; 25&nbsp;m³, demandez systématiquement une visite.</p>
 
       <h2>Le test ultime&nbsp;: la visite ou les photos</h2>
       <p>Aucune méthode papier ne remplace l'œil d'un déménageur. Pour un devis ferme, on vous propose deux options&nbsp;:</p>
@@ -457,18 +610,18 @@ export const articles = [
         <li>✓ Demander une visite ou un échange photos pour le devis ferme</li>
       </ul>
 
-      <p><strong>Pour estimer rapidement votre volume et votre tarif</strong>, utilisez notre <a href="/estimation">simulateur en ligne</a>. Sinon, <a href="/contact">contactez Ludovic</a> pour une visite gratuite.</p>
+      <p><strong>Pour calculer rapidement votre volume</strong>, utilisez notre <a href="/calculateur-volume/">outil interactif</a> ou notre <a href="/estimation">simulateur en ligne</a>. Une fois le volume connu, consultez notre <a href="/blog/cout-demenagement-annemasse/">guide des prix déménagement Annemasse →</a> pour la traduction en euros. Pour une visite gratuite à domicile, <a href="/contact">contactez Ludovic</a>.</p>
     `,
     author: "Torres Transport",
     date: "2026-02-08",
     category: "Guides Pratiques",
     tags: ["volume", "m3", "estimation", "préparation", "annemasse"],
     image: "/blog/header-estimer-volume-demenagement-m3.webp",
-    readTime: "5 min",
+    readTime: "7 min",
     seo: {
-      metaTitle: "Estimer le volume m³ de son déménagement | Torres Transport",
-      metaDescription: "Méthode pratique pour estimer correctement les m³ de votre déménagement. Évitez la sous-évaluation et obtenez un devis juste à Annemasse.",
-      keywords: ["volume déménagement m3", "estimer m3 déménagement", "calcul volume cartons", "torres transport annemasse"],
+      metaTitle: "Calculer le volume m³ de son déménagement : méthode pratique",
+      metaDescription: "Méthode pratique pour calculer correctement les m³ de votre déménagement : grille par logement, erreurs à éviter, cas pratique. Outil pour mesurer juste.",
+      keywords: ["calculer volume déménagement m3", "estimer m3 déménagement", "méthode calcul volume cartons", "outil volume déménagement"],
       canonicalUrl: "/blog/estimer-volume-demenagement-m3"
     }
   },
@@ -494,6 +647,21 @@ export const articles = [
 
       <p><strong>Total réaliste&nbsp;: 260 à 440&nbsp;€</strong> avant tout incident. Pour un T2 (≈ 25&nbsp;m³), notre formule complète est à environ 1&nbsp;187&nbsp;€, soit un écart d'environ 750&nbsp;€ que vous "économisez". Mais à quel prix ?</p>
 
+      <h2>Calcul honnête&nbsp;: combien coûte vraiment un auto-déménagement&nbsp;?</h2>
+      <p>On voit souvent sur les chantiers des clients qui ont voulu "économiser" et qui finissent par dépenser autant, voire plus, qu'une prestation complète. Reprenons le calcul en mettant tous les coûts réels sur la table, y compris ceux qu'on oublie systématiquement.</p>
+
+      <h3>Le coût caché du temps</h3>
+      <p>Un auto-déménagement T2 occupe en pratique <strong>1 weekend complet + 2-3 soirées d'emballage</strong>, soit 25 à 35 heures de votre temps. Si vous valorisez votre temps libre à 25&nbsp;€&nbsp;/&nbsp;h (moins que le SMIC chargé), ça représente <strong>625 à 875&nbsp;€</strong>. Si vous êtes cadre ou indépendant, le calcul est encore plus défavorable.</p>
+
+      <h3>Le coût caché de la journée de congé</h3>
+      <p>Beaucoup posent une RTT ou un jour de congé sans valoriser cette journée. Pourtant, un jour de congé "consommé" pour déménager, c'est un jour de vacances en moins. Sur le calcul annuel, ça vaut concrètement 1/25e de votre salaire mensuel net. Pour un salaire net de 2&nbsp;500&nbsp;€, c'est 100&nbsp;€ de plus à intégrer.</p>
+
+      <h3>Le coût caché de l'aide bénévole</h3>
+      <p>Vos amis travaillent gratuitement, mais pas sans contrepartie&nbsp;: vous leur devez un service en retour (déménagement futur, garde d'enfants, coup de main travaux). Plus subtil&nbsp;: vous épuisez votre "crédit social". Mon retour terrain&nbsp;: la majorité des gens ne sollicitent leurs amis pour aider à déménager qu'<strong>une fois tous les 3-5 ans</strong>. Au-delà, ils n'osent plus demander.</p>
+
+      <h3>Le total réel</h3>
+      <p>Pour un T2 honnêtement chiffré&nbsp;: coûts directs 260-440&nbsp;€ + temps valorisé 625-875&nbsp;€ + congé consommé 100&nbsp;€ + risque de casse 100-500&nbsp;€ = <strong>1&nbsp;085 à 1&nbsp;915&nbsp;€</strong>. La fourchette englobe largement le tarif de notre formule complète (1&nbsp;187&nbsp;€). À ce stade, "économiser" est une illusion comptable.</p>
+
       <h2>Ce que coûte réellement votre journée</h2>
       <p>Un déménagement T2 en autonomie occupe en pratique <strong>1 weekend complet</strong> (samedi chargement + dimanche déchargement et nettoyage), plus 2 à 3 soirées d'emballage en amont.</p>
 
@@ -513,17 +681,35 @@ export const articles = [
         <li><strong>Budget extrêmement serré&nbsp;:</strong> chaque euro compte vraiment</li>
       </ul>
 
-      <h2>Quand un pro est presque obligatoire</h2>
-      <p>À l'inverse, certains contextes rendent l'auto-déménagement risqué ou irréaliste&nbsp;:</p>
+      <h2>Les 5 cas où l'auto-déménagement n'est PAS recommandé</h2>
+      <p>À l'inverse de ce qu'on lit parfois sur les blogs généralistes, certains contextes rendent l'auto-déménagement franchement déraisonnable. Mon retour terrain après 20 ans&nbsp;:</p>
 
-      <ul>
-        <li><strong>Volume &gt; 25&nbsp;m³&nbsp;:</strong> impossible à charger en un seul voyage avec un utilitaire standard</li>
-        <li><strong>Étage sans ascenseur&nbsp;:</strong> deux personnes non formées + un buffet en chêne = entorse garantie</li>
-        <li><strong>Mobilier de valeur ou fragile&nbsp;:</strong> piano, œuvres d'art, électroménager haut de gamme</li>
-        <li><strong>Stationnement difficile&nbsp;:</strong> centre-ville Annemasse, zone bleue, livraison tractée</li>
-        <li><strong>Délai serré&nbsp;:</strong> état des lieux à 14h, vous n'avez pas droit à l'erreur</li>
-        <li><strong>Personne âgée, PMR, ou famille avec enfants en bas âge&nbsp;:</strong> la charge mentale est déjà énorme</li>
-      </ul>
+      <h3>1. Escaliers étroits ou tournants</h3>
+      <p>Les vieux immeubles d'Annemasse centre, Gaillard, ou les chalets de montagne ont souvent des escaliers étroits (&lt; 90&nbsp;cm), tournants ou avec une cage de 70&nbsp;cm. Un canapé 3 places ou une armoire 2 portes ne passe physiquement pas sans démontage technique ou monte-meuble extérieur. Deux amateurs qui forcent, c'est 80&nbsp;% de chance d'abîmer le meuble, la rampe ou le mur. Coût réparation copropriété&nbsp;: rapidement 500 à 1&nbsp;500&nbsp;€.</p>
+
+      <h3>2. Volume supérieur à 25&nbsp;m³</h3>
+      <p>Un utilitaire 20&nbsp;m³ ne charge réellement que 15-17&nbsp;m³ utiles (mauvais rangement amateur). Au-delà, il faut faire 2 voyages, multiplier par 2 le carburant, le temps, et le risque. À ce stade, le coût total dépasse celui du pro qui fait tout en une journée avec un camion bien optimisé.</p>
+
+      <h3>3. Étage élevé sans ascenseur</h3>
+      <p>Au-delà du 2e étage sans ascenseur, le portage devient brutal physiquement. Sur un T3, c'est en moyenne <strong>80 à 120 trajets escaliers</strong> dans la journée. Deux amateurs non habitués finissent en lombalgie ou entorse. La sécurité sociale ne prend pas en charge "blessure pour cause de déménagement entre amis"&nbsp;: arrêt maladie potentiellement contesté.</p>
+
+      <h3>4. Mobilier fragile, lourd ou de valeur</h3>
+      <p>Piano (acoustique ou numérique), œuvre d'art, miroir ancien, électroménager haut de gamme (frigo américain, cuisinière à induction encastrée), aquarium plein&nbsp;: ces pièces demandent du matériel pro (sangles spécifiques, diables adaptés, monte-charges) et une assurance dédiée. Casse d'un piano = 3&nbsp;000 à 15&nbsp;000&nbsp;€ non couverts par votre habitation.</p>
+
+      <h3>5. Manque de temps ou délai serré</h3>
+      <p>État des lieux sortant à 14h, état des lieux entrant à 16h, pas de marge de manœuvre&nbsp;: l'amateurisme se paie cash. Heure de retard = nuit en plus à l'hôtel = pénalité du nouveau bailleur. À Annemasse, on a vu des clients perdre la caution complète (1 mois de loyer) parce que le logement n'était pas vidé à l'heure.</p>
+
+      <h2>Le bon compromis&nbsp;: auto-déménagement + déménageur partiel</h2>
+      <p>Et si on arrêtait de raisonner en tout ou rien&nbsp;? Sur les 10 dernières années, on a développé deux formules intermédiaires qui couvrent 80&nbsp;% des situations "entre les deux".</p>
+
+      <h3>Formule "transport simple"</h3>
+      <p>Vous emballez, démontez et préparez tout. On arrive avec camion + équipe, on charge, on transporte, on décharge. Coût&nbsp;: ~30&nbsp;% moins cher que la formule complète (≈ 830&nbsp;€ pour un T2). Vous gardez le contrôle du rythme d'emballage et économisez réellement, sans prendre le risque physique du chargement.</p>
+
+      <h3>Formule "main-d'œuvre seule"</h3>
+      <p>Vous louez vous-même l'utilitaire. On vient avec 2 ou 3 déménageurs pour la manutention. Idéal si vous avez accès à un véhicule pas cher (entreprise, association, échange) mais besoin de bras pros. Tarif horaire à la main-d'œuvre uniquement, autour de 45-55&nbsp;€&nbsp;/&nbsp;h&nbsp;/&nbsp;personne.</p>
+
+      <h3>Formule "emballage pro uniquement"</h3>
+      <p>Notre équipe emballe pendant 1 ou 2 jours en amont (vaisselle fragile, électronique, œuvres d'art), vous faites le reste vous-même. Idéal pour les déménageurs amateurs qui ont peur de casser leurs objets de valeur. Tarif au volume emballé, à chiffrer au devis.</p>
 
       <h2>Le compromis intelligent&nbsp;: le transport simple</h2>
       <p>Si vous êtes prêt à emballer et démonter vous-même mais que vous voulez éviter la galère du chargement et du transport, on propose une <strong>formule "transport simple"</strong>&nbsp;: vous préparez tout, on vient avec le camion + une équipe, on charge, on décharge.</p>
@@ -600,7 +786,7 @@ export const articles = [
       </ul>
 
       <h2>À Ville-la-Grand, Gaillard, Saint-Julien-en-Genevois</h2>
-      <p>Les communes voisines appliquent des règles similaires mais souvent plus souples (moins de contraintes en zone résidentielle). Renseignez-vous au cas par cas auprès du service technique de chaque mairie. À Ville-la-Grand par exemple, les rues résidentielles ne nécessitent généralement pas d'autorisation, mais une signalisation "véhicule en stationnement temporaire" est appréciée.</p>
+      <p>Les communes voisines appliquent des règles similaires mais souvent plus souples (moins de contraintes en zone résidentielle). Renseignez-vous au cas par cas auprès du service technique de chaque mairie, ou consultez le portail intercommunal d'<a href="https://www.annemasse-agglo.fr/" rel="noopener nofollow" target="_blank">Annemasse Agglo</a> pour les arrêtés de circulation en vigueur. À Ville-la-Grand par exemple, les rues résidentielles ne nécessitent généralement pas d'autorisation, mais une signalisation "véhicule en stationnement temporaire" est appréciée.</p>
 
       <blockquote>
       <p><strong>💡 Conseil&nbsp;:</strong> chez Torres&nbsp;Transport, nous accompagnons gratuitement nos clients dans la demande d'autorisation. Si le déménagement nécessite un emplacement réservé, on s'occupe du dossier et on suit la pose des panneaux.</p>
@@ -698,7 +884,7 @@ export const articles = [
       <h2>Les cas particuliers</h2>
 
       <h3>Entrée en EHPAD</h3>
-      <p>Volume très restreint (10 à 15&nbsp;m³ maximum, souvent moins). Le tri est radical. On prévoit un débarras parallèle pour les meubles de l'ancienne maison qui ne suivront pas. Notre <a href="/contact">service débarras</a> évite à la famille de devoir gérer ce poste lourd.</p>
+      <p>Volume très restreint (10 à 15&nbsp;m³ maximum, souvent moins). Le tri est radical. On prévoit un débarras parallèle pour les meubles de l'ancienne maison qui ne suivront pas. Notre <a href="/contact">service débarras</a> évite à la famille de devoir gérer ce poste lourd. Pour les démarches administratives et aides financières liées à l'entrée en EHPAD, le portail officiel <a href="https://www.pour-les-personnes-agees.gouv.fr/" rel="noopener nofollow" target="_blank">pour-les-personnes-agees.gouv.fr</a> centralise les informations utiles (APA, ASH, comparateur d'établissements).</p>
 
       <h3>Sortie d'hôpital avec retour à domicile aménagé</h3>
       <p>Souvent urgent (date de sortie imposée). On adapte le mobilier&nbsp;: lit médical, fauteuil ergonomique, suppression des tapis (chutes), installation d'éclairages supplémentaires. Quelques modifications simples mais fondamentales pour le quotidien.</p>
@@ -721,8 +907,42 @@ export const articles = [
         <li>✓ Tarif sénior/PMR&nbsp;: −10&nbsp;%, cumulable avec réservation anticipée</li>
       </ul>
 
+      <h2>Questions fréquentes</h2>
+      <details>
+        <summary><strong>Quel est le tarif d'un déménagement sénior à Annemasse&nbsp;?</strong></summary>
+        <p>Chez Torres&nbsp;Transport, les déménagements de personnes âgées ou à mobilité réduite bénéficient d'une <strong>remise de 10&nbsp;%</strong> sur le tarif de référence de 47,50&nbsp;€&nbsp;/&nbsp;m³. Pour une entrée en EHPAD (10-15&nbsp;m³ généralement), comptez environ 430 à 640&nbsp;€ avant remise, soit 385 à 575&nbsp;€ après. Cumulable avec la remise réservation anticipée (−5&nbsp;%) si planifié 1 mois à l'avance.</p>
+      </details>
+      <details>
+        <summary><strong>Comment justifier le tarif sénior&nbsp;?</strong></summary>
+        <p>Aucun justificatif administratif n'est demandé. Il suffit de nous signaler la situation au moment du devis&nbsp;: déménagement d'un parent retraité, entrée en EHPAD, regroupement familial, sortie d'hôpital, perte d'autonomie. Notre approche est humaine, pas bureaucratique. La remise est automatiquement appliquée sur le devis.</p>
+      </details>
+      <details>
+        <summary><strong>Quel volume prévoir pour une chambre d'EHPAD&nbsp;?</strong></summary>
+        <p>Une chambre d'EHPAD fait généralement 18 à 25&nbsp;m². Le volume à transporter est très restreint&nbsp;: <strong>10 à 15&nbsp;m³ maximum</strong>, souvent moins. On garde généralement&nbsp;: lit (ou compatible avec lit médicalisé fourni), fauteuil personnel, table de chevet, lampe, commode, télévision, photos, quelques objets sentimentaux. Le reste fait l'objet d'un débarras parallèle ou d'une transmission familiale.</p>
+      </details>
+      <details>
+        <summary><strong>Faut-il que la personne âgée soit présente le jour J&nbsp;?</strong></summary>
+        <p>Idéalement non, pour le chargement. Voir partir ses meubles est souvent insoutenable pour une personne qui quitte un logement après 30 ou 40 ans. On recommande de programmer une activité avec un proche pendant les 4-5 heures du chargement, et de retrouver la personne directement au nouveau logement, déjà installé avec les meubles disposés à l'identique. Cette continuité visuelle apaise énormément.</p>
+      </details>
+      <details>
+        <summary><strong>Que faire des meubles qui ne suivent pas en EHPAD&nbsp;?</strong></summary>
+        <p>Trois options&nbsp;: (1) transmission familiale (enfants, petits-enfants récupèrent ce qu'ils veulent), (2) don à associations type Emmaüs ou Le Relais (collecte gratuite à domicile sur prise de RDV), (3) débarras professionnel facturé au volume (notre <a href="/services/debarras">service débarras</a> peut s'en charger en parallèle du déménagement). Combiner les trois est souvent la solution la plus apaisante.</p>
+      </details>
+      <details>
+        <summary><strong>Le déménagement sénior est-il pris en charge par la sécurité sociale&nbsp;?</strong></summary>
+        <p>Pas directement par la sécurité sociale, mais certaines aides existent&nbsp;: <strong>APA</strong> (Allocation personnalisée d'autonomie) via le Conseil départemental peut couvrir une partie selon le GIR, <strong>caisses de retraite</strong> proposent souvent une aide ponctuelle (CARSAT, MSA, AGIRC-ARRCO), <strong>mutuelles santé</strong> haut de gamme incluent parfois un forfait. Renseignez-vous auprès du CCAS de la mairie avant de finaliser le projet.</p>
+      </details>
+
       <p><strong>Un déménagement sénior à organiser à Annemasse, Ville-la-Grand ou alentour&nbsp;?</strong> <a href="/contact">Parlez-en avec Ludovic</a>, l'écoute est gratuite, et nous adaptons la prestation à la situation, jamais l'inverse.</p>
     `,
+    faq: [
+      { question: "Quel est le tarif d'un déménagement sénior à Annemasse ?", reponse: "Chez Torres Transport, les déménagements de personnes âgées ou à mobilité réduite bénéficient d'une remise de 10 % sur le tarif de référence de 47,50 €/m³. Pour une entrée en EHPAD (10-15 m³ généralement), comptez environ 430 à 640 € avant remise, soit 385 à 575 € après. Cumulable avec la remise réservation anticipée (−5 %) si planifié 1 mois à l'avance." },
+      { question: "Comment justifier le tarif sénior ?", reponse: "Aucun justificatif administratif n'est demandé. Il suffit de nous signaler la situation au moment du devis : déménagement d'un parent retraité, entrée en EHPAD, regroupement familial, sortie d'hôpital, perte d'autonomie. Notre approche est humaine, pas bureaucratique. La remise est automatiquement appliquée sur le devis." },
+      { question: "Quel volume prévoir pour une chambre d'EHPAD ?", reponse: "Une chambre d'EHPAD fait généralement 18 à 25 m². Le volume à transporter est très restreint : 10 à 15 m³ maximum, souvent moins. On garde généralement : lit (ou compatible avec lit médicalisé fourni), fauteuil personnel, table de chevet, lampe, commode, télévision, photos, quelques objets sentimentaux. Le reste fait l'objet d'un débarras parallèle ou d'une transmission familiale." },
+      { question: "Faut-il que la personne âgée soit présente le jour J ?", reponse: "Idéalement non, pour le chargement. Voir partir ses meubles est souvent insoutenable pour une personne qui quitte un logement après 30 ou 40 ans. On recommande de programmer une activité avec un proche pendant les 4-5 heures du chargement, et de retrouver la personne directement au nouveau logement, déjà installé avec les meubles disposés à l'identique. Cette continuité visuelle apaise énormément." },
+      { question: "Que faire des meubles qui ne suivent pas en EHPAD ?", reponse: "Trois options : (1) transmission familiale (enfants, petits-enfants récupèrent ce qu'ils veulent), (2) don à associations type Emmaüs ou Le Relais (collecte gratuite à domicile sur prise de RDV), (3) débarras professionnel facturé au volume (notre service débarras peut s'en charger en parallèle du déménagement). Combiner les trois est souvent la solution la plus apaisante." },
+      { question: "Le déménagement sénior est-il pris en charge par la sécurité sociale ?", reponse: "Pas directement par la sécurité sociale, mais certaines aides existent : APA (Allocation personnalisée d'autonomie) via le Conseil départemental peut couvrir une partie selon le GIR, caisses de retraite proposent souvent une aide ponctuelle (CARSAT, MSA, AGIRC-ARRCO), mutuelles santé haut de gamme incluent parfois un forfait. Renseignez-vous auprès du CCAS de la mairie avant de finaliser le projet." }
+    ],
     author: "Torres Transport",
     date: "2026-04-02",
     category: "Conseils Déménagement",
@@ -800,7 +1020,7 @@ export const articles = [
 
       <h3>Avant le jour J</h3>
       <ul>
-        <li>Confirmer la météo avec votre déménageur 48h avant (J-2)</li>
+        <li>Confirmer la météo avec votre déménageur 48h avant (J-2) via les <a href="https://meteofrance.com/previsions-meteo-france/annemasse/74100" rel="noopener nofollow" target="_blank">prévisions Météo France Annemasse</a></li>
         <li>Préparer un kit "premier jour" pour ne pas avoir besoin de sortir : chauffage, vêtements chauds, plats préparés</li>
         <li>Vérifier que le chauffage du nouveau logement est en marche depuis 24h (température minimum 16°C)</li>
         <li>Allumer le boiler, vérifier l'eau chaude, l'électricité, le gaz</li>
@@ -996,8 +1216,47 @@ export const articles = [
         <li>✓ Documents, bijoux, espèces : toujours sur vous</li>
       </ul>
 
+      <h2>Questions fréquentes</h2>
+      <details>
+        <summary><strong>Combien de cartons prévoir pour un déménagement&nbsp;?</strong></summary>
+        <p>Comptez environ <strong>4 cartons par m³</strong> de volume à transporter. En pratique&nbsp;: 30 à 50 cartons pour un studio, 50 à 80 pour un T2, 80 à 120 pour un T3, 120 à 180 pour un T4. Prévoyez systématiquement <strong>10 à 20&nbsp;% de plus</strong> que votre estimation initiale&nbsp;: on sous-évalue presque toujours le contenu des placards, caves et garages.</p>
+      </details>
+      <details>
+        <summary><strong>Comment emballer la vaisselle sans casse&nbsp;?</strong></summary>
+        <p>Quatre règles&nbsp;: (1) chaque assiette emballée individuellement dans du papier kraft (pas de papier journal&nbsp;: l'encre tache la porcelaine), (2) empilage <strong>sur tranche</strong> (à la verticale), pas à plat, (3) verres remplis de papier journal froissé à l'intérieur avant emballage, (4) carton "VAISSELLE FRAGILE" écrit en gros sur les 4 côtés. Petit format obligatoire, max 15&nbsp;kg.</p>
+      </details>
+      <details>
+        <summary><strong>Quel format de carton pour les livres&nbsp;?</strong></summary>
+        <p><strong>Petit format exclusivement</strong> (35×27×33&nbsp;cm). Les livres pèsent très vite très lourd&nbsp;: un grand carton plein de livres dépasse facilement 30&nbsp;kg, ce qui est ingérable et casse les anses du carton. Règle&nbsp;: si vous ne pouvez pas porter le carton à un seul bras, il est trop chargé. Maximum 15&nbsp;kg par carton.</p>
+      </details>
+      <details>
+        <summary><strong>Peut-on utiliser des cartons de récupération&nbsp;?</strong></summary>
+        <p>Déconseillé. Les cartons de supermarché ont souvent perdu 50&nbsp;% de leur résistance et lâchent au moment critique (transport, empilage dans le camion). Pour quelques dizaines d'euros, des cartons neufs spécial déménagement (double cannelure) divisent par 10 le risque de casse et accélèrent le chargement. Investissement vite rentabilisé.</p>
+      </details>
+      <details>
+        <summary><strong>Comment étiqueter ses cartons efficacement&nbsp;?</strong></summary>
+        <p>Méthode pro&nbsp;: code couleur par pièce (rouge cuisine, bleu salle de bain, vert chambre principale, etc.) + scotch coloré ou marqueur. La couleur est apposée sur le carton ET sur la porte du nouveau logement. Ajoutez sur chaque carton&nbsp;: contenu général, mention "FRAGILE" si besoin, sens de pose (flèche HAUT), numéro (1/50, 2/50...). Tenez une liste papier des contenus pour retrouver vite un objet à l'arrivée.</p>
+      </details>
+      <details>
+        <summary><strong>Combien de temps prévoir pour emballer un T3&nbsp;?</strong></summary>
+        <p>Pour un T3 standard (≈ 100 cartons à faire), comptez <strong>20 à 30 heures</strong> de travail effectif, idéalement réparties sur 2-3 semaines à raison de 1-2&nbsp;h par soirée. Compresser sur un seul weekend est faisable mais épuisant. Si le temps manque, notre <strong>service d'emballage complet</strong> prend en charge cette phase&nbsp;: tout est emballé selon nos standards, étiqueté, prêt à charger.</p>
+      </details>
+      <details>
+        <summary><strong>Que ne faut-il jamais mettre dans un carton&nbsp;?</strong></summary>
+        <p>Jamais&nbsp;: liquides ouverts (alcool, ménagers, huiles), produits inflammables (essence, peintures, white-spirit&nbsp;: refusés par les déménageurs pour des raisons légales), plantes vertes (transport voiture seulement), aliments frais ou congelés, documents sensibles (carte d'identité, passeport, contrats&nbsp;: sur vous), valeurs (bijoux, espèces). Pour les bouteilles fermées, prévoyez un carton dédié bien calé et signalez-le à l'équipe.</p>
+      </details>
+
       <p><strong>Vous voulez qu'on s'occupe de l'emballage&nbsp;?</strong> C'est une option de notre prestation. <a href="/contact">Demandez votre devis personnalisé</a> ou utilisez notre <a href="/estimation">simulateur</a> pour estimer le total.</p>
     `,
+    faq: [
+      { question: "Combien de cartons prévoir pour un déménagement ?", reponse: "Comptez environ 4 cartons par m³ de volume à transporter. En pratique : 30 à 50 cartons pour un studio, 50 à 80 pour un T2, 80 à 120 pour un T3, 120 à 180 pour un T4. Prévoyez systématiquement 10 à 20 % de plus que votre estimation initiale : on sous-évalue presque toujours le contenu des placards, caves et garages." },
+      { question: "Comment emballer la vaisselle sans casse ?", reponse: "Quatre règles : (1) chaque assiette emballée individuellement dans du papier kraft (pas de papier journal : l'encre tache la porcelaine), (2) empilage sur tranche (à la verticale), pas à plat, (3) verres remplis de papier journal froissé à l'intérieur avant emballage, (4) carton 'VAISSELLE FRAGILE' écrit en gros sur les 4 côtés. Petit format obligatoire, max 15 kg." },
+      { question: "Quel format de carton pour les livres ?", reponse: "Petit format exclusivement (35×27×33 cm). Les livres pèsent très vite très lourd : un grand carton plein de livres dépasse facilement 30 kg, ce qui est ingérable et casse les anses du carton. Règle : si vous ne pouvez pas porter le carton à un seul bras, il est trop chargé. Maximum 15 kg par carton." },
+      { question: "Peut-on utiliser des cartons de récupération ?", reponse: "Déconseillé. Les cartons de supermarché ont souvent perdu 50 % de leur résistance et lâchent au moment critique (transport, empilage dans le camion). Pour quelques dizaines d'euros, des cartons neufs spécial déménagement (double cannelure) divisent par 10 le risque de casse et accélèrent le chargement. Investissement vite rentabilisé." },
+      { question: "Comment étiqueter ses cartons efficacement ?", reponse: "Méthode pro : code couleur par pièce (rouge cuisine, bleu salle de bain, vert chambre principale, etc.) + scotch coloré ou marqueur. La couleur est apposée sur le carton ET sur la porte du nouveau logement. Ajoutez sur chaque carton : contenu général, mention 'FRAGILE' si besoin, sens de pose (flèche HAUT), numéro (1/50, 2/50...). Tenez une liste papier des contenus pour retrouver vite un objet à l'arrivée." },
+      { question: "Combien de temps prévoir pour emballer un T3 ?", reponse: "Pour un T3 standard (≈ 100 cartons à faire), comptez 20 à 30 heures de travail effectif, idéalement réparties sur 2-3 semaines à raison de 1-2 h par soirée. Compresser sur un seul weekend est faisable mais épuisant. Si le temps manque, notre service d'emballage complet prend en charge cette phase : tout est emballé selon nos standards, étiqueté, prêt à charger." },
+      { question: "Que ne faut-il jamais mettre dans un carton ?", reponse: "Jamais : liquides ouverts (alcool, ménagers, huiles), produits inflammables (essence, peintures, white-spirit : refusés par les déménageurs pour des raisons légales), plantes vertes (transport voiture seulement), aliments frais ou congelés, documents sensibles (carte d'identité, passeport, contrats : sur vous), valeurs (bijoux, espèces). Pour les bouteilles fermées, prévoyez un carton dédié bien calé et signalez-le à l'équipe." }
+    ],
     author: "Torres Transport",
     date: "2026-03-25",
     category: "Conseils Déménagement",
@@ -1028,7 +1287,7 @@ export const articles = [
       <p>→ Lien : laposte.fr → Réexpédition du courrier</p>
 
       <h3>Service public : déclaration en ligne unique</h3>
-      <p>Le site <strong>service-public.fr</strong> propose une déclaration de changement d'adresse qui prévient automatiquement plusieurs organismes en une fois :</p>
+      <p>Le site officiel <a href="https://www.service-public.fr/particuliers/vosdroits/R11193" rel="noopener nofollow" target="_blank"><strong>service-public.fr</strong></a> propose une déclaration de changement d'adresse qui prévient automatiquement plusieurs organismes en une fois :</p>
       <ul>
         <li>CAF / MSA</li>
         <li>CPAM (Sécurité sociale)</li>
