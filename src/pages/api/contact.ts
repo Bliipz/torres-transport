@@ -36,7 +36,25 @@ function isValidEmail(email: string): boolean {
 
 function isValidPhone(phone: string): boolean {
   const cleaned = phone.replace(/[\s.\-]/g, '');
-  return /^(\+33|0)[1-9]\d{8}$/.test(cleaned);
+  // Format français : +33 X XX XX XX XX ou 0X XX XX XX XX
+  if (/^(\+33|0)[1-9]\d{8}$/.test(cleaned)) return true;
+  // Format international (Suisse +41, Belgique +32, etc.) : 8-15 chiffres après +
+  // Indispensable pour Annemasse, frontalière avec Genève
+  if (/^\+\d{8,15}$/.test(cleaned)) return true;
+  return false;
+}
+
+// Lit une adresse au format détaillé (rue + cp + ville, depuis /estimation)
+// ou au format simple (champ libre, depuis /contact). Le premier qui matche gagne.
+function readAddress(fd: FormData, prefix: 'depart' | 'arrivee'): string {
+  const detailed = buildAddress(
+    fd.get(`rue_${prefix}`)?.toString() || '',
+    fd.get(`cp_${prefix}`)?.toString() || '',
+    fd.get(`ville_${prefix}`)?.toString() || '',
+  );
+  if (detailed) return detailed;
+  // Fallback champ libre (format /contact)
+  return fd.get(`adresse-${prefix}`)?.toString().trim() || '';
 }
 
 // ============== ANTI-ABUSE : ORIGIN CHECK + RATE LIMITING ==============
@@ -130,8 +148,10 @@ function buildDetailsHtml(service: string, fd: FormData): string {
     }
   }
 
-  // Adresses (commun), reconstituées depuis les 3 champs séparés
-  const addrDepart = buildAddress(get('rue_depart'), get('cp_depart'), get('ville_depart'));
+  // Adresses : format détaillé (/estimation) en priorité, sinon champ libre (/contact)
+  const addrDepart =
+    buildAddress(get('rue_depart'), get('cp_depart'), get('ville_depart')) ||
+    get('adresse-depart');
   if (addrDepart) {
     const typeLabel = TYPE_LIEU_LABELS[get('type_depart')] || '';
     const etage = get('etage_depart');
@@ -140,7 +160,9 @@ function buildDetailsHtml(service: string, fd: FormData): string {
     const addrLabel = (service === 'demenagement' || service === 'transport') ? 'Adresse de départ' : "Adresse d'intervention";
     rows.push([addrLabel, addrDepart + (meta ? ` (${meta})` : '')]);
   }
-  const addrArrivee = buildAddress(get('rue_arrivee'), get('cp_arrivee'), get('ville_arrivee'));
+  const addrArrivee =
+    buildAddress(get('rue_arrivee'), get('cp_arrivee'), get('ville_arrivee')) ||
+    get('adresse-arrivee');
   if (addrArrivee && (service === 'demenagement' || service === 'transport')) {
     const typeLabel = TYPE_LIEU_LABELS[get('type_arrivee')] || '';
     const etage = get('etage_arrivee');
@@ -225,28 +247,23 @@ export const POST: APIRoute = async ({ request }) => {
     const service = formData.get('service')?.toString().trim() || '';
     const message = formData.get('message')?.toString().trim() || '';
     const rgpd = formData.get('rgpd')?.toString().trim() === 'on';
-    const adresseDepart = buildAddress(
-      formData.get('rue_depart')?.toString() || '',
-      formData.get('cp_depart')?.toString() || '',
-      formData.get('ville_depart')?.toString() || '',
-    );
-    const adresseArrivee = buildAddress(
-      formData.get('rue_arrivee')?.toString() || '',
-      formData.get('cp_arrivee')?.toString() || '',
-      formData.get('ville_arrivee')?.toString() || '',
-    );
+    const adresseDepart = readAddress(formData, 'depart');
+    const adresseArrivee = readAddress(formData, 'arrivee');
+    // Mode strict : /estimation envoie les 3 champs détaillés ; /contact non.
+    // Sur /contact l'adresse est optionnelle (Ludovic rappelle au téléphone si besoin).
+    const isStrictMode = formData.has('rue_depart');
 
     // ==================== VALIDATION ====================
     const errors: string[] = [];
     if (!nom || nom.length < 2) errors.push('Nom requis (2 caractères min)');
     if (!isValidEmail(email)) errors.push('Email invalide');
-    if (!isValidPhone(telephone)) errors.push('Téléphone invalide (format français)');
+    if (!isValidPhone(telephone)) errors.push('Téléphone invalide (format FR ou international avec +)');
     if (!service || !SERVICE_LABELS[service]) errors.push('Service à sélectionner');
     if (!rgpd) errors.push("Vous devez accepter la politique de confidentialité");
-    if (SERVICES_NEED_DEPART.includes(service) && !adresseDepart) {
+    if (isStrictMode && SERVICES_NEED_DEPART.includes(service) && !adresseDepart) {
       errors.push('Adresse de départ incomplète : rue, code postal (5 chiffres) et ville requis');
     }
-    if (SERVICES_NEED_ARRIVEE.includes(service) && !adresseArrivee) {
+    if (isStrictMode && SERVICES_NEED_ARRIVEE.includes(service) && !adresseArrivee) {
       errors.push("Adresse d'arrivée incomplète : rue, code postal (5 chiffres) et ville requis");
     }
 
