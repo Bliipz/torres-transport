@@ -91,7 +91,7 @@ export const cities = {
 <p><strong>1. La circulation centre-ville.</strong> Les abords de la place Jean-Deffaugt, la rue de Genève et la rue du Commerce sont en grande partie piétonnes ou semi-piétonnes. Les livraisons et déménagements y sont autorisés sur des créneaux matinaux (avant 10h pour le marché du Salève le mardi, jeudi et samedi). On planifie systématiquement nos interventions centre-ville en début de matinée.</p>
 <p><strong>2. Les rues étroites du quartier de la Gare.</strong> Beaucoup d'immeubles anciens dans des rues à sens unique étroites&nbsp;: rue du Faucigny, rue de la Tannerie, etc. Nos camions 30 m³ n'y passent pas&nbsp;: on utilise des 12 ou 15 m³, parfois avec navette si le volume est important.</p>
 <p><strong>3. Les nouveaux programmes verticaux.</strong> Sur Chablais-Parc et Étoile-Genève, les bâtiments montent à R+8 ou R+10. Les syndics imposent des créneaux ascenseur de 2 ou 3 heures, et un protocole strict (protection des sols et des cabines). On gère ça en routine, mais ça impose une coordination en amont avec le gardien.</p>
-<p><strong>4. La proximité douanière.</strong> Pour les frontaliers qui font Annemasse → Suisse (ou inversement), il y a des spécificités déclaratives. Nos camions sont enregistrés pour passer la frontière sans formalité au-delà de la déclaration de mobilier personnel.</p>`,
+<p><strong>4. Le marché du Salève.</strong> Les mardis, jeudis et samedis matin, la place du Marché et les rues attenantes sont totalement bloquées pour le marché de plein air (jusqu'à 13h). Aucun déménagement possible dans ces secteurs pendant ces créneaux. Nous décalons systématiquement les interventions soit avant 6h30, soit après 14h.</p>`,
 
     accesItineraire: `<p>Notre base est à <strong>Ville-la-Grand, à 2 km du centre d'Annemasse</strong>. L'accès se fait en 5 à 10 minutes selon le quartier de destination&nbsp;:</p>
 <p>• <strong>Centre / Gare</strong>&nbsp;: 5 minutes via l'avenue de la Gare ou la rue de Genève.<br />
@@ -107,9 +107,9 @@ export const cities = {
           "Oui, c'est même devenu indispensable sur les programmes récents (Chablais-Parc, Étoile-Annemasse-Genève). Nous prenons contact avec le syndic ou le gardien 5 à 7 jours avant pour réserver un créneau ascenseur (souvent 2 à 3 heures consécutives) et obtenir le protocole de protection. C'est inclus dans notre prestation, le client n'a rien à faire.",
       },
       {
-        question: 'Pouvez-vous gérer un déménagement Annemasse vers la Suisse (Genève) ?',
+        question: 'Faites-vous des déménagements vers la Suisse (Genève, Carouge, Plan-les-Ouates) ?',
         reponse:
-          "Oui, nos camions sont enregistrés pour le passage frontalier. Pour un déménagement Annemasse → Genève (et inversement), nous gérons la déclaration de mobilier personnel auprès des douanes suisses. Délai standard&nbsp;: une journée pour un T3, deux jours pour une maison. Il faut une réservation 3 à 4 semaines à l'avance car le timing douanier doit être anticipé.",
+          "Non, nous n'effectuons pas de déménagements transfrontaliers. Torres Transport intervient uniquement côté français&nbsp;: Haute-Savoie principalement, départements limitrophes (Ain, Savoie, Isère), et toute la France métropolitaine sur devis. Pour un déménagement vers la Suisse, nous vous recommandons un déménageur spécialisé dans le transfrontalier qui maîtrise les démarches douanières.",
       },
       {
         question: 'Mon immeuble en centre Annemasse n\'a pas d\'ascenseur, et je suis au 4ème : que faire ?',
@@ -323,7 +323,7 @@ export const cities = {
     specificitesLogistiques: `<p>Les particularités logistiques de Saint-Julien que nos équipes anticipent systématiquement&nbsp;:</p>
 <p><strong>1. La distance depuis notre base (18 km).</strong> Contrairement aux communes du bassin annemassien (2-5 km), un trajet Ville-la-Grand → Saint-Julien prend 25-35 minutes selon le trafic (autoroute A40 + sortie). Cela change la dynamique&nbsp;: on optimise les rotations, et on évite les allers-retours multiples. Pour un déménagement de maison, on prévoit un seul camion de 40 m³ plutôt que des navettes.</p>
 <p><strong>2. La fréquentation autour de Vitam.</strong> Le complexe aquatique génère une circulation très dense les mercredis, weekends et vacances scolaires. Si votre déménagement se fait à proximité (secteur Neydens / route de la Lave), on programme tôt le matin pour éviter ces pics.</p>
-<p><strong>3. La frontière suisse.</strong> Saint-Julien est l'un des principaux points de passage Genève → France (poste-frontière de Bardonnex). Les déménagements transfrontaliers sont fréquents&nbsp;: Saint-Julien ↔ Plan-les-Ouates, ↔ Carouge, ↔ Lancy. Comme à Annemasse, nous gérons la déclaration douanière.</p>
+<p><strong>3. Les pics de circulation frontalière.</strong> Comme tout le Genevois français, Saint-Julien subit des bouchons matin (7h-9h vers la frontière) et soir (17h-19h dans l'autre sens) liés aux déplacements pendulaires. Nous évitons ces créneaux pour les arrivées/départs sur Saint-Julien&nbsp;: les déménagements y sont programmés en milieu de journée (10h-16h) pour rester efficaces.</p>
 <p><strong>4. Le centre historique piéton.</strong> Comme Annemasse, certaines rues du centre (rue du Faubourg, place du Crêt) imposent une autorisation de stationnement temporaire. Nous gérons cette demande auprès de la mairie sous 5-7 jours ouvrés.</p>`,
 
     accesItineraire: `<p>Depuis notre base de Ville-la-Grand, l'accès à Saint-Julien-en-Genevois se fait par <strong>l'autoroute A40 (axe Genève-Annecy)</strong>&nbsp;:</p>
@@ -337,7 +337,7 @@ export const cities = {
       {
         question: "Faites-vous des déménagements Saint-Julien → Suisse (Plan-les-Ouates, Carouge, Genève) ?",
         reponse:
-          "Oui, c'est l'un de nos trajets fréquents. Nos camions sont enregistrés pour le passage frontalier de Bardonnex. Pour un déménagement transfrontalier, nous gérons la déclaration de mobilier personnel auprès des douanes suisses. Délai standard&nbsp;: une journée pour un T3, deux pour une maison.",
+          "Non, nous n'effectuons pas de déménagements transfrontaliers. Torres Transport intervient côté français uniquement&nbsp;: Saint-Julien-en-Genevois, toute la Haute-Savoie et le reste de la France métropolitaine sur devis. Pour un déménagement vers la Suisse, un déménageur spécialisé dans le transfrontalier sera plus adapté (gestion des démarches douanières).",
       },
       {
         question: "Avec quel délai recommandez-vous de réserver pour Saint-Julien ?",
@@ -427,7 +427,7 @@ export const cities = {
     ],
 
     // -------- ENRICHISSEMENTS PALIER 1 (contenu SEO unique) --------
-    histoire: `<p>Gaillard est <strong>la frontière la plus directe entre Annemasse et Genève</strong>&nbsp;: le poste-frontière de Moillesulaz s'y trouve, et beaucoup de Gaillardons commencent ou terminent leur journée en franchissant la douane. Cette position particulière a façonné l'identité de la commune.</p>
+    histoire: `<p>Gaillard est <strong>la commune la plus proche de la frontière genevoise</strong> dans le bassin annemassien&nbsp;: le poste-frontière de Moillesulaz s'y trouve, ce qui en fait l'un des points de passage les plus fréquentés de Haute-Savoie. Cette position particulière a façonné l'identité de la commune, marquée par une population de travailleurs frontaliers et une circulation très soutenue aux heures de pointe.</p>
 <p>Avec ses <strong>12 000 habitants</strong>, Gaillard est l'une des communes les plus densément peuplées du bassin annemassien. Historiquement plus industrielle (l'usine SNR puis NTN-SNR a longtemps dominé l'économie locale), elle s'est <strong>transformée vers le résidentiel</strong> ces vingt dernières années&nbsp;: l'ancienne friche industrielle de Mon-Idée est devenue un éco-quartier complet, le secteur Bois-des-Frères a accueilli plusieurs nouvelles résidences, et la zone du Châtelet s'est urbanisée.</p>
 <p>Cette transformation rapide a un effet direct sur notre métier de déménageur à Gaillard&nbsp;: <strong>forte rotation des locataires</strong> (jeunes actifs et frontaliers qui changent de logement régulièrement), beaucoup de déménagements en milieu d'année (pas seulement en juin-septembre), et des programmes immobiliers récents qui imposent une coordination stricte avec les syndics.</p>`,
 
@@ -439,7 +439,7 @@ export const cities = {
 <p>Tarif Torres pour une maison à Gaillard&nbsp;: à partir de <strong>1 450 €</strong>.</p>`,
 
     specificitesLogistiques: `<p>Gaillard a une particularité que peu de communes ont&nbsp;: <strong>la frontière suisse au sud, le centre d'Annemasse au nord</strong>. Cela change beaucoup la logistique.</p>
-<p><strong>1. La douane de Moillesulaz.</strong> Pour les déménagements transfrontaliers Gaillard ↔ Genève (Vernier, Onex, Petit-Saconnex), nous passons systématiquement par ce poste-frontière. Le temps d'attente moyen est de 5-10 minutes hors pointe, jusqu'à 25 minutes aux heures de pointe matin et soir. Nos camions sont enregistrés pour le passage sans formalité au-delà de la déclaration de mobilier.</p>
+<p><strong>1. Les pics de circulation frontalière.</strong> Avenue Henri-Barbusse, route de Genève, axes autour de la douane de Moillesulaz&nbsp;: ces voies sont saturées entre 7h30 et 9h le matin (départs vers Genève), et entre 17h et 19h le soir (retours). Pour un déménagement à Gaillard, nous évitons ces créneaux et programmons les interventions en milieu de journée (10h-16h). Cela évite de perdre 30-45 minutes dans les bouchons.</p>
 <p><strong>2. La proximité du centre d'Annemasse.</strong> Beaucoup de déménagements Gaillard ↔ Annemasse-centre, souvent pour <strong>de petits volumes</strong> (T2 ou T3 jeunes actifs). On les traite en demi-journée, parfois en quelques heures, sans surcoût.</p>
 <p><strong>3. Le ralentisseur de la route d'Annemasse.</strong> Détail pratique connu de nos chauffeurs&nbsp;: la route entre Gaillard et Annemasse-centre a un ralentisseur prononcé au niveau de la zone de l'usine. Avec un camion plein, ça impose une descente à 15 km/h. Petit détail, mais qui change la durée du trajet pour les calculs.</p>
 <p><strong>4. La forte densité collective récente.</strong> 70% des biens à Gaillard sont en immeuble collectif. Nos équipes sont à l'aise avec les protocoles ascenseur, les créneaux de réservation syndic, et la coordination avec les gardiens.</p>`,
@@ -447,15 +447,14 @@ export const cities = {
     accesItineraire: `<p>Depuis notre base de Ville-la-Grand, Gaillard est à <strong>4 km, soit 8 à 12 minutes en camion</strong> selon la circulation et le quartier visé&nbsp;:</p>
 <p>• <strong>Mon-Idée et Bois-des-Frères</strong>&nbsp;: 7 minutes par la rue de la Fontaine et l'avenue des Vignes.<br />
 • <strong>Centre-ville et Gare</strong>&nbsp;: 10 minutes par l'avenue Léon-Blum.<br />
-• <strong>Pré-Vergat et Pré-Bressan</strong>&nbsp;: 12 minutes par la route d'Annemasse puis l'avenue de Genève.<br />
-• <strong>Douane de Moillesulaz</strong> (pour transfrontalier)&nbsp;: 8 minutes en évitant l'avenue Henri-Barbusse aux heures de pointe.</p>
+• <strong>Pré-Vergat et Pré-Bressan</strong>&nbsp;: 12 minutes par la route d'Annemasse puis l'avenue de Genève.</p>
 <p>Cette proximité immédiate <strong>limite vraiment les frais de déplacement</strong>&nbsp;: pour un studio ou T2, le surcoût lié au trajet est négligeable. Nos tarifs Gaillard sont d'ailleurs très proches de ceux d'Annemasse (+20 à +50€ selon le volume).</p>`,
 
     faqEtendue: [
       {
-        question: 'Avez-vous l\'habitude de déménager vers la Suisse via Moillesulaz ?',
+        question: 'Faites-vous des déménagements Gaillard vers la Suisse via Moillesulaz ?',
         reponse:
-          "Oui, c'est l'un de nos itinéraires les plus fréquents. Nos camions sont enregistrés pour le passage douanier, et nous gérons la déclaration de mobilier personnel auprès des autorités suisses. Compter 5-10 minutes d'attente au poste-frontière hors pointe, jusqu'à 25 minutes aux heures de pointe (7h30-9h, 17h-18h30).",
+          "Non, Torres Transport n'intervient pas en Suisse. Nous nous concentrons sur la France métropolitaine, principalement la Haute-Savoie et les départements voisins. Pour un déménagement vers Genève ou les communes suisses voisines de Gaillard, un déménageur transfrontalier spécialisé sera plus adapté pour gérer les démarches douanières.",
       },
       {
         question: "Mon-Idée a beaucoup de résidences neuves : comment se passe la coordination avec les syndics ?",
@@ -881,9 +880,9 @@ export const cities = {
           "C'est rare mais possible en janvier-février. La route du Salève (D45) qui mène vers le village haut peut être verglacée par fortes intempéries. Nous suivons les bulletins Météo France et reportons éventuellement un déménagement de 24-48h si la sécurité de nos équipes ou de votre mobilier est compromise. Aucun frais supplémentaire en cas de report météo.",
       },
       {
-        question: "Faites-vous des déménagements Étrembières → Suisse (Veyrier, Genève) ?",
+        question: "Quels sont les délais à prévoir pour un déménagement à Étrembières ?",
         reponse:
-          "Oui. La proximité du téléphérique du Salève fait d'Étrembières un point de départ logique pour Veyrier (Genève) et le sud-est de Genève. Nos camions passent par le poste-frontière de Moillesulaz à Gaillard (10 minutes), avec déclaration de mobilier personnel auprès des douanes suisses.",
+          "Pour un appartement (ZAC Mont-Blanc, Pas-de-l'Échelle), demi-journée à journée complète selon le volume. Pour une maison de village haut, comptez une journée et demie minimum&nbsp;: les contraintes d'accès aux ruelles en pente ajoutent du temps, parfois une navette intermédiaire. Pour les urgences, intervention possible sous 24h depuis notre base de Ville-la-Grand à 3 km.",
       },
     ],
   },
