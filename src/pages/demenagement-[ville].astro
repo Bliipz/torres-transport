@@ -352,7 +352,7 @@ const breadcrumbSchema = makeBreadcrumb([
               <span>{item.question}</span>
               <span class="faq-icon" aria-hidden="true"></span>
             </summary>
-            <div class="faq-answer"><p>{item.reponse}</p></div>
+            <div class="faq-answer"><p set:html={item.reponse}></p></div>
           </details>
         ))}
       </div>
