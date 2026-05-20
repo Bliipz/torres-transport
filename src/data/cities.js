@@ -77,6 +77,51 @@ export const cities = {
           "Nous connaissons parfaitement les contraintes de stationnement à Annemasse, notamment en centre-ville et autour de la gare. Si nécessaire, nous pouvons faire la demande d'autorisation auprès de la mairie. Nos camions sont dimensionnés pour passer dans les rues étroites du centre.",
       },
     ],
+
+    // -------- ENRICHISSEMENTS PALIER 1 (contenu SEO unique) --------
+    histoire: `<p>Annemasse n'est pas une ville comme les autres en Haute-Savoie. <strong>Aux portes de Genève</strong>, traversée par l'Arve, elle est devenue en quelques décennies le deuxième pôle urbain du département après Annecy. Sa transformation est spectaculaire&nbsp;: là où il y avait des friches industrielles dans les années 1990 (Chablais-Parc, ancien site SNCF), des éco-quartiers entiers ont poussé.</p>
+<p>La ville accueille aujourd'hui une population de <strong>36 000 habitants</strong>, dont une forte proportion de <strong>travailleurs frontaliers</strong> qui passent chaque jour la frontière suisse pour rejoindre le bassin lémanique. Cette particularité économique explique l'attractivité résidentielle d'Annemasse, et donc l'intensité des mouvements de déménagement&nbsp;: arrivée de familles cherchant un coût du logement inférieur à Genève, départs vers les communes voisines une fois la famille agrandie.</p>
+<p>L'arrivée du <strong>Léman Express</strong> en 2019, qui relie Annemasse à Genève-Cornavin en 20 minutes, a accéléré cette dynamique. Notre métier de déménageur à Annemasse a profondément changé en 10 ans&nbsp;: davantage de déménagements courts (intra-bassin), plus de profils internationaux (frontaliers, expatriés), des immeubles toujours plus hauts dans les zones de renouvellement urbain.</p>`,
+
+    marcheImmobilier: `<p>Le parc immobilier d'Annemasse est <strong>marqué par sa diversité</strong>, ce qui change beaucoup les conditions de déménagement d'un quartier à l'autre. En centre-ville et autour de la gare, on trouve principalement de l'<strong>ancien collectif</strong>&nbsp;: immeubles des années 1950-1970, parfois plus anciens, avec ascenseurs étroits voire inexistants, escaliers en colimaçon, parkings rares. Ces logements demandent une préparation soignée, un démontage poussé des meubles, et parfois une autorisation municipale de stationnement.</p>
+<p>À l'inverse, des quartiers comme <strong>Chablais-Parc, Étoile-Annemasse-Genève</strong> ou les abords de la <strong>Zone Mont-Blanc</strong> sont dominés par des résidences récentes&nbsp;: ascenseurs adaptés, parkings dédiés, planning de réservation pour les bennes/déménagements imposé par les syndics. Là, c'est le respect du créneau qui prime, pas la gymnastique technique.</p>
+<p>Les <strong>maisons individuelles</strong> existent surtout dans les franges (Romagny, Livron, Ile-Verte), souvent sur des parcelles modestes. Une maison à Annemasse fait rarement plus de 100 m², ce qui change complètement le volume vs une maison de Cranves ou Vétraz-Monthoux. Notre estimation moyenne pour une maison à Annemasse&nbsp;: <strong>22 à 30 m³</strong>.</p>`,
+
+    specificitesLogistiques: `<p>Annemasse cumule plusieurs contraintes qu'un déménageur de passage ne peut pas anticiper.</p>
+<p><strong>1. La circulation centre-ville.</strong> Les abords de la place Jean-Deffaugt, la rue de Genève et la rue du Commerce sont en grande partie piétonnes ou semi-piétonnes. Les livraisons et déménagements y sont autorisés sur des créneaux matinaux (avant 10h pour le marché du Salève le mardi, jeudi et samedi). On planifie systématiquement nos interventions centre-ville en début de matinée.</p>
+<p><strong>2. Les rues étroites du quartier de la Gare.</strong> Beaucoup d'immeubles anciens dans des rues à sens unique étroites&nbsp;: rue du Faucigny, rue de la Tannerie, etc. Nos camions 30 m³ n'y passent pas&nbsp;: on utilise des 12 ou 15 m³, parfois avec navette si le volume est important.</p>
+<p><strong>3. Les nouveaux programmes verticaux.</strong> Sur Chablais-Parc et Étoile-Genève, les bâtiments montent à R+8 ou R+10. Les syndics imposent des créneaux ascenseur de 2 ou 3 heures, et un protocole strict (protection des sols et des cabines). On gère ça en routine, mais ça impose une coordination en amont avec le gardien.</p>
+<p><strong>4. La proximité douanière.</strong> Pour les frontaliers qui font Annemasse → Suisse (ou inversement), il y a des spécificités déclaratives. Nos camions sont enregistrés pour passer la frontière sans formalité au-delà de la déclaration de mobilier personnel.</p>`,
+
+    accesItineraire: `<p>Notre base est à <strong>Ville-la-Grand, à 2 km du centre d'Annemasse</strong>. L'accès se fait en 5 à 10 minutes selon le quartier de destination&nbsp;:</p>
+<p>• <strong>Centre / Gare</strong>&nbsp;: 5 minutes via l'avenue de la Gare ou la rue de Genève.<br />
+• <strong>Chablais-Parc / Étoile</strong>&nbsp;: 7 minutes par l'avenue de Verdun.<br />
+• <strong>Romagny / Livron</strong>&nbsp;: 10 minutes via le contournement nord.<br />
+• <strong>Quartier de la Zone Mont-Blanc</strong>&nbsp;: 6 minutes via l'avenue Émile-Zola.</p>
+<p>Cette proximité immédiate nous permet d'<strong>intervenir le jour même en cas d'urgence</strong> (clés perdues, situation d'urgence familiale, sortie de logement précipitée). Pour les déménagements planifiés, nous recommandons une réservation 2 à 3 semaines à l'avance hors saison (octobre à mai) et 4 à 6 semaines en pleine saison (juin à septembre).</p>`,
+
+    faqEtendue: [
+      {
+        question: "Travaillez-vous avec des syndics de copropriété d'Annemasse pour réserver l'ascenseur ?",
+        reponse:
+          "Oui, c'est même devenu indispensable sur les programmes récents (Chablais-Parc, Étoile-Annemasse-Genève). Nous prenons contact avec le syndic ou le gardien 5 à 7 jours avant pour réserver un créneau ascenseur (souvent 2 à 3 heures consécutives) et obtenir le protocole de protection. C'est inclus dans notre prestation, le client n'a rien à faire.",
+      },
+      {
+        question: 'Pouvez-vous gérer un déménagement Annemasse vers la Suisse (Genève) ?',
+        reponse:
+          "Oui, nos camions sont enregistrés pour le passage frontalier. Pour un déménagement Annemasse → Genève (et inversement), nous gérons la déclaration de mobilier personnel auprès des douanes suisses. Délai standard&nbsp;: une journée pour un T3, deux jours pour une maison. Il faut une réservation 3 à 4 semaines à l'avance car le timing douanier doit être anticipé.",
+      },
+      {
+        question: 'Mon immeuble en centre Annemasse n\'a pas d\'ascenseur, et je suis au 4ème : que faire ?',
+        reponse:
+          "C'est très fréquent à Annemasse-centre. Nous prévoyons un équipage de 3 à 4 manutentionnaires plutôt que 2, et nous démontons en amont tout le mobilier volumineux (lits, armoires) pour les sortir en pièces. Le tarif est ajusté en conséquence (+15 à 25%) mais reste compétitif vs des concurrents qui sous-traitent. Comptez environ 950-1100€ pour un F3 sans ascenseur en 4ème étage à Annemasse.",
+      },
+      {
+        question: "Avez-vous l'autorisation de stationner sur la zone piétonne du marché du Salève ?",
+        reponse:
+          "Pour la zone piétonne autour de la place du Marché et la rue du Commerce, nous demandons systématiquement une autorisation de stationnement temporaire à la mairie d'Annemasse (gratuit, délai 5-7 jours ouvrés). Nous gérons cette démarche pour vous. Sans autorisation, c'est verbalisable à 35€ et nous n'intervenons pas dans ces conditions.",
+      },
+    ],
   },
 
   // ------------------------------------------------------------------
@@ -152,6 +197,52 @@ export const cities = {
           "Oui, notre service débarras intervient à Ville-la-Grand pour vider caves, greniers, garages, appartements ou maisons après succession. Nous trions, recyclons et donnons aux associations locales ce qui peut servir.",
       },
     ],
+
+    // -------- ENRICHISSEMENTS PALIER 1 (contenu SEO unique) --------
+    histoire: `<p>Ville-la-Grand est <strong>notre commune d'origine</strong>. Le siège social de Torres Transport est implanté au 8 rue Fernand-David depuis nos débuts&nbsp;: connaître les rues de Ville-la-Grand n'est pas pour nous un argument marketing, c'est notre quotidien depuis 20 ans.</p>
+<p>Avec ses <strong>8 500 habitants</strong>, Ville-la-Grand est l'une des trois communes du «&nbsp;tripoint annemassien&nbsp;» (avec Annemasse et Ambilly), formant un continuum urbain qu'aucune frontière administrative ne traduit visuellement. Historiquement plus agricole et résidentielle qu'Annemasse, Ville-la-Grand a vécu ces vingt dernières années une <strong>vague de programmes neufs</strong> (résidences Eaux-Belles, Esserts, Crêt) qui ont transformé son visage tout en préservant son centre-bourg d'origine.</p>
+<p>La gare du Léman Express (Ville-la-Grand a sa propre station) et la proximité immédiate des écoles, du collège et de la zone commerciale en font une commune particulièrement prisée par les <strong>jeunes familles frontalières</strong>. C'est notre clientèle dominante&nbsp;: deuxième logement après le premier appartement à Annemasse, ou retour de Suisse pour s'installer durablement côté français.</p>`,
+
+    marcheImmobilier: `<p>Le tissu immobilier de Ville-la-Grand est plus <strong>homogène</strong> qu'à Annemasse. La majorité des biens se répartit entre deux profils&nbsp;:</p>
+<p><strong>1. Les maisons individuelles</strong> et pavillons (centre-bourg, Champ-Magnin, Les Voirons). Souvent des constructions des années 1970-1990, des terrains de 400 à 800 m², des volumes domestiques entre 25 et 40 m³ pour une famille avec enfants. Accès véhicule simple dans 95% des cas. Tarif Torres pour une maison Ville-la-Grand&nbsp;: <strong>à partir de 1 400 €</strong>.</p>
+<p><strong>2. Les résidences récentes</strong> de petite hauteur (R+3 à R+5)&nbsp;: Eaux-Belles, Les Esserts, Le Crêt. Ascenseurs systématiques et adaptés, parkings privés, syndics professionnels. Idéal pour des déménagements rapides. Beaucoup de F3-F4 dans cette catégorie, volume moyen 18-25 m³.</p>
+<p>L'absence de centre commercial dense et de zone piétonne en fait une commune <strong>simple à déménager logistiquement</strong>&nbsp;: pas d'autorisation municipale à demander dans 9 cas sur 10, créneaux d'intervention flexibles, peu de contraintes horaires.</p>`,
+
+    specificitesLogistiques: `<p>En tant que <strong>commune d'attache de Torres Transport</strong>, Ville-la-Grand est l'endroit où nous avons développé tout notre savoir-faire. Voici les particularités locales que nos équipes connaissent par cœur&nbsp;:</p>
+<p><strong>1. Le centre-bourg historique.</strong> Quelques rues étroites autour de la mairie et de l'église (rue de la Mairie, rue de l'Ancienne Poste). On utilise nos 15 m³ pour ces secteurs, pas les gros volumes.</p>
+<p><strong>2. La zone gare/Léman Express.</strong> Bien que peu encombrée par rapport à celle d'Annemasse, le parking dépose-minute est petit. Pour les déménagements proches de la gare, on prévoit un créneau matinal (avant 8h30) pour éviter la cohue des frontaliers.</p>
+<p><strong>3. Les ralentisseurs de la rue de l'Eau-Belle.</strong> Anecdote pratique&nbsp;: cette rue a plusieurs ralentisseurs prononcés qui imposent de descendre à 15-20 km/h avec un camion chargé. C'est un détail mais ça change la durée du trajet si on enchaîne plusieurs allers-retours.</p>
+<p><strong>4. La proximité immédiate avec Annemasse, Ambilly et Vétraz.</strong> Nous gérons régulièrement des déménagements Ville-la-Grand ↔ communes voisines en une demi-journée. Souvent un T2 ou T3 qui change de quartier mais reste dans le bassin.</p>`,
+
+    accesItineraire: `<p>Notre base est <strong>sur place</strong>. Il n'y a pas de trajet&nbsp;: nous sommes vos voisins directs. Cette proximité immédiate change concrètement la prestation&nbsp;:</p>
+<p>• <strong>Pas de frais kilométriques de déplacement.</strong><br />
+• <strong>Intervention le jour même</strong> possible si nous avons un créneau libre.<br />
+• <strong>Retour atelier rapide</strong> en cas d'oubli (carton oublié, vis manquante) — c'est arrivé.<br />
+• <strong>Coordination en direct</strong>&nbsp;: si quelque chose change le jour J (horaire, contrainte), on s'adapte sans débourser le moindre kilomètre supplémentaire.</p>
+<p>Pour un déménagement <strong>intra-Ville-la-Grand</strong> (changement de quartier dans la commune), comptez généralement <strong>une demi-journée pour un T2-T3</strong>, une journée complète pour une maison. Le trajet entre deux quartiers de Ville-la-Grand fait au maximum 3 km.</p>`,
+
+    faqEtendue: [
+      {
+        question: "Vous êtes au 8 rue Fernand-David : c'est votre vraie adresse ?",
+        reponse:
+          "Oui. Torres Transport a son siège social et son entrepôt à cette adresse, à Ville-la-Grand. Nos camions sont garés là chaque soir. C'est une vraie entreprise locale, pas une enseigne franchisée ni une boîte aux lettres. Vous pouvez passer nous voir sur rendez-vous, c'est même conseillé pour les déménagements importants.",
+      },
+      {
+        question: 'Faites-vous un tarif "voisin" pour les Ville-la-Grandois ?',
+        reponse:
+          "Oui, indirectement. Nos tarifs Ville-la-Grand sont les plus bas de notre grille (à partir de 320€ pour un studio vs 350€ à Annemasse) parce qu'il n'y a aucun frais de déplacement. Pas besoin de demander une remise, le tarif intègre déjà cet avantage de proximité.",
+      },
+      {
+        question: 'Vous coordonnez avec le gardien des résidences Eaux-Belles et Les Esserts ?',
+        reponse:
+          "Oui, nous avons l'habitude de travailler avec les gardiens et syndics des résidences récentes de Ville-la-Grand. Nous réservons l'ascenseur 5-7 jours avant la prestation, et nous appliquons les protocoles de protection (sols, cabine, parties communes) imposés par le règlement intérieur. Aucun stress pour vous.",
+      },
+      {
+        question: "Quand le Léman Express est en grève, est-ce que ça affecte vos prestations ?",
+        reponse:
+          "Non, nous nous déplaçons en camion, pas en train. Mais ironie, oui, ça augmente la circulation routière côté Annemasse-Ville-la-Grand car beaucoup de frontaliers basculent sur la voiture. Sur les jours de grève annoncés, on programme les interventions plutôt en milieu de journée (11h-14h) que tôt le matin.",
+      },
+    ],
   },
 
   // ------------------------------------------------------------------
@@ -215,6 +306,53 @@ export const cities = {
         question: "Quel est le délai d'intervention à Saint-Julien-en-Genevois ?",
         reponse:
           "Saint-Julien étant à 18 km de notre base, nous intervenons sous 24-48h pour les demandes standard, et nous pouvons réserver une journée complète pour les déménagements importants. Pour les pics estivaux (juin-septembre), réservez 3-4 semaines à l'avance.",
+      },
+    ],
+
+    // -------- ENRICHISSEMENTS PALIER 1 (contenu SEO unique) --------
+    histoire: `<p>Saint-Julien-en-Genevois occupe une position singulière dans le bassin&nbsp;: <strong>chef-lieu du Genevois français</strong>, accolée à la frontière suisse au sud-ouest de Genève, elle vit la même dynamique frontalière qu'Annemasse mais selon une géographie différente. Là où Annemasse «&nbsp;regarde&nbsp;» Genève à l'est, Saint-Julien la regarde au nord, par une frontière toute proche.</p>
+<p>Avec ses <strong>15 800 habitants</strong>, Saint-Julien est passée d'un gros bourg d'autrefois à une ville moyenne en croissance continue. Le complexe <strong>Vitam</strong> (plus grand parc aquatique de Rhône-Alpes), la ZAE des Vignes-Rouges et l'arrivée du tram TPG ligne 14 puis 17 ont accéléré la transformation. La ville attire désormais autant les frontaliers que les habitants de Genève en quête d'espace.</p>
+<p>Pour un déménageur, Saint-Julien est un terrain de jeu particulier&nbsp;: une <strong>configuration géographique étirée</strong> entre le centre historique au sud et les nouveaux quartiers nord (vers la frontière), avec des temps de trajet internes parfois longs malgré la taille modeste de la commune.</p>`,
+
+    marcheImmobilier: `<p>Saint-Julien combine trois types de marchés immobiliers très distincts&nbsp;:</p>
+<p><strong>1. Le centre historique.</strong> Petits immeubles anciens, rues étroites autour de la rue du Faubourg-Saint-Gervais et de la place du Crêt. Beaucoup d'appartements anciens rénovés, peu d'ascenseurs, parkings rares. Volumes typiques&nbsp;: 12 à 22 m³ pour des T2-T3.</p>
+<p><strong>2. Les résidences modernes</strong> proches de la gare et de la frontière&nbsp;: programmes neufs des Vignes-Rouges, secteur Cervonnex. Standards internationaux (ascenseurs adaptés, parkings souterrains, syndics professionnels). Profil d'acheteur fréquent&nbsp;: cadre frontalier travaillant à Genève.</p>
+<p><strong>3. Le pavillonnaire</strong> en périphérie (Therens, Lathoy, route de Lyon). Maisons des années 1980-2000, terrains de 500 à 1000 m². Déménagements simples logistiquement mais volumes importants&nbsp;: <strong>25 à 40 m³</strong> pour une maison.</p>
+<p>Tarif Torres pour une maison à Saint-Julien&nbsp;: à partir de <strong>1 700 €</strong> (distance 18 km depuis notre base).</p>`,
+
+    specificitesLogistiques: `<p>Les particularités logistiques de Saint-Julien que nos équipes anticipent systématiquement&nbsp;:</p>
+<p><strong>1. La distance depuis notre base (18 km).</strong> Contrairement aux communes du bassin annemassien (2-5 km), un trajet Ville-la-Grand → Saint-Julien prend 25-35 minutes selon le trafic (autoroute A40 + sortie). Cela change la dynamique&nbsp;: on optimise les rotations, et on évite les allers-retours multiples. Pour un déménagement de maison, on prévoit un seul camion de 40 m³ plutôt que des navettes.</p>
+<p><strong>2. La fréquentation autour de Vitam.</strong> Le complexe aquatique génère une circulation très dense les mercredis, weekends et vacances scolaires. Si votre déménagement se fait à proximité (secteur Neydens / route de la Lave), on programme tôt le matin pour éviter ces pics.</p>
+<p><strong>3. La frontière suisse.</strong> Saint-Julien est l'un des principaux points de passage Genève → France (poste-frontière de Bardonnex). Les déménagements transfrontaliers sont fréquents&nbsp;: Saint-Julien ↔ Plan-les-Ouates, ↔ Carouge, ↔ Lancy. Comme à Annemasse, nous gérons la déclaration douanière.</p>
+<p><strong>4. Le centre historique piéton.</strong> Comme Annemasse, certaines rues du centre (rue du Faubourg, place du Crêt) imposent une autorisation de stationnement temporaire. Nous gérons cette demande auprès de la mairie sous 5-7 jours ouvrés.</p>`,
+
+    accesItineraire: `<p>Depuis notre base de Ville-la-Grand, l'accès à Saint-Julien-en-Genevois se fait par <strong>l'autoroute A40 (axe Genève-Annecy)</strong>&nbsp;:</p>
+<p>• Trajet 18 km, durée moyenne <strong>25 minutes</strong> hors pointe, jusqu'à 35-40 minutes aux heures de pointe (7h30-9h, 17h-19h).<br />
+• Sortie A40 «&nbsp;Saint-Julien&nbsp;» puis route de Lyon.<br />
+• Pour le centre historique&nbsp;: pénétration par la D1206 (rue Amédée-VIII-de-Savoie).<br />
+• Pour les Vignes-Rouges et le secteur frontière&nbsp;: route de Lyon puis route de la Frontière.</p>
+<p>Pour les déménagements vers/depuis Saint-Julien, nous recommandons une <strong>réservation 3 à 4 semaines à l'avance</strong> (5-6 semaines en juin-septembre). La distance et le risque de trafic A40 imposent une organisation plus stricte qu'en bassin annemassien.</p>`,
+
+    faqEtendue: [
+      {
+        question: "Faites-vous des déménagements Saint-Julien → Suisse (Plan-les-Ouates, Carouge, Genève) ?",
+        reponse:
+          "Oui, c'est l'un de nos trajets fréquents. Nos camions sont enregistrés pour le passage frontalier de Bardonnex. Pour un déménagement transfrontalier, nous gérons la déclaration de mobilier personnel auprès des douanes suisses. Délai standard&nbsp;: une journée pour un T3, deux pour une maison.",
+      },
+      {
+        question: "Avec quel délai recommandez-vous de réserver pour Saint-Julien ?",
+        reponse:
+          "3 à 4 semaines à l'avance hors saison (octobre à mai), 5 à 6 semaines en pleine saison (juin à septembre). Saint-Julien étant à 25 minutes de notre base, nous prévoyons un créneau dédié sans possibilité de double prestation dans la journée pour les maisons.",
+      },
+      {
+        question: 'Le quartier des Vignes-Rouges est récent : comment ça se passe pour vous ?',
+        reponse:
+          "C'est notre type de zone préférée à Saint-Julien&nbsp;: parkings dédiés, ascenseurs adaptés aux gros volumes, syndics professionnels qui gèrent bien la réservation. Pour ces résidences récentes, comptez un déménagement de F3 en demi-journée à journée complète selon le volume.",
+      },
+      {
+        question: 'Le centre historique de Saint-Julien est complexe : pouvez-vous y intervenir ?',
+        reponse:
+          "Oui, nous intervenons régulièrement dans le centre historique (rue du Faubourg-Saint-Gervais, place du Crêt). Nous utilisons des camions de 12-15 m³ et nous obtenons l'autorisation de stationnement temporaire de la mairie. Comptez un délai supplémentaire pour cette démarche (5-7 jours ouvrés).",
       },
     ],
   },
@@ -285,6 +423,54 @@ export const cities = {
         question: 'Faites-vous du débarras à Gaillard ?',
         reponse:
           "Oui, notre service débarras intervient à Gaillard pour vider caves, garages, appartements après succession ou avant déménagement. Tri sélectif inclus, recyclage et dons aux associations locales.",
+      },
+    ],
+
+    // -------- ENRICHISSEMENTS PALIER 1 (contenu SEO unique) --------
+    histoire: `<p>Gaillard est <strong>la frontière la plus directe entre Annemasse et Genève</strong>&nbsp;: le poste-frontière de Moillesulaz s'y trouve, et beaucoup de Gaillardons commencent ou terminent leur journée en franchissant la douane. Cette position particulière a façonné l'identité de la commune.</p>
+<p>Avec ses <strong>12 000 habitants</strong>, Gaillard est l'une des communes les plus densément peuplées du bassin annemassien. Historiquement plus industrielle (l'usine SNR puis NTN-SNR a longtemps dominé l'économie locale), elle s'est <strong>transformée vers le résidentiel</strong> ces vingt dernières années&nbsp;: l'ancienne friche industrielle de Mon-Idée est devenue un éco-quartier complet, le secteur Bois-des-Frères a accueilli plusieurs nouvelles résidences, et la zone du Châtelet s'est urbanisée.</p>
+<p>Cette transformation rapide a un effet direct sur notre métier de déménageur à Gaillard&nbsp;: <strong>forte rotation des locataires</strong> (jeunes actifs et frontaliers qui changent de logement régulièrement), beaucoup de déménagements en milieu d'année (pas seulement en juin-septembre), et des programmes immobiliers récents qui imposent une coordination stricte avec les syndics.</p>`,
+
+    marcheImmobilier: `<p>Le parc immobilier de Gaillard est <strong>dominé par le collectif récent</strong>, ce qui en fait l'une des communes les plus uniformes du bassin pour les déménagements&nbsp;:</p>
+<p><strong>1. Mon-Idée</strong>&nbsp;: ancienne friche industrielle devenue éco-quartier avec une dizaine de résidences neuves R+5 à R+7. Ascenseurs grand format, parkings souterrains, syndics qui imposent des protocoles précis. Volume typique d'un T3&nbsp;: 18-22 m³.</p>
+<p><strong>2. Bois-des-Frères</strong>&nbsp;: résidences plus modestes (R+3 à R+5), construites entre 2010 et 2020. Standards modernes mais sans la sophistication de Mon-Idée. Beaucoup de frontaliers et de jeunes couples.</p>
+<p><strong>3. Le centre-ville et le quartier de la Gare</strong>&nbsp;: collectif plus ancien (années 1960-1980), ascenseurs parfois étroits, rues à sens unique. C'est là qu'on trouve les contraintes logistiques les plus marquées de Gaillard.</p>
+<p><strong>4. Pré-Vergat et Pré-Bressan</strong>&nbsp;: secteurs avec quelques pavillons individuels, mais en minorité. Une maison à Gaillard fait rarement plus de 90 m².</p>
+<p>Tarif Torres pour une maison à Gaillard&nbsp;: à partir de <strong>1 450 €</strong>.</p>`,
+
+    specificitesLogistiques: `<p>Gaillard a une particularité que peu de communes ont&nbsp;: <strong>la frontière suisse au sud, le centre d'Annemasse au nord</strong>. Cela change beaucoup la logistique.</p>
+<p><strong>1. La douane de Moillesulaz.</strong> Pour les déménagements transfrontaliers Gaillard ↔ Genève (Vernier, Onex, Petit-Saconnex), nous passons systématiquement par ce poste-frontière. Le temps d'attente moyen est de 5-10 minutes hors pointe, jusqu'à 25 minutes aux heures de pointe matin et soir. Nos camions sont enregistrés pour le passage sans formalité au-delà de la déclaration de mobilier.</p>
+<p><strong>2. La proximité du centre d'Annemasse.</strong> Beaucoup de déménagements Gaillard ↔ Annemasse-centre, souvent pour <strong>de petits volumes</strong> (T2 ou T3 jeunes actifs). On les traite en demi-journée, parfois en quelques heures, sans surcoût.</p>
+<p><strong>3. Le ralentisseur de la route d'Annemasse.</strong> Détail pratique connu de nos chauffeurs&nbsp;: la route entre Gaillard et Annemasse-centre a un ralentisseur prononcé au niveau de la zone de l'usine. Avec un camion plein, ça impose une descente à 15 km/h. Petit détail, mais qui change la durée du trajet pour les calculs.</p>
+<p><strong>4. La forte densité collective récente.</strong> 70% des biens à Gaillard sont en immeuble collectif. Nos équipes sont à l'aise avec les protocoles ascenseur, les créneaux de réservation syndic, et la coordination avec les gardiens.</p>`,
+
+    accesItineraire: `<p>Depuis notre base de Ville-la-Grand, Gaillard est à <strong>4 km, soit 8 à 12 minutes en camion</strong> selon la circulation et le quartier visé&nbsp;:</p>
+<p>• <strong>Mon-Idée et Bois-des-Frères</strong>&nbsp;: 7 minutes par la rue de la Fontaine et l'avenue des Vignes.<br />
+• <strong>Centre-ville et Gare</strong>&nbsp;: 10 minutes par l'avenue Léon-Blum.<br />
+• <strong>Pré-Vergat et Pré-Bressan</strong>&nbsp;: 12 minutes par la route d'Annemasse puis l'avenue de Genève.<br />
+• <strong>Douane de Moillesulaz</strong> (pour transfrontalier)&nbsp;: 8 minutes en évitant l'avenue Henri-Barbusse aux heures de pointe.</p>
+<p>Cette proximité immédiate <strong>limite vraiment les frais de déplacement</strong>&nbsp;: pour un studio ou T2, le surcoût lié au trajet est négligeable. Nos tarifs Gaillard sont d'ailleurs très proches de ceux d'Annemasse (+20 à +50€ selon le volume).</p>`,
+
+    faqEtendue: [
+      {
+        question: 'Avez-vous l\'habitude de déménager vers la Suisse via Moillesulaz ?',
+        reponse:
+          "Oui, c'est l'un de nos itinéraires les plus fréquents. Nos camions sont enregistrés pour le passage douanier, et nous gérons la déclaration de mobilier personnel auprès des autorités suisses. Compter 5-10 minutes d'attente au poste-frontière hors pointe, jusqu'à 25 minutes aux heures de pointe (7h30-9h, 17h-18h30).",
+      },
+      {
+        question: "Mon-Idée a beaucoup de résidences neuves : comment se passe la coordination avec les syndics ?",
+        reponse:
+          "Mon-Idée est un secteur que nous connaissons bien. Pour les résidences récentes (résidence Mon-Idée, Le Carré Vert, etc.), nous contactons le gardien ou le syndic 5-7 jours avant pour réserver l'ascenseur (créneau 2-3 heures) et obtenir le protocole de protection. Tout est inclus dans la prestation.",
+      },
+      {
+        question: 'Combien coûte un déménagement Gaillard vers Annemasse pour un T2 ?',
+        reponse:
+          "Pour un T2 (environ 12-15 m³), comptez 450 à 550€ pour un trajet Gaillard → Annemasse en demi-journée. Le tarif inclut le démontage léger des meubles, le transport, et le remontage. Si la résidence à Gaillard ou Annemasse a des contraintes spécifiques (sans ascenseur, autorisation mairie), un ajustement est possible.",
+      },
+      {
+        question: "Le quartier du Châtelet est en pleine évolution : pouvez-vous y intervenir ?",
+        reponse:
+          "Oui. Le secteur du Châtelet a vu plusieurs livraisons récentes (résidences 2022-2024). Nos camions accèdent sans problème à toutes ces nouvelles adresses. Pour les premières années suivant la livraison, les syndics imposent souvent des protocoles stricts de protection des parties communes — nous les respectons systématiquement.",
       },
     ],
   },
@@ -654,6 +840,52 @@ export const cities = {
           "Aucune. Étrembières étant à 3 km de notre base, nous appliquons le même tarif qu'Annemasse. Pas de frais de déplacement.",
       },
     ],
+
+    // -------- ENRICHISSEMENTS PALIER 1 (contenu SEO unique) --------
+    histoire: `<p>Étrembières est probablement <strong>la commune la plus contrastée du bassin annemassien</strong>. Avec seulement 1 900 habitants répartis sur trois entités très différentes — le Pas-de-l'Échelle en plaine, le village d'Étrembières accroché aux pentes du Salève, et la ZAC du Mont-Blanc à l'est —, elle concentre toutes les configurations possibles d'un déménagement haut-savoyard sur un territoire minuscule.</p>
+<p>Historiquement, Étrembières est un <strong>village savoyard ancien</strong> qui doit beaucoup à sa position au pied du Salève (le téléphérique du Salève partant de Veyrier en Suisse arrive face au village). Pendant longtemps, la commune est restée à l'écart de l'urbanisation rapide de la plaine. Depuis 2000, la <strong>ZAC du Mont-Blanc</strong> — vaste zone commerciale et résidentielle développée à la limite avec Annemasse et Gaillard — a totalement changé sa physionomie démographique.</p>
+<p>Pour un déménageur, intervenir à Étrembières signifie souvent <strong>changer de monde en 2 km</strong>&nbsp;: passer d'un appartement neuf de la ZAC au village haut, c'est passer d'une logistique standard à une intervention quasi de montagne.</p>`,
+
+    marcheImmobilier: `<p>Le parc immobilier d'Étrembières est <strong>extrêmement hétérogène</strong> pour une si petite commune&nbsp;:</p>
+<p><strong>1. La ZAC du Mont-Blanc</strong>&nbsp;: résidences récentes (2010-2020), R+4 à R+6, ascenseurs adaptés, parkings souterrains. Profil de résident&nbsp;: jeunes cadres frontaliers. Volume moyen d'un T3&nbsp;: 18-22 m³. Tarif Torres&nbsp;: 780€ pour un F2/F3.</p>
+<p><strong>2. Le Pas-de-l'Échelle</strong>&nbsp;: zone résidentielle mixte, quelques pavillons, quelques petits collectifs anciens. Profil très familial. Tarif maison&nbsp;: à partir de 1 550 €.</p>
+<p><strong>3. Le village d'Étrembières</strong>&nbsp;: <strong>maisons anciennes</strong> en pierre, certaines remontant au 19ème siècle, sur les pentes du Salève. Rues étroites, accès parfois nécessitant des camions de 12 m³ maximum. Volume typique d'une maison de village&nbsp;: 25-35 m³.</p>
+<p><strong>4. La plaine de l'Arve</strong>&nbsp;: zone agricole en voie d'urbanisation, quelques pavillons récents construits ces dernières années.</p>`,
+
+    specificitesLogistiques: `<p>Étrembières demande une <strong>vraie planification par quartier</strong> avant tout déménagement&nbsp;:</p>
+<p><strong>1. Le village haut.</strong> Les rues du village historique sont étroites, parfois en lacets, avec des accès limités à des camions de 12-15 m³ maximum. Pour les volumes importants (maison entière), on procède par navette&nbsp;: déchargement intermédiaire sur la place du village, puis transbordement dans des véhicules plus petits jusqu'à l'adresse finale. Cette manipulation est facturée mais évite les blocages.</p>
+<p><strong>2. Le téléphérique du Salève.</strong> La gare basse du téléphérique se trouve juste à la frontière, sur le territoire d'Étrembières. La route d'accès peut être encombrée les weekends ensoleillés (touristes suisses). On évite ce secteur les samedis et dimanches en haute saison.</p>
+<p><strong>3. La ZAC Mont-Blanc.</strong> Zone commerciale dense avec circulation soutenue. Pour les déménagements résidentiels dans la zone, on privilégie les créneaux matinaux (avant 9h) pour éviter les flux du centre commercial Géant Casino et des autres enseignes.</p>
+<p><strong>4. La proximité immédiate avec Annemasse, Gaillard et Ville-la-Grand.</strong> Étrembières partage souvent ses déménageurs avec ses voisines. Pour nous, c'est un trajet de 5-7 minutes maximum, comparable à un déménagement intra-Annemasse.</p>`,
+
+    accesItineraire: `<p>Depuis notre base de Ville-la-Grand, Étrembières est à <strong>3 km, soit 7 à 10 minutes</strong>&nbsp;:</p>
+<p>• <strong>ZAC du Mont-Blanc</strong>&nbsp;: 6 minutes via l'avenue Émile-Zola puis l'avenue de la Roche-sur-Foron.<br />
+• <strong>Pas-de-l'Échelle</strong>&nbsp;: 8 minutes par la D907 (avenue de la République).<br />
+• <strong>Village d'Étrembières</strong>&nbsp;: 10 minutes via la D907 puis la route du Salève (lacets en montée).</p>
+<p>Cette proximité fait d'Étrembières l'une de nos zones d'intervention les plus rapides. Aucun frais kilométrique appliqué, et possibilité d'intervention le jour même pour les urgences. Pour les déménagements vers le <strong>village haut</strong>, prévoir <strong>30 minutes de plus</strong> dans la durée totale&nbsp;: les rues étroites imposent un débit plus lent et parfois des manœuvres délicates.</p>`,
+
+    faqEtendue: [
+      {
+        question: "Mes parents habitent dans le village haut d'Étrembières (rue étroite) : pouvez-vous accéder ?",
+        reponse:
+          "Oui, mais avec des camions de 12 à 15 m³ maximum (pas nos 30 m³). Pour les volumes importants, nous procédons par navette&nbsp;: déchargement intermédiaire sur la place du village, puis transbordement dans des véhicules plus petits. Cette opération ajoute environ 30-45 minutes au déménagement mais évite les blocages dans les rues étroites.",
+      },
+      {
+        question: 'La ZAC du Mont-Blanc est commerciale : ça pose problème pour déménager là-bas ?',
+        reponse:
+          "Pas du tout — c'est même l'un des secteurs les plus simples à déménager d'Étrembières. Les résidences sont récentes (ascenseurs adaptés, parkings souterrains, syndics professionnels). Le seul ajustement&nbsp;: nous privilégions les créneaux matinaux (avant 9h) pour éviter la circulation du centre commercial Géant Casino et des autres enseignes.",
+      },
+      {
+        question: "Y a-t-il un risque que la route du Salève soit bloquée par la neige ?",
+        reponse:
+          "C'est rare mais possible en janvier-février. La route du Salève (D45) qui mène vers le village haut peut être verglacée par fortes intempéries. Nous suivons les bulletins Météo France et reportons éventuellement un déménagement de 24-48h si la sécurité de nos équipes ou de votre mobilier est compromise. Aucun frais supplémentaire en cas de report météo.",
+      },
+      {
+        question: "Faites-vous des déménagements Étrembières → Suisse (Veyrier, Genève) ?",
+        reponse:
+          "Oui. La proximité du téléphérique du Salève fait d'Étrembières un point de départ logique pour Veyrier (Genève) et le sud-est de Genève. Nos camions passent par le poste-frontière de Moillesulaz à Gaillard (10 minutes), avec déclaration de mobilier personnel auprès des douanes suisses.",
+      },
+    ],
   },
 
   // ------------------------------------------------------------------
@@ -721,6 +953,52 @@ export const cities = {
         question: 'Faites-vous des déménagements pavillon-pavillon dans Vétraz ?',
         reponse:
           "Régulièrement. Les déménagements internes à Vétraz (changement de quartier ou agrandissement de famille) sont notre quotidien. Tarif optimisé puisque le trajet est court : remise possible si volume entier dans le camion sans demi-tour.",
+      },
+    ],
+
+    // -------- ENRICHISSEMENTS PALIER 1 (contenu SEO unique) --------
+    histoire: `<p>Vétraz-Monthoux est <strong>la commune des familles qui s'installent durablement</strong>. Située directement à l'est d'Annemasse, séparée de la ville-centre uniquement par une frontière administrative (les habitants disent souvent «&nbsp;c'est juste de l'autre côté&nbsp;»), elle a vu sa population croître régulièrement depuis trente ans pour atteindre <strong>7 400 habitants</strong>.</p>
+<p>Issu de la fusion des deux anciens villages de Vétraz et Monthoux, le territoire a longtemps gardé son caractère <strong>essentiellement agricole et pavillonnaire</strong>. Là où Annemasse densifiait verticalement, Vétraz-Monthoux a privilégié le développement horizontal&nbsp;: lotissements, maisons individuelles, petits collectifs de 2 ou 3 étages maximum. Le résultat&nbsp;: une commune calme, verte, familiale, devenue l'une des destinations privilégiées des couples qui agrandissent leur famille et quittent les T3-T4 d'Annemasse pour des maisons.</p>
+<p>Cette typologie a un effet direct sur le métier de déménageur à Vétraz-Monthoux&nbsp;: <strong>volumes plus importants</strong> qu'à Annemasse (maisons entières plutôt qu'appartements), <strong>moins de contraintes logistiques</strong> (parkings privés, rues larges), et beaucoup de déménagements <strong>Annemasse → Vétraz</strong> que nous gérons en demi-journée vu la proximité.</p>`,
+
+    marcheImmobilier: `<p>Le parc immobilier de Vétraz-Monthoux est dominé à <strong>plus de 80% par le pavillonnaire</strong>&nbsp;:</p>
+<p><strong>1. Maisons individuelles</strong> dans Le Genevray, Brénaz, Jaillet&nbsp;: constructions des années 1970-2000, terrains de 500 à 1 200 m², volumes domestiques entre <strong>30 et 50 m³</strong> pour une famille avec enfants. Accès véhicule simple dans tous les cas. Tarif Torres pour une maison standard&nbsp;: à partir de 1 550 €.</p>
+<p><strong>2. Lotissements récents</strong>&nbsp;: programmes pavillonnaires modernes (2010-2025) avec des standards de construction supérieurs. Souvent des familles de cadres frontaliers. Volumes parfois plus importants (50+ m³ avec garage, mobilier de jardin, équipement extérieur).</p>
+<p><strong>3. Petits collectifs</strong> en minorité, principalement dans Romagny (côté limitrophe Annemasse) et le centre village. Maximum R+3, ascenseurs adaptés mais parfois absents pour les anciens immeubles. Volumes typiques&nbsp;: T2-T3 entre 12 et 22 m³.</p>
+<p>Vétraz-Monthoux a le <strong>meilleur ratio prix-au-mètre carré</strong> du bassin annemassien pour le pavillonnaire, ce qui explique l'attractivité auprès des familles.</p>`,
+
+    specificitesLogistiques: `<p>Vétraz-Monthoux est <strong>l'une de nos zones d'intervention les plus simples logistiquement</strong>&nbsp;:</p>
+<p><strong>1. Des accès véhicule excellents.</strong> 90% des biens disposent d'un parking privé ou d'une rue large permettant un stationnement immédiat de nos camions, même les 30 m³. Aucune autorisation municipale nécessaire dans la grande majorité des cas — contrairement à Annemasse où c'est la règle.</p>
+<p><strong>2. Des volumes importants à anticiper.</strong> Une maison à Vétraz avec garage et jardin contient typiquement 35-50 m³. C'est largement plus qu'un T3 d'Annemasse (15-20 m³). Pour ces déménagements, nous prévoyons <strong>un camion de 40 m³ et deux à trois manutentionnaires</strong>, parfois sur deux jours.</p>
+<p><strong>3. La gestion du mobilier de jardin et de l'équipement extérieur.</strong> Tondeuse, barbecue, mobilier de jardin, vélos, salon de jardin&nbsp;: ces éléments occupent du volume mais sont parfois oubliés dans l'estimation initiale. Lors de notre visite gratuite, nous vérifions systématiquement ces zones.</p>
+<p><strong>4. La proximité avec Cranves-Sales et Annemasse-Romagny.</strong> Beaucoup d'allers-retours entre ces communes voisines. Pour un déménagement Vétraz → Annemasse (un cas typique de jeune couple qui retourne en ville), <strong>la demi-journée suffit</strong> pour un T2-T3.</p>`,
+
+    accesItineraire: `<p>Depuis notre base de Ville-la-Grand, Vétraz-Monthoux est à <strong>3 km, soit 7 à 10 minutes</strong>&nbsp;:</p>
+<p>• <strong>Le Genevray</strong>&nbsp;: 7 minutes via la rue du Levant.<br />
+• <strong>Brénaz et Jaillet</strong>&nbsp;: 9 minutes par l'avenue de la Libération.<br />
+• <strong>Centre village et Romagny</strong>&nbsp;: 10 minutes par la D907.</p>
+<p>Cette proximité fait de Vétraz-Monthoux une de nos zones où les tarifs sont identiques à Annemasse, sans surcoût kilométrique. Pour les déménagements <strong>intra-Vétraz</strong> (changement de quartier au sein de la commune), comptez 5 à 10 minutes de trajet en camion maximum. Possibilité d'intervention le jour même en cas d'urgence.</p>`,
+
+    faqEtendue: [
+      {
+        question: 'Notre maison à Vétraz a un grand jardin et une terrasse aménagée : tout est inclus ?',
+        reponse:
+          "Oui, à condition que nous le sachions à l'estimation. Mobilier de jardin, barbecue, tondeuse, vélos, salon extérieur, jeux d'enfants : tout fait partie du volume à transporter. Lors de notre visite gratuite, nous chiffrons tout, intérieur ET extérieur. C'est le principal piège des devis basiques qui oublient ces équipements.",
+      },
+      {
+        question: "Combien de temps pour un déménagement Annemasse → Vétraz-Monthoux ?",
+        reponse:
+          "Pour un T2-T3 (12-22 m³), demi-journée suffit. Pour une maison (30-50 m³), une journée complète. La proximité fait qu'il n'y a quasiment pas de temps mort entre départ et arrivée — c'est l'un de nos trajets les plus efficaces.",
+      },
+      {
+        question: 'Faites-vous le démontage / remontage de cuisines équipées et placards sur mesure ?',
+        reponse:
+          "Oui, c'est inclus dans la prestation déménagement (sauf cuisine équipée intégrée qui nécessite un cuisiniste). Pour les placards Ikea/Conforama, dressing sur mesure, lits à montage complexe, étagères murales — nous démontons à l'origine et nous remontons à l'arrivée. Beaucoup de pavillons à Vétraz ont des aménagements sur mesure que nous gérons en routine.",
+      },
+      {
+        question: "L'hiver à Vétraz-Monthoux peut être rude (gel, parfois neige) : ça impacte vos prestations ?",
+        reponse:
+          "Rarement. La plupart des routes de Vétraz sont salées et déneigées par la commune en cas d'épisode. Si vraiment les conditions sont dangereuses (verglas généralisé), nous reportons sans frais de 24-48h. Cela arrive 1 à 2 fois par hiver maximum.",
       },
     ],
   },
@@ -792,6 +1070,53 @@ export const cities = {
           "Oui. Cranves-Sales a vu plusieurs lotissements neufs sortir ces dernières années (côté Mépaillat). Aucune contrainte particulière, accès véhicule prévu dans la conception.",
       },
     ],
+
+    // -------- ENRICHISSEMENTS PALIER 1 (contenu SEO unique) --------
+    histoire: `<p>Cranves-Sales est <strong>une commune en deux temps</strong>. Pendant longtemps, elle est restée un village rural d'altitude (avec ses hameaux historiques Laplagne, Borly, Veluz suspendus sur les premières pentes des Voirons), à l'écart de l'effervescence du bassin annemassien. Puis, ces vingt dernières années, le secteur de <strong>Mépaillat en plaine</strong> a accueilli vague après vague de pavillons et de petits collectifs, transformant la commune en l'une des <strong>plus dynamiques en croissance</strong> du bassin.</p>
+<p>Avec ses <strong>6 500 habitants</strong>, Cranves-Sales offre quelque chose que peu d'autres communes proches d'Annemasse proposent&nbsp;: la <strong>vue panoramique sur le Salève et les Voirons</strong>, un cadre nature préservé, et l'accès rapide aux services d'Annemasse en moins de 10 minutes. C'est l'argument numéro un des jeunes familles qui s'y installent.</p>
+<p>Pour notre métier, déménager à Cranves-Sales signifie souvent <strong>passer d'un environnement urbain à un environnement quasi-rural</strong>&nbsp;: les hameaux historiques imposent des contraintes que peu de déménageurs anticipent correctement.</p>`,
+
+    marcheImmobilier: `<p>Le marché immobilier de Cranves-Sales se segmente clairement en deux mondes&nbsp;:</p>
+<p><strong>1. La plaine (Mépaillat, centre village)</strong>&nbsp;: pavillons modernes (2000-2025) et petits collectifs récents. Standards constructifs élevés, parkings privés, accès véhicule excellent. Volumes typiques d'une maison&nbsp;: 30-45 m³. Tarif Torres pour une maison plaine&nbsp;: à partir de 1 600 €.</p>
+<p><strong>2. Les hameaux d'altitude (Veluz, Laplagne, Borly)</strong>&nbsp;: <strong>maisons anciennes savoyardes</strong>, parfois rénovées, parfois encore dans leur jus, accessibles par des routes étroites et sinueuses. Volumes très variables (15 à 40 m³ selon l'état). Tarif majoré&nbsp;: à partir de 1 800 € pour une maison équivalente en hameau, vu la contrainte logistique.</p>
+<p><strong>3. Quelques lotissements neufs</strong> côté Mépaillat (2018-2024)&nbsp;: profil cadre frontalier, volumes importants (40+ m³ avec garage, jardin équipé). Souvent un premier achat après location à Annemasse-centre.</p>
+<p>Cette dualité plaine/hauteur explique nos écarts de tarifs à Cranves-Sales&nbsp;: un déménagement à Mépaillat coûte le même prix qu'à Annemasse, mais à Laplagne ou Borly, comptez 15-20% de plus à cause de la complexité d'accès.</p>`,
+
+    specificitesLogistiques: `<p>Cranves-Sales est <strong>la commune palier 1 où la logistique change le plus selon le quartier</strong>. Voici ce qu'on anticipe systématiquement&nbsp;:</p>
+<p><strong>1. L'accès aux hameaux d'altitude.</strong> Les routes vers Laplagne et Borly montent en lacets sur les premières pentes des Voirons. Largeur de chaussée limitée par endroits, virages serrés, parfois sans possibilité de croiser un autre véhicule. Nos camions 30 m³ <strong>n'y vont pas</strong>&nbsp;: on utilise des 12 ou 15 m³, parfois avec navette si le volume dépasse 25 m³.</p>
+<p><strong>2. La météo hivernale.</strong> Décembre à mars, les hameaux d'altitude peuvent être impactés par la neige ou le verglas. Nous suivons les bulletins Météo France et reportons si nécessaire, sans frais. Cette précaution évite les blocages et les risques pour le mobilier.</p>
+<p><strong>3. Mépaillat en plaine.</strong> Aucune contrainte particulière. Accès véhicule libre, parkings privés, syndics dans les rares résidences collectives. Le secteur le plus simple de Cranves-Sales.</p>
+<p><strong>4. Les nouveaux lotissements.</strong> Pour les programmes récents (résidence Les Hauts de Cranves, lotissements Mépaillat-Nord), les accès véhicule sont pensés pour les déménagements. Aucun protocole particulier au-delà des bonnes pratiques (protection sol, ascenseur si bâtiment).</p>`,
+
+    accesItineraire: `<p>Depuis notre base de Ville-la-Grand, Cranves-Sales est à <strong>5 km, soit 10 à 15 minutes</strong> selon le quartier&nbsp;:</p>
+<p>• <strong>Mépaillat</strong>&nbsp;: 10 minutes par la D907 puis l'avenue de la Libération.<br />
+• <strong>Centre village</strong>&nbsp;: 12 minutes.<br />
+• <strong>Veluz</strong>&nbsp;: 14 minutes (mi-hauteur).<br />
+• <strong>Laplagne et Borly</strong>&nbsp;: 18 à 22 minutes selon les conditions de route (montée en lacets).</p>
+<p>Pour les déménagements <strong>en hauteur</strong>, nous prévoyons <strong>30 minutes supplémentaires</strong> dans la durée totale&nbsp;: la montée freine le rythme et les manœuvres d'accès demandent du temps. Pour les volumes importants vers Laplagne ou Borly, nous procédons par navette&nbsp;: déchargement intermédiaire sur la place du hameau, puis transbordement vers l'adresse finale.</p>`,
+
+    faqEtendue: [
+      {
+        question: 'Nous habitons Laplagne (hameau en hauteur) : pouvez-vous nous déménager ?',
+        reponse:
+          "Oui, c'est notre quotidien à Cranves-Sales. Nous utilisons des camions de 12 à 15 m³ adaptés aux routes étroites des hameaux. Pour les gros volumes, nous procédons par navette&nbsp;: déchargement intermédiaire sur la place du hameau, puis transbordement vers votre adresse. Tarif majoré de 15-20% vs un déménagement en plaine, ce qui correspond au temps supplémentaire requis.",
+      },
+      {
+        question: "Les nouveaux lotissements de Mépaillat sont-ils faciles d'accès ?",
+        reponse:
+          "Très simples. Ces lotissements ont été conçus avec des accès véhicule larges, des parkings privés pour les résidents, et des trottoirs adaptés. Pas de contrainte de stationnement, pas d'autorisation municipale, créneaux flexibles. C'est l'un des secteurs les plus faciles à déménager du bassin annemassien.",
+      },
+      {
+        question: "Avez-vous l'habitude de déménager des seniors qui quittent leur maison de Cranves pour un appartement ?",
+        reponse:
+          "Oui, c'est un cas fréquent. Beaucoup de propriétaires âgés quittent leur maison de Cranves pour s'installer en appartement à Annemasse, plus pratique pour les déplacements. Nous appliquons notre tarif sénior/PMR (-10%) et nous portons une attention particulière au tri préalable&nbsp;: souvent une maison de 35 m³ devient 18 m³ après tri. Notre service débarras peut compléter la prestation.",
+      },
+      {
+        question: 'Combien de temps prévoir pour un déménagement maison à Cranves-Sales ?',
+        reponse:
+          "Pour une maison en plaine (Mépaillat), comptez une journée complète. Pour une maison en hauteur (Veluz, Laplagne, Borly), une journée et demie à deux jours selon le volume. La contrainte d'accès et la navette éventuelle ajoutent du temps mais garantissent un déménagement sécurisé pour vos biens.",
+      },
+    ],
   },
 
   // ------------------------------------------------------------------
@@ -858,6 +1183,52 @@ export const cities = {
         question: 'Intervenez-vous le weekend ?',
         reponse:
           "Oui, sur demande. Pas de surcoût weekend chez nous, contrairement à beaucoup de concurrents.",
+      },
+    ],
+
+    // -------- ENRICHISSEMENTS PALIER 1 (contenu SEO unique) --------
+    histoire: `<p>Ambilly est <strong>la plus discrète des trois communes du tripoint annemassien</strong>. Avec ses <strong>7 000 habitants</strong> sur seulement 1,2 km² (l'une des plus petites superficies du département), elle forme avec Annemasse et Ville-la-Grand un continuum urbain quasiment indissociable visuellement. Beaucoup d'habitants ne savent même pas où s'arrête Annemasse et où commence Ambilly.</p>
+<p>Historiquement, Ambilly est une <strong>commune ouvrière</strong> née avec l'industrialisation du bassin annemassien au début du 20ème siècle. Le quartier des Eaux-Vives en est le témoin&nbsp;: un secteur dense d'immeubles collectifs des années 1950-1970, longtemps populaires, désormais en lente requalification. Plus récemment, le secteur des <strong>Mélézins</strong> a vu pousser plusieurs programmes neufs qui changent la physionomie de la commune.</p>
+<p>Pour un déménageur, Ambilly est <strong>statistiquement la commune où nous avons le plus de demandes de jeunes actifs frontaliers</strong>&nbsp;: prix attractifs, proximité immédiate avec Annemasse, accès Léman Express via la gare voisine. Beaucoup de T2-T3, beaucoup de rotation locative, des déménagements souvent rapides.</p>`,
+
+    marcheImmobilier: `<p>Le parc immobilier d'Ambilly est <strong>massivement dominé par le collectif</strong>&nbsp;: près de 85% des biens sont en immeuble (contre 70% à Annemasse et 30% à Vétraz-Monthoux).</p>
+<p><strong>1. Le centre et les Eaux-Vives</strong>&nbsp;: collectif ancien des années 1950-1970, immeubles R+3 à R+5. Ascenseurs souvent <strong>étroits et anciens</strong>, parfois absents pour les immeubles d'avant 1960. Rues étroites en sens unique, parkings rares. C'est ici qu'on rencontre les contraintes logistiques les plus marquées d'Ambilly. Volumes typiques&nbsp;: T2-T3 entre 12 et 20 m³.</p>
+<p><strong>2. Le secteur des Mélézins</strong>&nbsp;: résidences récentes (2010-2025), ascenseurs adaptés aux gros volumes, parkings souterrains, syndics professionnels. Profil de résident&nbsp;: cadres frontaliers, jeunes couples. Le secteur le plus simple à déménager d'Ambilly.</p>
+<p><strong>3. Quelques maisons individuelles</strong>&nbsp;: rares, souvent anciennes (avant 1950), en bord de commune. Volumes très variables.</p>
+<p>Tarif Torres pour un déménagement à Ambilly&nbsp;: à partir de <strong>380 € pour un studio, 780 € pour un F2/F3, 1 550 € pour une maison</strong>. Identique à Annemasse vu la proximité (2 km).</p>`,
+
+    specificitesLogistiques: `<p>Ambilly cumule des contraintes liées à sa <strong>densité urbaine</strong> qu'il faut absolument anticiper&nbsp;:</p>
+<p><strong>1. Les ascenseurs étroits du collectif ancien.</strong> Dans les immeubles d'Ambilly-centre, beaucoup d'ascenseurs ne dépassent pas <strong>0,80 m × 1,20 m</strong>. Les armoires, frigos américains, canapés convertibles n'y passent pas. Nous démontons systématiquement le mobilier volumineux en pièces, ou nous le faisons passer par les escaliers — ce qui demande plus de manutentionnaires et plus de temps.</p>
+<p><strong>2. Les rues étroites du centre.</strong> Rue de la Paix, rue des Œillets, rue Etienne-Dolet&nbsp;: rues à sens unique parfois sans aucune possibilité de stationner un utilitaire. Pour ces adresses, nous demandons une autorisation municipale de stationnement temporaire (gratuit, 5-7 jours ouvrés).</p>
+<p><strong>3. Le marché du jeudi matin.</strong> Le marché hebdomadaire d'Ambilly se tient sur la place de la Mairie, bloquant la circulation et le stationnement jusqu'à 13h. Nous évitons les interventions ce jour-là dans les rues adjacentes, ou nous programmons après 14h.</p>
+<p><strong>4. Le secteur Mélézins.</strong> À l'inverse du centre, c'est le secteur le plus simple&nbsp;: parkings dédiés, ascenseurs adaptés, syndics qui gèrent en routine la réservation pour les déménagements.</p>`,
+
+    accesItineraire: `<p>Depuis notre base de Ville-la-Grand, Ambilly est à <strong>2 km, soit 5 à 8 minutes</strong>&nbsp;:</p>
+<p>• <strong>Centre et Eaux-Vives</strong>&nbsp;: 5 minutes par l'avenue de la Libération.<br />
+• <strong>Mélézins</strong>&nbsp;: 7 minutes par l'avenue Jules-Ferry.<br />
+• <strong>Quartier de la Mairie / Piscine</strong>&nbsp;: 8 minutes.</p>
+<p>Cette proximité fait d'Ambilly l'une de nos zones les plus rapides à servir. Aucun frais kilométrique, possibilité d'intervention le jour même pour les urgences. Pour les déménagements <strong>Annemasse ↔ Ambilly</strong> (cas très fréquent vu la proximité), demi-journée suffit pour un T2-T3.</p>`,
+
+    faqEtendue: [
+      {
+        question: "L'ascenseur de mon immeuble Eaux-Vives est minuscule : comment vous gérez ça ?",
+        reponse:
+          "C'est notre quotidien à Ambilly. Pour les ascenseurs étroits (souvent 0,80 × 1,20 m dans le collectif ancien d'Ambilly-centre), nous démontons systématiquement le mobilier volumineux en pièces&nbsp;: lits, armoires, canapés convertibles, frigos américains. C'est plus long que par un ascenseur grand format, mais ça évite les dégâts. Nos manutentionnaires sont formés au démontage IKEA, Conforama, BUT et marques équivalentes.",
+      },
+      {
+        question: "Travaillez-vous le jeudi à Ambilly malgré le marché ?",
+        reponse:
+          "Pour les rues adjacentes au marché de la place de la Mairie, non avant 14h&nbsp;: la circulation et le stationnement sont totalement bloqués. Pour les autres quartiers (Mélézins, Eaux-Vives côté piscine), oui sans restriction. Nous le signalons dès l'estimation pour ne pas créer de mauvaise surprise.",
+      },
+      {
+        question: "Faites-vous des déménagements Ambilly → Annemasse ou inversement souvent ?",
+        reponse:
+          "Très souvent. C'est même l'un de nos trajets les plus fréquents&nbsp;: changements d'appartement à 1-2 km de distance, jeunes couples qui quittent leur premier T2 d'Ambilly pour un T3 à Annemasse-Chablais-Parc, etc. Pour ces trajets très courts, demi-journée suffit, et nous appliquons souvent une remise (-10 à -15%) car le déplacement camion est négligeable.",
+      },
+      {
+        question: 'Les résidences Mélézins sont-elles compatibles avec vos camions 30 m³ ?',
+        reponse:
+          "Oui sans problème. Les Mélézins sont parmi les résidences les plus récentes du bassin annemassien&nbsp;: voirie large, parkings d'accès dédiés pour les déménagements, ascenseurs grand format. C'est l'idéal pour une intervention rapide. Aucune contrainte particulière à anticiper.",
       },
     ],
   },

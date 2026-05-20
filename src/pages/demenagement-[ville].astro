@@ -50,7 +50,46 @@ const serviceSchema = {
   },
 };
 
-const faqSchema = makeFAQPage(city.faq as Array<{ question: string; reponse: string }>);
+// Schema LocalBusiness ciblé par ville : signal SERP local + Maps
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'MovingCompany',
+  '@id': `${pageURL}#localbusiness`,
+  name: `Torres Transport · Déménageur ${city.nom}`,
+  description: city.metaDescription,
+  url: pageURL,
+  telephone: COMPANY.phone.tel.replace('tel:', ''),
+  email: COMPANY.email.contact,
+  image: `${SITE_URL}${city.bannier}`,
+  priceRange: '€€',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: COMPANY.address.street,
+    addressLocality: COMPANY.address.locality,
+    postalCode: COMPANY.address.postalCode,
+    addressRegion: COMPANY.address.region,
+    addressCountry: 'FR',
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: city.geo.lat, longitude: city.geo.lng },
+  areaServed: {
+    '@type': 'City',
+    name: city.nom,
+    containedInPlace: { '@type': 'AdministrativeArea', name: city.departement },
+  },
+  serviceArea: {
+    '@type': 'GeoCircle',
+    geoMidpoint: { '@type': 'GeoCoordinates', latitude: city.geo.lat, longitude: city.geo.lng },
+    geoRadius: '15000',
+  },
+};
+
+// FAQ étendue = faq de base + faqEtendue si présente (palier 1+)
+const fullFaq = [
+  ...city.faq,
+  ...((city as any).faqEtendue || []),
+] as Array<{ question: string; reponse: string }>;
+
+const faqSchema = makeFAQPage(fullFaq);
 
 const breadcrumbSchema = makeBreadcrumb([
   { name: 'Accueil', item: '/' },
@@ -64,7 +103,7 @@ const breadcrumbSchema = makeBreadcrumb([
   description={city.metaDescription}
   keywords={city.keywords}
   ogImage={city.bannier}
-  structuredData={[serviceSchema, faqSchema, breadcrumbSchema]}
+  structuredData={[localBusinessSchema, serviceSchema, faqSchema, breadcrumbSchema]}
 >
   <!-- ==================== HERO ==================== -->
   <section class="ville-hero" style={`background-image: url('${city.bannier}')`}>
@@ -114,6 +153,34 @@ const breadcrumbSchema = makeBreadcrumb([
       </div>
     </div>
   </section>
+
+  {/* SECTION HISTOIRE / IDENTITÉ — affichée si le champ existe (palier 1+) */}
+  {(city as any).histoire && (
+    <section class="section bg-cream histoire-section">
+      <div class="container">
+        <div class="histoire-grid">
+          <div class="histoire-eyebrow">
+            <span class="eyebrow gold">{city.nom} en bref</span>
+            <hr class="divider divider-gold" />
+          </div>
+          <div class="histoire-text" set:html={(city as any).histoire}></div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  {/* SECTION SPÉCIFICITÉS LOGISTIQUES (palier 1+) */}
+  {(city as any).specificitesLogistiques && (
+    <section class="section specifs-section">
+      <div class="container">
+        <header class="section-header">
+          <span class="eyebrow gold">Sur le terrain à {city.nom}</span>
+          <h2>Les particularités que<br /><em>nous connaissons par cœur.</em></h2>
+        </header>
+        <div class="specifs-text" set:html={(city as any).specificitesLogistiques}></div>
+      </div>
+    </section>
+  )}
 
   <!-- ==================== POURQUOI NOUS ==================== -->
   <section class="section bg-cream">
@@ -210,6 +277,48 @@ const breadcrumbSchema = makeBreadcrumb([
     </div>
   </section>
 
+  {/* SECTION MARCHÉ IMMOBILIER LOCAL (palier 1+) */}
+  {(city as any).marcheImmobilier && (
+    <section class="section marche-section">
+      <div class="container">
+        <div class="marche-grid">
+          <header class="marche-header">
+            <span class="eyebrow gold">Marché local</span>
+            <h2>Quel parc immobilier<br /><em>à {city.nom}&nbsp;?</em></h2>
+          </header>
+          <div class="marche-text" set:html={(city as any).marcheImmobilier}></div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  {/* SECTION ITINÉRAIRE ET TEMPS D'INTERVENTION (palier 1+) */}
+  {(city as any).accesItineraire && (
+    <section class="section bg-cream acces-section">
+      <div class="container">
+        <header class="section-header">
+          <span class="eyebrow gold">Itinéraire & délai</span>
+          <h2>Comment nous venons<br /><em>jusqu'à {city.nom}.</em></h2>
+        </header>
+        <div class="acces-text" set:html={(city as any).accesItineraire}></div>
+      </div>
+    </section>
+  )}
+
+  {/* SECTION CAS CONCRET (anecdote terrain Ludovic) */}
+  {(city as any).casConcret && (
+    <section class="section cas-section">
+      <div class="container container-narrow">
+        <header class="cas-header">
+          <span class="eyebrow gold">Retour terrain</span>
+          <h2>{(city as any).casConcret.titre}</h2>
+        </header>
+        <blockquote class="cas-quote" set:html={(city as any).casConcret.texte}></blockquote>
+        <p class="cas-author">— Ludovic Torres, fondateur de Torres Transport</p>
+      </div>
+    </section>
+  )}
+
   <!-- ==================== SERVICES À LA VILLE ==================== -->
   <section class="section services-locale">
     <div class="container">
@@ -237,7 +346,7 @@ const breadcrumbSchema = makeBreadcrumb([
       </header>
 
       <div class="faq-list">
-        {city.faq.map((item: { question: string; reponse: string }, idx: number) => (
+        {fullFaq.map((item: { question: string; reponse: string }, idx: number) => (
           <details class="faq-item" open={idx === 0}>
             <summary>
               <span>{item.question}</span>
@@ -871,5 +980,95 @@ const breadcrumbSchema = makeBreadcrumb([
     .quartiers-grid { grid-template-columns: 1fr; }
     .voisines-grid { grid-template-columns: 1fr; }
     .hero-meta { gap: 0.5rem 1.5rem; }
+  }
+
+  /* ==================== SECTIONS PALIER 1 (contenu unique villes) ==================== */
+  .histoire-section { padding: clamp(3rem, 6vw, 5rem) 0; }
+  .histoire-grid {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: start;
+  }
+  .histoire-text :global(p) {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--gray-800);
+    margin: 0 0 1.25rem;
+  }
+  .histoire-text :global(p:last-child) { margin-bottom: 0; }
+  .histoire-text :global(strong) { color: var(--black); font-weight: 600; }
+
+  .specifs-section { padding: clamp(3rem, 6vw, 5rem) 0; }
+  .specifs-text {
+    max-width: 880px;
+    font-size: 1.02rem;
+    line-height: 1.75;
+    color: var(--gray-800);
+  }
+  .specifs-text :global(p) { margin: 0 0 1.25rem; }
+  .specifs-text :global(p:last-child) { margin-bottom: 0; }
+  .specifs-text :global(strong) { color: var(--black); font-weight: 600; }
+  .specifs-text :global(ul) { padding-left: 1.25rem; margin: 1rem 0 1.5rem; }
+  .specifs-text :global(li) { margin-bottom: 0.5rem; line-height: 1.7; }
+
+  .marche-section { padding: clamp(3rem, 6vw, 5rem) 0; }
+  .marche-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: start;
+  }
+  .marche-text {
+    font-size: 1.02rem;
+    line-height: 1.75;
+    color: var(--gray-800);
+  }
+  .marche-text :global(p) { margin: 0 0 1.25rem; }
+  .marche-text :global(p:last-child) { margin-bottom: 0; }
+  .marche-text :global(strong) { color: var(--black); font-weight: 600; }
+
+  .acces-section { padding: clamp(3rem, 6vw, 5rem) 0; }
+  .acces-text {
+    max-width: 880px;
+    font-size: 1.02rem;
+    line-height: 1.75;
+    color: var(--gray-800);
+  }
+  .acces-text :global(p) { margin: 0 0 1.25rem; }
+  .acces-text :global(p:last-child) { margin-bottom: 0; }
+  .acces-text :global(strong) { color: var(--black); font-weight: 600; }
+
+  .cas-section { padding: clamp(3rem, 6vw, 5rem) 0; }
+  .cas-header { text-align: center; margin-bottom: 2rem; }
+  .cas-header h2 {
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    line-height: 1.2;
+    margin: 1rem 0 0;
+  }
+  .cas-quote {
+    background: var(--off-white, #f7f4ee);
+    border-left: 4px solid var(--gold-deep);
+    padding: 1.75rem 2rem;
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--gray-800);
+    margin: 0 0 1.25rem;
+    font-style: italic;
+  }
+  .cas-quote :global(p) { margin: 0 0 0.75rem; }
+  .cas-quote :global(p:last-child) { margin-bottom: 0; }
+  .cas-author {
+    text-align: right;
+    font-size: 0.92rem;
+    color: var(--gray-600, #6b7280);
+    margin: 0;
+    font-style: normal;
+  }
+
+  @media (max-width: 768px) {
+    .histoire-grid,
+    .marche-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .cas-quote { padding: 1.25rem 1.25rem; font-size: 1rem; }
   }
 </style>
