@@ -476,7 +476,12 @@ const breadcrumbSchema = makeBreadcrumb([
     gap: 1.25rem;
   }
 
-  .form-group { display: flex; flex-direction: column; }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    /* Indispensable pour que les enfants (input date) puissent shrink en grid */
+    min-width: 0;
+  }
 
   .form-group-half { max-width: 50%; }
 
@@ -497,6 +502,24 @@ const breadcrumbSchema = makeBreadcrumb([
     padding: 0.95rem 1rem;
     font-size: 0.95rem;
     transition: border-color 0.2s;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  /* Fix iOS/Android : input[type=date] a une min-width intrinsèque basée sur
+     le format "jj/mm/aaaa" + un appearance natif qui déborde du container.
+     On reset l'apparence pour qu'il respecte la largeur du parent. */
+  .contact-form input[type="date"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    font-family: inherit;
+    display: block;
+  }
+  /* Centrer verticalement le texte de la valeur (iOS) */
+  .contact-form input[type="date"]::-webkit-date-and-time-value {
+    text-align: left;
   }
 
   .contact-form input:focus,

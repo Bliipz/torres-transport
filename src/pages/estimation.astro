@@ -406,6 +406,15 @@ const services = [
                   <a href="/mentions-legales" target="_blank" rel="noopener">Politique de confidentialité</a> *
                 </span>
               </label>
+
+              <!-- Bouton mobile-only : visible sous le RGPD pour UX naturelle.
+                   Sur desktop, le bouton du résumé sticky (aside) est utilisé. -->
+              <div class="mobile-submit-block">
+                <button type="submit" class="btn-submit btn-submit-mobile">
+                  <span class="btn-label">Envoyer ma demande</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </button>
+              </div>
             </fieldset>
           </div>
 
@@ -735,9 +744,11 @@ const services = [
     }
 
     function setLoading(loading) {
-      if (!submitBtn) return;
-      submitBtn.disabled = loading;
-      submitBtn.classList.toggle('is-loading', loading);
+      // Gère les 2 boutons "Envoyer" (desktop dans l'aside + mobile sous le RGPD)
+      document.querySelectorAll('.btn-submit').forEach((btn) => {
+        btn.disabled = loading;
+        btn.classList.toggle('is-loading', loading);
+      });
     }
 
     // Services qui exigent une adresse de départ / arrivée
@@ -1609,11 +1620,21 @@ const services = [
   .info-card h3 { font-size: 1.25rem; font-weight: 500; }
   .info-card p { font-size: 0.92rem; line-height: 1.7; color: var(--gray-700); }
 
+  /* Bouton mobile-only positionné après le RGPD (visible <=1024px uniquement) */
+  .mobile-submit-block { display: none; }
+
   /* RESPONSIVE */
   @media (max-width: 1024px) {
     .estim-grid { grid-template-columns: 1fr; gap: 2rem; }
     .estim-result { position: static; order: -1; }
     .info-grid { grid-template-columns: 1fr; gap: 2rem; }
+
+    /* Sur mobile : le résumé prix reste en haut (order: -1) MAIS le bouton
+       "Envoyer" sort du résumé et se positionne sous le RGPD pour respecter
+       l'UX naturelle (remplir → accepter RGPD → envoyer). */
+    .mobile-submit-block { display: block; margin-top: 1.5rem; }
+    .mobile-submit-block .btn-submit-mobile { width: 100%; }
+    .estim-result .btn-submit { display: none; }
   }
   @media (max-width: 600px) {
     .service-picker { grid-template-columns: 1fr; }
