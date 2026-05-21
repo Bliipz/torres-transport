@@ -21,7 +21,10 @@ export default defineConfig({
     inlineStylesheets: 'always',
   },
   adapter: vercel({
-    webAnalytics: { enabled: true },
+    // Vercel Web Analytics désactivé : on utilise GA4 via GTM.
+    // Activé sans le package @vercel/analytics, ça génère un 404 sur
+    // /_vercel/insights/script.js et un warning CSP côté client.
+    webAnalytics: { enabled: false },
   }),
   integrations: [
     sitemap({
