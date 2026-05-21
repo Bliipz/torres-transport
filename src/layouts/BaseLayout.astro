@@ -5,10 +5,12 @@ import reviewsData from "../data/google-reviews.json";
 import { COMPANY } from "../data/company";
 import "../styles/global.css";
 
-// Google Analytics 4 : Measurement ID injecté via env var PUBLIC_GA4_ID
+// Google Tag Manager : container ID injecté via env var PUBLIC_GTM_ID
 // (à définir dans Vercel → Settings → Environment Variables).
-// Si non défini, GA4 ne charge pas — pratique pour les déploiements preview.
-const GA4_ID = import.meta.env.PUBLIC_GA4_ID;
+// Format attendu : GTM-XXXXXXX. Si non défini, GTM ne charge pas
+// (pratique pour les déploiements preview ou le dev local).
+// GTM hébergera GA4 + futurs tags (Meta Pixel, etc.) configurés via son UI.
+const GTM_ID = import.meta.env.PUBLIC_GTM_ID;
 
 // ==================== SEO PROPS ====================
 const SITE_URL = COMPANY.url;
@@ -629,14 +631,17 @@ const extraSchemas = structuredData
       }
     </style>
 
-    {/* GA4 + Consent Mode v2 — Default = denied, mis à jour au choix dans CookieBanner */}
-    {GA4_ID && (
+    {/* Google Tag Manager + Consent Mode v2 — Default = denied, mis à jour
+        au choix dans CookieBanner. Le tag GA4 et autres tags sont configurés
+        dans l'interface GTM (pas dans le code). */}
+    {GTM_ID && (
       <>
         <script is:inline set:html={`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           window.gtag = gtag;
-          // Consent Mode v2 : tout refusé par défaut (RGPD)
+          // Consent Mode v2 : tout refusé par défaut (RGPD).
+          // Doit être déclaré AVANT le chargement de GTM pour être pris en compte.
           gtag('consent', 'default', {
             'ad_storage': 'denied',
             'ad_user_data': 'denied',
@@ -644,19 +649,24 @@ const extraSchemas = structuredData
             'analytics_storage': 'denied',
             'wait_for_update': 500
           });
-          gtag('js', new Date());
-          gtag('config', '${GA4_ID}', {
-            anonymize_ip: true,
-            allow_google_signals: false,
-            allow_ad_personalization_signals: false
-          });
         `} />
-        <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`}></script>
+        <script is:inline set:html={`
+          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','${GTM_ID}');
+        `} />
       </>
     )}
   </head>
 
   <body>
+    {/* GTM noscript fallback (utilisateurs sans JS — rare mais accessibilité) */}
+    {GTM_ID && (
+      <noscript set:html={`<iframe src="https://www.googletagmanager.com/ns.html?id=${GTM_ID}" height="0" width="0" style="display:none;visibility:hidden"></iframe>`} />
+    )}
+
     <!-- Skip-link accessibilité -->
     <a href="#main-content" class="skip-link">Aller au contenu principal</a>
 
@@ -748,8 +758,8 @@ const extraSchemas = structuredData
 
     <Footer />
 
-    {/* Bannière cookies RGPD — affichée uniquement si GA4 est configuré */}
-    {GA4_ID && <CookieBanner />}
+    {/* Bannière cookies RGPD — affichée uniquement si GTM est configuré */}
+    {GTM_ID && <CookieBanner />}
 
     <script is:inline>
       (function () {
