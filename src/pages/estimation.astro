@@ -575,6 +575,19 @@ const services = [
     const form = document.getElementById('estimForm');
     if (!form) return;
 
+    // GA4 : tracker estimation_started UNE seule fois à la première interaction utilisateur.
+    // Sert à mesurer le taux d'abandon (started vs completed).
+    let estimationStartTracked = false;
+    function trackEstimationStarted() {
+      if (estimationStartTracked) return;
+      estimationStartTracked = true;
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'estimation_started', { page_path: location.pathname });
+      }
+    }
+    form.addEventListener('change', trackEstimationStarted, { once: false });
+    form.addEventListener('input', trackEstimationStarted, { once: false });
+
     const $ = (id) => document.getElementById(id);
     const volume = $('volume');
     const volumeValue = $('volumeValue');
@@ -830,6 +843,14 @@ const services = [
         const data = await response.json();
 
         if (response.ok && data.ok) {
+          // GA4 : conversion estimation_completed (devis envoyé depuis l'estimateur)
+          if (typeof window.gtag === 'function') {
+            window.gtag('event', 'estimation_completed', {
+              service: current || 'unknown',
+              estimated_price: priceTotal?.textContent || null,
+              page_path: location.pathname,
+            });
+          }
           showFeedback('success',
             '<strong>Demande envoyée.</strong><br>' +
             'Merci, nous vous recontactons sous 24&nbsp;h au numéro indiqué.'

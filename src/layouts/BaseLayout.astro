@@ -1,8 +1,14 @@
 ---
 import Footer from "../components/Footer.astro";
+import CookieBanner from "../components/CookieBanner.astro";
 import reviewsData from "../data/google-reviews.json";
 import { COMPANY } from "../data/company";
 import "../styles/global.css";
+
+// Google Analytics 4 : Measurement ID injecté via env var PUBLIC_GA4_ID
+// (à définir dans Vercel → Settings → Environment Variables).
+// Si non défini, GA4 ne charge pas — pratique pour les déploiements preview.
+const GA4_ID = import.meta.env.PUBLIC_GA4_ID;
 
 // ==================== SEO PROPS ====================
 const SITE_URL = COMPANY.url;
@@ -622,6 +628,32 @@ const extraSchemas = structuredData
         outline-offset: 2px;
       }
     </style>
+
+    {/* GA4 + Consent Mode v2 — Default = denied, mis à jour au choix dans CookieBanner */}
+    {GA4_ID && (
+      <>
+        <script is:inline set:html={`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          window.gtag = gtag;
+          // Consent Mode v2 : tout refusé par défaut (RGPD)
+          gtag('consent', 'default', {
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied',
+            'analytics_storage': 'denied',
+            'wait_for_update': 500
+          });
+          gtag('js', new Date());
+          gtag('config', '${GA4_ID}', {
+            anonymize_ip: true,
+            allow_google_signals: false,
+            allow_ad_personalization_signals: false
+          });
+        `} />
+        <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`}></script>
+      </>
+    )}
   </head>
 
   <body>
@@ -716,6 +748,9 @@ const extraSchemas = structuredData
 
     <Footer />
 
+    {/* Bannière cookies RGPD — affichée uniquement si GA4 est configuré */}
+    {GA4_ID && <CookieBanner />}
+
     <script is:inline>
       (function () {
         const burger = document.getElementById('navBurger');
@@ -751,6 +786,48 @@ const extraSchemas = structuredData
         window.addEventListener('resize', () => {
           if (window.innerWidth > 1024 && menu.classList.contains('is-open')) {
             toggleMenu(false);
+          }
+        });
+      })();
+    </script>
+
+    {/* Tracking GA4 global : clic téléphone + WhatsApp via délégation event.
+        Marche partout (navbar, footer, hero, CTA), sans toucher chaque composant. */}
+    <script is:inline>
+      (function () {
+        function track(eventName, params) {
+          if (typeof window.gtag === 'function') {
+            window.gtag('event', eventName, params || {});
+          }
+        }
+
+        document.addEventListener('click', function (e) {
+          const link = e.target.closest && e.target.closest('a[href]');
+          if (!link) return;
+          const href = link.getAttribute('href') || '';
+
+          // Clic téléphone (tel: ou tel://) → event phone_click
+          if (href.startsWith('tel:')) {
+            track('phone_click', {
+              phone_number: href.replace('tel:', ''),
+              link_location: link.closest('nav,footer,section')?.getAttribute('class')?.split(' ')[0] || 'unknown',
+              page_path: location.pathname,
+            });
+            return;
+          }
+
+          // Clic WhatsApp → event whatsapp_click
+          if (href.includes('wa.me/') || href.includes('whatsapp.com')) {
+            track('whatsapp_click', {
+              link_location: link.closest('nav,footer,section')?.getAttribute('class')?.split(' ')[0] || 'unknown',
+              page_path: location.pathname,
+            });
+            return;
+          }
+
+          // Clic email mailto → event email_click
+          if (href.startsWith('mailto:')) {
+            track('email_click', { page_path: location.pathname });
           }
         });
       })();

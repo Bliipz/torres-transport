@@ -81,15 +81,34 @@ const sections = [
     num: "06",
     titre: "Cookies, traceurs &amp; mesure d'audience",
     content: `
-      <p>
-        Ce site <strong>n'utilise aucun cookie publicitaire</strong> et <strong>aucun cookie de traçage tiers</strong>.
+      <p id="cookies">
+        Ce site <strong>n'utilise aucun cookie publicitaire</strong> et <strong>aucun cookie de marketing tiers</strong>.
       </p>
       <p>
-        <strong>Mesure d'audience anonyme :</strong> nous utilisons Vercel Web Analytics
-        pour comptabiliser les visites de manière anonyme (sans cookies ni stockage local).
-        Aucune donnée personnelle identifiable n'est collectée. Cet outil entre dans le cadre
-        de l'exemption de consentement définie par la CNIL pour les outils de mesure d'audience
-        anonymes (délibération n° 2020-091).
+        <strong>Mesure d'audience (Google Analytics 4) :</strong> nous utilisons Google Analytics 4
+        pour mesurer la fréquentation du site, comprendre les pages les plus consultées et améliorer
+        l'expérience utilisateur. GA4 dépose un cookie persistant (durée maximale 13 mois) qui permet
+        de distinguer les visiteurs uniques.
+      </p>
+      <p>
+        <strong>Consentement et anonymisation :</strong> conformément au RGPD et à la délibération
+        CNIL n° 2020-091, GA4 est configuré sur ce site avec
+        <strong>Consent Mode v2 (refus par défaut)</strong> et <strong>anonymisation IP activée</strong>.
+        Aucune donnée n'est collectée sans votre acceptation explicite via la bannière d'information
+        affichée à votre première visite. Vous pouvez à tout moment révoquer votre choix en
+        effaçant le cookie « tt-consent » de votre navigateur, et la bannière se ré-affichera.
+      </p>
+      <p>
+        <strong>Données collectées (uniquement après acceptation) :</strong> pages vues, durée de session,
+        source de trafic (Google, GMB, direct, etc.), événements d'interaction (clics téléphone, WhatsApp,
+        envois de formulaires de devis), type d'appareil et navigateur, ville approximative (au niveau
+        régional, via IP anonymisée). <strong>Aucune donnée nominative</strong> (nom, email, téléphone)
+        n'est transmise à Google Analytics.
+      </p>
+      <p>
+        <strong>Conservation :</strong> les données sont conservées 14 mois par Google, puis automatiquement
+        supprimées. Vous pouvez exercer vos droits d'accès, de rectification et d'effacement en
+        contactant ${'contact@torrestransport.fr'.replace('@', '<span aria-hidden="true">&#64;</span>')}.
       </p>
       <p>
         <strong>Cartographie :</strong> la page « Zones d'intervention » affiche une carte interactive

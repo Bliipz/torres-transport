@@ -1,0 +1,229 @@
+---
+/**
+ * Bannière cookies RGPD pour Torres Transport.
+ *
+ * Fonctionnement :
+ *  - Au premier chargement : Consent Mode v2 est configuré en "denied" par défaut
+ *    dans BaseLayout (AVANT chargement de gtag), donc GA4 ne pose aucun cookie.
+ *  - La bannière s'affiche tant que l'utilisateur n'a pas fait son choix
+ *    (stocké dans localStorage sous la clé "tt-consent").
+ *  - Clic "Accepter" → gtag('consent','update',{analytics_storage:'granted'})
+ *    et GA4 commence à tracker.
+ *  - Clic "Refuser" → on garde "denied", GA4 reste en mode anonyme (pings
+ *    sans cookies, pas de données individuelles).
+ *  - Choix persistant : pas de rebanner aux visites suivantes.
+ */
+---
+
+<aside
+  id="cookie-banner"
+  class="cookie-banner"
+  role="dialog"
+  aria-labelledby="cookie-title"
+  aria-describedby="cookie-desc"
+  hidden
+>
+  <div class="cookie-banner-inner">
+    <div class="cookie-banner-text">
+      <p id="cookie-title" class="cookie-banner-title">
+        Cookies&nbsp;: votre choix
+      </p>
+      <p id="cookie-desc" class="cookie-banner-desc">
+        Nous utilisons des cookies pour mesurer l'audience du site et améliorer
+        votre expérience. Vos données restent anonymisées et ne sont jamais
+        revendues. <a href="/mentions-legales#cookies" class="cookie-link">En savoir plus</a>.
+      </p>
+    </div>
+    <div class="cookie-banner-actions">
+      <button type="button" class="cookie-btn cookie-btn-secondary" data-cookie-action="deny">
+        Refuser
+      </button>
+      <button type="button" class="cookie-btn cookie-btn-primary" data-cookie-action="accept">
+        Accepter
+      </button>
+    </div>
+  </div>
+</aside>
+
+<script is:inline>
+  (function () {
+    const STORAGE_KEY = 'tt-consent';
+    const banner = document.getElementById('cookie-banner');
+    if (!banner) return;
+
+    function getStored() {
+      try {
+        return localStorage.getItem(STORAGE_KEY);
+      } catch (_) {
+        return null;
+      }
+    }
+
+    function setStored(value) {
+      try {
+        localStorage.setItem(STORAGE_KEY, value);
+      } catch (_) {}
+    }
+
+    function applyConsent(granted) {
+      // Met à jour Consent Mode v2 (chargé via BaseLayout)
+      if (typeof window.gtag === 'function') {
+        window.gtag('consent', 'update', {
+          analytics_storage: granted ? 'granted' : 'denied',
+          ad_storage: 'denied', // Pas de pub/marketing, donc on garde denied
+          ad_user_data: 'denied',
+          ad_personalization: 'denied',
+        });
+      }
+      // Émet un event window pour que d'autres scripts puissent réagir
+      window.dispatchEvent(new CustomEvent('tt-consent-change', { detail: { granted } }));
+    }
+
+    function hideBanner() {
+      banner.hidden = true;
+      banner.classList.remove('is-visible');
+    }
+
+    function showBanner() {
+      banner.hidden = false;
+      // Petit délai pour permettre l'animation slide-up
+      requestAnimationFrame(() => banner.classList.add('is-visible'));
+    }
+
+    // Au chargement : si pas de choix stocké → afficher la bannière
+    const stored = getStored();
+    if (stored === 'granted') {
+      applyConsent(true);
+    } else if (stored === 'denied') {
+      applyConsent(false);
+    } else {
+      // Premier passage : on attend ~600ms avant d'afficher pour ne pas
+      // gêner immédiatement la lecture du hero
+      setTimeout(showBanner, 600);
+    }
+
+    // Wiring des boutons
+    banner.querySelectorAll('[data-cookie-action]').forEach((btn) => {
+      btn.addEventListener('click', function () {
+        const action = btn.getAttribute('data-cookie-action');
+        const granted = action === 'accept';
+        setStored(granted ? 'granted' : 'denied');
+        applyConsent(granted);
+        hideBanner();
+      });
+    });
+  })();
+</script>
+
+<style>
+  .cookie-banner {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    background: var(--black, #0a0a0a);
+    color: var(--cream, #f5f1ea);
+    border-top: 2px solid var(--gold-deep, #d4b94a);
+    box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.18);
+    transform: translateY(100%);
+    transition: transform 0.35s ease;
+  }
+
+  .cookie-banner.is-visible {
+    transform: translateY(0);
+  }
+
+  .cookie-banner-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.1rem 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .cookie-banner-text {
+    min-width: 0;
+  }
+
+  .cookie-banner-title {
+    margin: 0 0 0.25rem;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gold-light, #f5de7e);
+    letter-spacing: -0.01em;
+  }
+
+  .cookie-banner-desc {
+    margin: 0;
+    font-size: 0.85rem;
+    line-height: 1.55;
+    color: rgba(245, 241, 234, 0.85);
+  }
+
+  .cookie-link {
+    color: var(--gold-light, #f5de7e);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .cookie-link:hover {
+    color: var(--gold-deep, #d4b94a);
+  }
+
+  .cookie-banner-actions {
+    display: flex;
+    gap: 0.7rem;
+    flex-shrink: 0;
+  }
+
+  .cookie-btn {
+    padding: 0.65rem 1.2rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    border: 1px solid transparent;
+    cursor: pointer;
+    font-family: inherit;
+    white-space: nowrap;
+    transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+  }
+
+  .cookie-btn-secondary {
+    background: transparent;
+    color: rgba(245, 241, 234, 0.9);
+    border-color: rgba(245, 241, 234, 0.3);
+  }
+  .cookie-btn-secondary:hover {
+    border-color: rgba(245, 241, 234, 0.6);
+    color: var(--cream, #f5f1ea);
+  }
+
+  .cookie-btn-primary {
+    background: var(--gold-deep, #d4b94a);
+    color: var(--black, #0a0a0a);
+    border-color: var(--gold-deep, #d4b94a);
+  }
+  .cookie-btn-primary:hover {
+    background: var(--gold-light, #f5de7e);
+    border-color: var(--gold-light, #f5de7e);
+  }
+
+  @media (max-width: 768px) {
+    .cookie-banner-inner {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      padding: 1rem 1rem 1.1rem;
+    }
+    .cookie-banner-actions {
+      width: 100%;
+      justify-content: stretch;
+    }
+    .cookie-btn {
+      flex: 1;
+      padding: 0.8rem 1rem;
+    }
+  }
+</style>

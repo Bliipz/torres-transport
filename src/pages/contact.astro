@@ -282,6 +282,14 @@ const breadcrumbSchema = makeBreadcrumb([
           const data = await response.json();
 
           if (response.ok && data.ok) {
+            // GA4 : conversion form_submit (envoi devis depuis /contact)
+            if (typeof window.gtag === 'function') {
+              window.gtag('event', 'form_submit', {
+                form_id: 'contact',
+                service: formData.get('service') || 'unknown',
+                page_path: location.pathname,
+              });
+            }
             showFeedback(
               'success',
               '<strong>Demande envoyée.</strong><br>' +
