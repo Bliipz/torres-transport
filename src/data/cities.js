@@ -1665,6 +1665,54 @@ export const cities = {
           "Oui, si un autre client du secteur Bas-Chablais (Douvaine, Sciez, Anthy) déménage à une date proche, nous proposons le groupage : économie pouvant atteindre −10% sur chaque devis. À demander lors du devis.",
       },
     ],
+
+    // -------- ENRICHISSEMENTS (contenu SEO unique, pour fix non-indexation GSC) --------
+    histoire: `<p>Bons-en-Chablais occupe une <strong>position stratégique</strong> dans le département : au croisement de la D903 (Annemasse-Thonon-Évian) et de la D907 (qui descend du Chablais vers le lac), la commune a longtemps été un <strong>relais routier et commercial</strong> du Bas-Chablais. Le nom de la commune date du Moyen Âge ; certaines fermes du hameau de Brécorens remontent au 17ème siècle.</p>
+<p>Avec ses <strong>7 000 habitants</strong>, Bons est aujourd'hui en pleine mutation démographique : à la population agricole et artisanale historique s'ajoutent depuis dix ans des <strong>nouvelles familles</strong> attirées par le cadre village, le calme et la proximité immédiate avec les axes routiers menant à Genève (40 min via A40), Annemasse (20 min) ou Thonon (15 min).</p>
+<p>Pour Torres Transport, intervenir à Bons-en-Chablais signifie surtout traiter des <strong>déménagements de jeunes familles</strong> quittant les T3 d'Annemasse pour leur premier pavillon, et des <strong>retraités qui s'installent</strong> définitivement après avoir possédé une résidence secondaire dans le coin pendant des années.</p>`,
+
+    marcheImmobilier: `<p>Le parc immobilier de Bons-en-Chablais est <strong>nettement dominé par le pavillonnaire</strong> (~75% des biens) :</p>
+<p><strong>1. Lotissements récents (Le Vernay, Chez Cudrey, Chez Brun)</strong> : constructions 2000-2025, terrains 400-800 m², volumes domestiques typiques entre <strong>30 et 45 m³</strong>. Accès véhicule excellent, aucune contrainte. Tarif Torres pour une maison standard : à partir de 1 820 €.</p>
+<p><strong>2. Centre village (Le Tonkin, autour de l'église)</strong> : maisons anciennes en pierre, souvent rénovées, parfois sur des parcelles plus modestes. Rues parfois étroites au cœur du village. Volumes plus variables (20-40 m³ selon l'état).</p>
+<p><strong>3. Hameaux d'altitude et isolés (Brécorens, Brens, La Cave)</strong> : <strong>fermes anciennes</strong> et maisons savoyardes traditionnelles, accessibles par des chemins parfois étroits, terrains agricoles importants. Réservés à des profils acheteurs spécifiques (artisans, agriculteurs, retraités).</p>
+<p><strong>4. Quelques petits collectifs récents</strong> autour du centre, mais en minorité. Profil locataire : jeunes actifs, primo-accédants.</p>`,
+
+    specificitesLogistiques: `<p>Bons-en-Chablais cumule plusieurs particularités qu'il faut anticiper :</p>
+<p><strong>1. Le trafic D903 vers Thonon.</strong> L'axe principal qui traverse la commune (D903) est saturé matin (7h-9h vers Thonon/Évian) et soir (17h-19h dans l'autre sens). Pour nos interventions, nous évitons ces créneaux et privilégions le milieu de journée (10h-16h) pour gagner 20-30 minutes sur les trajets aller-retour.</p>
+<p><strong>2. Les ralentisseurs du centre village.</strong> La route principale qui traverse le centre comporte plusieurs ralentisseurs prononcés (mesure récente de la mairie pour limiter la vitesse). Avec un camion chargé, descente obligatoire à 15 km/h, ce qui ajoute du temps sur les passages multiples.</p>
+<p><strong>3. Les chemins étroits des hameaux.</strong> Pour Brécorens, Brens et La Cave, les routes d'accès sont parfois à voie unique avec quelques passages exigeants. Nos camions de 30 m³ <strong>peuvent ne pas passer</strong> selon l'adresse — visite technique gratuite indispensable pour valider l'accès.</p>
+<p><strong>4. La distance depuis notre base (18 km, 25 min).</strong> Contrairement aux communes du bassin annemassien (2-5 km), un déménagement à Bons demande de planifier les rotations. Pour les maisons (40+ m³), nous prévoyons un seul gros camion plutôt que des navettes.</p>`,
+
+    accesItineraire: `<p>Depuis notre base de Ville-la-Grand, l'accès à Bons-en-Chablais se fait par <strong>la D903 (axe Annemasse-Thonon)</strong> :</p>
+<p>• Trajet 18 km, durée moyenne <strong>22 minutes</strong> hors pointe, jusqu'à 35-40 minutes aux heures de pointe.<br />
+• Sortie par l'avenue de la Libération puis D903 direction Thonon.<br />
+• Pour le centre village : tourner à droite après l'église.<br />
+• Pour Le Vernay / Chez Cudrey : continuer 500m après le centre.<br />
+• Pour les hameaux (Brécorens, Brens) : routes annexes à anticiper, ajout de 5-10 minutes.</p>
+<p>Pour les déménagements à Bons-en-Chablais, nous recommandons <strong>3 à 4 semaines de délai</strong> hors saison, <strong>5-6 semaines</strong> en pleine saison (juin-septembre). Possibilité d'intervention sous 24-48h pour les urgences.</p>`,
+
+    faqEtendue: [
+      {
+        question: 'La D903 est-elle vraiment un problème pour nos déménagements ?',
+        reponse:
+          "Aux heures de pointe (7h-9h le matin, 17h-19h le soir), oui. La D903 entre Annemasse et Thonon peut ajouter 15-20 minutes à chaque trajet. Pour vos déménagements, nous programmons les interventions en milieu de journée (10h-16h) pour rester efficaces. C'est anticipé dans le devis.",
+      },
+      {
+        question: "Mon hameau d'altitude (Brécorens, Brens) est accessible uniquement par chemin étroit. Y arrivez-vous ?",
+        reponse:
+          "Oui, mais on adapte le véhicule. Pour ces hameaux, nous utilisons des camions de 12-15 m³ adaptés aux chemins ruraux étroits. Pour les gros volumes (40+ m³), navette possible : déchargement intermédiaire sur la place du hameau ou en bas de la côte, puis transbordement vers l'adresse finale. Visite technique gratuite obligatoire avant devis ferme.",
+      },
+      {
+        question: "Le groupage avec d'autres clients Bas-Chablais, c'est sérieux ?",
+        reponse:
+          "Oui, c'est une vraie économie. Si vous nous contactez et qu'un autre client de Douvaine, Sciez, Anthy ou Bons doit déménager dans la même semaine que vous, nous pouvons mutualiser le trajet et appliquer −10% sur les deux devis. Pas systématique (dépend du calendrier) mais à demander, ça nous incite à proposer si possible.",
+      },
+      {
+        question: "Pouvez-vous gérer mon mobilier de ferme (vieux meubles, gros volumes) ?",
+        reponse:
+          "Tout à fait. Beaucoup de maisons à Bons-en-Chablais contiennent des meubles anciens (armoires savoyardes, bahuts, tables de ferme). Notre équipe est habituée à manipuler ces pièces lourdes et parfois fragiles. Démontage soigné en pièces, protection couverture épaisse, transport sanglé. Si nécessaire, nous prévoyons 3-4 manutentionnaires plutôt que 2 pour les armoires de 200+ kg.",
+      },
+    ],
   },
 
   // ------------------------------------------------------------------

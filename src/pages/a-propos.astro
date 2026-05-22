@@ -73,6 +73,50 @@ const engagements = [
   "Équipe formée, soigneuse et ponctuelle",
   "Disponibilité 6 jours sur 7, du lundi au samedi",
 ];
+
+// Chiffres factuels — signal E-E-A-T fort pour Google
+const chiffres = [
+  {
+    valeur: `${COMPANY.stats.yearsOfExperience}+`,
+    unite: "années",
+    label: "d'expérience cumulée dans le transport et le déménagement",
+  },
+  {
+    valeur: COMPANY.pricing.perCubicMeterDisplay,
+    unite: "",
+    label: "le tarif unique au mètre cube, sans frais cachés",
+  },
+  {
+    valeur: "22",
+    unite: "villes",
+    label: "couvertes en Haute-Savoie avec une expertise terrain par zone",
+  },
+  {
+    valeur: "24 h",
+    unite: "",
+    label: "délai maximum pour vous transmettre un devis ferme",
+  },
+];
+
+// Certifications, garanties et conformité — autres signaux E-E-A-T
+const garanties = [
+  {
+    titre: "Inscription au Registre des Transporteurs",
+    description: "Torres Transport est officiellement enregistré auprès de la DREAL Auvergne-Rhône-Alpes. SIRET et licence transport vérifiables sur demande, gage de sérieux et de légalité.",
+  },
+  {
+    titre: "Assurance Responsabilité Civile Professionnelle",
+    description: "Tous nos chantiers sont couverts par une police RC Pro spécifique déménagement. En cas de dommage matériel, l'indemnisation est garantie selon les conditions du contrat.",
+  },
+  {
+    titre: "Conformité RGPD et facturation",
+    description: "Vos données personnelles ne sont jamais revendues ni partagées. Toutes nos factures respectent les obligations légales françaises (mentions, TVA, conservation).",
+  },
+  {
+    titre: "Équipe formée à la manutention",
+    description: "Chaque manutentionnaire de l'équipe est formé aux gestes et postures, à la protection du mobilier et au transport d'objets fragiles ou volumineux (piano, œuvres, électroménager).",
+  },
+];
 ---
 
 <BaseLayout
@@ -301,6 +345,66 @@ const engagements = [
           </p>
           <a href="/estimation" class="link-arrow">Tester le simulateur</a>
         </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHIFFRES CLÉS (signal E-E-A-T pour Google) -->
+  <section class="section about-stats bg-cream">
+    <div class="container container-narrow">
+      <header class="section-header text-center">
+        <span class="eyebrow gold">En chiffres</span>
+        <h2>L'expérience<br /><em>se mesure aussi.</em></h2>
+        <p class="lead">
+          Quelques repères concrets sur Torres Transport. Pas du marketing,
+          des faits vérifiables.
+        </p>
+      </header>
+
+      <div class="stats-grid">
+        {chiffres.map((c) => (
+          <article class="stat-card">
+            <div class="stat-value">
+              <span class="stat-num">{c.valeur}</span>
+              {c.unite && <span class="stat-unit">{c.unite}</span>}
+            </div>
+            <p class="stat-label">{c.label}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- GARANTIES & CERTIFICATIONS -->
+  <section class="section about-garanties">
+    <div class="container container-narrow">
+      <header class="section-header">
+        <span class="eyebrow gold">Garanties &amp; conformité</span>
+        <h2>Le sérieux,<br /><em>vérifiable sur pièces.</em></h2>
+        <p class="lead">
+          Confier ses meubles à un déménageur est un acte de confiance. Voici les
+          garanties légales et professionnelles qui encadrent notre activité.
+        </p>
+      </header>
+
+      <div class="garanties-list">
+        {garanties.map((g, idx) => (
+          <article class="garantie-item">
+            <span class="garantie-num">{String(idx + 1).padStart(2, '0')}</span>
+            <div class="garantie-content">
+              <h3>{g.titre}</h3>
+              <p>{g.description}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div class="garanties-footer">
+        <p>
+          <strong>SIRET&nbsp;:</strong> {COMPANY.legal.siret} · <strong>TVA intracom&nbsp;:</strong> {COMPANY.legal.vat}
+          <br />
+          Documents légaux disponibles sur simple demande à <a href={`mailto:${COMPANY.email.contact}`}>{COMPANY.email.contact}</a>.
+        </p>
       </div>
     </div>
   </section>
@@ -697,5 +801,108 @@ const engagements = [
     .value-num { font-size: 1.1rem; padding-top: 0; }
     .story-timeline { margin-left: 0.5rem; }
     .story-step { padding-left: 1.5rem; }
+  }
+
+  /* ==================== CHIFFRES CLÉS (E-E-A-T) ==================== */
+  .about-stats { padding: clamp(3rem, 6vw, 5rem) 0; }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .stat-card {
+    background: var(--white);
+    border: 1px solid var(--border-strong);
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+  .stat-value {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+  }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 4vw, 3.2rem);
+    font-weight: 600;
+    color: var(--gold-deep);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .stat-unit {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--gray-700);
+    font-weight: 500;
+  }
+  .stat-label {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--gray-700);
+    margin: 0;
+  }
+
+  /* ==================== GARANTIES & CERTIFICATIONS ==================== */
+  .about-garanties { padding: clamp(3rem, 6vw, 5rem) 0; }
+  .garanties-list {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .garantie-item {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 1.5rem;
+    align-items: start;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .garantie-item:last-child { border-bottom: 0; }
+  .garantie-num {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--gold-deep);
+    line-height: 1;
+    padding-top: 0.3rem;
+  }
+  .garantie-content h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin: 0 0 0.6rem;
+    color: var(--black);
+  }
+  .garantie-content p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--gray-700);
+    margin: 0;
+  }
+  .garanties-footer {
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--gray-700);
+    line-height: 1.7;
+  }
+  .garanties-footer a {
+    color: var(--black);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  @media (max-width: 768px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .stat-card { padding: 1.5rem 1rem; }
+  }
+  @media (max-width: 600px) {
+    .stats-grid { grid-template-columns: 1fr; }
+    .garantie-item { grid-template-columns: 1fr; gap: 0.5rem; }
   }
 </style>
