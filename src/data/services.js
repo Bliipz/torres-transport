@@ -117,39 +117,96 @@ export const servicesData = {
 
   "debarras": {
     titre: "Service Débarras",
-    seoTitle: "Débarras appartement Annemasse · Caves, greniers, maisons | Torres Transport",
-    seoDescription: "Débarras d'appartement à Annemasse et en Haute-Savoie : caves, greniers, garages, maisons. Tri sur place, partenariats associations, écologique (60-75% don/recyclage). Intervention sous 24-48h.",
-    seoKeywords: "débarras appartement Annemasse, débarras Annemasse, débarras cave Annemasse, débarras grenier Annemasse, débarras maison Annemasse, débarras Haute-Savoie, débarras succession",
+    seoTitle: "Débarras Annemasse · Appartement, maison, succession, EHPAD | Torres Transport",
+    seoDescription: "Service débarras à Annemasse et Haute-Savoie : appartement, maison, cave, grenier, garage. Succession, EHPAD, fin de location. Tri écologique 60-75% don/recyclage. Devis gratuit, intervention 24-48h.",
+    seoKeywords: "débarras Annemasse, débarras appartement Annemasse, débarras maison Annemasse, débarras succession Annemasse, débarras après décès, débarras cave Annemasse, débarras grenier Annemasse, débarras EHPAD Haute-Savoie, débarras urgent fin location, vide maison Annemasse, entreprise débarras 74, prix débarras Annemasse, débarras syndrome Diogène",
     icone: "♻️",
     image: "/services/debarras.webp",
     banner: "/banner-debarras.webp",
     description: "Débarras d'appartement, maison, cave, grenier et garage à Annemasse et en Haute-Savoie.",
     intro: `
-      <p>Le <strong>débarras d'appartement à Annemasse</strong> (ou de maison, cave, grenier, garage) n'est jamais "juste" du débarras. C'est souvent une <strong>période compliquée</strong> qui se cache derrière&nbsp;: une succession à gérer après le décès d'un proche, un parent qui entre en EHPAD, un divorce qui impose de vider rapidement, un déménagement où il faut se séparer de meubles devenus inutiles. Notre approche tient compte de cette dimension humaine, pas de jugement, pas de pression, juste un travail efficace et discret.</p>
-      <p><strong>Trois types de débarras&nbsp;:</strong></p>
+      <p>Le <strong>débarras d'appartement à Annemasse</strong> (ou de maison, cave, grenier, garage) n'est jamais «&nbsp;juste&nbsp;» du débarras. C'est souvent une <strong>période compliquée</strong> qui se cache derrière&nbsp;: une succession à gérer après le décès d'un proche, un parent qui entre en EHPAD, un divorce qui impose de vider rapidement, un déménagement où il faut se séparer de meubles devenus inutiles. Notre approche tient compte de cette dimension humaine&nbsp;: pas de jugement, pas de pression, juste un travail efficace et discret.</p>
+
+      <h2>Combien coûte un débarras à Annemasse&nbsp;?</h2>
+      <p>Le tarif d'un débarras dépend de trois facteurs principaux&nbsp;: <strong>le volume à évacuer</strong>, <strong>l'accessibilité du logement</strong> (étage, ascenseur, parking) et <strong>la valeur récupérable des biens</strong>. Voici nos fourchettes indicatives pour la Haute-Savoie, à affiner après visite gratuite&nbsp;:</p>
+      <ul>
+        <li><strong>Cave, grenier ou garage seul (10-15 m³)</strong>&nbsp;: 250 à 450&nbsp;€</li>
+        <li><strong>Studio ou T1 complet (12-18 m³)</strong>&nbsp;: 300 à 550&nbsp;€</li>
+        <li><strong>F2 / F3 complet (20-30 m³)</strong>&nbsp;: 500 à 950&nbsp;€</li>
+        <li><strong>Appartement F4 / F5 (35-50 m³)</strong>&nbsp;: 800 à 1&nbsp;400&nbsp;€</li>
+        <li><strong>Maison familiale complète (50-80&nbsp;m³+)</strong>&nbsp;: 1&nbsp;300 à 2&nbsp;500&nbsp;€</li>
+        <li><strong>Cas Diogène ou insalubrité forte</strong>&nbsp;: devis spécifique (EPI, désinfection inclus)</li>
+      </ul>
+      <p>Pour certains débarras où la <strong>valeur récupérable du mobilier est élevée</strong> (meubles anciens en bon état, électroménager récent, antiquités, vinyles, livres rares), une <strong>compensation est possible</strong>&nbsp;: nous reprenons les biens à valoriser et appliquons une remise sur le devis, voire un débarras à coût zéro selon le cas. Devis gratuit après visite à votre domicile pour évaluation honnête.</p>
+
+      <h2>Les six situations de débarras que nous traitons le plus souvent</h2>
+
+      <h3>1. Débarras après décès et succession</h3>
+      <p>C'est le cas le plus fréquent dans le bassin annemassien&nbsp;: la <strong>maison familiale d'un parent décédé</strong> doit être vidée avant vente, ou un héritage à partager entre frères et sœurs. Nous savons gérer la complexité administrative et émotionnelle de ces situations&nbsp;: <strong>plusieurs héritiers</strong>, signatures séparées, présence facultative au moment du débarras, photos de chaque pièce avant intervention, conservation soigneuse des documents personnels (papiers d'identité, livrets de famille, archives) que nous remettons systématiquement à la famille. Aucun jugement sur l'état du logement ni sur ce qu'il contient.</p>
+
+      <h3>2. Entrée en EHPAD ou maison de retraite</h3>
+      <p>Quand un parent quitte son domicile pour entrer en <strong>EHPAD à Annemasse, Ville-la-Grand, Gaillard ou Bonneville</strong>, il faut souvent vider rapidement un logement chargé de souvenirs. Nous travaillons en lien avec la famille pour <strong>identifier ce qui suit en chambre d'EHPAD</strong> (quelques meubles, photos, objets affectifs), ce qui est redistribué entre enfants/petits-enfants, et ce qui doit être donné, vendu ou évacué. Approche douce, possibilité d'étaler l'intervention sur plusieurs jours si la personne est encore présente.</p>
+
+      <h3>3. Débarras avant vente immobilière</h3>
+      <p>Vous avez vendu votre maison ou votre appartement à Annemasse, et le compromis stipule une <strong>livraison vidée et propre</strong> ? Nous intervenons généralement <strong>5 à 10 jours avant la signature de l'acte authentique</strong> chez le notaire pour évacuer tout ce qui ne suit pas dans votre futur logement. Tri systématique, partenariat avec dépôts-ventes (Trocadéro Annemasse, Easy Cash) si vous voulez valoriser certaines pièces, nettoyage final possible pour livrer un bien impeccable à l'acquéreur.</p>
+
+      <h3>4. Débarras urgent (fin de location, expulsion, congé)</h3>
+      <p>Vous êtes <strong>locataire et vous quittez votre logement</strong> dans des conditions précipitées (perte d'emploi, mutation imprévue, séparation, fin de bail rapide) ? Nous pouvons intervenir <strong>sous 24 à 48 heures</strong> pour libérer le logement avant l'état des lieux de sortie, éviter les retenues sur dépôt de garantie liées à des objets laissés, et permettre une restitution propre au propriétaire ou à l'agence. Devis flash possible par téléphone après description précise du logement.</p>
+
+      <h3>5. Débarras syndrome de Diogène ou logement insalubre</h3>
+      <p>Le <strong>syndrome de Diogène</strong> conduit certaines personnes à accumuler objets, déchets et nourriture pendant des années, parfois décennies. Le logement devient inhabitable et dangereux (risque sanitaire, incendie, infestations). Notre équipe est formée et équipée pour ces interventions sensibles&nbsp;: <strong>équipements de protection individuelle complets</strong> (combinaisons, masques FFP3, gants), tri rigoureux pour récupérer les biens précieux noyés dans le désordre, <strong>désinfection après débarras</strong> par un partenaire spécialisé, discrétion totale vis-à-vis du voisinage et des proches. Devis sur visite uniquement, totalement personnalisé.</p>
+
+      <h3>6. Vide-cave, vide-grenier, vide-garage</h3>
+      <p>Les <strong>caves, greniers et garages</strong> sont souvent les zones les plus chargées d'une maison&nbsp;: meubles d'enfance, archives, vélos cassés, matériel de bricolage, vieux électroménager. Beaucoup de propriétaires nous appellent pour les vider <strong>sans toucher au reste du logement</strong>&nbsp;: vous restez chez vous, nous gérons uniquement ces espaces secondaires. Intervention typiquement en demi-journée à journée complète selon l'état.</p>
+
+      <h2>Notre méthode en 5 étapes</h2>
       <ol>
-        <li><strong>Débarras d'appartement complet</strong> à Annemasse, Ville-la-Grand, Gaillard, Étrembières (le plus courant) — un T1 à un T5, vidé intégralement. Tri sur place, évacuation, nettoyage final si demandé. Intervention sous 24-48&nbsp;h pour les urgences locatives.</li>
-        <li><strong>Débarras partiel</strong>, vous gardez certains meubles (ceux qui partent avec vous, ou ceux à conserver), nous évacuons le reste. Idéal après une succession où certains meubles restent dans la famille.</li>
-        <li><strong>Débarras de caves, greniers, garages</strong>, souvent des lieux remplis depuis 20 ou 30 ans, avec un mélange d'objets de valeur, d'archives et de bricolages oubliés.</li>
+        <li><strong>Premier contact téléphonique</strong> (06 59 92 68 14)&nbsp;: vous décrivez la situation, le logement, le délai. Estimation indicative donnée à l'oral.</li>
+        <li><strong>Visite gratuite à domicile</strong> sous 24-72&nbsp;h&nbsp;: Ludovic se déplace pour évaluer le volume, les accès, identifier les biens à valoriser. Aucun engagement à ce stade.</li>
+        <li><strong>Devis ferme écrit</strong>&nbsp;: chiffrage détaillé envoyé sous 24 h, avec décomposition transparente (main-d'œuvre, évacuation, frais de déchetterie). Si valorisation possible, compensation indiquée.</li>
+        <li><strong>Intervention le jour J</strong>&nbsp;: équipe de 2 à 4 manutentionnaires selon le volume, camion 30 m³, tri 4 catégories sur place (don / vente / recyclage / encombrants). Photos avant/après.</li>
+        <li><strong>Récapitulatif final</strong>&nbsp;: à la fin du chantier, vous recevez un <strong>document écrit listant le devenir de vos biens</strong> (associations bénéficiaires, déchetterie utilisée, biens valorisés). Transparence totale.</li>
       </ol>
-      <p><strong>Notre méthode de tri&nbsp;:</strong> à la sortie de chaque pièce, nous classons en 4 catégories sur place&nbsp;: à <strong>donner</strong> (associations partenaires comme Emmaüs, Croix-Rouge, Secours Populaire), à <strong>vendre</strong> en dépôt-vente si vous le souhaitez (Trocadéro, Easy Cash), à <strong>recycler</strong> (déchetterie de Bonne ou Vétraz-Monthoux pour électroménager, ferraille, bois), à <strong>jeter</strong> (encombrants en dernier recours). Nous fournissons un récapitulatif écrit du devenir de chaque catégorie.</p>
-      <p><strong>Engagement écologique&nbsp;:</strong> sur un débarras moyen, environ 60 à 75&nbsp;% du volume part au don ou au recyclage, et seulement 25 à 40&nbsp;% en encombrants. Nous travaillons régulièrement avec les associations locales d'Annemasse et nous trions à la déchetterie pour respecter les filières (DEEE pour l'électronique, REP pour le mobilier).</p>
-      <p><strong>Cas spécifiques&nbsp;:</strong> succession (nous avons l'habitude des situations complexes avec plusieurs héritiers, signatures multiples), expulsion locative (intervention rapide possible), syndrome de Diogène (intervention spécialisée avec EPI complets, désinfection après débarras).</p>
+
+      <h2>Notre engagement écologique</h2>
+      <p>Sur un débarras moyen à Annemasse, environ <strong>60 à 75&nbsp;% du volume part au don ou au recyclage</strong>, et seulement 25 à 40&nbsp;% finit en encombrants. Voici concrètement où vont vos biens&nbsp;:</p>
+      <ul>
+        <li><strong>Don aux associations locales</strong>&nbsp;: Emmaüs Pays de Gex (le plus proche), Secours Populaire 74, Croix-Rouge Annemasse, ressourceries locales. Nous remettons des reçus si demandé.</li>
+        <li><strong>Filière DEEE</strong> (déchets d'équipements électriques et électroniques)&nbsp;: électroménager, écrans, petit électroménager. Acheminés vers les éco-organismes agréés.</li>
+        <li><strong>Filière REP mobilier</strong>&nbsp;: meubles abîmés mais recyclables, déposés en déchetterie partenaire (Bonne, Vétraz-Monthoux).</li>
+        <li><strong>Vente en dépôt-vente</strong> si vous le souhaitez&nbsp;: Trocadéro Annemasse, Easy Cash, Cash Converters pour les biens à valeur marchande significative.</li>
+        <li><strong>Encombrants ultimes</strong>&nbsp;: ce qui n'est ni donnable ni recyclable est évacué en déchetterie via nos accès professionnels.</li>
+      </ul>
+
+      <h2>Débarras ou déménagement&nbsp;: quelle différence&nbsp;?</h2>
+      <p>Les deux services sont complémentaires mais distincts. Un <strong>déménagement</strong> consiste à transporter vos biens d'un point A à un point B&nbsp;; un <strong>débarras</strong> consiste à évacuer définitivement vos biens (vers le don, la vente ou la déchetterie). Beaucoup de nos clients combinent les deux dans une même intervention&nbsp;: nous déménageons ce qui suit dans le nouveau logement, et nous débarrassons en même temps ce qui ne suit pas. <strong>Une seule équipe, un seul devis, une seule journée</strong>. Tarif optimisé si vous nous le demandez en amont.</p>
+
+      <h2>Zones d'intervention débarras</h2>
+      <p>Torres Transport intervient pour des débarras dans tout le bassin annemassien et la Haute-Savoie&nbsp;: <a href="/demenagement-annemasse">Annemasse</a>, <a href="/demenagement-ville-la-grand">Ville-la-Grand</a>, <a href="/demenagement-gaillard">Gaillard</a>, <a href="/demenagement-ambilly">Ambilly</a>, <a href="/demenagement-etrembieres">Étrembières</a>, <a href="/demenagement-vetraz-monthoux">Vétraz-Monthoux</a>, <a href="/demenagement-cranves-sales">Cranves-Sales</a>, <a href="/demenagement-saint-julien-en-genevois">Saint-Julien-en-Genevois</a>, <a href="/demenagement-thonon-les-bains">Thonon-les-Bains</a>, <a href="/demenagement-evian-les-bains">Évian-les-Bains</a>, <a href="/demenagement-bonneville">Bonneville</a> et toute la Haute-Savoie sur devis. Pour les communes plus éloignées (Annecy, Chamonix, frontière Ain), un léger surcoût kilométrique peut s'appliquer&nbsp;: nous l'indiquons clairement dans le devis.</p>
     `,
     details: [
-      "Débarras complet ou partiel",
-      "Caves, greniers, garages, appartements, maisons",
+      "Débarras complet ou partiel d'appartements et maisons",
+      "Caves, greniers, garages, dépendances",
+      "Débarras après décès et succession",
+      "Débarras avant entrée en EHPAD",
+      "Débarras avant vente immobilière",
+      "Débarras urgent fin de location (24-48 h)",
+      "Cas spécialisés : syndrome de Diogène, insalubrité",
       "Tri 4 catégories : don, vente, recyclage, jeter",
-      "Partenariats associations (Emmaüs, Croix-Rouge)",
+      "Partenariats Emmaüs, Croix-Rouge, Secours Populaire",
       "Filières DEEE et REP respectées",
       "Récapitulatif écrit du devenir des biens",
       "Nettoyage final inclus si demandé",
+      "Possibilité de débarras à coût réduit (biens valorisables)",
     ],
     avantages: [
       "Service écologique (60-75 % don/recyclage)",
       "Approche humaine pour situations sensibles",
-      "Devis gratuit, intervention rapide",
+      "Intervention sous 24-48 h pour les urgences",
+      "Tarif transparent, devis ferme sans frais cachés",
       "Discrétion totale (RGPD, voisinage)",
+      "Documents personnels systématiquement remis à la famille",
+      "Équipe formée aux cas Diogène et insalubrité",
     ],
   },
 };

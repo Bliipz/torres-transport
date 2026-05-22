@@ -132,20 +132,44 @@ export const serviceFaqs = {
   ],
   debarras: [
     {
-      question: "Le débarras est-il payant ou gratuit ?",
-      reponse: "Selon la valeur récupérable des biens. Sur certains débarras (mobilier en bon état, électroménager récent), nous proposons une compensation. Sur les débarras lourds (caves, greniers, encombrants), c'est facturé selon volume et tri à effectuer (entre 200 et 1500 €).",
+      question: "Combien coûte un débarras d'appartement à Annemasse ?",
+      reponse: "Le tarif dépend du volume et de l'accessibilité. Indicatif : 300-550€ pour un studio ou T1, 500-950€ pour un F2/F3, 800-1400€ pour un F4/F5, 1300-2500€ pour une maison familiale complète. Si la valeur récupérable du mobilier est élevée, une compensation est possible — parfois jusqu'à un débarras à coût zéro. Devis ferme gratuit après visite à votre domicile.",
     },
     {
-      question: "Triez-vous ce qui peut être donné/recyclé ?",
-      reponse: "Oui systématiquement. Sur un débarras moyen, 60 à 75% du volume part au don ou au recyclage (associations locales d'Annemasse, déchetterie REP, filière DEEE pour l'électronique). Seul 25 à 40% finit en encombrants.",
+      question: "Le débarras peut-il être gratuit ?",
+      reponse: "Oui, dans certains cas. Si les biens à évacuer ont une valeur récupérable significative (meubles anciens en bon état, électroménager récent, antiquités, vinyles rares), nous pouvons proposer une compensation qui couvre tout ou partie du coût. Cela dépend de l'évaluation à la visite gratuite — soyez transparent sur ce que contient le logement pour qu'on puisse vous donner une réponse honnête.",
     },
     {
-      question: "Intervenez-vous sur des débarras suite à succession ou syndrome de Diogène ?",
-      reponse: "Oui, c'est régulier. Nous savons gérer les situations complexes : héritiers multiples, signatures séparées, intervention discrète, désinfection après débarras pour les cas Diogène. Approche humaine, sans jugement.",
+      question: "Faites-vous des débarras après décès et succession ?",
+      reponse: "Oui régulièrement. Nous savons gérer les situations complexes : héritiers multiples avec signatures séparées, présence facultative à l'intervention, conservation soigneuse des documents personnels (papiers d'identité, livrets de famille, archives) systématiquement remis à la famille, photos avant/après de chaque pièce. Approche humaine, sans jugement, totale discrétion.",
     },
     {
       question: "Combien de temps prend un débarras complet ?",
-      reponse: "Un studio se débarrasse en 2-4h, un T3 en une journée, une maison familiale entière en 1-3 jours selon le volume. Devis en visite gratuite.",
+      reponse: "Un studio ou T1 se débarrasse en 2 à 4 heures, un F2/F3 en demi-journée à journée complète, un F4/F5 en une journée à une journée et demie, une maison familiale entière entre 1 et 3 jours selon le volume et l'état. Les caves, greniers et garages seuls prennent en général une demi-journée. Délais précis donnés en visite gratuite.",
+    },
+    {
+      question: "Pouvez-vous intervenir en urgence pour une fin de location ?",
+      reponse: "Oui, sous 24 à 48 heures pour les urgences locatives. Nous sommes habitués aux situations précipitées : congé de bail rapide, mutation, séparation, expulsion. Devis flash possible par téléphone après description précise du logement. Nous intervenons avant votre état des lieux pour éviter les retenues sur dépôt de garantie.",
+    },
+    {
+      question: "Triez-vous ce qui peut être donné ou recyclé ?",
+      reponse: "Oui systématiquement. Sur un débarras moyen, 60 à 75% du volume part au don ou au recyclage : associations locales (Emmaüs Pays de Gex, Secours Populaire 74, Croix-Rouge Annemasse), filière DEEE pour l'électronique, filière REP pour le mobilier, dépôt-vente pour les biens à valeur (Trocadéro, Easy Cash). Vous recevez un récapitulatif écrit du devenir de chaque catégorie.",
+    },
+    {
+      question: "Intervenez-vous sur un logement en syndrome de Diogène ou très insalubre ?",
+      reponse: "Oui, c'est une de nos spécialités. Notre équipe est formée et équipée (combinaisons, masques FFP3, gants), capable de retrouver les biens précieux noyés dans l'accumulation. Nous travaillons avec un partenaire pour la désinfection après débarras si nécessaire. Discrétion totale vis-à-vis du voisinage et des proches. Devis sur visite uniquement, intervention personnalisée.",
+    },
+    {
+      question: "Faites-vous le nettoyage après débarras ?",
+      reponse: "Oui sur demande, c'est un service complémentaire. Un nettoyage de fin de bail standard est inclus dans certains devis ; un nettoyage approfondi (après Diogène, vente immobilière) est facturé en supplément. Mention obligatoire dans le devis pour transparence.",
+    },
+    {
+      question: "Dois-je être présent pendant le débarras ?",
+      reponse: "Non, c'est facultatif. Beaucoup de nos clients (héritiers vivant à l'étranger, propriétaires âgés, locataires en mutation) ne sont pas présents. Nous demandons simplement : (1) une clé ou un moyen d'accès, (2) une liste écrite des biens à conserver absolument s'il y en a, (3) un numéro joignable pendant l'intervention en cas de question. Photos avant/après envoyées systématiquement.",
+    },
+    {
+      question: "Combinez-vous débarras et déménagement dans une même intervention ?",
+      reponse: "Oui, c'est fréquent et économique. Si vous déménagez en gardant une partie de vos meubles, nous transportons ce qui suit vers le nouveau logement ET nous débarrassons ce qui ne suit pas dans la même journée. Une seule équipe, un seul devis, un tarif optimisé. À demander en amont pour qu'on planifie correctement les véhicules et l'équipe.",
     },
   ],
 };
