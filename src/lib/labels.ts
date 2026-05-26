@@ -20,6 +20,7 @@ export const TYPE_LIEU_LABELS: Record<string, string> = {
   appartement: 'Appartement',
   maison: 'Maison',
   studio: 'Studio',
+  box: 'Box de stockage',
 };
 
 // Services qui exigent une adresse de départ valide
