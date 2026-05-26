@@ -599,7 +599,8 @@ const services = [
     const breakdown = $('breakdown');
     const customSummary = $('customSummary');
     const resultLabel = document.querySelector('[data-result-label]');
-    const submitBtn = $('submitBtn');
+    // Note : on n'a plus de reference unique au bouton submit, setLoading()
+    // cible tous les .btn-submit via querySelectorAll (desktop aside + mobile sous RGPD).
     const feedback = $('form-feedback');
 
     // Espace fine insécable (U+202F) trop étroite à l'affichage : on utilise un espace normal
@@ -1262,6 +1263,15 @@ const services = [
     -webkit-appearance: none;
     appearance: none;
     display: block;
+  }
+
+  /* Centre le texte dans les selects et inputs numériques (TYPE, ÉTAGE,
+     ASCENSEUR). Les inputs texte/email/tel/adresse restent left-aligned
+     car centrer du texte de saisie libre nuit à la lisibilité. */
+  .estim-form select,
+  .estim-form input[type="number"] {
+    text-align: center;
+    text-align-last: center;
   }
   .estim-form input:focus,
   .estim-form select:focus,
