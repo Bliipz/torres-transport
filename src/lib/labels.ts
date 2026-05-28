@@ -21,6 +21,10 @@ export const TYPE_LIEU_LABELS: Record<string, string> = {
   maison: 'Maison',
   studio: 'Studio',
   box: 'Box de stockage',
+  'cave-plein-pied': 'Cave (plein-pied)',
+  'cave-sous-sol': 'Cave (sous-sol)',
+  'garage-plein-pied': 'Garage (plein-pied)',
+  'garage-sous-sol': 'Garage (sous-sol)',
 };
 
 // Services qui exigent une adresse de départ valide
