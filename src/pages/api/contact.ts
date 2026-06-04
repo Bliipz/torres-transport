@@ -249,8 +249,9 @@ export const POST: APIRoute = async ({ request }) => {
     const rgpd = formData.get('rgpd')?.toString().trim() === 'on';
     const adresseDepart = readAddress(formData, 'depart');
     const adresseArrivee = readAddress(formData, 'arrivee');
-    // Mode strict : /estimation envoie les 3 champs détaillés ; /contact non.
-    // Sur /contact l'adresse est optionnelle (Ludovic rappelle au téléphone si besoin).
+    const dateSouhaitee = (formData.get('date_prestation') || formData.get('date'))?.toString().trim() || '';
+    // Mode strict : /estimation envoie les 3 champs détaillés (rue_depart, cp_depart, ville_depart).
+    // Mode simple : /contact envoie un champ libre adresse-depart.
     const isStrictMode = formData.has('rue_depart');
 
     // ==================== VALIDATION ====================
@@ -260,11 +261,19 @@ export const POST: APIRoute = async ({ request }) => {
     if (!isValidPhone(telephone)) errors.push('Téléphone invalide (format FR ou international avec +)');
     if (!service || !SERVICE_LABELS[service]) errors.push('Service à sélectionner');
     if (!rgpd) errors.push("Vous devez accepter la politique de confidentialité");
-    if (isStrictMode && SERVICES_NEED_DEPART.includes(service) && !adresseDepart) {
-      errors.push('Adresse de départ incomplète : rue, code postal (5 chiffres) et ville requis');
-    }
-    if (isStrictMode && SERVICES_NEED_ARRIVEE.includes(service) && !adresseArrivee) {
-      errors.push("Adresse d'arrivée incomplète : rue, code postal (5 chiffres) et ville requis");
+    if (isStrictMode) {
+      // Mode estimation : validation stricte du format 3 champs
+      if (SERVICES_NEED_DEPART.includes(service) && !adresseDepart) {
+        errors.push('Adresse de départ incomplète : rue, code postal (5 chiffres) et ville requis');
+      }
+      if (SERVICES_NEED_ARRIVEE.includes(service) && !adresseArrivee) {
+        errors.push("Adresse d'arrivée incomplète : rue, code postal (5 chiffres) et ville requis");
+      }
+    } else {
+      // Mode contact simple : tous les champs obligatoires (anti-bot/CSRF passthrough)
+      if (!adresseDepart || adresseDepart.length < 3) errors.push('Adresse de départ requise');
+      if (!adresseArrivee || adresseArrivee.length < 3) errors.push("Adresse d'arrivée requise");
+      if (!dateSouhaitee) errors.push('Date souhaitée requise');
     }
 
     if (errors.length > 0) {
